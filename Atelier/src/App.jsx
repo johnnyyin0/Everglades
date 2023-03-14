@@ -18,6 +18,7 @@ function App() {
       <h1>Vite + React</h1>
       <div className="card">
         <button className="btn">DaisyUI Button</button>
+        <label htmlFor="my-modal" className="btn">open modal</label>
         <button onClick={() => setCount((count) => count + 1)}>
           count is {count}
         </button>
