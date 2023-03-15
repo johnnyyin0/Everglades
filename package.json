@@ -2,15 +2,22 @@
   "name": "atelier",
   "private": true,
   "version": "0.0.0",
-  "type": "module",
+  "type": "commonjs",
+  "main": "server/index.js",
   "scripts": {
-    "dev": "vite",
+    "react-dev": "vite",
+    "server-dev": "nodemon server/index.js",
+    "dev": "concurrently 'npm:react-dev' 'npm:server-dev'",
     "build": "vite build",
     "preview": "vite preview"
   },
   "dependencies": {
     "daisyui": "^2.51.3",
     "dotenv": "^16.0.3",
+    "express": "^4.18.2",
+    "mongodb": "^5.1.0",
+    "mongoose": "^7.0.2",
+    "morgan": "^1.10.0",
     "react": "^18.2.0",
     "react-dom": "^18.2.0"
   },
