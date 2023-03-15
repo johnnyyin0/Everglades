@@ -2,9 +2,12 @@
   "name": "atelier",
   "private": true,
   "version": "0.0.0",
-  "type": "module",
+  "type": "commonjs",
+  "main": "server/index.js",
   "scripts": {
-    "dev": "vite",
+    "react-dev": "vite",
+    "server-dev": "nodemon server/index.js",
+    "dev": "concurrently 'npm:react-dev' 'npm:server-dev'",
     "build": "vite build",
     "preview": "vite preview"
   },
