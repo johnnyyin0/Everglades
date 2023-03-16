@@ -1,7 +1,13 @@
 
+import React from 'react'
+import FitSlider from './FitSlider.jsx'
+
 export default function FitSliders(props) {
 
   return (
-    <div>Fit Sliders</div>
+    <div>
+      <div>Fit Sliders</div>
+      <FitSlider />
+    </div>
   )
 }
