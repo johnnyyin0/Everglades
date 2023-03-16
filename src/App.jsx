@@ -10,7 +10,7 @@ function App() {
     <div>
       <Overview />
       <QuestionsAnswers />
-      <RatingsReviews />
+      {/* <Reviews /> */}
     </div>
   )
 }
