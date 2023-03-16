@@ -11,14 +11,17 @@ reviewController = {
       })
   },
   post: (req, res) => {
-    Models.reviews.postReview()
-    .then(data => {
+    Models.reviews.postReview(req.body)
+    .then(response => {
       console.log('Successfully posted review!')
+      res.send(response.data);
     })
     .catch(err => {
       console.log(err, 'Failed to post review!')
+      res.send(err.data)
     })
   }
+  getMeta(req, res)
 }
 
 
