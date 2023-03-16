@@ -1,0 +1,1 @@
+//fetches the answer for every particular questionId
