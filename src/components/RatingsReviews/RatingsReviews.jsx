@@ -8,6 +8,8 @@ export default function RatingsReviews(props) {
       <div>Ratings and Reviews</div>
       <ReviewsList />
       <Sidebar />
+      <button>More Reviews</button>
+      <a href="#new-review-modal" className="btn">Add Review</a>
     </div>
   )
 }

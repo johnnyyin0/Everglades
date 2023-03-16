@@ -1,8 +1,12 @@
-import React from 'react';
+import React from 'react'
+import ReviewTile from './ReviewTile.jsx'
 
 export default function ReviewsList(props) {
 
   return (
-    <div>Reviews List</div>
+    <div>
+      <div>Reviews List</div>
+      <ReviewTile />
+    </div>
   )
 }
