@@ -13,7 +13,6 @@ app.use(express.json());
 //when a request is sent through '/', go to routes folder
 app.use('/', routes);
 
-
 const port = process.env.PORT || 3000;
 
 app.listen(port, () => {

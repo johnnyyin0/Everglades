@@ -2,7 +2,8 @@ const controller = require('./Controllers/controllers.js');
 const router = require('express').Router();
 
 //questions
-router.get('/questions', controller.questions.get);
+router.get('/questions', controller.questions.getQuestions);
+router.get('/questions/answers', controller.questions.getAnswers);
 
 //reviews
 router.get('/reviews', controller.reviews.get);
