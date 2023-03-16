@@ -27,6 +27,7 @@ const List = ({ questions }) => {
         onChange={handleChange}
         placeholder="Search for questions here..."
         style={{
+          margin: '20px 0',
           opacity: searchTerm ? 1 : 0.5,
           border: '1px solid black',
           width: '500px',
@@ -38,7 +39,7 @@ const List = ({ questions }) => {
             <li 
               key={question.question_id} 
               style={{ marginBottom: '10px', border: '1px solid black', padding: '10px' }}>
-              <div>Question: {question.question_body}</div>
+              <div><b>Q:</b> {question.question_body}</div>
               <Answers questionId={question.question_id} />
             </li>
           ))
@@ -47,7 +48,7 @@ const List = ({ questions }) => {
             <li 
               key={question.question_id} 
               style={{ marginBottom: '10px', border: '1px solid black', padding: '10px' }}>
-              <div>Question: {question.question_body}</div>
+              <div><b>Q:</b> {question.question_body}</div>
               <Answers questionId={question.question_id} />
             </li>
           ))

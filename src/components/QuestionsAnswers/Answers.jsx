@@ -30,9 +30,9 @@ const Answers = ({questionId}) => {
     return (
   <div>
     {answers.length === 0 ?
-      <div>Answer: No answer yet...</div> :
+      <div><b>A:</b><i> No answer yet...</i></div> :
       answers.slice(0, 2).map((answer) => (
-        <div key={answer.answer_id}>Answer: {answer.body}</div>
+        <div key={answer.answer_id}><b>A:</b> {answer.body}</div>
       ))}
   </div>
 );
