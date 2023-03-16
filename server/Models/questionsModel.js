@@ -3,6 +3,7 @@ const config = require('../../config.js');
 
 let questionsModel = {
   getQuestions: () => {
+    //should take in a param ie: productId
     let options = {
       method: 'GET',
       url: `https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfe/qa/questions?product_id=${37311}&count=100`,
