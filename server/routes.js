@@ -14,4 +14,8 @@ router.put('/reviews/report', controller.reviews.markReported);
 
 //products
 router.get('/products', controller.products.get);
+router.get('/product/:id/styles', controller.products.getStyle);
+router.get('/product/:id/related', controller.products.getRelated);
+router.get('/product/:id', controller.products.getOne);
+
 module.exports = router;
