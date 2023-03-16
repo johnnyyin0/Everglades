@@ -15,6 +15,7 @@ const Answers = ({questionId}) => {
         axios.get('http://localhost:3000/questions/answers', { params: { questionId }})
         .then(response => {
             setAnswers(response.data.results)
+            console.log(response.data.results)
         })
         .catch(err => {
             console.log('Error on getAnswers: ', err )
@@ -27,12 +28,14 @@ const Answers = ({questionId}) => {
     //display one of the answers
     //import more Answers for the button
     return (
-      <div>
-         {answers.map((answer) => (
-            <div key={answer.answer_id}>{answer.answer_body}</div>
+  <div>
+    {answers.length === 0 ?
+      <div>Answer: No answer yet...</div> :
+      answers.slice(0, 2).map((answer) => (
+        <div key={answer.answer_id}>Answer: {answer.body}</div>
       ))}
-    </div>
-    )
+  </div>
+);
 }
 
 export default Answers

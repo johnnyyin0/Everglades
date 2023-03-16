@@ -36,15 +36,19 @@ const List = ({ questions }) => {
         {searchTerm === '' ? (
           questions.slice(0, 4).map(question => (
             <li 
-            key={question.question_id} style={{ marginBottom: '10px' }}>Question: {question.question_body}
-            <Answers questionId= {question.question_id}/>
+              key={question.question_id} 
+              style={{ marginBottom: '10px', border: '1px solid black', padding: '10px' }}>
+              <div>Question: {question.question_body}</div>
+              <Answers questionId={question.question_id} />
             </li>
           ))
         ) : (
           filteredQuestions.slice(0, 4).map(question => (
             <li 
-            key={question.question_id} style={{ marginBottom: '10px' }}>Question: {question.question_body}
-            <Answers questionId= {question.question_id}/>
+              key={question.question_id} 
+              style={{ marginBottom: '10px', border: '1px solid black', padding: '10px' }}>
+              <div>Question: {question.question_body}</div>
+              <Answers questionId={question.question_id} />
             </li>
           ))
         )}

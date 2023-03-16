@@ -14,7 +14,6 @@ let questionController = {
   },
 
   getAnswers: (req, res) => {
-    console.log('THIS IS REQ BODY: ', req.query.questionId)
     Models.questions.getAnswers(req.query.questionId)
     //should take in a param ie: productId
     .then(data => {

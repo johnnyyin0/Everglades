@@ -23,7 +23,6 @@ let questionsModel = {
   },
 
   getAnswers: (questionId) => {
-    console.log('SERVER SIDE QUESTIONID', questionId)
     let options ={
       method: 'GET',
       url: apiURL+ `/${questionId}/answers?count=100`,
