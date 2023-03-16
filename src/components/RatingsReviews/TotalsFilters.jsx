@@ -1,7 +1,11 @@
-
+import React from 'react'
+import StarAvgSlider from './StarAvgSlider'
 export default function TotalsFilters(props) {
 
   return (
-    <div>Totals Filters</div>
+    <div>
+      <div>Totals Filters</div>
+      <StarAvgSlider />
+    </div>
   )
 }
