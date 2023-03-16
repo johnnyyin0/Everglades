@@ -4,7 +4,6 @@ reviewController = {
   get: (req, res) => {
       Models.reviews.getReviews(req.body)
       .then(response => {
-        console.log(response.data, 'Got reviews');
         res.send(response.data)
       })
       .catch(err => {
