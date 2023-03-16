@@ -5,15 +5,14 @@ const path = require('path');
 let reviewsModel = {
   url: 'https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfe/',
 
-  getReviews: (sortParams) => {
+  getReviews: (params) => {
     const options = {
       url: path.join(reviewsModel.url, '/reviews'),
       headers: {
         'Authorization': config.TOKEN
       },
-      params: sortParams,
-      //should be an object detailing how to sort the query, won't affect axios request if undefined
-
+      params: params,
+      //should be an object detailing how to sort the query, requires at least a product_id key but won't affect axios request if undefined
     }
     return axios(options)
   },
@@ -27,5 +26,3 @@ let reviewsModel = {
 }
 
 module.exports = reviewsModel;
-
-reviewsModel.getReviews({product_id:37311}).then(response => console.log(response.data, 'got em')).catch(err => console.log(err, 'failed to get em'))

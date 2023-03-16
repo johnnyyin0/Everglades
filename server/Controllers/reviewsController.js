@@ -2,13 +2,13 @@ const Models = require('../Models/Models.js');
 
 reviewController = {
   get: (req, res) => {
-      Models.reviews.getReviews()
-      .then(data => {
-        console.log('Got reviews');
-        res.send(data)
+      Models.reviews.getReviews(req.body)
+      .then(response => {
+        console.log(response.data, 'Got reviews');
+        res.send(response.data)
       })
       .catch(err => {
-        console.log(err, 'Failed to fetch reviews')
+        res.send(err, req.body, 'Failed to fetch reviews')
       })
   },
   post: (req, res) => {
