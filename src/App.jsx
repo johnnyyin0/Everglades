@@ -2,7 +2,7 @@ import { useState } from 'react'
 import reactLogo from './assets/react.svg'
 import Overview from './components/Overview/Overview.jsx'
 import QuestionsAnswers from './components/QuestionsAnswers/QuestionsAnswers.jsx'
-import Reviews from './components/RatingsReviews/RatingsReviews.jsx'
+import RatingsReviews from './components/RatingsReviews/RatingsReviews.jsx'
 
 function App() {
 
@@ -10,7 +10,7 @@ function App() {
     <div>
       <Overview />
       <QuestionsAnswers />
-      <Reviews/>
+      <RatingsReviews/>
     </div>
   )
 }

@@ -1,7 +1,6 @@
 import React, {useState,useEffect} from 'react'
 import axios from 'axios'
 import List from './List'
-import MoreQuestions from './MoreQuestions'
 import AddQuestion from './AddQuestion'
 
 //MAIN CONTAINER
@@ -26,10 +25,9 @@ const QuestionsAnswers = () => {
     }
 
     return (
-        <div>
-            QUESTIONS & ANSWERS
-            <List questions={questions}/>
-            <MoreQuestions /> <AddQuestion />
+        <div style={{ marginTop: '20px' , marginBottom: '20px'}}>
+            <b>QUESTIONS & ANSWERS</b>
+            <List questions={questions} setQuestions={setQuestions}/>
         </div>
     )
 }
