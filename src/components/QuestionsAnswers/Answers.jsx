@@ -3,7 +3,7 @@ import axios from 'axios';
 import React, { useState, useEffect } from 'react';
 import Report from './Report';
 
-const Answers = ({ questionId }) => {
+const Answers = ({ questionId , setQuestions}) => {
   const [answers, setAnswers] = useState([]);
   const [helpfulClicks, setHelpfulClicks] = useState([]);
 
@@ -13,8 +13,7 @@ const Answers = ({ questionId }) => {
 
   //axios get the answers for a particular questionId, data should be an array
   const getAnswers = (questionId) => {
-    axios
-      .get('http://localhost:3000/questions/answers', { params: { questionId } })
+    axios.get('http://localhost:3000/questions/answers', { params: { questionId } })
       .then((response) => {
         setAnswers(response.data.results);
       })
@@ -55,7 +54,7 @@ const Answers = ({ questionId }) => {
             <b>A:</b> {answer.body}
             <br />
             <small>
-              by {answer.answerer_name}, on {answer.date} <b>|</b> Helpful?{' '}
+              by {answer.answerer_name}, on {answer.date} | Helpful?{' '}
               <span
                 style={{
                   textDecoration: 'underline',
@@ -66,7 +65,7 @@ const Answers = ({ questionId }) => {
               >
                 Yes ({answer.helpfulness})
               </span>{' '}
-              <b>|</b> <Report answerId={answer.answer_id} />
+              | <Report answerId={answer.answer_id} />
             </small>
           </div>
         ))

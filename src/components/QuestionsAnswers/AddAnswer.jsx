@@ -5,9 +5,7 @@ import React from 'react'
 const AddAnswer = () => {
 
     return (
-        <div>
-
-        </div>
+        <span>Add Answer</span>
     );
 }
 

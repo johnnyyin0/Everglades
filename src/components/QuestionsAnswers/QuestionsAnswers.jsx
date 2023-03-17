@@ -27,8 +27,8 @@ const QuestionsAnswers = () => {
 
     return (
         <div>
-            QUESTIONS & ANSWERS
-            <List questions={questions}/>
+            <b>QUESTIONS & ANSWERS</b>
+            <List questions={questions} setQuestions={setQuestions}/>
             <MoreQuestions /> <AddQuestion />
         </div>
     )
