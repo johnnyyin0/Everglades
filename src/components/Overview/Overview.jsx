@@ -5,6 +5,7 @@ import ProductName from './productName.jsx';
 import StarsWidget from '../RatingsReviews/StarsWidget.jsx'
 import ProductDescription from './ProductDescription.jsx';
 import ProductImage from './ProductImage.jsx';
+import AddCart from './AddCart.jsx';
 import exampleStyle from './exampleStyle.js';
 import exampleProduct from './exampleProduct.js';
 import Carosel from './Carosel.jsx';
@@ -63,27 +64,27 @@ let Overview = () => {
 
   return (
     <>
-    <div className="grid grid-cols-6 gap-2" >
+    <div className="grid grid-cols-5 gap-2" >
       <div className=" col-span-1 row-span-4"></div>
       <div className=' rounded-lg min-h-[50px] col-span-1 row-span-4'>
         <ProductImage photo={photo} />
       </div>
 
-      <div className=' rounded-lg shadow-xl min-h-[50px] col-span-3'>
+      <div className=' rounded-lg shadow-xl min-h-[50px] col-span-2'>
         <StarsWidget />
         </div>
 
 
-      <div className=' rounded-lg shadow-xl min-h-[50px] col-span-3'>
+      <div className=' rounded-lg shadow-xl min-h-[50px] col-span-2'>
         <ProductName currentProduct={currentProduct}/>
       </div>
 
-      <div className=' rounded-lg shadow-xl min-h-[50px] col-span-3'>
+      <div className=' rounded-lg shadow-xl min-h-[50px] col-span-2'>
         <Styles currentStyle={currentStyle}/>
         </div>
 
-      <div className=' rounded-lg shadow-xl min-h-[50px] col-span-3'>
-        Add cart
+      <div className=' rounded-lg shadow-xl min-h-[50px] col-span-2'>
+        <AddCart />
         </div>
 
     </div>
