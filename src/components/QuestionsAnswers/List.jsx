@@ -6,7 +6,8 @@ const List = ({ questions }) => {
   //have a add answer(imported from AddAnswer)
   //each question should have a button for helpfulness
   //each question should have a report button(pops up modal)
-  //more questions button, loads another 2 questions onto the dom
+
+  //should have a helpful? Yes button and import Add Answer
 
   const [searchTerm, setSearchTerm] = useState('');
 
@@ -25,11 +26,13 @@ const List = ({ questions }) => {
         type="text"
         value={searchTerm}
         onChange={handleChange}
-        placeholder="Search for questions here..."
+        placeholder="HAVE A QUESTION? SEARCH FOR ANSWERS..."
         style={{
+          margin: '20px 0',
           opacity: searchTerm ? 1 : 0.5,
           border: '1px solid black',
-          width: '500px',
+          width: '800px',
+          height: '50px',
         }}
       />
       <ul>
@@ -37,8 +40,8 @@ const List = ({ questions }) => {
           questions.slice(0, 4).map(question => (
             <li 
               key={question.question_id} 
-              style={{ marginBottom: '10px', border: '1px solid black', padding: '10px' }}>
-              <div>Question: {question.question_body}</div>
+              style={{ marginBottom: '10px', padding: '10px'}}>
+              <div><b>Q: {question.question_body}</b></div>
               <Answers questionId={question.question_id} />
             </li>
           ))
@@ -46,8 +49,8 @@ const List = ({ questions }) => {
           filteredQuestions.slice(0, 4).map(question => (
             <li 
               key={question.question_id} 
-              style={{ marginBottom: '10px', border: '1px solid black', padding: '10px' }}>
-              <div>Question: {question.question_body}</div>
+              style={{ marginBottom: '10px', padding: '10px' }}>
+              <div><b>Q: {question.question_body}</b></div>
               <Answers questionId={question.question_id} />
             </li>
           ))
