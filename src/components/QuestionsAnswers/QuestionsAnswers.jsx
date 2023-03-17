@@ -2,9 +2,9 @@ import React, {useState,useEffect} from 'react'
 import axios from 'axios'
 import List from './List.jsx'
 
+//MAIN CONTAINER
 const QuestionsAnswers = () => {
     //take in props with productId, should be passed down from overview
-    //the container for all the components
     const [questions, setQuestions] = useState([])
 
     useEffect(() => {

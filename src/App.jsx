@@ -8,7 +8,7 @@ function App() {
 
   return (
     <div>
-      <Overview />
+      {/* <Overview /> */}
       <QuestionsAnswers />
       {/* <Reviews/> */}
     </div>

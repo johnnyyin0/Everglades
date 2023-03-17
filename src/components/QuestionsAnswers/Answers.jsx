@@ -1,10 +1,11 @@
 //fetches the answer for every particular questionId
 import axios from 'axios';
 import React, {useState, useEffect} from 'react';
+import Report from './Report'
 
 const Answers = ({questionId}) => {
-
-    const[answers, setAnswers] =useState([])
+    const [answers, setAnswers] = useState([])
+    const [helpfulClicks, setHelpfulClicks] =useState([])
 
     useEffect(() => {
         getAnswers(questionId);
@@ -22,20 +23,57 @@ const Answers = ({questionId}) => {
         })
     }
 
+    const handleHelpfulClick = (answerId) => {
+    if (!helpfulClicks.includes(answerId)) {
+      axios.put(`http://localhost:3000/answers/${answerId}/helpful`)
+        .then((response) => {
+          const updatedAnswers = answers.map((answer) => {
+            if (answer.answer_id === answerId) {
+              return { ...answer, helpfulness: answer.helpfulness + 1 };
+            }
+            return answer;
+          });
+          setAnswers(updatedAnswers);
+          setHelpfulClicks([...helpfulClicks, answerId]);
+        })
+        .catch((err) => {
+          console.log('Error on handleHelpfulClick: ', err);
+        });
+    }
+  };
     //set those answers to that question
 
     //simple Answer: {answer}
     //display one of the answers
     //import more Answers for the button
-    return (
-  <div>
-    {answers.length === 0 ?
-      <div><b>A:</b><i> No answer yet...</i></div> :
-      answers.slice(0, 2).map((answer) => (
-        <div key={answer.answer_id}><b>A:</b> {answer.body}</div>
-      ))}
-  </div>
-);
+  return (
+    <div>
+      {answers.length === 0 ? (
+        <div style={{ marginTop: '10px' }}>
+          <b>A:</b>
+          <i> No answer yet...</i>
+        </div>
+      ) : (
+        answers.slice(0, 2).map((answer) => (
+          <div key={answer.answer_id} style={{ marginTop: '10px' }}>
+            <b>A:</b> {answer.body}
+            <br />
+            <small>
+              by {answer.answerer_name}, {answer.date} | Helpful?{' '}
+              <span
+                style={{ textDecoration: 'underline', cursor: 'pointer' }}
+                onClick={() => handleHelpfulClick(answer.answer_id)}
+              >
+                Yes ({answer.helpfulness})
+              </span>{' '}
+              | <Report answerId={answer.answer_id} />
+            </small>
+          </div>
+        ))
+      )}
+    </div>
+  );
+
 }
 
 export default Answers
