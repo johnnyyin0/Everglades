@@ -1,33 +1,13 @@
 import StarsWidget from '../RatingsReviews/StarsWidget.jsx';
-let Carosel = () => {
+import CaroselProduct from './CaroselProduct.jsx';
+let Carosel = ({relative}) => {
+
   return (
 
-    <div className="carousel carousel-center rounded-box max-h-[200px]">
-  <div className="carousel-item">
-    <img src="https://webkit.org/demos/srcset/image-src.png" />
-    {/* <p>Catergory</p>
-    <p>Product Name</p>
-    <p>$$</p>
-    <StarsWidget /> */}
-  </div>
-  <div className="carousel-item">
-    <img src="https://webkit.org/demos/srcset/image-src.png" />
-  </div>
-  <div className="carousel-item">
-    <img src="https://webkit.org/demos/srcset/image-src.png" />
-  </div>
-  <div className="carousel-item">
-    <img src="https://webkit.org/demos/srcset/image-src.png" />
-  </div>
-  <div className="carousel-item">
-    <img src="https://webkit.org/demos/srcset/image-src.png" />
-  </div>
-  <div className="carousel-item">
-    <img src="https://webkit.org/demos/srcset/image-src.png" />
-  </div>
-  <div className="carousel-item">
-    <img src="https://webkit.org/demos/srcset/image-src.png"/>
-  </div>
+    <div className="carousel carousel-center rounded-box">
+      {relative.map( product =>
+      <CaroselProduct key={product.style_id} product={product}/>
+  )}
 </div>
  );
 }

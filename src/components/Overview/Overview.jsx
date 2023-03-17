@@ -20,14 +20,17 @@ let Overview = () => {
   let [currentStyle, setCurrentStyle] = useState(exampleStyle.results);
 
   let [photo, setPhoto] = useState(currentStyle[0].photos[0].thumbnail_url);
+
+  let [relative, setRelative] = useState([]);
   //useEffect
   useEffect(() => {
     Axios.get('http://localhost:3000/products')
     .then(res => setProducts(res))
-    .catch(err => console.log('Failed to load products'));
+      .catch(err => console.log('Failed to load products'));
   }, [])
 
 
+  let relativeIdNumbers = [];
   // When the currentId changes, change the current data
   useEffect(() => {
     Axios.get(`http://localhost:3000/product/${productId}`)
@@ -41,11 +44,21 @@ let Overview = () => {
       .catch(err => console.log('Failed to load product styles')))
       .then(Axios.get(`http://localhost:3000/product/${productId}/related`)
       .then(res => {
-        console.log(res.data);
-      }))
+        relativeIdNumbers = [...res.data];
+        return relativeIdNumbers
+      })
+      //iterate over the relativeIdNumbers, do a axios get request on each id
+      .then(idArray => {
+        let relativeItems = [];
+        idArray.forEach(id => {
+          Axios.get(`http://localhost:3000/product/${id}/styles`)
+          .then(res => {
+            setRelative(...relative, res.data.results)
+          })
+        })
+      })
+      )
     }, [])
-
-
 
   return (
     <>
@@ -74,7 +87,7 @@ let Overview = () => {
 
     </div>
     <ProductDescription />
-    <Carosel />
+    <Carosel relative={relative}/>
     </>
   );
 }
