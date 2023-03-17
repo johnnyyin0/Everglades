@@ -1,8 +1,11 @@
-export default function(props) {
+export default function StarAvgSlider({num, avg}) {
 
   return (
-    <span className="float-right mr-5">
-      <span> Slider Widget</span>
+    <div className="mb-1">
+    <span className="float-right mr-7">
+      <progress className="progress w-64" value={avg} max="100"></progress>
     </span>
+    <span className="btn btn-xs ml-7">{num} star{num === 1 ? ' ' : 's'}</span>
+    </div>
   )
 }
