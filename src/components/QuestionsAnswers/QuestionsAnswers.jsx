@@ -1,10 +1,12 @@
 import React, {useState,useEffect} from 'react'
 import axios from 'axios'
-import List from './List.jsx'
+import List from './List'
+import MoreQuestions from './MoreQuestions'
+import AddQuestion from './AddQuestion'
 
+//MAIN CONTAINER
 const QuestionsAnswers = () => {
     //take in props with productId, should be passed down from overview
-    //the container for all the components
     const [questions, setQuestions] = useState([])
 
     useEffect(() => {
@@ -27,7 +29,7 @@ const QuestionsAnswers = () => {
         <div>
             QUESTIONS & ANSWERS
             <List questions={questions}/>
-            {/* <QuestionsAnswerCard/> */}
+            <MoreQuestions /> <AddQuestion />
         </div>
     )
 }

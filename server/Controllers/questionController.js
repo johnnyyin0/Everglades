@@ -12,7 +12,6 @@ let questionController = {
       console.log('ERROR ON FETCHING QUESTIONS SERVER: ', err)
     })
   },
-
   getAnswers: (req, res) => {
     Models.questions.getAnswers(req.query.questionId)
     //should take in a param ie: productId
@@ -23,7 +22,18 @@ let questionController = {
     .catch((err) => {
       console.log('ERROR ON FETCHING ANSWERS SERVER: ', err)
     })
-  }
+  },
+  updateHelpfulness: (req, res) => {
+    Models.questions.updateHelpfulness(req.body.params.answerId)
+    //should take in a param ie: productId
+    .then(data => {
+      // console.log('DATA RECEIVED:', data)
+      res.send(data)
+    })
+    .catch((err) => {
+      console.log('ERROR ON FETCHING ANSWERS SERVER: ', err)
+    })
+  },
 
 }
 
