@@ -4,15 +4,15 @@ import StarsWidget from './StarsWidget.jsx'
 export default function MainAverage({ avgReview, pctRecommended }) {
 
   return (
-    <div className="flex border-2 flex-row">
-      <div className="stats">
+    <div className="flex">
+      <div className="stats overflow-hidden">
         <div className="stat">
           <div className="stat-title">RATINGS & REVIEWS</div>
-          <div className="stat-value border-2 text-7xl w-fit">{avgReview}</div>
-          <div className="stat-figure border-2 -ml-96 w-auto">
+          <div className="stat-value text-7xl w-fit">{avgReview}</div>
+          <div className="stat-figure -ml-28 w-max items-start">
             <StarsWidget rating={avgReview}/>
           </div>
-          <div className="stat-desc">{pctRecommended}% of reviews recommend this product</div>
+          <div className="stat-desc mt-3">{pctRecommended}% of reviews recommend this product</div>
         </div>
       </div>
     </div>

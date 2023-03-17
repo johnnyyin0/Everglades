@@ -7,10 +7,10 @@ import RatingsReviews from './components/RatingsReviews/RatingsReviews.jsx'
 function App() {
 
   return (
-    <div className="ratigs-reviews-wrapper">
+    <div>
       <Overview />
       <QuestionsAnswers />
-      <RatingsReviews />
+      <RatingsReviews/>
     </div>
   )
 }

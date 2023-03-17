@@ -39,7 +39,7 @@ let questionsModel = {
   })
   },
 
-  updateHelpfulness: (answerId) => {
+  updateHelpfulnessAnswer: (answerId) => {
     let options ={
       method: 'PUT',
       url: apiURL+ `answers/${answerId}/helpful`,
@@ -52,10 +52,25 @@ let questionsModel = {
       return response.data
   })
   .catch(err => {
-      console.log('Axios.get error in getAnswers function: ', err)
+      console.log(err)
   })
   },
-  
+  updateHelpfulnessQuestion: (questionId) => {
+    let options ={
+      method: 'PUT',
+      url: apiURL+ `questions/${questionId}/helpful`,
+      headers: {
+        "Authorization": config.TOKEN
+      },
+    }
+    return axios(options)
+  .then(response => {
+      return response.data
+  })
+  .catch(err => {
+      console.log(err)
+  })
+  },
 }
 
 module.exports = questionsModel;

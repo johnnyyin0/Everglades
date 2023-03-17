@@ -11,7 +11,7 @@ export default function Sidebar(props) {
 
   return (
 
-    <div className="flex-column basis-4/12 border-2 ml-5 mt-5">
+    <div className="flex-column basis-4/12 h-max border-2 ml-5 mt-5">
       <MainAverage avgReview={avgReview} pctRecommended={pctRecommended}/>
       <div className="border-2">Recommended Box</div>
       <TotalsFilters />

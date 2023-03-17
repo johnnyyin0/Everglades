@@ -2,12 +2,10 @@
 import React from 'react'
 
 //MODAL
-const AddAnswer = () => {
+const AddAnswer = ({questionId}) => {
 
     return (
-        <div>
-
-        </div>
+        <span>Add Answer</span>
     );
 }
 
