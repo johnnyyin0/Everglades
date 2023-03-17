@@ -20,4 +20,26 @@ PORT - whichever port you want to run the backend server on, defaults to 3000 in
 
 DB_USERNAME and DB_PASSWORD -- you will need to create a new user for a new or existing MongoDB Atlas Cluster. Log in to cloud.mongodb.com, go to 'Database Access" under "SECURITY" on the left sidebar, and click "ADD NEW DATABASE USER." Once you assign the new user at least one role or permission, you will be given the option to enter a password. Store the username and password under environmental variables DB_USERNAME and DB_PASSWORD, respectively.
 
+TESTING:
 
+To start the teste monitoring:
+npm test
+
+//To test coverage:
+//npm run coverage
+//NOT YET IMPLEMENTED
+
+To add tests:
+(ref: https://vitest.dev/api/)
+1. Create a new file in the 'spec' folder with the suffix 'spec.js'
+2. import { it, expect } from 'vitest'
+3. use the following format for all tests on the page:
+
+it('Should perform expected action', () => {
+  expect(firstResultOfTestedThing).toBe(firstExpectedResult)
+  expect(resultOfTestedThing).to.equal(secondExpectedResult)
+})                              ^
+                                |
+                                vitest supports all Chai and Jest assertion formats. See the following for details:
+                                Chai: https://www.chaijs.com/api/bdd/
+                                Jest: https://jestjs.io/docs/expect
