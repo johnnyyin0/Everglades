@@ -5,11 +5,14 @@ import FitSliders from './FitSliders.jsx'
 
 export default function Sidebar(props) {
 
+  //hardcoded for testing
+  const avgReview = 3.5;
+  const pctRecommended = 97;
+
   return (
 
-    <div className="flex-column basis-4/12 border-2 ml-10 mt-10">
-      <h3 className="border-2">Ratings & Reviews</h3>
-      <MainAverage />
+    <div className="flex-column basis-4/12 border-2 ml-5 mt-5">
+      <MainAverage avgReview={avgReview} pctRecommended={pctRecommended}/>
       <div className="border-2">Recommended Box</div>
       <TotalsFilters />
       <FitSliders />

@@ -1,6 +1,13 @@
-export default function StarsWidget(props) {
+import Star from "./Star.jsx"
 
-  return(
-    <div>⭐⭐⭐⭐⭐</div>
+export default function StarsWidget({rating}) {
+
+  //hardcode for testing
+  rating = rating | 3.33;
+
+  return (
+    <div>
+      <Star pctFilled={300} />
+    </div>
   )
 }
