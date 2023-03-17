@@ -56,7 +56,7 @@ const Answers = ({ questionId }) => {
             <b>A:</b> {answer.body}
             <br />
             <small>
-              by {answer.answerer_name}, {answer.date} <b>|</b> Helpful?{' '}
+              by {answer.answerer_name}, on {answer.date} <b>|</b> Helpful?{' '}
               <span
                 style={{
                   textDecoration: 'underline',

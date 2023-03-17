@@ -1,6 +1,8 @@
 import React, {useState,useEffect} from 'react'
 import axios from 'axios'
-import List from './List.jsx'
+import List from './List'
+import MoreQuestions from './MoreQuestions'
+import AddQuestion from './AddQuestion'
 
 //MAIN CONTAINER
 const QuestionsAnswers = () => {
@@ -27,7 +29,7 @@ const QuestionsAnswers = () => {
         <div>
             QUESTIONS & ANSWERS
             <List questions={questions}/>
-            {/* <QuestionsAnswerCard/> */}
+            <MoreQuestions /> <AddQuestion />
         </div>
     )
 }
