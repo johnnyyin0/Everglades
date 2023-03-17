@@ -8,8 +8,8 @@ const AddQuestion = () => {
       <button
         style={{
           border: '1px solid #ccc',
-          borderRadius: '5px',
-          padding: '5px 10px',
+          borderRadius: '10px',
+          padding: '10px 10px',
           background: 'none',
           cursor: 'pointer',
         }}

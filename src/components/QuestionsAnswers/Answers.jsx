@@ -6,12 +6,12 @@ import Report from './Report';
 const Answers = ({ questionId}) => {
   const [answers, setAnswers] = useState([]);
   const [helpfulClicks, setHelpfulClicks] = useState([]);
+  const [showMore, setShowMore] = useState(false);
 
   useEffect(() => {
     getAnswers(questionId);
   }, [questionId]);
 
-  //axios get the answers for a particular questionId, data should be an array
   const getAnswers = (questionId) => {
     axios.get('http://localhost:3000/questions/answers', { params: { questionId } })
       .then((response) => {
@@ -41,6 +41,10 @@ const Answers = ({ questionId}) => {
     }
   };
 
+  const handleShowMore = () => {
+    setShowMore(true);
+  };
+
   return (
     <div>
       {answers.length === 0 ? (
@@ -49,26 +53,33 @@ const Answers = ({ questionId}) => {
           <i> No answer yet...</i>
         </div>
       ) : (
-        answers.slice(0, 2).map((answer) => (
-          <div key={answer.answer_id} style={{ marginTop: '10px' }}>
-            <b>A:</b> {answer.body}
-            <br />
-            <small>
-              by {answer.answerer_name}, on {answer.date} | Helpful?{' '}
-              <span
-                style={{
-                  textDecoration: 'underline',
-                  cursor: 'pointer',
-                  pointerEvents: helpfulClicks.includes(answer.answer_id) ? 'none' : 'auto',
-                }}
-                onClick={() => handleHelpfulClick(answer.answer_id)}
-              >
-                Yes ({answer.helpfulness})
-              </span>{' '}
-              | <Report answerId={answer.answer_id} />
-            </small>
-          </div>
-        ))
+        <div>
+          {answers
+            .slice(0, showMore ? answers.length : 2)
+            .map((answer) => (
+              <div key={answer.answer_id} style={{ marginTop: '10px' }}>
+                <b>A:</b> {answer.body}
+                <br />
+                <small>
+                  by {answer.answerer_name}, on {answer.date} | Helpful?{' '}
+                  <span
+                    style={{
+                      textDecoration: 'underline',
+                      cursor: 'pointer',
+                      pointerEvents: helpfulClicks.includes(answer.answer_id) ? 'none' : 'auto',
+                    }}
+                    onClick={() => handleHelpfulClick(answer.answer_id)}
+                  >
+                    Yes ({answer.helpfulness})
+                  </span>{' '}
+                  | <Report answerId={answer.answer_id} />
+                </small>
+              </div>
+            ))}
+          {answers.length > 2 && !showMore && (
+            <button onClick={handleShowMore} style={{ marginTop: '10px' }}>LOAD MORE ANSWERS</button>
+          )}
+        </div>
       )}
     </div>
   );

@@ -2,7 +2,7 @@
 import React from 'react'
 
 //MODAL
-const AddAnswer = () => {
+const AddAnswer = ({questionId}) => {
 
     return (
         <span>Add Answer</span>
