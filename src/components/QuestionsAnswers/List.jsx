@@ -32,6 +32,7 @@ const List = ({ questions }) => {
           opacity: searchTerm ? 1 : 0.5,
           border: '1px solid black',
           width: '800px',
+          height: '50px',
         }}
       />
       <ul>

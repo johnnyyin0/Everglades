@@ -17,7 +17,6 @@ const Answers = ({ questionId }) => {
       .get('http://localhost:3000/questions/answers', { params: { questionId } })
       .then((response) => {
         setAnswers(response.data.results);
-        console.log(response.data.results);
       })
       .catch((err) => {
         console.log('Error on getAnswers: ', err);
