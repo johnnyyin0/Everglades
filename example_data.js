@@ -1,5 +1,5 @@
 // data for /qa/questions
-const exampleQuestionsData = { 
+const exampleQuestionsData = {
     product_id: '37311',
     results: [
       {

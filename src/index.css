@@ -59,6 +59,17 @@ button:focus-visible {
   outline: 4px auto -webkit-focus-ring-color;
 }
 
+.ratings-reviews-wrapper {
+  display: flex;
+  flex-direction:row;
+}
+.ratings-reviews-sidebar {
+  flex: 1;
+}
+.reviews-main {
+  flex: 3;
+}
+
 @media (prefers-color-scheme: light) {
   :root {
     color: #213547;
