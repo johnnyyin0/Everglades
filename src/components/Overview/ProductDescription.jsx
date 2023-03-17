@@ -1,8 +1,13 @@
-let ProductDescription = () => {
+let ProductDescription = ({currentProduct}) => {
+  console.log(currentProduct);
   return (
     <div className="flex justify-between">
-      <h1> Description </h1>
-      <h1> Features </h1>
+      <p>{currentProduct.description}</p>
+      <ul>
+      {currentProduct.features.map(feature => {
+        return <li key={feature.feature}>{feature.feature} {feature.value}</li>
+      })}
+      </ul>
     </div>
   )
 }

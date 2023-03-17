@@ -6,6 +6,7 @@ import StarsWidget from '../RatingsReviews/StarsWidget.jsx'
 import ProductDescription from './ProductDescription.jsx';
 import ProductImage from './ProductImage.jsx';
 import exampleStyle from './exampleStyle.js';
+import exampleProduct from './exampleProduct.js';
 import Carosel from './Carosel.jsx';
 import Styles from './styles.jsx';
 
@@ -16,7 +17,7 @@ let Overview = () => {
   let [products, setProducts] = useState([]);
 
 
-  let [currentProduct, setCurrentProduct] = useState('');
+  let [currentProduct, setCurrentProduct] = useState(exampleProduct);
   let [currentStyle, setCurrentStyle] = useState(exampleStyle.results);
 
   let [photo, setPhoto] = useState(currentStyle[0].photos[0].thumbnail_url);
@@ -86,7 +87,7 @@ let Overview = () => {
         </div>
 
     </div>
-    <ProductDescription />
+    <ProductDescription currentProduct={currentProduct}/>
     <Carosel relative={relative}/>
     </>
   );

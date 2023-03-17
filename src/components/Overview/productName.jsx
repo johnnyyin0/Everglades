@@ -1,6 +1,5 @@
 
 let ProductName = ({currentProduct}) => {
-
   return (
     <>
     <p>{currentProduct.category}</p>
