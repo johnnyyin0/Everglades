@@ -1,10 +1,11 @@
 
-let ProductName = () => {
+let ProductName = ({currentProduct}) => {
+
   return (
     <>
-    <p>Catergory</p>
-    <h2>Name</h2>
-    <p>20$</p>
+    <p>{currentProduct.category}</p>
+    <h2>{currentProduct.name}</h2>
+    <p>{currentProduct.default_price}</p>
     </>
   )
 }
