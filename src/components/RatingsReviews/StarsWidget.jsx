@@ -7,7 +7,6 @@ export default function StarsWidget({rating}) {
     if (rating - 1 > 0) {
       starsArray[i] = 100;
     } else if (rating - 1 > -1){
-      console.log(rating, 'rating')
       starsArray[i] = rating * 100;
     } else {
       starsArray[i] = 0
@@ -16,7 +15,7 @@ export default function StarsWidget({rating}) {
   }
 
   return (
-    <div>
+    <div className="flex-row items-start -49">
       {starsArray.map(star => {
         return <Star pctFilled={star} />
       })
