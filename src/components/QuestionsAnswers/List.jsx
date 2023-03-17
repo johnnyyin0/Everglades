@@ -46,7 +46,7 @@ const List = ({ questions, setQuestions}) => {
           margin: '10px 0',
           opacity: searchTerm ? 1 : 0.5,
           border: '1px solid black',
-          width: '700px',
+          width: '800px',
           height: '50px',
         }}
       />

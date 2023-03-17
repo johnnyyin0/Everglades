@@ -3,7 +3,7 @@ import axios from 'axios';
 import React, { useState, useEffect } from 'react';
 import Report from './Report';
 
-const Answers = ({ questionId , setQuestions}) => {
+const Answers = ({ questionId}) => {
   const [answers, setAnswers] = useState([]);
   const [helpfulClicks, setHelpfulClicks] = useState([]);
 
