@@ -22,7 +22,7 @@ DB_USERNAME and DB_PASSWORD -- you will need to create a new user for a new or e
 
 TESTING:
 
-To start the teste monitoring:
+To start the test monitoring:
 npm test
 
 //To test coverage:

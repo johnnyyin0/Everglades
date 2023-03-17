@@ -4,7 +4,7 @@ import StarsWidget from './StarsWidget'
 export default function ReviewTile(props) {
 
   return (
-    <div>
+    <div class="flex border-2">
       <div>Review Tile</div>
       <StarsWidget />
     </div>

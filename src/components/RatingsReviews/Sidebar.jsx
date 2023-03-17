@@ -7,11 +7,10 @@ export default function Sidebar(props) {
 
   return (
 
-    <div>
-      <div>Reviews Sidebar</div>
-      <div>Header</div>
+    <div className="flex-column basis-4/12 border-2">
+      <div className="border-2">Header</div>
       <MainAverage />
-      <div>Recommended Box</div>
+      <div className="border-2">Recommended Box</div>
       <TotalsFilters />
       <FitSliders />
     </div>

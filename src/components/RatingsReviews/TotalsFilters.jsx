@@ -3,7 +3,7 @@ import StarAvgSlider from './StarAvgSlider'
 export default function TotalsFilters(props) {
 
   return (
-    <div>
+    <div className="border-2">
       <div>Totals Filters</div>
       <StarAvgSlider />
     </div>

@@ -4,9 +4,11 @@ import ReviewTile from './ReviewTile.jsx'
 export default function ReviewsList(props) {
 
   return (
-    <div>
+    <section className="flex-column basis-8/12 border-2">
       <div>Reviews List</div>
       <ReviewTile />
-    </div>
+      <button>More Reviews</button>
+      <label htmlFor="new-review-modal" className="btn">Add Review</label>
+    </section>
   )
 }
