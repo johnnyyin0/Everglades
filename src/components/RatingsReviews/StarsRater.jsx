@@ -15,12 +15,12 @@ export default function StarsRater({ stars, setStars }) {
 
   return (
     <div className="py-1" value="outside">
-      <span className="rating" onClick={handleClick} value="outside">
-        <input type="radio" name="rating-1" className="mask mask-star" value="1"/>
-        <input type="radio" name="rating-1" className="mask mask-star" value="2"/>
-        <input type="radio" name="rating-1" className="mask mask-star" value="3"/>
-        <input type="radio" name="rating-1" className="mask mask-star" value="4"/>
-        <input type="radio" name="rating-1" className="mask mask-star" value="5"/>
+      <span className="rating" value="outside">
+        <input type="radio" name="rating-1" className="mask mask-star" value="1" onClick={handleClick}/>
+        <input type="radio" name="rating-1" className="mask mask-star" value="2" onClick={handleClick}/>
+        <input type="radio" name="rating-1" className="mask mask-star" value="3" onClick={handleClick}/>
+        <input type="radio" name="rating-1" className="mask mask-star" value="4" onClick={handleClick}/>
+        <input type="radio" name="rating-1" className="mask mask-star" value="5" onClick={handleClick}/>
       </span>
         <span className="pl-4 -mt-8 text-xl" value="outside">{`${starMeaning[stars]}`}</span>
     </div>
