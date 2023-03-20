@@ -19,7 +19,7 @@ export default function NewReviewModal(props) {
             <label className="label">
               <span className="label-text">Review summary:</span>
             </label>
-            <input type="text" placeholder="Placeholder Goes Here" className="input input-bordered w-full max-w-xs" />
+            <textarea type="text" placeholder="Placeholder Goes Here" className="textarea input-bordered w-full max-w-xs" />
             <label className="label">
               <span className="label-text">Review body:</span>
             </label>

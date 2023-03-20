@@ -11,7 +11,7 @@ export default function Sidebar({filter, setFilter}) {
 
   return (
 
-    <div className="flex-column basis-4/12 h-max border-2 ml-5 mt-5">
+    <div className="flex-column w-max h-max border-2 ml-5 mt-5">
       <MainAverage avgReview={avgReview} pctRecommended={pctRecommended}/>
       <TotalsFilters />
       <FitSliders />
