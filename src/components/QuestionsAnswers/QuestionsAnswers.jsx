@@ -3,15 +3,16 @@ import axios from 'axios'
 import List from './List'
 import Overview from '../Overview/Overview'
 
-const QuestionsAnswers = ({productId}) => {
+const QuestionsAnswers = () => {
     const [questions, setQuestions] = useState([])
 
     useEffect(() => {
         getQuestions()
     },[])
 
-    const getQuestions = (productId) => {
-        axios.get('http://localhost:3000/questions', productId)
+    const getQuestions = () => {
+        let productId = window.location.pathname.slice(1) || 37311;
+        axios.get('http://localhost:3000/questions', { params: { productId } })
         .then(response => {
             setQuestions(response.data.results)
             // console.log('DATA RECEIVED FROM GETQUESTIONS: ', response.data.results)
