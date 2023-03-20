@@ -4,7 +4,7 @@ import StarsWidget from './StarsWidget.jsx'
 export default function MainAverage({ avgReview, pctRecommended }) {
 
   return (
-    <div className="flex">
+    <div className="flex pb-5">
       <div className="stats overflow-hidden">
         <div className="stat">
           <div className="stat-title">RATINGS & REVIEWS</div>
