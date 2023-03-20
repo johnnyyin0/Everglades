@@ -1,9 +1,11 @@
-import React from 'react'
+import React, { useState } from 'react'
 import StarsWidget from './StarsWidget'
 import Report from '../QuestionsAnswers/Report.jsx'
+import CarouselPhoto from './CarouselPhoto.jsx'
 import { format } from 'date-fns'
 
 export default function ReviewTile(props) {
+
   //hardcode for testing
 
   const review = {
@@ -45,6 +47,9 @@ export default function ReviewTile(props) {
           <div className="pl-3 pb-3">{review.response}</div>
         </div>
       </div>}</div>
+      <div>{review.photos.length > 0 && <div className="pb-5 px-5 carousel">
+        {review.photos.map(photo => <CarouselPhoto src={photo.url}/>)}
+        </div>}</div>
       <div className="px-5 pb-5">
         <small>
           Helpful?{' '}
