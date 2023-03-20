@@ -23,6 +23,7 @@ const AddAnswer = ({ questionId }) => {
           Add Answer
         </button>
         {showModal && (
+          <div>
           <div className='modal-box'>
             <span className='close' onClick={handleCloseModal}>
               &times;
@@ -38,10 +39,10 @@ const AddAnswer = ({ questionId }) => {
               <span className="label-text">Your Answer:</span>
             </label><input type="text" placeholder="Type your answer here..." className="input input-bordered w-full max-w-xs" />
             </p>
+          </div> 
           </div>
         )}
-      </> :
-      null
+      </> : null
   );
 };
 

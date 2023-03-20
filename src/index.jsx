@@ -4,7 +4,7 @@ import App from './App'
 import NewReviewModal from './components/RatingsReviews/NewReviewModal.jsx'
 import FullSizePhoto from './components/RatingsReviews/FullSizePhoto.jsx'
 import './index.css'
-import AddAnswer from './components/QuestionsAnswers/AddAnswer'
+import AddAnswer from './components/QuestionsAnswers/AddAnswer.jsx'
 
 ReactDOM.createRoot(document.getElementById('NewReviewModal')).render(
   <React.StrictMode>
@@ -23,6 +23,7 @@ ReactDOM.createRoot(document.getElementById('AddAnswer')).render(
     <AddAnswer />
   </React.StrictMode>,
 )
+
 ReactDOM.createRoot(document.getElementById('root')).render(
   <React.StrictMode>
     <App />

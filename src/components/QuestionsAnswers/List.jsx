@@ -75,7 +75,7 @@ const List = ({questions, setQuestions}) => {
                       <small>Yes ({question.question_helpfulness})</small>
                     </span>
                     <span>
-                      | <span><small><AddAnswer questionId={question.question_id} htmlFor="add-answer"/></small></span>
+                      | <span><small><AddAnswer questionId={question.question_id}/></small></span>
                     </span>
                   </div>
                 </div>
