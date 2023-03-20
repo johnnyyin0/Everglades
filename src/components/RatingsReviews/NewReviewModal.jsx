@@ -1,29 +1,32 @@
-import React from 'react'
+import React, { useState } from 'react'
 import CharacteristicReview from './CharacteristicReview.jsx'
-import StarsWidget from './StarsWidget.jsx'
+import StarsRater from './StarsRater.jsx'
 
 export default function NewReviewModal(props) {
+
+  const [stars, setStars] = useState("0")
+  const [recommended, setRecommended] = useState(false)
 
   return (
     <div>
       <input type="checkbox" id="new-review-modal" className="modal-toggle" />
       <div className="modal">
         <div className="modal-box">
-          <div>Overall Rating:</div>
-          <StarsWidget />
-          <div>Do you recommend this product?</div>
-          <input type="checkbox" />
-          <input type="checkbox" />
+          <div className="pb-2">Overall Rating:</div>
+          <StarsRater stars={stars} setStars={setStars} />
+          <div className="py-2">Do you recommend this product?</div>
+          <input type="radio" value="yes"/>
+          <input type="radio" value="no"/>
           <CharacteristicReview />
           <div className="form-control w-full max-w-xs">
             <label className="label">
               <span className="label-text">Review summary:</span>
             </label>
-            <textarea type="text" placeholder="Placeholder Goes Here" className="textarea input-bordered w-full max-w-xs" />
+            <input type="text" placeholder="Example: Pest purchase ever!" className="input input-bordered w-full max-w-xs" />
             <label className="label">
               <span className="label-text">Review body:</span>
             </label>
-            <input type="text" placeholder="Placeholder Goes Here" className="input input-bordered w-full max-w-xs" />
+            <input type="text" placeholder="Why did you like this project or not?" className="textarea input-bordered w-full max-w-xs" />
             <div className="modal-action">
               <button>Upload Photos</button>
               <label className="label">
