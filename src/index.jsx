@@ -5,12 +5,12 @@ import NewReviewModal from './components/RatingsReviews/NewReviewModal.jsx'
 import './index.css'
 
 ReactDOM.createRoot(document.getElementById('NewReviewModal')).render(
-  <React.StrictMode>
-    <NewReviewModal />
-  </React.StrictMode>,
+  <NewReviewModal />
 )
+  // <React.StrictMode>
+  // </React.StrictMode>,
 ReactDOM.createRoot(document.getElementById('root')).render(
-  <React.StrictMode>
-    <App />
-  </React.StrictMode>,
+  <App />
 )
+  // <React.StrictMode>
+  // </React.StrictMode>,
