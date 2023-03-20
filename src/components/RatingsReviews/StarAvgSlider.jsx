@@ -1,8 +1,8 @@
 export default function(props) {
 
   return (
-    <div>
-      <span>Star Filter </span><span> Slider Widget</span>
-    </div>
+    <span className="float-right mr-5">
+      <span> Slider Widget</span>
+    </span>
   )
 }

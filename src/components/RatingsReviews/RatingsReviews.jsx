@@ -1,15 +1,15 @@
-import React from 'react';
+import React, { useState } from 'react';
 import ReviewsList from './ReviewsList.jsx'
 import Sidebar from './Sidebar.jsx'
 
 export default function RatingsReviews(props) {
+  const [starFilter, setStarFilter] = useState('');
+
+
   return (
-    <div>
-      <div>Ratings and Reviews</div>
+    <div className="flex flex-row basis-full">
+      <Sidebar filter={setStarFilter} setFilter={setStarFilter}/>
       <ReviewsList />
-      <Sidebar />
-      <button>More Reviews</button>
-      <a href="#new-review-modal" className="btn">Add Review</a>
     </div>
   )
 }
