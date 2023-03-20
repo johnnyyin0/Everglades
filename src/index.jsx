@@ -7,9 +7,7 @@ import './index.css'
 import AddAnswer from './components/QuestionsAnswers/AddAnswer.jsx'
 
 ReactDOM.createRoot(document.getElementById('NewReviewModal')).render(
-  <React.StrictMode>
-    <NewReviewModal />
-  </React.StrictMode>,
+  <NewReviewModal />
 )
 
 ReactDOM.createRoot(document.getElementById('fullsize-photo')).render(
@@ -25,7 +23,7 @@ ReactDOM.createRoot(document.getElementById('AddAnswer')).render(
 )
 
 ReactDOM.createRoot(document.getElementById('root')).render(
-  <React.StrictMode>
-    <App />
-  </React.StrictMode>,
+  <App />
 )
+  // <React.StrictMode>
+  // </React.StrictMode>,

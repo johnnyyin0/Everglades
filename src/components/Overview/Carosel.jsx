@@ -1,7 +1,6 @@
 import StarsWidget from '../RatingsReviews/StarsWidget.jsx';
 import CaroselProduct from './CaroselProduct.jsx';
 let Carosel = ({relative}) => {
-
   return (
 
     <div className="carousel carousel-center rounded-box">
