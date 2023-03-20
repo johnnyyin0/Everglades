@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import AddAnswerFormModal from './AddAnswerFormModal';
+import AddAnswerFormModal from './AddAnswerFormModal';;
 
 //modal
 const AddAnswerButton = ({ questionId }) => {

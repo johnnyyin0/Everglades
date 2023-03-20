@@ -83,7 +83,7 @@ button:focus-visible {
   }
 }
 
-/* QUESTIONS AND ANSWERS MODAL SETTINGS */
+/* QUESTIONS AND ANSWERS MODAL SETTINGS FROM https://www.w3schools.com/howto/howto_css_modals.asp */
 .add-answer-modal-overlay {
   position: fixed;
   top: 0;

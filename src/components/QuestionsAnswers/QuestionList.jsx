@@ -4,7 +4,7 @@ import Answers from './Answers';
 import AddAnswerButton from './AddAnswerButton';
 import AddQuestionButton from './AddQuestionButton'
 
-const List = ({questions, setQuestions}) => {
+const QuestionList = ({questions, setQuestions, getQuestions}) => {
   const [searchTerm, setSearchTerm] = useState('');
   const [helpfulClicks, setHelpfulClicks] = useState([]);
   const [questionsCount, setQuestionsCount] = useState(4);
@@ -119,4 +119,4 @@ const List = ({questions, setQuestions}) => {
     </div>
   );
 }
-export default List;
+export default QuestionList;

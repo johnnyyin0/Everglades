@@ -1,27 +1,34 @@
+import axios from 'axios';
 import React, { useState } from 'react';
 
-const AddAnswerFormModal = ({ questionId, closeModal }) => {
-  const [username, setUsername] = useState('');
+const AddAnswerFormModal = ({ questionId, closeModal}) => {
+  const [name, setName] = useState('');
   const [email, setEmail] = useState('');
-  const [answer, setAnswer] = useState('');
+  const [body, setBody] = useState('');
 
-  const handleUsernameChange = (e) => {
-    setUsername(e.target.value);
+  const handleNameChange = (e) => {
+    setName(e.target.value);
   };
 
   const handleEmailChange = (e) => {
     setEmail(e.target.value);
   };
 
-  const handleAnswerChange = (e) => {
-    setAnswer(e.target.value);
+  const handleBodyChange = (e) => {
+    setBody(e.target.value);
   };
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    // TODO: Do something with the form data (e.g. send it to the server)
-    console.log('Form data:', { questionId, username, email, answer });
-    closeModal();
+    // console.log('Form data:', {params: { questionId, username, email, answer }});
+    axios.post('http://localhost:3000/questions/questionId/answer', {params: { question_id: questionId, name, email, body }})
+    .then((response) => {
+      // console.log('Answer submitted successfully', response.data);
+      closeModal();
+    })
+    .catch((error) => {
+      console.error('Error submitting answer', error);
+    });
   };
 
   return (
@@ -39,8 +46,8 @@ const AddAnswerFormModal = ({ questionId, closeModal }) => {
               type='text'
               placeholder='Enter username...'
               className='input input-bordered w-full max-w-xs'
-              value={username}
-              onChange={handleUsernameChange}
+              value={name}
+              onChange={handleNameChange}
             />
             <label className='label'>
               <span className='label-text'>Email:</span>
@@ -60,12 +67,12 @@ const AddAnswerFormModal = ({ questionId, closeModal }) => {
               placeholder='Type your answer here...'
               className='input input-bordered w-full max-w-xs'
               rows='3'
-              value={answer}
-              onChange={handleAnswerChange}
+              value={body}
+              onChange={handleBodyChange}
             />
           </p>
           
-          <button style= {{marginTop: '20px'}} type='submit'><b>SUBMIT</b></button>
+          <button style= {{marginTop: '20px',}} type='submit'><b>SUBMIT</b></button>
         </form>
       </div>
     </div>
