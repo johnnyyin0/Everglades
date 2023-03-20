@@ -1,7 +1,6 @@
 import React, {useState,useEffect} from 'react'
 import axios from 'axios'
-import List from './List'
-import Overview from '../Overview/Overview'
+import QuestionList from './QuestionList'
 
 const QuestionsAnswers = () => {
     const [questions, setQuestions] = useState([])
@@ -25,7 +24,7 @@ const QuestionsAnswers = () => {
     return (
         <div style={{ marginTop: '20px' , marginBottom: '20px'}}>
             <b>QUESTIONS & ANSWERS</b>
-            <List questions={questions} setQuestions={setQuestions}/>
+            <QuestionList questions={questions} setQuestions={setQuestions}/>
         </div>
     )
 }

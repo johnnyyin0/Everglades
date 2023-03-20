@@ -2,7 +2,7 @@
 import axios from 'axios';
 import React, { useState, useEffect } from 'react';
 import {format, parseISO} from 'date-fns'
-import Report from './Report';
+import ReportButton from './ReportButton';
 
 const Answers = ({questionId}) => {
   const [answers, setAnswers] = useState([]);
@@ -73,7 +73,7 @@ const Answers = ({questionId}) => {
                   >
                     Yes ({answer.helpfulness})
                   </span>{' '}
-                  | <Report answerId={answer.answer_id} />
+                  | <ReportButton answerId={answer.answer_id} />
                 </small>
               </div>
             ))}

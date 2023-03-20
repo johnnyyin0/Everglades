@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 
-//MODAL
+//MODAL(STILL WIP)
 const Report = ({ answerId }) => {
   const [showModal, setShowModal] = useState(false);
 

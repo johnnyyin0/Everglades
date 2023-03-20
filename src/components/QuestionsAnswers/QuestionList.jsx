@@ -1,8 +1,8 @@
 import axios from 'axios';
 import React, { useState } from 'react';
 import Answers from './Answers';
-import AddAnswer from './AddAnswer';
-import AddQuestion from './AddQuestion'
+import AddAnswerButton from './AddAnswerButton';
+import AddQuestionButton from './AddQuestionButton'
 
 const List = ({questions, setQuestions}) => {
   const [searchTerm, setSearchTerm] = useState('');
@@ -75,14 +75,16 @@ const List = ({questions, setQuestions}) => {
                       <small>Yes ({question.question_helpfulness})</small>
                     </span>
                     <span>
-                      | <span><small><AddAnswer questionId={question.question_id}/></small></span>
+                      | <span><small><AddAnswerButton questionId={question.question_id}/></small></span>
                     </span>
                   </div>
                 </div>
                 <Answers questionId={question.question_id} />
               </li>
             ))
-          : filteredQuestions.slice(0, questionsCount).map((question) => (
+          : 
+          /* FILTERED QUESTIONS PORTION */
+          filteredQuestions.slice(0, questionsCount).map((question) => (
               <li key={question.question_id} style={{ marginBottom: '10px', padding: '10px' }}>
                 <div style={{ display: 'flex', justifyContent: 'space-between' }}>
                   <div>
@@ -98,7 +100,7 @@ const List = ({questions, setQuestions}) => {
                     >
                       <small>Yes ({question.question_helpfulness})</small>
                     </span>
-                    | <span><small><AddAnswer questionId={question.question_id}/></small></span>
+                    | <span><small><AddAnswerButton questionId={question.question_id}/></small></span>
                   </div>
                 </div>
                 <Answers questionId={question.question_id} />
@@ -113,7 +115,7 @@ const List = ({questions, setQuestions}) => {
           background: 'none',
           cursor: 'pointer',
         }} onClick={() => setQuestionsCount(questionsCount + 2)}><b>MORE QUESTIONS</b></button> 
-      )} <AddQuestion/>
+      )} <AddQuestionButton/>
     </div>
   );
 }
