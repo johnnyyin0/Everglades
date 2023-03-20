@@ -17,9 +17,13 @@ let Overview = () => {
   //states
   let [products, setProducts] = useState([]);
 
-
+  //array of all the products from api
   let [currentProduct, setCurrentProduct] = useState(exampleProduct);
+  //all the styles from
   let [currentStyle, setCurrentStyle] = useState(exampleStyle.results);
+
+  //state to be "selected" when picture is showing on overview
+  let [styleSelected, setSelectedStyle] = useState(currentStyle[0])
 
   let [photo, setPhoto] = useState(currentStyle[0].photos[0].thumbnail_url);
 
@@ -32,7 +36,6 @@ let Overview = () => {
   }, [])
 
 
-  let relativeIdNumbers = [];
   // When the currentId changes, change the current data
   useEffect(() => {
     Axios.get(`http://localhost:3000/product/${productId}`)
@@ -41,10 +44,17 @@ let Overview = () => {
     .then(Axios.get(`http://localhost:3000/product/${productId}/styles`)
       .then(res => {
         setCurrentStyle(res.data.results);
+        setSelectedStyle(res.data.results[0]);
         setPhoto(res.data.results[0].photos[0].thumbnail_url);
       })
-      .catch(err => console.log('Failed to load product styles')))
-      .then(Axios.get(`http://localhost:3000/product/${productId}/related`)
+      .catch(err => console.log('Failed to load product styles')));
+    }, [])
+
+
+
+    let relativeIdNumbers = [];
+    useEffect(() => {
+      Axios.get(`http://localhost:3000/product/${productId}/related`)
       .then(res => {
         relativeIdNumbers = [...res.data];
         return relativeIdNumbers
@@ -59,7 +69,6 @@ let Overview = () => {
           })
         })
       })
-      )
     }, [])
 
   return (
@@ -80,7 +89,7 @@ let Overview = () => {
       </div>
 
       <div className=' rounded-lg shadow-xl min-h-[50px] col-span-2'>
-        <Styles currentStyle={currentStyle}/>
+        <Styles currentStyle={currentStyle} setPhoto={setPhoto} setSelectedStyle={setSelectedStyle} styleSelected={styleSelected}/>
         </div>
 
       <div className=' rounded-lg shadow-xl min-h-[50px] col-span-2'>

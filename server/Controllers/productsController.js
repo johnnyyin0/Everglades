@@ -4,7 +4,6 @@ let productsController = {
   get: (req, res) => {
     Models.products.getAll()
     .then(data => {
-      console.log('DATA RECEIVED', data)
       res.send(data)
     })
     .catch((err) => {
@@ -15,7 +14,6 @@ let productsController = {
   getOne: (req, res) => {
     Models.products.getOne(req.params.id)
     .then(data => {
-      console.log('DATA RECEIVED', data)
       res.send(data)
     })
     .catch((err) => {
@@ -26,7 +24,7 @@ let productsController = {
   getRelated: (req, res) => {
     Models.products.getRelated(req.params.id)
     .then(data => {
-      console.log('DATA RECEIVED', data)
+      // console.log('DATA RECEIVED', data)
       res.send(data)
     })
     .catch((err) => {
@@ -37,7 +35,7 @@ let productsController = {
   getStyle: (req, res) => {
     Models.products.getStyle(req.params.id)
     .then(data => {
-      console.log('DATA RECEIVED', data)
+      // console.log('DATA RECEIVED', data)
       res.send(data)
     })
     .catch((err) => {

@@ -1,13 +1,21 @@
 import Style from './style.jsx';
+import {useState} from 'react';
 
-const Styles = ({currentStyle}) => {
-
+const Styles = ({currentStyle, setPhoto, styleSelected, setSelectedStyle}) => {
   return (
     <>
       <p>Styles</p>
-    <div className="flex">
+    <div className="grid grid-cols-4 gap-2">
       {currentStyle.map(style => {
-        return <Style style={style} key={style.style_id} />
+        return (
+          <div>
+          {styleSelected == style ?
+          <p>Selected</p> :
+          null
+        }
+          <Style className="col-span-1" style={style} key={style.style_id} setPhoto={setPhoto} setSelectedStyle={setSelectedStyle}/>
+        </div>
+        )
       })}
     </div>
     </>
