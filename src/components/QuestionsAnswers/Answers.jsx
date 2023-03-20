@@ -1,6 +1,7 @@
 //fetches the answer for every particular questionId
 import axios from 'axios';
 import React, { useState, useEffect } from 'react';
+import {format, parseISO} from 'date-fns'
 import Report from './Report';
 
 const Answers = ({questionId}) => {
@@ -61,7 +62,7 @@ const Answers = ({questionId}) => {
                 <b>A:</b> {answer.body}
                 <br />
                 <small>
-                  by {answer.answerer_name}, {answer.date} | Helpful?{' '}
+                  by {answer.answerer_name}, on {format(parseISO(answer.date), "MMMM-dd-yyyy")} | Helpful?{' '}
                   <span
                     style={{
                       textDecoration: 'underline',

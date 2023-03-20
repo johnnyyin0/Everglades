@@ -16,12 +16,6 @@ ReactDOM.createRoot(document.getElementById('fullsize-photo')).render(
   </React.StrictMode>,
 )
 
-ReactDOM.createRoot(document.getElementById('AddAnswer')).render(
-  <React.StrictMode>
-    <AddAnswer />
-  </React.StrictMode>,
-)
-
 ReactDOM.createRoot(document.getElementById('root')).render(
   <App />
 )
