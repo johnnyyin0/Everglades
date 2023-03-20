@@ -3,7 +3,7 @@ import axios from 'axios';
 import React, { useState, useEffect } from 'react';
 import Report from './Report';
 
-const Answers = ({ questionId}) => {
+const Answers = ({questionId}) => {
   const [answers, setAnswers] = useState([]);
   const [helpfulClicks, setHelpfulClicks] = useState([]);
   const [showMore, setShowMore] = useState(false);
@@ -61,7 +61,7 @@ const Answers = ({ questionId}) => {
                 <b>A:</b> {answer.body}
                 <br />
                 <small>
-                  by {answer.answerer_name}, on {answer.date} | Helpful?{' '}
+                  by {answer.answerer_name}, {answer.date} | Helpful?{' '}
                   <span
                     style={{
                       textDecoration: 'underline',
