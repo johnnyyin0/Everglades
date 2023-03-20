@@ -17,22 +17,27 @@ let Overview = () => {
   //states
   let [products, setProducts] = useState([]);
 
-
+  //array of all the products from api
   let [currentProduct, setCurrentProduct] = useState(exampleProduct);
+  //all the styles from
   let [currentStyle, setCurrentStyle] = useState(exampleStyle.results);
+
+  //state to be "selected" when picture is showing on overview
+  let [styleSelected, setSelectedStyle] = useState(currentStyle[0])
 
   let [photo, setPhoto] = useState(currentStyle[0].photos[0].thumbnail_url);
 
   let [relative, setRelative] = useState([]);
+
   //useEffect
   useEffect(() => {
     Axios.get('http://localhost:3000/products')
-    .then(res => setProducts(res))
+    .then(res => {
+      setProducts(res.data)})
       .catch(err => console.log('Failed to load products'));
   }, [])
 
 
-  let relativeIdNumbers = [];
   // When the currentId changes, change the current data
   useEffect(() => {
     Axios.get(`http://localhost:3000/product/${productId}`)
@@ -41,10 +46,16 @@ let Overview = () => {
     .then(Axios.get(`http://localhost:3000/product/${productId}/styles`)
       .then(res => {
         setCurrentStyle(res.data.results);
+        setSelectedStyle(res.data.results[0]);
         setPhoto(res.data.results[0].photos[0].thumbnail_url);
       })
-      .catch(err => console.log('Failed to load product styles')))
-      .then(Axios.get(`http://localhost:3000/product/${productId}/related`)
+      .catch(err => console.log('Failed to load product styles')));
+    }, [])
+
+
+    let relativeIdNumbers = [];
+    useEffect(() => {
+      Axios.get(`http://localhost:3000/product/${productId}/related`)
       .then(res => {
         relativeIdNumbers = [...res.data];
         return relativeIdNumbers
@@ -53,21 +64,28 @@ let Overview = () => {
       .then(idArray => {
         let relativeItems = [];
         idArray.forEach(id => {
-          Axios.get(`http://localhost:3000/product/${id}/styles`)
-          .then(res => {
-            setRelative(...relative, res.data.results)
-          })
+            Axios.get(`http://localhost:3000/product/${id}/styles`)
+            .then(res => {
+              //adding product id to the style
+              res.data.results[0].productId = id
+              setRelative(relative => relative.concat(res.data.results[0]))
+            })
+            })
         })
-      })
-      )
-    }, [])
+      }, [])
+
+      // useEffect(()=>{
+      //   Axios.get(`http://localhost:3000/reviews/meta`, {productId})
+      //   .then(res => console.log(res));
+      // }, [])
+
 
   return (
     <>
-    <div className="grid grid-cols-5 gap-2" >
-      <div className=" col-span-1 row-span-4"></div>
-      <div className=' rounded-lg min-h-[50px] col-span-1 row-span-4'>
-        <ProductImage photo={photo} />
+    <div className="grid grid-cols-6 gap-2" >
+      <div className="col-span-1 row-span-4"></div>
+      <div className='rounded-lg min-h-[50px] col-span-2 row-span-4'>
+        <ProductImage photo={photo} styleSelected={styleSelected} setPhoto={setPhoto} photo={photo}/>
       </div>
 
       <div className=' rounded-lg shadow-xl min-h-[50px] col-span-2'>
@@ -76,11 +94,11 @@ let Overview = () => {
 
 
       <div className=' rounded-lg shadow-xl min-h-[50px] col-span-2'>
-        <ProductName currentProduct={currentProduct}/>
+        <ProductName currentProduct={currentProduct} styleSelected={styleSelected}/>
       </div>
 
       <div className=' rounded-lg shadow-xl min-h-[50px] col-span-2'>
-        <Styles currentStyle={currentStyle}/>
+        <Styles currentStyle={currentStyle} setPhoto={setPhoto} setSelectedStyle={setSelectedStyle} styleSelected={styleSelected}/>
         </div>
 
       <div className=' rounded-lg shadow-xl min-h-[50px] col-span-2'>
