@@ -2,27 +2,15 @@ import React from 'react'
 import StarAvgSlider from './StarAvgSlider'
 export default function TotalsFilters(props) {
 
+  //avg will come from average metadata, will be best to calculate it upstream
+
   return (
-    <div className="border-2">
-      <div>
-        <span className="btn btn-xs">5 stars</span>
-        <StarAvgSlider />
-      </div>
-      <div>
-        <span className="btn btn-xs">4 stars</span>
-        <StarAvgSlider />
-      </div>
-      <div>
-        <span className="btn btn-xs">3 stars</span>
-        <StarAvgSlider />
-      </div>
-      <div>
-        <span className="btn btn-xs">2 stars</span>
-        <StarAvgSlider />
-      </div>
-      <div>
-        <span className="btn btn-xs">1 star</span>
-        <StarAvgSlider />  </div>
+    <div className="mb-5">
+      <StarAvgSlider num={5} avg={75}/>
+      <StarAvgSlider num={4} avg={60}/>
+      <StarAvgSlider num={3} avg={50}/>
+      <StarAvgSlider num={2} avg={30}/>
+      <StarAvgSlider num={1} avg={20}/>
     </div>
   )
 }
