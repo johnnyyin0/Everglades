@@ -1,10 +1,11 @@
+import CharMap from "./CharMap.js"
+
 export default function FitSlider(props) {
 
   //hardcodes for testing
   props = props | 7;
   let value = 2.5
   const fitChar="Size"
-
 
   const pctLeft = ((value / 5 * 90) - 45).toString() + '%'
   const position = {left: pctLeft}
