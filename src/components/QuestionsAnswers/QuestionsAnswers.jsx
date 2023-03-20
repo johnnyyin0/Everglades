@@ -1,11 +1,9 @@
 import React, {useState,useEffect} from 'react'
 import axios from 'axios'
 import List from './List'
-import AddQuestion from './AddQuestion'
+import Overview from '../Overview/Overview'
 
-//MAIN CONTAINER
 const QuestionsAnswers = () => {
-    //take in props with productId, should be passed down from overview
     const [questions, setQuestions] = useState([])
 
     useEffect(() => {
@@ -13,8 +11,8 @@ const QuestionsAnswers = () => {
     },[])
 
     const getQuestions = () => {
-        //takes in a param ie: productId
-        axios.get('http://localhost:3000/questions', )
+        let productId = window.location.pathname.slice(1) || 37311;
+        axios.get('http://localhost:3000/questions', { params: { productId } })
         .then(response => {
             setQuestions(response.data.results)
             // console.log('DATA RECEIVED FROM GETQUESTIONS: ', response.data.results)

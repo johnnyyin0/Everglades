@@ -4,7 +4,7 @@ import Answers from './Answers';
 import AddAnswer from './AddAnswer';
 import AddQuestion from './AddQuestion'
 
-const List = ({ questions, setQuestions}) => {
+const List = ({questions, setQuestions}) => {
   const [searchTerm, setSearchTerm] = useState('');
   const [helpfulClicks, setHelpfulClicks] = useState([]);
   const [questionsCount, setQuestionsCount] = useState(4);
@@ -48,7 +48,7 @@ const List = ({ questions, setQuestions}) => {
           margin: '10px 0',
           opacity: searchTerm ? 1 : 0.5,
           border: '1px solid black',
-          width: '800px',
+          width: '700px',
           height: '50px',
         }}
       />
@@ -75,7 +75,7 @@ const List = ({ questions, setQuestions}) => {
                       <small>Yes ({question.question_helpfulness})</small>
                     </span>
                     <span>
-                      | <span><small><AddAnswer questionId={question.question_id} /></small></span>
+                      | <span><small><AddAnswer questionId={question.question_id}/></small></span>
                     </span>
                   </div>
                 </div>
@@ -98,7 +98,7 @@ const List = ({ questions, setQuestions}) => {
                     >
                       <small>Yes ({question.question_helpfulness})</small>
                     </span>
-                    | <span><small><AddAnswer questionId={question.question_id} /></small></span>
+                    | <span><small><AddAnswer questionId={question.question_id}/></small></span>
                   </div>
                 </div>
                 <Answers questionId={question.question_id} />

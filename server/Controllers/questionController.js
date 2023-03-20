@@ -2,7 +2,7 @@ let Models = require('../Models/Models.js');
 
 let questionController = {
   getQuestions: (req, res) => {
-    Models.questions.getQuestions()
+    Models.questions.getQuestions(req.query.productId)
     //should take in a param ie: productId
     .then(data => {
       // console.log('DATA RECEIVED:', data)

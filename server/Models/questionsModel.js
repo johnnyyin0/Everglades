@@ -4,11 +4,10 @@ const config = require('../../config.js');
 const apiURL = 'https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfe/qa/'
 
 let questionsModel = {
-  getQuestions: () => {
-    //should take in a param ie: productId
+  getQuestions: (productId) => {
     let options = {
       method: 'GET',
-      url: apiURL + `questions?product_id=${37311}&count=100`,
+      url: apiURL + `questions?product_id=${productId}&count=100`,
       headers: {
         "Authorization": config.TOKEN
       },
