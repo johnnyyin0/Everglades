@@ -10,7 +10,7 @@ export default function ReviewsList(props) {
     <section className="flex-column w-full border-2">
       <h3 className="mx-10 mt-20 pb-4">### reviews, sorted by {<SortDropDown sort={sort} setSort={setSort}/>}
 </h3>
-      <ReviewTile />
+      <ReviewTile setPhoto={props.setPhoto}/>
       <button>More Reviews</button>
       <label htmlFor="new-review-modal" className="btn">Add Review</label>
     </section>
