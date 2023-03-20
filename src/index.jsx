@@ -25,4 +25,5 @@ ReactDOM.createRoot(document.getElementById('AddAnswer')).render(
 ReactDOM.createRoot(document.getElementById('root')).render(
   <App />
 )
-
+  // <React.StrictMode>
+  // </React.StrictMode>,
