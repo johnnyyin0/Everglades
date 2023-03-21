@@ -88,7 +88,6 @@ let questionsModel = {
       console.log(err)
   })
   },
-
   submitQuestion: (params) => {
     let options = {
       method: 'POST',
@@ -106,6 +105,7 @@ let questionsModel = {
       console.log(err)
   })
   },
+  }
 }
 
 module.exports = questionsModel;

@@ -13,6 +13,7 @@ const AddQuestionButton = ({productName, productId, getQuestions}) => {
   const handleCloseModal = () => {
     setShowModal(false);
   };
+
   return (
     <span>
       <button

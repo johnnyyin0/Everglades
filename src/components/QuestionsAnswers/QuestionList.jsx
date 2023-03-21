@@ -4,6 +4,7 @@ import Answers from './Answers';
 import AddAnswerButton from './AddAnswerButton';
 import AddQuestionButton from './AddQuestionButton'
 
+
 const QuestionList = ({questions, setQuestions, productId, productName, getQuestions}) => {
   const [searchTerm, setSearchTerm] = useState('');
   const [helpfulClicks, setHelpfulClicks] = useState([]);
@@ -82,8 +83,7 @@ const QuestionList = ({questions, setQuestions, productId, productName, getQuest
                 <Answers questionId={question.question_id} productId={productId} />
               </li>
             ))
-          : 
-          filteredQuestions.slice(0, questionsCount).map((question) => (
+          :  filteredQuestions.slice(0, questionsCount).map((question) => (
               <li key={question.question_id} style={{ marginBottom: '10px', padding: '10px' }}>
                 <div style={{ display: 'flex', justifyContent: 'space-between' }}>
                   <div>

@@ -2,6 +2,7 @@ import axios from 'axios';
 import React, { useState } from 'react';
 
 const AddAnswerFormModal = ({ questionId, questionBody, closeModal, productName}) => {
+
   const [name, setName] = useState('');
   const [email, setEmail] = useState('');
   const [body, setBody] = useState('');
@@ -92,6 +93,7 @@ const AddAnswerFormModal = ({ questionId, questionBody, closeModal, productName}
           </p>
           
           <button className='btn' style= {{marginTop: '20px',}} type='submit'>SUBMIT</button>
+
         </form>
       </div>
     </div>
