@@ -87,6 +87,24 @@ let questionsModel = {
   .catch(err => {
       console.log(err)
   })
+  },
+  submitQuestion: (params) => {
+    let options = {
+      method: 'POST',
+      url: apiURL+ `questions`,
+      headers: {
+        "Authorization": config.TOKEN
+      },
+      data: params
+    }
+    return axios(options)
+  .then(response => {
+      return response.data
+  })
+  .catch(err => {
+      console.log(err)
+  })
+  },
   }
 }
 

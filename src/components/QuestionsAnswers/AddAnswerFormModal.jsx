@@ -1,7 +1,8 @@
 import axios from 'axios';
 import React, { useState } from 'react';
 
-const AddAnswerFormModal = ({ questionId, closeModal}) => {
+const AddAnswerFormModal = ({ questionId, questionBody, closeModal, productName}) => {
+
   const [name, setName] = useState('');
   const [email, setEmail] = useState('');
   const [body, setBody] = useState('');
@@ -32,47 +33,67 @@ const AddAnswerFormModal = ({ questionId, closeModal}) => {
   };
 
   return (
-    <div className='add-answer-modal-overlay'>
-      <div className='add-answer-modal-box'>
+    <div className='question-answer-modal-overlay'>
+      <div className='question-answer-modal-box'>
         <span className='close' onClick={closeModal}>
           &times;
         </span>
+        <h1><b>SUBMIT YOUR ANSWER</b></h1>
+        <h2><b>PRODUCT: {productName}</b></h2>
+        <h2><b>QUESTION: {questionBody}</b></h2>
+        <h2><b>* Indicates a required field</b></h2>
         <form onSubmit={handleSubmit}>
           <p>
-            <label className='label'>
-              <span className='label-text'>Username:</span>
+            <label className='label' htmlFor="nickname">
+              <span className='label-text'>Nickname*</span>
             </label>
             <input
               type='text'
-              placeholder='Enter username...'
+              placeholder='Example: jack543!'
               className='input input-bordered w-full max-w-xs'
               value={name}
               onChange={handleNameChange}
+              id="nickname"
+              required
             />
-            <label className='label'>
-              <span className='label-text'>Email:</span>
+            <div>
+            <i>
+            <small>*For privacy reasons, do not use your full name or email address!</small> 
+            </i>
+            </div>
+            <label className='label' htmlFor="email">
+              <span className='label-text'>Your Email*</span>
             </label>
             <input
-              type='text'
-              placeholder='Enter email...'
+              type='email'
+              placeholder='Example: jack@email.com'
               className='input input-bordered w-full max-w-xs'
               value={email}
               onChange={handleEmailChange}
+              id="email"
+              required
             />
-            <label className='label'>
-              <span className='label-text'>Your Answer:</span>
+            <div>
+            <i>
+            <small>*For authentication reasons, you will not be emailed!</small>
+            </i>
+            </div>
+            <label className='label' htmlFor="answer">
+              <span className='label-text'>Your Answer*</span>
             </label>
-            <input
-              type='text'
+            <textarea
               placeholder='Type your answer here...'
               className='input input-bordered w-full max-w-xs'
               rows='3'
               value={body}
               onChange={handleBodyChange}
+              id="answer"
+              required
             />
           </p>
           
-          <button style= {{marginTop: '20px',}} type='submit'><b>SUBMIT</b></button>
+          <button className='btn' style= {{marginTop: '20px',}} type='submit'>SUBMIT</button>
+
         </form>
       </div>
     </div>

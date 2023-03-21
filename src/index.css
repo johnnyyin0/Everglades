@@ -84,7 +84,7 @@ button:focus-visible {
 }
 
 /* QUESTIONS AND ANSWERS MODAL SETTINGS FROM https://www.w3schools.com/howto/howto_css_modals.asp */
-.add-answer-modal-overlay {
+.question-answer-modal-overlay {
   position: fixed;
   top: 0;
   left: 0;
@@ -97,7 +97,7 @@ button:focus-visible {
   align-items: center;
 }
 
-.add-answer-modal-box {
+.question-answer-modal-box {
   position: relative;
   background-color: #fff;
   border-radius: 5px;
