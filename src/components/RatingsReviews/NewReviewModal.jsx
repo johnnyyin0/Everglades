@@ -49,6 +49,8 @@ export default function NewReviewModal(props) {
   const [photos, setPhotos] = useState([])
   const [photo, setPhoto] = useState('')
   const[showButton, setShowButton] = useState(true)
+  const [nickname, setNickname] = useState('')
+  const [email, setEmail] = useState('')
 
   const handleRecommend = (evt) => {
     setRecommended(evt.target.value);
@@ -66,6 +68,14 @@ export default function NewReviewModal(props) {
     } else {
       setReqRemaining('Minimum reached')
     }
+  }
+
+  const handleNickname = (evt) => {
+    setNickname(evt.target.value);
+  }
+
+  const handleEmail = (evt) => {
+    setEmail(evt.target.value);
   }
 
   //there's gotta be a better way to get the current product ID
@@ -98,8 +108,8 @@ export default function NewReviewModal(props) {
               <span className="text-xl">Review body:</span>
             </label>
             <textarea className="textarea textarea-bordered" placeholder="Why did you like this product or not?" onChange={handleBodyChange}></textarea>
-            <label className="label">
-              <span className="label-text-alt">{reqRemaining}</span>
+            <label className="label pt-0 pb-5">
+              <span className="label-text-alt" >{reqRemaining}</span>
             </label>
               { photo && <div className="absolute">
                 <ReviewPhoto src={photo} setPhoto={setPhoto} photos={photos} setPhotos={setPhotos} setShowButton={setShowButton} />
@@ -108,16 +118,18 @@ export default function NewReviewModal(props) {
               <PhotoUploader photos={photos} setPhotos={setPhotos} setPhoto ={setPhoto} showButton={showButton} setShowButton={setShowButton} />
             </div>
             <div>
-              <label className="label">
-                <span className="label-text">What is your nickname?</span>
+              <label className="label pb-0 pt-5">
+                <span className="label">What is your nickname?</span>
               </label>
-              <input type="text" placeholder="Example: jackson11!" className="input input-bordered w-full max-w-xs" />
-              <label className="label">
-                <span className="label-text">What is your email?</span>
+              <input type="text" placeholder="Example: jackson11!" className="input input-bordered w-full max-w-xs" onChange={handleNickname} />
+              <label className="label pb-0 pt-5">
+                <span className="w-full">What is your email?</span>
               </label>
-              <input type="text" placeholder="Example: jackson11@email.com" className="input input-bordered w-full max-w-xs" />
-              <button className="btn">Submit Review</button>
-              <label htmlFor="new-review-modal" className="btn">Close modal</label>
+              <input type="text" placeholder="Example: jackson11@email.com" className="input input-bordered w-full max-w-xs" onChange={handleEmail} />
+              <div className="pt-5">
+                <button className="btn">Submit Review</button>
+                <label htmlFor="new-review-modal" className="btn">Close modal</label>
+              </div>
             </div>
           </div>
         </div>
