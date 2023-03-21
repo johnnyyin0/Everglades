@@ -90,12 +90,12 @@ export default function NewReviewModal(props) {
             <CharacteristicReview characteristics={reviewMeta.characteristics} setCharRatings={setCharRatings} charRatings={charRatings} />
           </div>
           <div className="form-control w-full">
-            <label className="label pt-5">
-              <span className="label-text text-xl">Review summary:</span>
+            <label className="label pt-5 w-full pb-0">
+              <span className="text-xl w-full">Review summary:</span>
             </label>
             <input type="text" className="input input-bordered w-full" placeholder="Example: Pest purchase ever!" onChange={handleSummaryChange} />
-            <label className="label pt-5">
-              <span className="label-text text-xl">Review body:</span>
+            <label className="label pt-5 pb-0">
+              <span className="text-xl">Review body:</span>
             </label>
             <textarea className="textarea textarea-bordered" placeholder="Why did you like this product or not?" onChange={handleBodyChange}></textarea>
             <label className="label">

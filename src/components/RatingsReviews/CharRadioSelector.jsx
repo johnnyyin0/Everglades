@@ -16,8 +16,8 @@ export default function CharRadioSelector({ fitChar, best, worst, charRatings, s
   return (
     <div className="pb-5 h-28">
       <label className="label">
-        <span className="label-text text-xl pb-3 pt-2">{fitChar}</span>
-        <span className="label-text-alt">{description}</span>
+        <span className="label-text text-xl pb-1 pt-2">{fitChar}</span>
+        <span className="label-text-alt float-right pt-5">{description}</span>
       </label>
       <div className="flex content-center">
         <div className="flex justify-between px-7 w-full">
