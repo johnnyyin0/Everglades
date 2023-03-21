@@ -2,13 +2,14 @@ const Models = require('../Models/Models.js');
 
 reviewController = {
   get: (req, res) => {
+      console.log(req.body, 'req.body');
       Models.reviews.getReviews(req.body)
       //req.body must be an object with at least a product_id key
       .then(response => {
         res.send(response.data)
       })
       .catch(err => {
-        res.send(err, 'Failed to fetch reviews!')
+        console.log(Object.keys(err), 'Failed to fetch reviews!')
       })
   },
   post: (req, res) => {
@@ -18,7 +19,7 @@ reviewController = {
       res.send(response.data)
     )
     .catch(err =>
-      res.send(err.data, 'Failed to post review!')
+      res.status(422).send(err.data, 'Failed to post review!')
     )
   },
   getMeta: (req, res) => {

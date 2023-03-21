@@ -4,29 +4,7 @@ import Report from '../QuestionsAnswers/ReportButton.jsx'
 import CarouselPhoto from './CarouselPhoto.jsx'
 import { format } from 'date-fns'
 
-export default function ReviewTile(props) {
-
-  //hardcode for testing
-
-  const review = {
-    "review_id": 1277925,
-    "rating": 3,
-    "summary": "test",
-    "recommend": true,
-    "response": "we think this guy bought the wrong thing.",
-    "body": "test test test test test test test test test test test test ",
-    "date": "2022-12-13T00:00:00.000Z",
-    "reviewer_name": "test",
-    "helpfulness": 2,
-    "photos": [
-      {
-        "id": 2456868,
-        "url": "https://res.cloudinary.com/dhjvvkko0/image/upload/v1670966521/qzzbo01sjmgrbnyu0qhi.jpg"
-      }
-    ]
-  }
-
-
+export default function ReviewTile({ review, setPhoto }) {
 
   return (
     <div className="border-2">
@@ -48,7 +26,7 @@ export default function ReviewTile(props) {
         </div>
       </div>}</div>
       <div>{review.photos.length > 0 && <div className="pb-5 px-5 carousel">
-        {review.photos.map(photo => <CarouselPhoto src={photo.url} setPhoto={props.setPhoto}/>)}
+        {review.photos.map(photo => <CarouselPhoto src={photo.url} setPhoto={setPhoto}/>)}
         </div>}</div>
       <div className="px-5 pb-5">
         <small>

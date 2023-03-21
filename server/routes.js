@@ -10,8 +10,8 @@ router.post('/questions/questionId/answer', controller.questions.submitAnswer)
 router.post('/questions/ask', controller.questions.submitQuestion)
 
 //reviews
-router.get('/reviews', controller.reviews.get);
-router.post('/reviews', controller.reviews.post);
+router.post('/reviews', controller.reviews.get);
+router.post('/review', controller.reviews.post);
 router.get('/reviews/meta', controller.reviews.getMeta);
 router.put('/reviews/helpful', controller.reviews.markHelpful);
 router.put('/reviews/report', controller.reviews.markReported);
