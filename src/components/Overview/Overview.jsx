@@ -72,7 +72,7 @@ let Overview = () => {
             .then(res => {
               //adding product id to the style
               res.data.results[0].productId = id
-              setRelative(relative => relative.concat(res.data.results[0]))
+              setRelative(relative => [...relative, res.data.results[0]])
             })
             })
         })
@@ -85,11 +85,11 @@ let Overview = () => {
 
 
   return (
-    <>
+    <div className='flex flex-col justify-center'>
     { isFullScreen ?
-      <FullScreen setFullScreen={setFullScreen}/>
+      <FullScreen setFullScreen={setFullScreen} styleSelected={styleSelected}/>
       : <>
-      <div className="grid grid-cols-6 gap-2" >
+      <div className="grid grid-cols-6 gap-2 max-w-[1800px] max-h-[1600px] min-w-[100px] min-h-[550px]" >
       <div className="col-span-1 row-span-4"></div>
       <div className='rounded-lg min-h-[120px] col-span-2 row-span-4'>
       <ProductImage photo={photo} styleSelected={styleSelected} setPhoto={setPhoto} photo={photo} setFullScreen={setFullScreen}/>
@@ -113,11 +113,15 @@ let Overview = () => {
       </div>
 
       </div>
+      <div>
       <ProductDescription currentProduct={currentProduct}/>
-      <Carosel relative={relative}/>
+      </div>
       </>
-    }
-    </>
+      }
+      <div className='flex justify-center'>
+        <Carosel className='flex-1' relative={relative}/>
+        </div>
+        </div>
       );
     }
 
