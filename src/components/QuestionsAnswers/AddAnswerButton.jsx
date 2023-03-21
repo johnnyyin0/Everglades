@@ -1,8 +1,10 @@
 import React, { useState } from 'react';
-import AddAnswerFormModal from './AddAnswerFormModal';;
+
+import AddAnswerFormModal from './AddAnswerFormModal';
 
 //modal
-const AddAnswerButton = ({ questionId }) => {
+const AddAnswerButton = ({ questionId, productName, questionBody}) => {
+
   const [showModal, setShowModal] = useState(false);
 
   const handleAddAnswerClick = () => {
@@ -21,9 +23,9 @@ const AddAnswerButton = ({ questionId }) => {
           style={{ textDecoration: 'underline', cursor: 'pointer' }}
           onClick={handleAddAnswerClick}
         >
-          Add Answer
+          <small>Add Answer</small>
         </button>
-        {showModal && <AddAnswerFormModal questionId= {questionId} closeModal={handleCloseModal}/>}
+        {showModal && <AddAnswerFormModal questionId= {questionId} questionBody={questionBody} closeModal={handleCloseModal} productName={productName}/>}
       </> : null
   );
 };
