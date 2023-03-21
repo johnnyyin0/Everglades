@@ -11,8 +11,7 @@ const Styles = ({currentStyle, setPhoto, styleSelected, setSelectedStyle}) => {
           <div>
           {styleSelected == style ?
           <p>Selected</p> :
-          null
-        }
+          null}
           <Style className="col-span-1" style={style} key={style.style_id} setPhoto={setPhoto} setSelectedStyle={setSelectedStyle}/>
         </div>
         )

@@ -22,6 +22,9 @@ let Overview = () => {
   //all the styles from
   let [currentStyle, setCurrentStyle] = useState(exampleStyle.results);
 
+  //true false for fullscreen modal
+  let [isFullScreen, setFullScreen] = useState(false);
+
   //state to be "selected" when picture is showing on overview
   let [styleSelected, setSelectedStyle] = useState(currentStyle[0])
 
