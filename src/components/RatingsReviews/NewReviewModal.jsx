@@ -8,41 +8,53 @@ export default function NewReviewModal(props) {
   let reviewMeta = {
     "product_id": "37311",
     "ratings": {
-        "1": "79",
-        "2": "46",
-        "3": "112",
-        "4": "144",
-        "5": "355"
+      "1": "79",
+      "2": "46",
+      "3": "112",
+      "4": "144",
+      "5": "355"
     },
     "recommended": {
-        "false": "126",
-        "true": "610"
+      "false": "126",
+      "true": "610"
     },
     "characteristics": {
-        "Fit": {
-            "id": 125031,
-            "value": "3.0805084745762712"
-        },
-        "Length": {
-            "id": 125032,
-            "value": "3.1122661122661123"
-        },
-        "Comfort": {
-            "id": 125033,
-            "value": "3.2139737991266376"
-        },
-        "Quality": {
-            "id": 125034,
-            "value": "3.2433035714285714"
-        }
+      "Fit": {
+        "id": 125031,
+        "value": "3.0805084745762712"
+      },
+      "Length": {
+        "id": 125032,
+        "value": "3.1122661122661123"
+      },
+      "Comfort": {
+        "id": 125033,
+        "value": "3.2139737991266376"
+      },
+      "Quality": {
+        "id": 125034,
+        "value": "3.2433035714285714"
+      }
     }
-}
+  }
 
   const [stars, setStars] = useState("0")
   const [recommended, setRecommended] = useState(false)
+  const [reviewBody, setReviewBody] = useState('')
+  const [reqRemaining, setReqRemaining] = useState('Minimum required characters left: 50')
 
   const handleRecommend = (evt) => {
     setRecommended(evt.target.value);
+  }
+
+  const handleBodyChange = (evt) => {
+    setReviewBody(evt.target.value);
+    if (reviewBody.length < 50) {
+      let reqString = `Minimum required characters left: ${50 - evt.target.value.length}`
+      setReqRemaining(reqString);
+    } else {
+      setReqRemaining('Minimum reached')
+    }
   }
 
   //there's gotta be a better way to get the current product ID
@@ -63,16 +75,21 @@ export default function NewReviewModal(props) {
             <input type="radio" name="radio-1" id="no" value="no" />
             <label className="pl-2">No</label>
           </div>
-          <CharacteristicReview characteristics={reviewMeta.characteristics}/>
-          <div className="form-control w-full max-w-xs">
-            <label className="label">
-              <span className="label-text">Review summary:</span>
+          <div className="bg-slate-200 px-2">
+            <CharacteristicReview characteristics={reviewMeta.characteristics} />
+          </div>
+          <div className="form-control w-full">
+            <label className="label pt-5">
+              <span className="label-text text-xl">Review summary:</span>
             </label>
-            <input type="text" placeholder="Example: Pest purchase ever!" className="input input-bordered w-full max-w-xs " />
-            <label className="label">
-              <span className="label-text">Review body:</span>
+            <input type="text" placeholder="Example: Pest purchase ever!" className="input input-bordered w-full" />
+            <label className="label pt-5">
+              <span className="label-text text-xl">Review body:</span>
             </label>
-            <input type="text" placeholder="Why did you like this project or not?" className="textarea input-bordered w-full max-w-xs" />
+            <textarea className="textarea textarea-bordered" placeholder="Why did you like this product or not?" onChange={handleBodyChange}></textarea>
+            <label className="label">
+              <span className="label-text-alt">{reqRemaining}</span>
+            </label>
             <div className="modal-action">
               <button>Upload Photos</button>
             </div><div>
