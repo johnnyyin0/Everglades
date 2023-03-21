@@ -41,11 +41,16 @@ export default function NewReviewModal(props) {
   const [stars, setStars] = useState("0")
   const [recommended, setRecommended] = useState(false)
   const [charRatings, setCharRatings] = useState({})
+  const [reviewSummary, setReviewSummary] = useState('')
   const [reviewBody, setReviewBody] = useState('')
   const [reqRemaining, setReqRemaining] = useState('Minimum required characters left: 50')
 
   const handleRecommend = (evt) => {
     setRecommended(evt.target.value);
+  }
+
+  const handleSummaryChange = (evt) => {
+    setReviewSummary(evt.target.value);
   }
 
   const handleBodyChange = (evt) => {
@@ -83,7 +88,7 @@ export default function NewReviewModal(props) {
             <label className="label pt-5">
               <span className="label-text text-xl">Review summary:</span>
             </label>
-            <input type="text" placeholder="Example: Pest purchase ever!" className="input input-bordered w-full" />
+            <input type="text" className="input input-bordered w-full" placeholder="Example: Pest purchase ever!" onChange={handleSummaryChange} />
             <label className="label pt-5">
               <span className="label-text text-xl">Review body:</span>
             </label>
