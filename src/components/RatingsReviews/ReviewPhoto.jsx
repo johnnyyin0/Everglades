@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 
-export default function ReviewPhoto({ src, setPhoto, photos, setPhotos }) {
+export default function ReviewPhoto({ src, setPhoto, photos, setPhotos, setShowButton }) {
 
   const handleClick = (evt) => {
     setPhoto('')
@@ -13,6 +13,8 @@ export default function ReviewPhoto({ src, setPhoto, photos, setPhotos }) {
       let currentPhotos = photos.slice();
       let thisIndex = currentPhotos.indexOf(src);
       currentPhotos.splice(thisIndex, 1);
+      setShowButton(true);
+      console.log('show that button!')
       setPhotos(currentPhotos);
     }
   }

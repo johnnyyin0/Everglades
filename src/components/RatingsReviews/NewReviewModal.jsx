@@ -48,6 +48,7 @@ export default function NewReviewModal(props) {
   const [reqRemaining, setReqRemaining] = useState('Minimum required characters left: 50')
   const [photos, setPhotos] = useState([])
   const [photo, setPhoto] = useState('')
+  const[showButton, setShowButton] = useState(true)
 
   const handleRecommend = (evt) => {
     setRecommended(evt.target.value);
@@ -101,10 +102,10 @@ export default function NewReviewModal(props) {
               <span className="label-text-alt">{reqRemaining}</span>
             </label>
               { photo && <div className="absolute">
-                <ReviewPhoto src={photo} setPhoto={setPhoto} photos={photos} setPhotos={setPhotos} />
+                <ReviewPhoto src={photo} setPhoto={setPhoto} photos={photos} setPhotos={setPhotos} setShowButton={setShowButton} />
               </div>}
             <div>
-              <PhotoUploader photos={photos} setPhotos={setPhotos} setPhoto ={setPhoto}/>
+              <PhotoUploader photos={photos} setPhotos={setPhotos} setPhoto ={setPhoto} showButton={showButton} setShowButton={setShowButton} />
             </div>
             <div>
               <label className="label">

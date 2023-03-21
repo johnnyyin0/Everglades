@@ -3,10 +3,9 @@ import axios from 'axios'
 import CarouselPhoto from './CarouselPhoto.jsx'
 //import Path from 'path'
 
-export default function PhotoUploader({ photos, setPhotos, setPhoto }) {
+export default function PhotoUploader({ photos, setPhotos, setPhoto, showButton, setShowButton }) {
 
   const[photoToUpload, setPhotoToUpload] = useState({})
-  const[showButton, setShowButton] = useState(true)
 
   const photoWidget = cloudinary.createUploadWidget({
     cloudName: 'dyrlg2pzz',
