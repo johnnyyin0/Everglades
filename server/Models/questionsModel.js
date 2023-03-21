@@ -22,7 +22,7 @@ let questionsModel = {
   },
   
   getAnswers: (questionId) => {
-    let options ={
+    let options = {
       method: 'GET',
       url: apiURL+ `questions/${questionId}/answers?count=100`,
       headers: {
@@ -39,7 +39,7 @@ let questionsModel = {
   },
 
   updateHelpfulnessAnswer: (answerId) => {
-    let options ={
+    let options = {
       method: 'PUT',
       url: apiURL+ `answers/${answerId}/helpful`,
       headers: {
@@ -55,7 +55,7 @@ let questionsModel = {
   })
   },
   updateHelpfulnessQuestion: (questionId) => {
-    let options ={
+    let options = {
       method: 'PUT',
       url: apiURL+ `questions/${questionId}/helpful`,
       headers: {
@@ -70,6 +70,42 @@ let questionsModel = {
       console.log(err)
   })
   },
+
+  submitAnswer: (questionId, params) => {
+    let options = {
+      method: 'POST',
+      url: apiURL+ `questions/${questionId}/answers`,
+      headers: {
+        "Authorization": config.TOKEN
+      },
+      data: params
+    }
+    return axios(options)
+  .then(response => {
+      return response.data
+  })
+  .catch(err => {
+      console.log(err)
+  })
+  },
+  submitQuestion: (params) => {
+    let options = {
+      method: 'POST',
+      url: apiURL+ `questions`,
+      headers: {
+        "Authorization": config.TOKEN
+      },
+      data: params
+    }
+    return axios(options)
+  .then(response => {
+      return response.data
+  })
+  .catch(err => {
+      console.log(err)
+  })
+  },
+  }
 }
 
 module.exports = questionsModel;

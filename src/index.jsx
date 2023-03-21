@@ -4,7 +4,7 @@ import App from './App'
 import NewReviewModal from './components/RatingsReviews/NewReviewModal.jsx'
 import FullSizePhoto from './components/RatingsReviews/FullSizePhoto.jsx'
 import './index.css'
-import AddAnswer from './components/QuestionsAnswers/AddAnswer.jsx'
+import AddAnswer from './components/QuestionsAnswers/AddAnswerButton.jsx'
 
 ReactDOM.createRoot(document.getElementById('NewReviewModal')).render(
   <NewReviewModal />
@@ -16,14 +16,6 @@ ReactDOM.createRoot(document.getElementById('fullsize-photo')).render(
   </React.StrictMode>,
 )
 
-ReactDOM.createRoot(document.getElementById('AddAnswer')).render(
-  <React.StrictMode>
-    <AddAnswer />
-  </React.StrictMode>,
-)
-
 ReactDOM.createRoot(document.getElementById('root')).render(
   <App />
 )
-  // <React.StrictMode>
-  // </React.StrictMode>,
