@@ -1,13 +1,16 @@
 import React, { useState } from 'react'
 import charMap from './CharMap.js'
 
-export default function CharRadioSelector({ fitChar, best, worst }) {
+export default function CharRadioSelector({ fitChar, best, worst, charRatings, setCharRatings }) {
 
   const [ description, setDescription ] = useState('none selected')
 
   const handleClick = (evt) => {
    let desc = charMap[evt.target.name][parseInt(evt.target['value'])]
    setDescription(desc)
+   let charObj = charRatings
+   charObj[evt.target.name] = (parseInt(evt.target.value) + 1).toString()
+   setCharRatings(charObj)
   }
 
   return (

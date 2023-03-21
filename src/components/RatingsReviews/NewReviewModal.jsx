@@ -40,6 +40,7 @@ export default function NewReviewModal(props) {
 
   const [stars, setStars] = useState("0")
   const [recommended, setRecommended] = useState(false)
+  const [charRatings, setCharRatings] = useState({})
   const [reviewBody, setReviewBody] = useState('')
   const [reqRemaining, setReqRemaining] = useState('Minimum required characters left: 50')
 
@@ -76,7 +77,7 @@ export default function NewReviewModal(props) {
             <label className="pl-2">No</label>
           </div>
           <div className="bg-slate-200 px-2">
-            <CharacteristicReview characteristics={reviewMeta.characteristics} />
+            <CharacteristicReview characteristics={reviewMeta.characteristics} setCharRatings={setCharRatings} charRatings={charRatings}/>
           </div>
           <div className="form-control w-full">
             <label className="label pt-5">
