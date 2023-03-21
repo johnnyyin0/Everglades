@@ -89,26 +89,26 @@ let Overview = () => {
     { isFullScreen ?
       <FullScreen setFullScreen={setFullScreen} styleSelected={styleSelected}/>
       : <>
-      <div className="grid grid-cols-6 gap-2 max-w-[1800px] max-h-[1600px] min-w-[100px] min-h-[550px]" >
+      <div className="grid grid-cols-6 gap-2" >
       <div className="col-span-1 row-span-4"></div>
-      <div className='rounded-lg min-h-[120px] col-span-2 row-span-4'>
+      <div className='rounded-lg  col-span-2 row-span-4'>
       <ProductImage photo={photo} styleSelected={styleSelected} setPhoto={setPhoto} photo={photo} setFullScreen={setFullScreen}/>
       </div>
 
-      <div className=' rounded-lg shadow-xl max-h-[60px] min-h-[50px] col-span-2'>
+      <div className=' rounded-lg shadow-xl col-span-2'>
       <RatingsAndShare currentProduct={currentProduct} photo={photo}/>
       </div>
 
 
-      <div className=' rounded-lg shadow-xl max-h-[80px] min-h-[50px] col-span-2'>
+      <div className=' rounded-lg shadow-xl col-span-2 min-h-[60%]'>
       <ProductName currentProduct={currentProduct} styleSelected={styleSelected}/>
       </div>
 
-      <div className=' rounded-lg shadow-xl min-h-[50px] col-span-2'>
+      <div className=' rounded-lg shadow-xl col-span-2'>
       <Styles currentStyle={currentStyle} setPhoto={setPhoto} setSelectedStyle={setSelectedStyle} styleSelected={styleSelected}/>
       </div>
 
-      <div className=' rounded-lg shadow-xl min-h-[50px] col-span-2'>
+      <div className=' rounded-lg shadow-xl col-span-2'>
       <AddCart />
       </div>
 

@@ -23,11 +23,11 @@ const FullScreen = ({setFullScreen, styleSelected}) => {
   return (
     <>
     <div className=" w-full m-auto py-16 px-4 flex justify-center">
-      <img src={styleSelected.photos[index].thumbnail_url} className="w-full max-h-[1000px] max-w-[750px] rounded-2xl bg-center bg-cover duration-500 flex-1"></img>
-      <div className="absolute top-[20%] left-[30%] rounded-full p-2 bg-black/20">
+      <img src={styleSelected.photos[index].thumbnail_url} className="w-full max-h-[30%] max-w-[30%] rounded-2xl bg-center bg-cover duration-500 flex-1"></img>
+      <div className="absolute top-[50%] left-[30%] rounded-full p-2 bg-black/20">
         <button onClick={backButton}>🢀</button>
         </div>
-        <div className="absolute top-[20%] right-[30%] rounded-full p-2 bg-black/20">
+        <div className="absolute top-[50%] right-[30%] rounded-full p-2 bg-black/20">
           <button onClick={nextButton}>🢂</button>
           </div>
           </div>
