@@ -5,6 +5,7 @@ import ProductName from './productName.jsx';
 import StarsWidget from '../RatingsReviews/StarsWidget.jsx'
 import ProductDescription from './ProductDescription.jsx';
 import ProductImage from './ProductImage.jsx';
+import FullScreen from './FullScreen.jsx';
 import AddCart from './AddCart.jsx';
 import exampleStyle from './exampleStyle.js';
 import exampleProduct from './exampleProduct.js';
@@ -85,34 +86,39 @@ let Overview = () => {
 
   return (
     <>
-    <div className="grid grid-cols-6 gap-2" >
+    { isFullScreen ?
+      <FullScreen setFullScreen={setFullScreen}/>
+      : <>
+      <div className="grid grid-cols-6 gap-2" >
       <div className="col-span-1 row-span-4"></div>
-      <div className='rounded-lg min-h-[50px] col-span-2 row-span-4'>
-        <ProductImage photo={photo} styleSelected={styleSelected} setPhoto={setPhoto} photo={photo}/>
+      <div className='rounded-lg min-h-[120px] col-span-2 row-span-4'>
+      <ProductImage photo={photo} styleSelected={styleSelected} setPhoto={setPhoto} photo={photo} setFullScreen={setFullScreen}/>
+      </div>
+
+      <div className=' rounded-lg shadow-xl max-h-[60px] min-h-[50px] col-span-2'>
+      <StarsWidget />
+      </div>
+
+
+      <div className=' rounded-lg shadow-xl max-h-[80px] min-h-[50px] col-span-2'>
+      <ProductName currentProduct={currentProduct} styleSelected={styleSelected}/>
       </div>
 
       <div className=' rounded-lg shadow-xl min-h-[50px] col-span-2'>
-        <StarsWidget />
-        </div>
-
-
-      <div className=' rounded-lg shadow-xl min-h-[50px] col-span-2'>
-        <ProductName currentProduct={currentProduct} styleSelected={styleSelected}/>
+      <Styles currentStyle={currentStyle} setPhoto={setPhoto} setSelectedStyle={setSelectedStyle} styleSelected={styleSelected}/>
       </div>
 
       <div className=' rounded-lg shadow-xl min-h-[50px] col-span-2'>
-        <Styles currentStyle={currentStyle} setPhoto={setPhoto} setSelectedStyle={setSelectedStyle} styleSelected={styleSelected}/>
-        </div>
+      <AddCart />
+      </div>
 
-      <div className=' rounded-lg shadow-xl min-h-[50px] col-span-2'>
-        <AddCart />
-        </div>
-
-    </div>
-    <ProductDescription currentProduct={currentProduct}/>
-    <Carosel relative={relative}/>
+      </div>
+      <ProductDescription currentProduct={currentProduct}/>
+      <Carosel relative={relative}/>
+      </>
+    }
     </>
-  );
-}
+      );
+    }
 
-export default Overview;
+    export default Overview;
