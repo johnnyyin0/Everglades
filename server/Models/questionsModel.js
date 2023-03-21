@@ -20,7 +20,7 @@ let questionsModel = {
       console.log('Axios.get error in getQuestions function: ', err)
   })
   },
-  
+
   getAnswers: (questionId) => {
     let options = {
       method: 'GET',

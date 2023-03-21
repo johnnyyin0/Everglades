@@ -2,10 +2,11 @@ import React from 'react';
 import {useEffect, useState} from 'react';
 import Axios from 'axios';
 import ProductName from './productName.jsx';
-import StarsWidget from '../RatingsReviews/StarsWidget.jsx'
 import ProductDescription from './ProductDescription.jsx';
 import ProductImage from './ProductImage.jsx';
+import FullScreen from './FullScreen.jsx';
 import AddCart from './AddCart.jsx';
+import RatingsAndShare from './RatingsAndShare.jsx';
 import exampleStyle from './exampleStyle.js';
 import exampleProduct from './exampleProduct.js';
 import Carosel from './Carosel.jsx';
@@ -21,6 +22,9 @@ let Overview = () => {
   let [currentProduct, setCurrentProduct] = useState(exampleProduct);
   //all the styles from
   let [currentStyle, setCurrentStyle] = useState(exampleStyle.results);
+
+  //true false for fullscreen modal
+  let [isFullScreen, setFullScreen] = useState(false);
 
   //state to be "selected" when picture is showing on overview
   let [styleSelected, setSelectedStyle] = useState(currentStyle[0])
@@ -68,7 +72,7 @@ let Overview = () => {
             .then(res => {
               //adding product id to the style
               res.data.results[0].productId = id
-              setRelative(relative => relative.concat(res.data.results[0]))
+              setRelative(relative => [...relative, res.data.results[0]])
             })
             })
         })
@@ -81,35 +85,44 @@ let Overview = () => {
 
 
   return (
-    <>
-    <div className="grid grid-cols-6 gap-2" >
+    <div className='flex flex-col justify-center'>
+    { isFullScreen ?
+      <FullScreen setFullScreen={setFullScreen} styleSelected={styleSelected}/>
+      : <>
+      <div className="grid grid-cols-6 gap-2" >
       <div className="col-span-1 row-span-4"></div>
-      <div className='rounded-lg min-h-[50px] col-span-2 row-span-4'>
-        <ProductImage photo={photo} styleSelected={styleSelected} setPhoto={setPhoto} photo={photo}/>
+      <div className='rounded-lg  col-span-2 row-span-4'>
+      <ProductImage photo={photo} styleSelected={styleSelected} setPhoto={setPhoto} photo={photo} setFullScreen={setFullScreen}/>
       </div>
 
-      <div className=' rounded-lg shadow-xl min-h-[50px] col-span-2'>
-        <StarsWidget />
-        </div>
-
-
-      <div className=' rounded-lg shadow-xl min-h-[50px] col-span-2'>
-        <ProductName currentProduct={currentProduct} styleSelected={styleSelected}/>
+      <div className=' rounded-lg shadow-xl col-span-2'>
+      <RatingsAndShare currentProduct={currentProduct} photo={photo}/>
       </div>
 
-      <div className=' rounded-lg shadow-xl min-h-[50px] col-span-2'>
-        <Styles currentStyle={currentStyle} setPhoto={setPhoto} setSelectedStyle={setSelectedStyle} styleSelected={styleSelected}/>
+
+      <div className=' rounded-lg shadow-xl col-span-2 min-h-[60%]'>
+      <ProductName currentProduct={currentProduct} styleSelected={styleSelected}/>
+      </div>
+
+      <div className=' rounded-lg shadow-xl col-span-2'>
+      <Styles currentStyle={currentStyle} setPhoto={setPhoto} setSelectedStyle={setSelectedStyle} styleSelected={styleSelected}/>
+      </div>
+
+      <div className=' rounded-lg shadow-xl col-span-2'>
+      <AddCart />
+      </div>
+
+      </div>
+      <div>
+      <ProductDescription currentProduct={currentProduct}/>
+      </div>
+      </>
+      }
+      <div className='flex justify-center'>
+        <Carosel className='flex-1' relative={relative}/>
         </div>
-
-      <div className=' rounded-lg shadow-xl min-h-[50px] col-span-2'>
-        <AddCart />
         </div>
+      );
+    }
 
-    </div>
-    <ProductDescription currentProduct={currentProduct}/>
-    <Carosel relative={relative}/>
-    </>
-  );
-}
-
-export default Overview;
+    export default Overview;

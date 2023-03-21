@@ -43,3 +43,15 @@ it('Should perform expected action', () => {
                                 vitest supports all Chai and Jest assertion formats. See the following for details:
                                 Chai: https://www.chaijs.com/api/bdd/
                                 Jest: https://jestjs.io/docs/expect
+
+
+
+SOCIAL MEDIA BUTTONS
+
+//To install dependencies for social media buttons run:
+
+  npm install react-share --save
+
+CLOUDINARY DEPENDANCY
+
+npm install cloudinary
