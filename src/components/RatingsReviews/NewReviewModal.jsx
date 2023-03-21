@@ -101,7 +101,7 @@ export default function NewReviewModal(props) {
               <span className="label-text-alt">{reqRemaining}</span>
             </label>
               { photo && <div className="absolute">
-                <ReviewPhoto src={photo} setPhoto={setPhoto} />
+                <ReviewPhoto src={photo} setPhoto={setPhoto} photos={photos} setPhotos={setPhotos} />
               </div>}
             <div>
               <PhotoUploader photos={photos} setPhotos={setPhotos} setPhoto ={setPhoto}/>
