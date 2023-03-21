@@ -2,6 +2,7 @@ import React, { useState } from 'react'
 import axios from 'axios'
 import CharacteristicReview from './CharacteristicReview.jsx'
 import StarsRater from './StarsRater.jsx'
+import PhotoUploader from './PhotoUploader.jsx'
 
 export default function NewReviewModal(props) {
 
@@ -44,6 +45,7 @@ export default function NewReviewModal(props) {
   const [reviewSummary, setReviewSummary] = useState('')
   const [reviewBody, setReviewBody] = useState('')
   const [reqRemaining, setReqRemaining] = useState('Minimum required characters left: 50')
+  const [photos, setPhotos] = useState([])
 
   const handleRecommend = (evt) => {
     setRecommended(evt.target.value);
@@ -82,7 +84,7 @@ export default function NewReviewModal(props) {
             <label className="pl-2">No</label>
           </div>
           <div className="bg-slate-200 px-2">
-            <CharacteristicReview characteristics={reviewMeta.characteristics} setCharRatings={setCharRatings} charRatings={charRatings}/>
+            <CharacteristicReview characteristics={reviewMeta.characteristics} setCharRatings={setCharRatings} charRatings={charRatings} />
           </div>
           <div className="form-control w-full">
             <label className="label pt-5">
@@ -96,9 +98,10 @@ export default function NewReviewModal(props) {
             <label className="label">
               <span className="label-text-alt">{reqRemaining}</span>
             </label>
-            <div className="modal-action">
-              <button>Upload Photos</button>
-            </div><div>
+            <div>
+              <PhotoUploader photos={photos} setPhotos={setPhotos} />
+            </div>
+            <div>
               <label className="label">
                 <span className="label-text">What is your nickname?</span>
               </label>
