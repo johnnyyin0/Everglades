@@ -32,6 +32,5 @@ let exampleStyle = {
     //...
   }
 }
-            // let result = exampleStyle.results[0].photos[0].thumbnail_url
-            // console.log(result);
-            export default exampleStyle;
+
+export default exampleStyle;

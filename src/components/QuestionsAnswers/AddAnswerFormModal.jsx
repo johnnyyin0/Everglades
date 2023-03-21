@@ -1,7 +1,7 @@
 import axios from 'axios';
 import React, { useState } from 'react';
 
-const AddAnswerFormModal = ({ questionId, questionBody, closeModal, productName}) => {
+const AddAnswerFormModal = ({ questionId, questionBody, closeModal, productName, }) => {
 
   const [name, setName] = useState('');
   const [email, setEmail] = useState('');
@@ -54,6 +54,7 @@ const AddAnswerFormModal = ({ questionId, questionBody, closeModal, productName}
               value={name}
               onChange={handleNameChange}
               id="nickname"
+              maxLength={60}
               required
             />
             <div>
@@ -71,6 +72,7 @@ const AddAnswerFormModal = ({ questionId, questionBody, closeModal, productName}
               value={email}
               onChange={handleEmailChange}
               id="email"
+              maxLength={60}
               required
             />
             <div>
@@ -88,6 +90,7 @@ const AddAnswerFormModal = ({ questionId, questionBody, closeModal, productName}
               value={body}
               onChange={handleBodyChange}
               id="answer"
+              maxLength={1000}
               required
             />
           </p>

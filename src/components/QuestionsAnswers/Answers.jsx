@@ -1,10 +1,9 @@
-//fetches the answer for every particular questionId
 import axios from 'axios';
 import React, { useState, useEffect } from 'react';
 import {format, parseISO} from 'date-fns'
 import ReportButton from './ReportButton';
 
-const Answers = ({questionId, productId}) => {
+const Answers = ({questionId}) => {
   const [answers, setAnswers] = useState([]);
   const [helpfulClicks, setHelpfulClicks] = useState([]);
   const [showMore, setShowMore] = useState(false);
@@ -42,10 +41,6 @@ const Answers = ({questionId, productId}) => {
     }
   };
 
-  const handleShowMore = () => {
-    setShowMore(true);
-  };
-
   return (
     <div>
       {answers.length === 0 ? (
@@ -54,10 +49,8 @@ const Answers = ({questionId, productId}) => {
           <i> No answer yet...</i>
         </div>
       ) : (
-        <div>
-          {answers
-            .slice(0, showMore ? answers.length : 2)
-            .map((answer) => (
+        <div className='answer-list'>
+          {answers.slice(0, showMore ? answers.length : 2).map((answer) => (
               <div key={answer.answer_id} style={{ marginTop: '10px' }}>
                 <b>A:</b> {answer.body}
                 <br />
@@ -77,8 +70,8 @@ const Answers = ({questionId, productId}) => {
                 </small>
               </div>
             ))}
-          {answers.length > 2 && !showMore && (
-            <button onClick={handleShowMore} style={{ marginTop: '5px' }}>LOAD MORE ANSWERS</button>
+          {answers.length > 2 && (
+            <button onClick={()=>setShowMore(!showMore)} style={{ marginTop: '5px' }}>{showMore ? 'COLLAPSE ANSWERS' : 'LOAD MORE ANSWERS'}</button>
           )}
         </div>
       )}
