@@ -77,7 +77,19 @@ let questionController = {
     .catch((err) => {
       console.log('ERROR ON SUBMITTING ANSWER SERVER SIDE: ', err)
     })
+  },
+  reportAnswer: (req, res) => {
+    console.log('REPORT INFO ON SERVER SIDE', req.body.answerId)
+    let answerId = req.body.answerId;
+    Models.questions.reportAnswer(answerId)
+    .then(data => {
+      res.send(data)
+    })
+    .catch((err) => {
+      console.log('ERROR ON REPORTING ANSWER SERVER SIDE: ', err)
+    })
   }
+
 }
 
 module.exports = questionController;

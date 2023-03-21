@@ -1,8 +1,6 @@
-//pops up a modal and adds a question
 import React, {useState} from 'react';
 import AddQuestionFormModal from './AddQuestionFormModal';
 
-//MODAL
 const AddQuestionButton = ({productName, productId, getQuestions}) => {
   const [showModal, setShowModal] = useState(false);
 
