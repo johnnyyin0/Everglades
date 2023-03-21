@@ -3,6 +3,7 @@ import axios from 'axios'
 import CharacteristicReview from './CharacteristicReview.jsx'
 import StarsRater from './StarsRater.jsx'
 import PhotoUploader from './PhotoUploader.jsx'
+import ReviewPhoto from './ReviewPhoto.jsx'
 
 export default function NewReviewModal(props) {
 
@@ -46,6 +47,7 @@ export default function NewReviewModal(props) {
   const [reviewBody, setReviewBody] = useState('')
   const [reqRemaining, setReqRemaining] = useState('Minimum required characters left: 50')
   const [photos, setPhotos] = useState([])
+  const [photo, setPhoto] = useState('')
 
   const handleRecommend = (evt) => {
     setRecommended(evt.target.value);
@@ -70,7 +72,7 @@ export default function NewReviewModal(props) {
 
 
   return (
-    <div>
+    <div className="static">
       <input type="checkbox" id="new-review-modal" className="modal-toggle" />
       <div className="modal">
         <div className="modal-box h-full">
@@ -98,8 +100,11 @@ export default function NewReviewModal(props) {
             <label className="label">
               <span className="label-text-alt">{reqRemaining}</span>
             </label>
+              { photo && <div className="absolute">
+                <ReviewPhoto src={photo} setPhoto={setPhoto} />
+              </div>}
             <div>
-              <PhotoUploader photos={photos} setPhotos={setPhotos} />
+              <PhotoUploader photos={photos} setPhotos={setPhotos} setPhoto ={setPhoto}/>
             </div>
             <div>
               <label className="label">

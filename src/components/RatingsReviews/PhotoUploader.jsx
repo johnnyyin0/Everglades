@@ -1,26 +1,46 @@
 import React, { useState } from 'react'
-import {fill} from "@cloudinary/url-gen/actions/resize";
-import {CloudinaryImage} from '@cloudinary/url-gen';
+import axios from 'axios'
+import CarouselPhoto from './CarouselPhoto.jsx'
+//import Path from 'path'
 
+export default function PhotoUploader({ photos, setPhotos, setPhoto }) {
 
-export default function PhotoUploader({ photos, setPhotos }) {
+  const[photoToUpload, setPhotoToUpload] = useState({})
+  const[showButton, setShowButton] = useState(true)
 
-  const[photoToUpload, setPhotoToUpload] = useState('')
+  const photoWidget = cloudinary.createUploadWidget({
+    cloudName: 'dyrlg2pzz',
+    uploadPreset: 'tiigxyou',
+    cropping: true,
+    multiple: false,
+    clientAllowedFormats: ["image"]
+  },
+  (error, result) => { if(!error && result && result.event === "success"){
+    console.log(result.info.secure_url, 'url')
+    console.log()
+    let newPhotos = photos.slice()
+    newPhotos.push(result.info.secure_url)
+    if (newPhotos.length >= 5) {
+      setShowButton(false)
+    }
+    setPhotos(newPhotos)
 
-  const handleSelect = (evt) => {
-    console.log(evt.target.files[0])
   }
+  })
 
-  const handleUpload = (evt) => {
-    console.log(evt.target)
+  const handleSubmit = (evt) => {
+    photoWidget.open()
+
   }
 
   return (
     <div>
       <div>{photos.length > 0 && <div className="pb-5 px-5 carousel">
-      {review.photos.map(photo => <CarouselPhoto src={photo.url} setPhoto={props.setPhoto}/>)}
+      {photos.length > 0 && photos.map(photo => <CarouselPhoto src={photo} setPhoto={setPhoto}/>)}
       </div>}</div>
-      <input type="file" className="file-input file-input-bordered w-full max-w-xs" onChange={handleSelect} /><button className="btn" onClick={handleUpload}>Add Photo</button>
+      {showButton && <div>
+        <button className="btn" onClick={handleSubmit}>Add Photo</button>
+      </div>}
     </div>
   )
 }
