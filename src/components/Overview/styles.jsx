@@ -9,11 +9,7 @@ const Styles = ({currentStyle, setPhoto, styleSelected, setSelectedStyle}) => {
       {currentStyle.map(style => {
         return (
           <div>
-          {styleSelected == style ?
-          <p>Selected</p> :
-          null
-        }
-          <Style className="col-span-1" style={style} key={style.style_id} setPhoto={setPhoto} setSelectedStyle={setSelectedStyle}/>
+          <Style className="col-span-1" style={style} key={style.style_id} setPhoto={setPhoto} setSelectedStyle={setSelectedStyle} styleSelected={styleSelected}/>
         </div>
         )
       })}

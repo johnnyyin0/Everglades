@@ -15,9 +15,9 @@ const CaroselProduct = ({product}) => {
   }, [])
 
   return (
-  <div className="carousel-item mr-2 ml-2">
+  <div className="carousel-item mr-2 ml-2 hover:scale-105 ease-in-out duration-300">
     <div className="grid grid-cols-1 auto-rows-max gap-2">
-      { product.photos[0].thumbnail_url == null ?
+    { product.photos[0].thumbnail_url == null ?
       <img src={"https://webkit.org/demos/srcset/image-src.png"} className="max-h-[200px]" />
        : <img src={product.photos[0].thumbnail_url} className="max-h-[200px]" />
       }

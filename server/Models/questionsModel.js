@@ -105,7 +105,27 @@ let questionsModel = {
       console.log(err)
   })
   },
+<<<<<<< HEAD
   }
 
+=======
+  reportAnswer: (answerId) => {
+    let options = {
+      method: 'PUT',
+      url: apiURL+ `answers/${answerId}/report`,
+      headers: {
+        "Authorization": config.TOKEN
+      },
+    }
+  return axios(options)
+     .then(response => {
+      return response.data
+  })
+  .catch(err => {
+      console.log(err)
+  })
+  },
+}
+>>>>>>> 5262d8b99c1d838c29c7e3dd9f279bc9d5a83f17
 
 module.exports = questionsModel;
