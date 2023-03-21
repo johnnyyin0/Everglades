@@ -45,6 +45,39 @@ let questionController = {
       console.log('ERROR ON FETCHING QUESTIONS SERVER: ', err)
     })
   },
+
+  submitAnswer: (req, res) => {
+    console.log('SUBMITTING INFO ON SERVERSIDE', req.body.params)
+    const question_id = req.body.params.question_id
+    const params = {
+      body: req.body.params.body,
+      name: req.body.params.name,
+      email: req.body.params.email,
+    }
+    Models.questions.submitAnswer(question_id, params)
+    .then(data => {
+      res.send(data)
+    })
+    .catch((err) => {
+      console.log('ERROR ON SUBMITTING ANSWER SERVER SIDE: ', err)
+    })
+  },
+  submitQuestion: (req, res) => {
+    console.log('SUBMITTING INFO ON SERVERSIDE', req.body.params)
+    const params = {
+      body: req.body.params.body,
+      name: req.body.params.name,
+      email: req.body.params.email,
+      product_id: parseInt(req.body.params.productId),
+    }
+    Models.questions.submitQuestion(params)
+    .then(data => {
+      res.send(data)
+    })
+    .catch((err) => {
+      console.log('ERROR ON SUBMITTING ANSWER SERVER SIDE: ', err)
+    })
+  }
 }
 
 module.exports = questionController;

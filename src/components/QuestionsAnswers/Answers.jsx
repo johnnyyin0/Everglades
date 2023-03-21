@@ -1,9 +1,10 @@
 //fetches the answer for every particular questionId
 import axios from 'axios';
 import React, { useState, useEffect } from 'react';
-import Report from './Report';
+import {format, parseISO} from 'date-fns'
+import ReportButton from './ReportButton';
 
-const Answers = ({questionId}) => {
+const Answers = ({questionId, productId}) => {
   const [answers, setAnswers] = useState([]);
   const [helpfulClicks, setHelpfulClicks] = useState([]);
   const [showMore, setShowMore] = useState(false);
@@ -61,7 +62,7 @@ const Answers = ({questionId}) => {
                 <b>A:</b> {answer.body}
                 <br />
                 <small>
-                  by {answer.answerer_name}, {answer.date} | Helpful?{' '}
+                  by {answer.answerer_name}, on {format(parseISO(answer.date), "MMMM-dd-yyyy")} | Helpful?{' '}
                   <span
                     style={{
                       textDecoration: 'underline',
@@ -72,12 +73,12 @@ const Answers = ({questionId}) => {
                   >
                     Yes ({answer.helpfulness})
                   </span>{' '}
-                  | <Report answerId={answer.answer_id} />
+                  | <ReportButton answerId={answer.answer_id} />
                 </small>
               </div>
             ))}
           {answers.length > 2 && !showMore && (
-            <button onClick={handleShowMore} style={{ marginTop: '10px' }}>LOAD MORE ANSWERS</button>
+            <button onClick={handleShowMore} style={{ marginTop: '5px' }}>LOAD MORE ANSWERS</button>
           )}
         </div>
       )}

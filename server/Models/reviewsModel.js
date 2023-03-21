@@ -1,11 +1,13 @@
 const axios = require('axios');
 const config = require('../../config.js');
 const path = require('path');
+const cloudinary = require('cloudinary').v2
 
 let reviewsModel = {
   url: 'https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfe/reviews',
   headers: { 'Authorization' : config.TOKEN},
-  getReviews: (params) => {
+  getReviews: ( params ) => {
+    console.log(params, 'what we setting as params')
     const options = {
       url: reviewsModel.url,
       headers: reviewsModel.headers,
@@ -14,7 +16,7 @@ let reviewsModel = {
     }
     return axios(options)
   },
-  postReview: (params) => {
+  postReview: ( params ) => {
     const options = {
       url: reviewsModel.url,
       headers: reviewsModel.headers,
@@ -23,7 +25,7 @@ let reviewsModel = {
     }
     return axios(options)
   },
-  getMeta: (params) => {
+  getMeta: ( params ) => {
     const options = {
       url: path.join(reviewsModel.url, '/meta'),
       headers: reviewsModel.headers,
@@ -32,7 +34,7 @@ let reviewsModel = {
     }
     return axios(options)
   },
-  markHelpful: (params) => {
+  markHelpful: ( params ) => {
     const options = {
       url: path.join(reviewsModel.url, params.product_id, '/helpful'),
       headers: reviewsModel.headers,
@@ -41,7 +43,7 @@ let reviewsModel = {
     }
     return axios(options)
   },
-  markReported: (params) => {
+  markReported: ( params ) => {
     const options = {
       url: path.join(reviewsModel.url, params.product_id, '/report'),
       headers: reviewsModel.headers,
@@ -49,6 +51,9 @@ let reviewsModel = {
      //should be an object with a product_id key
     }
     return axios(options)
+  },
+  addNewPhoto: ( formData ) => {
+    return;
   }
 }
 

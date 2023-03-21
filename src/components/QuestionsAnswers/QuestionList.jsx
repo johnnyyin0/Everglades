@@ -1,10 +1,11 @@
 import axios from 'axios';
 import React, { useState } from 'react';
 import Answers from './Answers';
-import AddAnswer from './AddAnswer';
-import AddQuestion from './AddQuestion'
+import AddAnswerButton from './AddAnswerButton';
+import AddQuestionButton from './AddQuestionButton'
 
-const List = ({questions, setQuestions}) => {
+
+const QuestionList = ({questions, setQuestions, productId, productName, getQuestions}) => {
   const [searchTerm, setSearchTerm] = useState('');
   const [helpfulClicks, setHelpfulClicks] = useState([]);
   const [questionsCount, setQuestionsCount] = useState(4);
@@ -48,14 +49,14 @@ const List = ({questions, setQuestions}) => {
           margin: '10px 0',
           opacity: searchTerm ? 1 : 0.5,
           border: '1px solid black',
-          width: '700px',
+          width: '1125px',
           height: '50px',
         }}
       />
       <ul>
         {searchTerm === ''
           ? questions.slice(0, questionsCount).map((question) => (
-              <li key={question.question_id} style={{ marginBottom: '10px', padding: '10px' }}>
+              <li key={question.question_id} style={{ marginBottom: '5px', padding: '10px' }}>
                 <div style={{ display: 'flex', justifyContent: 'space-between' }}>
                   <div>
                     <b>Q: {question.question_body}</b>
@@ -72,17 +73,17 @@ const List = ({questions, setQuestions}) => {
                       }}
                       onClick={() => handleHelpfulClick(question.question_id)}
                     >
-                      <small>Yes ({question.question_helpfulness})</small>
+                      <small>Yes ({question.question_helpfulness}) </small>
                     </span>
                     <span>
-                      | <span><small><AddAnswer questionId={question.question_id}/></small></span>
+                      | <span><AddAnswerButton questionId={question.question_id} questionBody={question.question_body} productName={productName}/></span>
                     </span>
                   </div>
                 </div>
-                <Answers questionId={question.question_id} />
+                <Answers questionId={question.question_id} productId={productId} />
               </li>
             ))
-          : filteredQuestions.slice(0, questionsCount).map((question) => (
+          :  filteredQuestions.slice(0, questionsCount).map((question) => (
               <li key={question.question_id} style={{ marginBottom: '10px', padding: '10px' }}>
                 <div style={{ display: 'flex', justifyContent: 'space-between' }}>
                   <div>
@@ -96,12 +97,12 @@ const List = ({questions, setQuestions}) => {
                       style={{ textDecoration: 'underline', cursor: 'pointer' }}
                       onClick={() => handleHelpfulClick(question.question_id)}
                     >
-                      <small>Yes ({question.question_helpfulness})</small>
+                      <small>Yes ({question.question_helpfulness}) </small>
                     </span>
-                    | <span><small><AddAnswer questionId={question.question_id}/></small></span>
+                    | <span><AddAnswerButton questionId={question.question_id} questionBody={question.question_body} productName={productName}/></span>
                   </div>
                 </div>
-                <Answers questionId={question.question_id} />
+                <Answers questionId={question.question_id} productId={productId}/>
               </li>
             ))}
       </ul>
@@ -113,8 +114,8 @@ const List = ({questions, setQuestions}) => {
           background: 'none',
           cursor: 'pointer',
         }} onClick={() => setQuestionsCount(questionsCount + 2)}><b>MORE QUESTIONS</b></button> 
-      )} <AddQuestion/>
+      )} <AddQuestionButton productName={productName} productId={productId} getQuestions={getQuestions}/>
     </div>
   );
 }
-export default List;
+export default QuestionList;

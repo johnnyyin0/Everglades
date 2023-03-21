@@ -1,20 +1,23 @@
 import React, { useState } from 'react'
 import charMap from './CharMap.js'
 
-export default function CharRadioSelector({ fitChar, best, worst }) {
+export default function CharRadioSelector({ fitChar, best, worst, charRatings, setCharRatings }) {
 
   const [ description, setDescription ] = useState('none selected')
 
   const handleClick = (evt) => {
    let desc = charMap[evt.target.name][parseInt(evt.target['value'])]
    setDescription(desc)
+   let charObj = charRatings
+   charObj[evt.target.name] = (parseInt(evt.target.value) + 1).toString()
+   setCharRatings(charObj)
   }
 
   return (
     <div className="pb-5 h-28">
       <label className="label">
-        <span className="label-text text-xl pb-3 pt-2">{fitChar}</span>
-        <span className="label-text-alt">{description}</span>
+        <span className="label-text text-xl pb-1 pt-2">{fitChar}</span>
+        <span className="label-text-alt float-right pt-5">{description}</span>
       </label>
       <div className="flex content-center">
         <div className="flex justify-between px-7 w-full">
