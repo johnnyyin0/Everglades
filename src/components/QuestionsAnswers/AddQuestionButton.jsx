@@ -1,10 +1,19 @@
 //pops up a modal and adds a question
-import React from 'react';
+import React, {useState} from 'react';
+import AddQuestionFormModal from './AddQuestionFormModal';
+import QuestionList from './QuestionList';
 
 //MODAL
-const AddQuestionButton = () => {
-  
-  
+const AddQuestionButton = ({productName}) => {
+  const [showModal, setShowModal] = useState(false);
+
+  const handleAddQuestionClick = () => {
+    setShowModal(true);
+  };
+
+  const handleCloseModal = () => {
+    setShowModal(false);
+  };
   return (
     <span>
       <button
@@ -15,9 +24,11 @@ const AddQuestionButton = () => {
           background: 'none',
           cursor: 'pointer',
         }}
+        onClick={handleAddQuestionClick}
       >
-        <b>ADD A QUESTION +</b>
+        <b> ADD A QUESTION +</b>
       </button>
+      {showModal && <AddQuestionFormModal closeModal={handleCloseModal} productName={productName}/>}
     </span>
   );
 };

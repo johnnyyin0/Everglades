@@ -4,7 +4,7 @@ import Answers from './Answers';
 import AddAnswerButton from './AddAnswerButton';
 import AddQuestionButton from './AddQuestionButton'
 
-const QuestionList = ({questions, setQuestions, getQuestions}) => {
+const QuestionList = ({questions, setQuestions, productId, productName}) => {
   const [searchTerm, setSearchTerm] = useState('');
   const [helpfulClicks, setHelpfulClicks] = useState([]);
   const [questionsCount, setQuestionsCount] = useState(4);
@@ -48,14 +48,14 @@ const QuestionList = ({questions, setQuestions, getQuestions}) => {
           margin: '10px 0',
           opacity: searchTerm ? 1 : 0.5,
           border: '1px solid black',
-          width: '700px',
+          width: '1125px',
           height: '50px',
         }}
       />
       <ul>
         {searchTerm === ''
           ? questions.slice(0, questionsCount).map((question) => (
-              <li key={question.question_id} style={{ marginBottom: '10px', padding: '10px' }}>
+              <li key={question.question_id} style={{ marginBottom: '5px', padding: '10px' }}>
                 <div style={{ display: 'flex', justifyContent: 'space-between' }}>
                   <div>
                     <b>Q: {question.question_body}</b>
@@ -75,15 +75,14 @@ const QuestionList = ({questions, setQuestions, getQuestions}) => {
                       <small>Yes ({question.question_helpfulness})</small>
                     </span>
                     <span>
-                      | <span><small><AddAnswerButton questionId={question.question_id}/></small></span>
+                      | <span><small><AddAnswerButton questionId={question.question_id} questionBody={question.question_body} productName={productName}/></small></span>
                     </span>
                   </div>
                 </div>
-                <Answers questionId={question.question_id} />
+                <Answers questionId={question.question_id} productId={productId} />
               </li>
             ))
           : 
-          /* FILTERED QUESTIONS PORTION */
           filteredQuestions.slice(0, questionsCount).map((question) => (
               <li key={question.question_id} style={{ marginBottom: '10px', padding: '10px' }}>
                 <div style={{ display: 'flex', justifyContent: 'space-between' }}>
@@ -100,10 +99,10 @@ const QuestionList = ({questions, setQuestions, getQuestions}) => {
                     >
                       <small>Yes ({question.question_helpfulness})</small>
                     </span>
-                    | <span><small><AddAnswerButton questionId={question.question_id}/></small></span>
+                    | <span><small><AddAnswerButton questionId={question.question_id} questionBody={question.question_body} productName={productName}/></small></span>
                   </div>
                 </div>
-                <Answers questionId={question.question_id} />
+                <Answers questionId={question.question_id} productId={productId}/>
               </li>
             ))}
       </ul>
@@ -115,7 +114,7 @@ const QuestionList = ({questions, setQuestions, getQuestions}) => {
           background: 'none',
           cursor: 'pointer',
         }} onClick={() => setQuestionsCount(questionsCount + 2)}><b>MORE QUESTIONS</b></button> 
-      )} <AddQuestionButton/>
+      )} <AddQuestionButton productName={productName}/>
     </div>
   );
 }

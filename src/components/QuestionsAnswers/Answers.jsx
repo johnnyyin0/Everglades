@@ -4,7 +4,7 @@ import React, { useState, useEffect } from 'react';
 import {format, parseISO} from 'date-fns'
 import ReportButton from './ReportButton';
 
-const Answers = ({questionId}) => {
+const Answers = ({questionId, productId}) => {
   const [answers, setAnswers] = useState([]);
   const [helpfulClicks, setHelpfulClicks] = useState([]);
   const [showMore, setShowMore] = useState(false);
@@ -78,7 +78,7 @@ const Answers = ({questionId}) => {
               </div>
             ))}
           {answers.length > 2 && !showMore && (
-            <button onClick={handleShowMore} style={{ marginTop: '10px' }}>LOAD MORE ANSWERS</button>
+            <button onClick={handleShowMore} style={{ marginTop: '5px' }}>LOAD MORE ANSWERS</button>
           )}
         </div>
       )}
