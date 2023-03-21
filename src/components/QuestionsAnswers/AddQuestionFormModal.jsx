@@ -1,26 +1,23 @@
+import axios from 'axios';
 import React, { useState } from 'react';
-import AddQuestionButton from './AddQuestionButton';
 
-const AddQuestionFormModal = ({ closeModal, productName }) => {
+const AddQuestionFormModal = ({ closeModal, productName, productId={productId}}) => {
   const [question, setQuestion] = useState('');
   const [name, setName] = useState('');
   const [email, setEmail] = useState('');
-  const [errorMsg, setErrorMsg] = useState('');
+//   const [errorMsg, setErrorMsg] = useState('');
 
   const handleSubmit = (e) => {
     e.preventDefault();
-
-    if (!question.trim() || !nickname.trim() || !email.trim()) {
-      setErrorMsg('You must enter the following: Question, Nickname, Email');
-      return;
-    }
-
-    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-    if (!emailRegex.test(email.trim())) {
-      setErrorMsg('Please enter a valid email address');
-      return;
-    }
-
+    // console.log('Form data:', {params: { product_id: productId, body: question, name, email}})
+    axios.post('http://localhost:3000/questions/ask', {params: { product_id: productId, body: question, name, email}})
+    .then((response) => {
+        // console.log('Answer submitted successfully', response.data);
+        closeModal();
+      })
+      .catch((error) => {
+        console.error('Error submitting answer', error);
+      });
   };
 
   return (
@@ -84,18 +81,17 @@ const AddQuestionFormModal = ({ closeModal, productName }) => {
               required
             />
           </p>
-
           <button className='btn' style={{ marginTop: '20px' }} type='submit'>
             SUBMIT
           </button>
         </form>
 
-        {errorMsg && (
+        {/* {errorMsg && (
           <div className='error-msg'>
             <h4>You must enter the following:</h4>
             <p>{errorMsg}</p>
           </div>
-        )}
+        )} */}
       </div>
     </div>
   );

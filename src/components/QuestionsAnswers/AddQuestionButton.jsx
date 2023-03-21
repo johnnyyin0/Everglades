@@ -1,10 +1,9 @@
 //pops up a modal and adds a question
 import React, {useState} from 'react';
 import AddQuestionFormModal from './AddQuestionFormModal';
-import QuestionList from './QuestionList';
 
 //MODAL
-const AddQuestionButton = ({productName}) => {
+const AddQuestionButton = ({productName, productId}) => {
   const [showModal, setShowModal] = useState(false);
 
   const handleAddQuestionClick = () => {
@@ -28,7 +27,7 @@ const AddQuestionButton = ({productName}) => {
       >
         <b> ADD A QUESTION +</b>
       </button>
-      {showModal && <AddQuestionFormModal closeModal={handleCloseModal} productName={productName}/>}
+      {showModal && <AddQuestionFormModal closeModal={handleCloseModal} productName={productName} productId={productId}/>}
     </span>
   );
 };

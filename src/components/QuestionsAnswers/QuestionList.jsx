@@ -72,10 +72,10 @@ const QuestionList = ({questions, setQuestions, productId, productName}) => {
                       }}
                       onClick={() => handleHelpfulClick(question.question_id)}
                     >
-                      <small>Yes ({question.question_helpfulness})</small>
+                      <small>Yes ({question.question_helpfulness}) </small>
                     </span>
                     <span>
-                      | <span><small><AddAnswerButton questionId={question.question_id} questionBody={question.question_body} productName={productName}/></small></span>
+                      | <span><AddAnswerButton questionId={question.question_id} questionBody={question.question_body} productName={productName}/></span>
                     </span>
                   </div>
                 </div>
@@ -97,9 +97,9 @@ const QuestionList = ({questions, setQuestions, productId, productName}) => {
                       style={{ textDecoration: 'underline', cursor: 'pointer' }}
                       onClick={() => handleHelpfulClick(question.question_id)}
                     >
-                      <small>Yes ({question.question_helpfulness})</small>
+                      <small>Yes ({question.question_helpfulness}) </small>
                     </span>
-                    | <span><small><AddAnswerButton questionId={question.question_id} questionBody={question.question_body} productName={productName}/></small></span>
+                    | <span><AddAnswerButton questionId={question.question_id} questionBody={question.question_body} productName={productName}/></span>
                   </div>
                 </div>
                 <Answers questionId={question.question_id} productId={productId}/>
@@ -114,7 +114,7 @@ const QuestionList = ({questions, setQuestions, productId, productName}) => {
           background: 'none',
           cursor: 'pointer',
         }} onClick={() => setQuestionsCount(questionsCount + 2)}><b>MORE QUESTIONS</b></button> 
-      )} <AddQuestionButton productName={productName}/>
+      )} <AddQuestionButton productName={productName} productId={productId}/>
     </div>
   );
 }

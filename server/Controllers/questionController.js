@@ -61,6 +61,22 @@ let questionController = {
     .catch((err) => {
       console.log('ERROR ON SUBMITTING ANSWER SERVER SIDE: ', err)
     })
+  },
+  submitQuestion: (req, res) => {
+    console.log('SUBMITTING INFO ON SERVERSIDE', req.body.params)
+    const params = {
+      body: req.body.params.body,
+      name: req.body.params.name,
+      email: req.body.params.email,
+      product_id: req.body.params.product_id,
+    }
+    Models.questions.submitQuestion(params)
+    .then(data => {
+      res.send(data)
+    })
+    .catch((err) => {
+      console.log('ERROR ON SUBMITTING ANSWER SERVER SIDE: ', err)
+    })
   }
 }
 

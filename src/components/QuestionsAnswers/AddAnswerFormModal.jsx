@@ -1,6 +1,5 @@
 import axios from 'axios';
 import React, { useState } from 'react';
-import AddAnswerButton from './AddAnswerButton';
 
 const AddAnswerFormModal = ({ questionId, questionBody, closeModal, productName}) => {
   const [name, setName] = useState('');
@@ -39,7 +38,7 @@ const AddAnswerFormModal = ({ questionId, questionBody, closeModal, productName}
           &times;
         </span>
         <h1><b>SUBMIT YOUR ANSWER</b></h1>
-        <h2><b>PRODUCT NAME: {productName}</b></h2>
+        <h2><b>PRODUCT: {productName}</b></h2>
         <h2><b>QUESTION: {questionBody}</b></h2>
         <h2><b>* Indicates a required field</b></h2>
         <form onSubmit={handleSubmit}>
@@ -58,7 +57,7 @@ const AddAnswerFormModal = ({ questionId, questionBody, closeModal, productName}
             />
             <div>
             <i>
-            *For privacy reasons, do not use your full name or email address!
+            <small>*For privacy reasons, do not use your full name or email address!</small> 
             </i>
             </div>
             <label className='label' htmlFor="email">
@@ -75,7 +74,7 @@ const AddAnswerFormModal = ({ questionId, questionBody, closeModal, productName}
             />
             <div>
             <i>
-            *For authentication reasons, you will not be emailed!
+            <small>*For authentication reasons, you will not be emailed!</small>
             </i>
             </div>
             <label className='label' htmlFor="answer">
