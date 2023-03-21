@@ -8,6 +8,12 @@ export default function RatingsReviews(props) {
   const [photo, setPhoto] = useState('');
   const [showPhoto, setShowPhoto] = useState(false)
 
+  let productId = window.location.pathname.slice(1) || 37311;
+
+  useEffect(() => {
+    //
+  }, [])
+
   useEffect(() => {
     photo ? setShowPhoto(true) : setShowPhoto(false)
   }, [photo]);

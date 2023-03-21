@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import StarsWidget from './StarsWidget'
-import Report from '../QuestionsAnswers/Report.jsx'
+import Report from '../QuestionsAnswers/ReportButton.jsx'
 import CarouselPhoto from './CarouselPhoto.jsx'
 import { format } from 'date-fns'
 

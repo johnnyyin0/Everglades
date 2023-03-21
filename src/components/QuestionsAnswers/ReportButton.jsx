@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 
-//MODAL
-const Report = ({ answerId }) => {
+//MODAL(STILL WIP)
+const ReportButton = ({ answerId }) => {
   const [showModal, setShowModal] = useState(false);
 
   const handleReportClick = () => {
@@ -43,4 +43,4 @@ const Report = ({ answerId }) => {
   );
 };
 
-export default Report;
+export default ReportButton;
