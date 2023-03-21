@@ -2,7 +2,7 @@
 import React from 'react';
 
 //MODAL
-const AddQuestion = () => {
+const AddQuestionButton = () => {
   
   
   return (
@@ -22,4 +22,4 @@ const AddQuestion = () => {
   );
 };
 
-export default AddQuestion;
+export default AddQuestionButton;
