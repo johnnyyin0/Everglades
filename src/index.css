@@ -128,3 +128,14 @@ button:focus-visible {
   width: 100px;
   margin-right: 10px;
 }
+
+.answer-list {
+  width: 50%;
+  max-height: 200px;
+  overflow-y: scroll;
+}
+
+.question-list {
+  overflow-y: scroll;
+  max-height: 600px;
+}

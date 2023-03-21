@@ -1,44 +1,35 @@
 import React, { useState } from 'react';
+import axios from 'axios';
 
-//MODAL(STILL WIP)
 const ReportButton = ({ answerId }) => {
-  const [showModal, setShowModal] = useState(false);
+  const [isReported, setIsReported] = useState(false);
 
   const handleReportClick = () => {
-    setShowModal(true);
-  };
-
-  const handleModalClose = () => {
-    setShowModal(false);
-  };
-
-  const handleReportSubmit = (e) => {
-    e.preventDefault();
-    setShowModal(false);
+    // console.log('REPORTING: ', answerId)
+    if (isReported) {
+      return;
+    }
+    axios.put('http://localhost:3000/answer/report', {answerId})
+    .then(()=>{
+      setIsReported(true)
+      // console.log('SUCCESSFULLY REPORTED: ', answerId)
+    })
+    .catch(err => {
+      console.log('THIS IS ERROR FOR REPORT: ', err)
+    })
   };
 
   return (
     <>
-      <span style={{ textDecoration: 'underline', cursor: 'pointer' }} onClick={handleReportClick}>
-        Report
+      <span
+        style={{
+          textDecoration: isReported ? 'none' : 'underline',
+          cursor: 'pointer',
+        }}
+        onClick={handleReportClick}
+      >
+        {isReported ? 'Reported' : 'Report'}
       </span>
-      {showModal && (
-        <div className="modal">
-          <div className="modal-content">
-            <span className="close" onClick={handleModalClose}>
-              &times;
-            </span>
-            <h2>Report Answer</h2>
-            <p>Are you sure you want to report this answer?</p>
-            <form onSubmit={handleReportSubmit}>
-              <button type="submit">Yes</button>
-              <button type="button" onClick={handleModalClose}>
-                No
-              </button>
-            </form>
-          </div>
-        </div>
-      )}
     </>
   );
 };

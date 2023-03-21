@@ -5,11 +5,9 @@ const AddQuestionFormModal = ({ closeModal, productName, productId, getQuestions
   const [question, setQuestion] = useState('');
   const [name, setName] = useState('');
   const [email, setEmail] = useState('');
-//   const [errorMsg, setErrorMsg] = useState('');
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    // console.log('Form data:', {params: { product_id: productId, body: question, name, email}})
     axios.post('http://localhost:3000/questions/ask', {params: { productId, body: question, name, email}})
     .then((response) => {
         // console.log('Answer submitted successfully', response.data);
@@ -44,6 +42,7 @@ const AddQuestionFormModal = ({ closeModal, productName, productId, getQuestions
               value={name}
               onChange={(e) => setName(e.target.value)}
               id='nickname'
+              maxLength={60}
               required
             />
             <div>
@@ -61,6 +60,7 @@ const AddQuestionFormModal = ({ closeModal, productName, productId, getQuestions
               value={email}
               onChange={(e) => setEmail(e.target.value)}
               id='email'
+              maxLength={60}
               required
             />
             <div>
@@ -86,13 +86,6 @@ const AddQuestionFormModal = ({ closeModal, productName, productId, getQuestions
             SUBMIT
           </button>
         </form>
-
-        {/* {errorMsg && (
-          <div className='error-msg'>
-            <h4>You must enter the following:</h4>
-            <p>{errorMsg}</p>
-          </div>
-        )} */}
       </div>
     </div>
   );

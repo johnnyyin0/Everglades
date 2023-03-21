@@ -4,11 +4,10 @@ import Answers from './Answers';
 import AddAnswerButton from './AddAnswerButton';
 import AddQuestionButton from './AddQuestionButton'
 
-
 const QuestionList = ({questions, setQuestions, productId, productName, getQuestions}) => {
   const [searchTerm, setSearchTerm] = useState('');
   const [helpfulClicks, setHelpfulClicks] = useState([]);
-  const [questionsCount, setQuestionsCount] = useState(4);
+  const [questionsCount, setQuestionsCount] = useState(2);
 
   const filteredQuestions = questions.filter(question => {
     return question.question_body.toLowerCase().includes(searchTerm.toLowerCase());
@@ -49,10 +48,11 @@ const QuestionList = ({questions, setQuestions, productId, productName, getQuest
           margin: '10px 0',
           opacity: searchTerm ? 1 : 0.5,
           border: '1px solid black',
-          width: '1125px',
+          width: '100%',
           height: '50px',
         }}
       />
+      <div className='question-list'>
       <ul>
         {searchTerm === ''
           ? questions.slice(0, questionsCount).map((question) => (
@@ -106,6 +106,7 @@ const QuestionList = ({questions, setQuestions, productId, productName, getQuest
               </li>
             ))}
       </ul>
+      </div>
       {questionsCount < filteredQuestions.length && (
         <button style={{
           border: '1px solid #ccc',
