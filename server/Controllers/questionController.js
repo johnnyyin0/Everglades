@@ -68,7 +68,7 @@ let questionController = {
       body: req.body.params.body,
       name: req.body.params.name,
       email: req.body.params.email,
-      product_id: req.body.params.product_id,
+      product_id: parseInt(req.body.params.productId),
     }
     Models.questions.submitQuestion(params)
     .then(data => {

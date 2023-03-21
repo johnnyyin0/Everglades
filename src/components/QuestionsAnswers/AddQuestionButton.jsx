@@ -3,7 +3,7 @@ import React, {useState} from 'react';
 import AddQuestionFormModal from './AddQuestionFormModal';
 
 //MODAL
-const AddQuestionButton = ({productName, productId}) => {
+const AddQuestionButton = ({productName, productId, getQuestions}) => {
   const [showModal, setShowModal] = useState(false);
 
   const handleAddQuestionClick = () => {
@@ -27,7 +27,7 @@ const AddQuestionButton = ({productName, productId}) => {
       >
         <b> ADD A QUESTION +</b>
       </button>
-      {showModal && <AddQuestionFormModal closeModal={handleCloseModal} productName={productName} productId={productId}/>}
+      {showModal && <AddQuestionFormModal closeModal={handleCloseModal} productName={productName} productId={productId} getQuestions={getQuestions}/>}
     </span>
   );
 };

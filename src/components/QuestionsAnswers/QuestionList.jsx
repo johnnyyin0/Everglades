@@ -4,7 +4,7 @@ import Answers from './Answers';
 import AddAnswerButton from './AddAnswerButton';
 import AddQuestionButton from './AddQuestionButton'
 
-const QuestionList = ({questions, setQuestions, productId, productName}) => {
+const QuestionList = ({questions, setQuestions, productId, productName, getQuestions}) => {
   const [searchTerm, setSearchTerm] = useState('');
   const [helpfulClicks, setHelpfulClicks] = useState([]);
   const [questionsCount, setQuestionsCount] = useState(4);
@@ -114,7 +114,7 @@ const QuestionList = ({questions, setQuestions, productId, productName}) => {
           background: 'none',
           cursor: 'pointer',
         }} onClick={() => setQuestionsCount(questionsCount + 2)}><b>MORE QUESTIONS</b></button> 
-      )} <AddQuestionButton productName={productName} productId={productId}/>
+      )} <AddQuestionButton productName={productName} productId={productId} getQuestions={getQuestions}/>
     </div>
   );
 }

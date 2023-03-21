@@ -1,7 +1,7 @@
 import axios from 'axios';
 import React, { useState } from 'react';
 
-const AddQuestionFormModal = ({ closeModal, productName, productId={productId}}) => {
+const AddQuestionFormModal = ({ closeModal, productName, productId, getQuestions}) => {
   const [question, setQuestion] = useState('');
   const [name, setName] = useState('');
   const [email, setEmail] = useState('');
@@ -10,9 +10,10 @@ const AddQuestionFormModal = ({ closeModal, productName, productId={productId}})
   const handleSubmit = (e) => {
     e.preventDefault();
     // console.log('Form data:', {params: { product_id: productId, body: question, name, email}})
-    axios.post('http://localhost:3000/questions/ask', {params: { product_id: productId, body: question, name, email}})
+    axios.post('http://localhost:3000/questions/ask', {params: { productId, body: question, name, email}})
     .then((response) => {
         // console.log('Answer submitted successfully', response.data);
+        getQuestions()
         closeModal();
       })
       .catch((error) => {
