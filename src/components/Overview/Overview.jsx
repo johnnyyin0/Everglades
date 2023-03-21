@@ -2,11 +2,11 @@ import React from 'react';
 import {useEffect, useState} from 'react';
 import Axios from 'axios';
 import ProductName from './productName.jsx';
-import StarsWidget from '../RatingsReviews/StarsWidget.jsx'
 import ProductDescription from './ProductDescription.jsx';
 import ProductImage from './ProductImage.jsx';
 import FullScreen from './FullScreen.jsx';
 import AddCart from './AddCart.jsx';
+import RatingsAndShare from './RatingsAndShare.jsx';
 import exampleStyle from './exampleStyle.js';
 import exampleProduct from './exampleProduct.js';
 import Carosel from './Carosel.jsx';
@@ -96,7 +96,7 @@ let Overview = () => {
       </div>
 
       <div className=' rounded-lg shadow-xl max-h-[60px] min-h-[50px] col-span-2'>
-      <StarsWidget />
+      <RatingsAndShare currentProduct={currentProduct} photo={photo}/>
       </div>
 
 
