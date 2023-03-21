@@ -8,6 +8,7 @@ router.put('/questions/answer/helpful', controller.questions.updateHelpfulnessAn
 router.put('/questions/question/helpful',controller.questions.updateHelpfulnessQuestion)
 router.post('/questions/questionId/answer', controller.questions.submitAnswer)
 router.post('/questions/ask', controller.questions.submitQuestion)
+router.put('/answer/report', controller.questions.reportAnswer)
 
 //reviews
 router.get('/reviews', controller.reviews.get);
