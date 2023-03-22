@@ -1,13 +1,11 @@
 import React, { useState } from 'react';
-
 import AddAnswerFormModal from './AddAnswerFormModal';
 
-const AddAnswerButton = ({ questionId, productName, questionBody}) => {
+const AddAnswerButton = ({ questionId, productName, questionBody, getAnswers}) => {
 
   const [showModal, setShowModal] = useState(false);
 
   const handleAddAnswerClick = () => {
-    console.log('QUESTION ID FROM ADD ANSWER:', questionId)
     setShowModal(true);
   };
 
@@ -16,16 +14,27 @@ const AddAnswerButton = ({ questionId, productName, questionBody}) => {
   };
 
   return (
-    questionId ?
-      <>
-        <label
-          style={{ textDecoration: 'underline', cursor: 'pointer' }}
-          onClick={handleAddAnswerClick}
-        >
-          <small>Add Answer</small>
-        </label>
-        {showModal && <AddAnswerFormModal questionId= {questionId} questionBody={questionBody} closeModal={handleCloseModal} productName={productName}/>}
-      </> : null
+    <div style={{ display: 'flex', justifyContent: 'flex-end' }}>
+      {questionId && (
+        <>
+          <span
+            style={{ textDecoration: 'underline', cursor: 'pointer' }}
+            onClick={handleAddAnswerClick}
+          >
+            <small>Add Answer</small>
+          </span>
+          {showModal && (
+            <AddAnswerFormModal
+              getAnswers={getAnswers}
+              questionId={questionId}
+              questionBody={questionBody}
+              closeModal={handleCloseModal}
+              productName={productName}
+            />
+          )}
+        </>
+      )}
+    </div>
   );
 };
 

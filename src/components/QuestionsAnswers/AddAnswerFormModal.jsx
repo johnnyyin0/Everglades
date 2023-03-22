@@ -2,7 +2,7 @@ import axios from 'axios';
 import React, { useState } from 'react';
 import AddPhotos from './AddPhotos';
 
-const AddAnswerFormModal = ({questionId, questionBody, closeModal, productName}) => {
+const AddAnswerFormModal = ({getAnswers, questionId, questionBody, closeModal, productName}) => {
 
   const [name, setName] = useState('');
   const [email, setEmail] = useState('');
@@ -27,10 +27,10 @@ const AddAnswerFormModal = ({questionId, questionBody, closeModal, productName})
   
   const handleSubmit = (e) => {
     e.preventDefault();
-    console.log('Form data:', {params: { questionId, name, email, body, photos: selectedPhotos}});
+    // console.log('Form data:', {params: { questionId, name, email, body, photos: selectedPhotos}});
     axios.post('http://localhost:3000/questions/questionId/answer', {params: { question_id: questionId, name, email, body, photos: selectedPhotos}})
     .then((response) => {
-      console.log('Answer submitted successfully!', response.data);
+      getAnswers(questionId)
       closeModal();
     })
     .catch((error) => {
