@@ -29,7 +29,6 @@ const AddQuestionFormModal = ({ closeModal, productName, productId, getQuestions
         <h2><b>PRODUCT: {productName}</b></h2>
         <h2><b>* Indicates a required field</b></h2>
         <form onSubmit={handleSubmit}>
-          <p>
             <label className='label' htmlFor='nickname'>
               <span className='label-text'>
                 Nickname*
@@ -81,11 +80,10 @@ const AddQuestionFormModal = ({ closeModal, productName, productId, getQuestions
               maxLength={1000}
               required
             />
-          </p>
-          <button className='btn' style={{ marginTop: '20px' }} type='submit'>
+        </form>
+        <button className='btn' style={{ marginTop: '20px' }} type='submit'>
             SUBMIT
           </button>
-        </form>
       </div>
     </div>
   );

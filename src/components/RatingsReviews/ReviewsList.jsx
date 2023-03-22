@@ -14,12 +14,11 @@ export default function ReviewsList(props) {
 
     let url = "http://localhost:3000/reviews";
     let body = {
-        "product_id": window.location.pathname.slice(1),
+        "product_id": window.location.pathname.slice(1) || 37311,
         "sort": sort
     };
     axios.post(url, body)
       .then(res => {
-        console.log(res.data.results)
         setAllReviews(res.data.results)
         setNextTwo(res.data.results.slice(0, 2))
         console.log(nextTwo, 'nextTwo')
@@ -37,7 +36,7 @@ export default function ReviewsList(props) {
       <h3 className="mx-10 mt-20 pb-4">{allReviews.length} reviews, sorted by {<SortDropDown sort={sort} setSort={setSort} />}
       </h3>
       <div>
-        {nextTwo.map(review => (  <ReviewTile setPhoto={props.setPhoto} review={review} key={review.review_id} />)
+        {nextTwo.map(review => (  <ReviewTile setPhoto={props.setPhoto} review={review} />)
         )}
       </div>
       <button className="btn" onClick={handleMoreReviews}>More Reviews</button>
