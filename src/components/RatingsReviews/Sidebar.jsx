@@ -9,7 +9,7 @@ export default function Sidebar({filter, setFilter, id}) {
   const [reviewMeta, setReviewMeta] = useState(null)
   const [avgReview, setAvgReview] = useState(0)
   const [pctRecommended, setPctRecommended] = useState(0)
-
+  const [ratingsCount, setRatingsCount] = useState(0)
 
   useEffect(() => {
     let options = {
@@ -28,16 +28,14 @@ export default function Sidebar({filter, setFilter, id}) {
           avgDividend += parseInt(key) * parseInt(meta.ratings[key])
         }
         setAvgReview((avgDividend/totalRatings).toFixed(1))
+        setRatingsCount(totalRatings)
         setPctRecommended(
           Math.round(
           (parseInt(meta.recommended.true) /
-          (parseInt(meta.recommended.true) +
-          parseInt(meta.recommended.false))
-          )
+          (parseInt(meta.recommended.true) + parseInt(meta.recommended.false)))
           * 100
           )
         )
-
       })
       .catch(err => console.log(err))
   }, [id])
@@ -84,8 +82,8 @@ export default function Sidebar({filter, setFilter, id}) {
     <div className="flex-column w-max h-max border-2 ml-5 mt-5">
       {reviewMeta && <div>
         <MainAverage avgReview={avgReview} pctRecommended={pctRecommended}/>
-        <TotalsFilters setFilter={setFilter} ratings={reviewMeta.ratings}/>
-        <FitSliders />
+        <TotalsFilters setFilter={setFilter} ratings={reviewMeta.ratings} totalRatings={ratingsCount}/>
+        <FitSliders characteristics={reviewMeta.characteristics}/>
       </div>}
     </div>
 

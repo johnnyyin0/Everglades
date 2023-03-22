@@ -2,7 +2,7 @@
 import React from 'react'
 import FitSlider from './FitSlider.jsx'
 
-export default function FitSliders(props) {
+export default function FitSliders({ characteristics }) {
 
   //metadata has a "characteristics" tab to iterate through:
   // "characteristics": {
