@@ -53,6 +53,7 @@ let questionController = {
       body: req.body.params.body,
       name: req.body.params.name,
       email: req.body.params.email,
+      photos: req.body.params.photos
     }
     Models.questions.submitAnswer(question_id, params)
     .then(data => {
