@@ -2,14 +2,14 @@ import React from 'react';
 import {useState} from 'react';
 import ImageGallery from './imageGallery.jsx'
 
-const ProductImage = ({photo, styleSelected, setPhoto, setFullScreen, setIndex}) => {
+const ProductImage = ({photo, styleSelected, setPhoto, setFullScreen, setIndex, index}) => {
   const handleFullScreen = () => {
     setFullScreen(true);
   };
   return (
     <div className="flex justify-end">
       <div className="col-span-1">
-        <ImageGallery styleSelected={styleSelected} setPhoto={setPhoto} photo={photo} setFullScreen={setFullScreen} setIndex={setIndex}/>
+        <ImageGallery styleSelected={styleSelected} setPhoto={setPhoto} photo={photo} setFullScreen={setFullScreen} setIndex={setIndex} index={index}/>
       </div>
       <div className="col-span-1 p-1">
     { photo == null ?

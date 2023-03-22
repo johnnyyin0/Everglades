@@ -1,9 +1,10 @@
 import {useState} from 'react';
 import InnerImageZoom from 'react-inner-image-zoom';
+import ImageGallery from './imageGallery.jsx';
 import 'react-inner-image-zoom/lib/InnerImageZoom/styles.css';
 import { useImageSize } from 'react-image-size';
 
-const FullScreen = ({setFullScreen, styleSelected, setIndex, index}) => {
+const FullScreen = ({setFullScreen, styleSelected, setIndex, index, setPhoto, photo}) => {
 
 
   const [dimensions, { loading, error }] = useImageSize(styleSelected.photos[index].thumbnail_url);
@@ -44,10 +45,12 @@ const FullScreen = ({setFullScreen, styleSelected, setIndex, index}) => {
             hideHint={false} // default false
             // zoomType="hover"
             className="cursor-crosshair"
-        />
-          </div>
-
+            />
+            </div>
       </div>
+          <div className="flex flex-row justify-center">
+            <ImageGallery className="flex-1 mb-6" styleSelected={styleSelected} setPhoto={setPhoto} photo={photo} setIndex={setIndex} index={index}/>
+          </div>
       <div className="absolute top-[10%] left-[30%] rounded-full p-2 bg-black/20">
         <button onClick={backButton}>🢀</button>
         </div>
