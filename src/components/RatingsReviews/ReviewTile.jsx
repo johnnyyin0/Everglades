@@ -12,7 +12,7 @@ export default function ReviewTile({ review, setPhoto }) {
         <div>
           <StarsWidget rating={review.rating} />
         </div>
-        <div className="">{format(Date.parse(review.date), 'MMMM d, yyyy')}</div>
+        <div>{review.reviewer_name}, {format(Date.parse(review.date), 'MMMM d, yyyy')}</div>
       </div>
       <div className="px-5 py-5 font-bold text-2xl">{review.summary}</div>
       <div className="px-5 pb-5">{review.body}</div>

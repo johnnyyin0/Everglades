@@ -105,10 +105,6 @@ let questionsModel = {
       console.log(err)
   })
   },
-<<<<<<< HEAD
-  }
-
-=======
   reportAnswer: (answerId) => {
     let options = {
       method: 'PUT',
@@ -126,6 +122,5 @@ let questionsModel = {
   })
   },
 }
->>>>>>> 5262d8b99c1d838c29c7e3dd9f279bc9d5a83f17
 
 module.exports = questionsModel;
