@@ -11,6 +11,9 @@ export default function ReviewTile({ review, setPhoto }) {
   const handleHelpful = (evt) => {
     helpful <= 0 ? setHelpful(1) : setHelpful(0)
   }
+  const handleHurtful = (evt) => {
+    helpful >= 0 ? setHelpful(-1) : setHelpful(0)
+  }
 
   return (
     <div className="border-2" key={review.review_id}>
@@ -37,10 +40,10 @@ export default function ReviewTile({ review, setPhoto }) {
       <div className="px-5 pb-5">
         <small>
           Helpful?{}
-          <span
+          <span className="cursor-pointer underline pl-1"
             style={{
-              textDecoration: 'underline',
-              cursor: 'pointer'
+
+
               //pointerEvents: helpfulClicks.includes(answer.answer_id) ? 'none' : 'auto',
             }}
             onClick={handleHelpful}

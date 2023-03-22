@@ -27,7 +27,6 @@ reviewController = {
   },
   getMeta: (req, res) => {
     Models.reviews.getMeta({product_id: req.params.id})
-    //req.body must be an object with just a product_id key
     .then(response =>
       res.send(response.data)
     )
@@ -36,8 +35,7 @@ reviewController = {
     )
   },
   markHelpful: (req, res) => {
-    Models.reviews.markHelpful(req.body)
-    //req.body must be an object with just a product_id key
+    Models.reviews.markHelpful({product_id: req.params.id})
     .then(response =>
       res.send(response.data, 'This review has been marked helpful!')
     )
@@ -45,8 +43,7 @@ reviewController = {
     )
   },
   markReported: (req, res) => {
-    Models.reviews.markReported(req.body)
-    //req.body must be an object with just a product_id key
+    Models.reviews.markReported({product_id: req.params.id})
     .then(response =>
       res.send(response.data, 'This review has been reported!')
       )
