@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import charMap from './CharMap.js'
 
-export default function CharRadioSelector({ fitChar, best, worst, charRatings, setCharRatings }) {
+export default function CharRadioSelector({ fitChar, id, best, worst, charRatings, setCharRatings }) {
 
   const [ description, setDescription ] = useState('none selected')
 
@@ -21,11 +21,11 @@ export default function CharRadioSelector({ fitChar, best, worst, charRatings, s
       </label>
       <div className="flex content-center">
         <div className="flex justify-between px-7 w-full">
-          <input type="radio" name={fitChar} value="0" className="radio-xs"  onClick={handleClick}/>
-          <input type="radio" name={fitChar} value="1" className="radio-xs"  onClick={handleClick}/>
-          <input type="radio" name={fitChar} value="2" className="radio-xs"  onClick={handleClick}/>
-          <input type="radio" name={fitChar} value="3" className="radio-xs"  onClick={handleClick}/>
-          <input type="radio" name={fitChar} value="4" className="radio-xs"  onClick={handleClick}/>
+          <input type="radio" name={id} value="0" className="radio-xs"  onClick={handleClick}/>
+          <input type="radio" name={id} value="1" className="radio-xs"  onClick={handleClick}/>
+          <input type="radio" name={id} value="2" className="radio-xs"  onClick={handleClick}/>
+          <input type="radio" name={id} value="3" className="radio-xs"  onClick={handleClick}/>
+          <input type="radio" name={id} value="4" className="radio-xs"  onClick={handleClick}/>
         </div>
       </div>
       <div className="flex justify-between px-3 w-full pt-1">
