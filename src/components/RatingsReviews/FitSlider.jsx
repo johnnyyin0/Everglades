@@ -20,9 +20,9 @@ export default function FitSlider({ fitChar, charId, charVal }) {
         </div>
       </div>
         <div className="w-full grid grid-cols-12 pt-2">
-          <span className="col-start-1 col-span-4 text-xs text-center -ml-3">{charMap[fitChar][0]}</span>
+          <span className="col-start-1 col-span-4 text-xs text-center -ml-5">{charMap[fitChar][0]}</span>
           {charMap[fitChar][2] === 'Perfect' && <span className="col-start-5 col-span-4 text-xs  text-center pr-2">{charMap[fitChar][2]}</span>}
-          <span className="col-end-13 col-span-4 text-xs  text-right">{charMap[fitChar][4]}</span>
+          <span className="col-end-13 col-span-4 text-xs  text-center -mr-5">{charMap[fitChar][4]}</span>
         </div>
     </div>
   )
