@@ -7,9 +7,9 @@ import FitSliders from './FitSliders.jsx'
 export default function Sidebar({filter, setFilter, id}) {
 
   const [reviewMeta, setReviewMeta] = useState(null)
-  const totalRatings = 0
-  const pctRecommended = 0
-  const avgReview = 0.00.toFixed(1)
+  const [avgReview, setAvgReview] = useState(0)
+  let totalRatings = 0
+  let pctRecommended = 0
 
   useEffect(() => {
     let options = {
@@ -20,13 +20,16 @@ export default function Sidebar({filter, setFilter, id}) {
     axios(options)
       .then(res => {
         let meta = res.data
+        let avgDividend = 0
         setReviewMeta(meta)
         for (let key in meta.ratings) {
           totalRatings += parseInt(meta.ratings[key])
+          avgDividend += parseInt(key) * parseInt(meta.ratings[key])
         }
-
+        console.log(avgDividend)
+        setAvgReview((avgDividend/totalRatings).toFixed(1))
       })
-      .catch(err => console.log(err.data))
+      .catch(err => console.log(err))
   }, [id])
 
 
@@ -69,9 +72,11 @@ export default function Sidebar({filter, setFilter, id}) {
   return (
 
     <div className="flex-column w-max h-max border-2 ml-5 mt-5">
-      <MainAverage avgReview={avgReview} pctRecommended={pctRecommended}/>
-      <TotalsFilters setFilter={setFilter} />
-      <FitSliders />
+      {reviewMeta && <div>
+        <MainAverage avgReview={avgReview} pctRecommended={pctRecommended}/>
+        <TotalsFilters setFilter={setFilter} ratings={reviewMeta.ratings}/>
+        <FitSliders />
+      </div>}
     </div>
 
   )
