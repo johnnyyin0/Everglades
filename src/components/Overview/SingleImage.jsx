@@ -1,6 +1,8 @@
-const SingleImage = ({image, setPhoto, photo}) => {
+const SingleImage = ({image, setPhoto, photo, i, setIndex}) => {
   //Sets the image to the one clicked on
+  console.log(i, image);
   const imageClick = () => {
+    setIndex(i);
     setPhoto(image.thumbnail_url);
   };
   return (
