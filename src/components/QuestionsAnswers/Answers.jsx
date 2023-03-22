@@ -48,7 +48,7 @@ const Answers = ({questionId, questionBody, productName}) => {
               </div>
             ))}
           {answers.length > 2 && (
-            <button onClick={()=>setShowMore(!showMore)} style={{ marginTop: '5px', background:'none', border: '1px solid #ccc', borderRadius: '0px'}}>{showMore ? 'COLLAPSE ANSWERS' : 'LOAD MORE ANSWERS'}</button>
+            <button onClick={()=>setShowMore(!showMore)} style={{marginTop: '5px', background:'none', borderRadius: '0px'}}>{showMore ? 'COLLAPSE ANSWERS' : 'LOAD MORE ANSWERS'}</button>
           )}
         </div>
       )}
