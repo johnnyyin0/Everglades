@@ -23,13 +23,7 @@ const QuestionList = ({questions, setQuestions, productId, productName, getQuest
         value={searchTerm}
         onChange={handleChange}
         placeholder="HAVE A QUESTION? SEARCH FOR ANSWERS...🔍"
-        style={{
-          margin: '10px 0',
-          opacity: searchTerm ? 1 : 0.5,
-          border: '1px solid black',
-          width: '100%',
-          height: '65px',
-        }}
+        style={{margin: '10px 0', opacity: searchTerm ? 1 : 0.5, border: '1px solid black', width: '100%', height: '65px',}}
       />
       <div className='question-list'>
       <ul>
@@ -58,7 +52,7 @@ const QuestionList = ({questions, setQuestions, productId, productName, getQuest
                   </div>
                   <div>
                   <QuestionHelpful questions={questions} questionId={question.question_id} setQuestions={setQuestions} questionHelpfulness={question.question_helpfulness}/>
-                    | <span><AddAnswerButton questionId={question.question_id} questionBody={question.question_body} productName={productName}/></span>
+                  | <span><AddAnswerButton questionId={question.question_id} questionBody={question.question_body} productName={productName}/></span>
                   </div>
                 </div>
                 <Answers questionId={question.question_id} productId={productId}/>
@@ -68,13 +62,7 @@ const QuestionList = ({questions, setQuestions, productId, productName, getQuest
       </div>
       <div style={{ display: 'flex'}}>
       {questionsCount < filteredQuestions.length && (
-        <button style={{
-          border: '1px solid #ccc',
-          borderRadius: '0px',
-          padding: '10px 10px',
-          background: 'none',
-          cursor: 'pointer',
-          marginRight: '10px',
+        <button style={{border: '1px solid #ccc', borderRadius: '0px', padding: '10px 10px', background: 'none', cursor: 'pointer', marginRight: '10px',
         }} onClick={() => setQuestionsCount(questionsCount + 2)}><b>LOAD MORE QUESTIONS</b></button> 
       )} 
       <AddQuestionButton productName={productName} productId={productId} getQuestions={getQuestions}/>

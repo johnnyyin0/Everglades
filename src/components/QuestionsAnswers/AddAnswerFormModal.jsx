@@ -2,11 +2,16 @@ import axios from 'axios';
 import React, { useState } from 'react';
 import AddPhotos from './AddPhotos';
 
-const AddAnswerFormModal = ({questionId, questionBody, closeModal, productName,}) => {
+const AddAnswerFormModal = ({questionId, questionBody, closeModal, productName}) => {
 
   const [name, setName] = useState('');
   const [email, setEmail] = useState('');
   const [body, setBody] = useState('');
+  const [selectedPhotos, setSelectedPhotos] =useState([])
+
+  const handlePhotosSubmit = (photos) => {
+    setSelectedPhotos(photos);
+  }
 
   const handleNameChange = (e) => {
     setName(e.target.value);
@@ -22,8 +27,8 @@ const AddAnswerFormModal = ({questionId, questionBody, closeModal, productName,}
   
   const handleSubmit = (e) => {
     e.preventDefault();
-    // console.log('Form data:', {params: { questionId, username, email, answer }});
-    axios.post('http://localhost:3000/questions/questionId/answer', {params: { question_id: questionId, name, email, body }})
+    console.log('Form data:', {params: { questionId, name, email, body, photos: selectedPhotos}});
+    axios.post('http://localhost:3000/questions/questionId/answer', {params: { question_id: questionId, name, email, body, photos: selectedPhotos}})
     .then((response) => {
       console.log('Answer submitted successfully!', response.data);
       closeModal();
@@ -93,7 +98,7 @@ const AddAnswerFormModal = ({questionId, questionBody, closeModal, productName,}
               maxLength={1000}
               required
             />
-          <AddPhotos />
+          <AddPhotos onSubmit={handlePhotosSubmit}/>
           <button className='btn' style= {{marginTop: '20px',}} type='submit'>SUBMIT</button>
 
         </form>

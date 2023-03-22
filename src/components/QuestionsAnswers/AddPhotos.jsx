@@ -1,40 +1,37 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 
-const AddPhotos = () => {
-  const [imageDataList, setImageDataList] = useState([]);
-  const [uploadButtonVisible, setUploadButtonVisible] = useState(true);
+const AddPhotos = ({onSubmit}) => {
+  const [photos, setPhotos] = useState([]);
 
-  const handleUpload = () => {
-    window.cloudinary.openUploadWidget({
-      cloudName: 'dyrlg2pzz',
-      uploadPreset: 'tiigxyou',
-      cropping: true,
-      multiple: true,
-      maxFiles: 5, 
-      clientAllowedFormats: ["image"],
-    }, 
-    (error, results) => {
-      if (!error && results.event === 'success') {
-        const newImageDataList = [...imageDataList];
-        results.info.forEach((result) => {
-          newImageDataList.push(result);
-        });
-        setImageDataList(newImageDataList);
-        if (newImageDataList.length === 5) {
-          setUploadButtonVisible(false);
-        }
-      }
-    });
-  };
+  const handlePhotoChange = (e) => {
+    const urls = e.target.value.split('\n');
+    const selectedPhotos = urls.slice(0, 5).map(url => ({
+      url,
+      preview: url
+    })).filter(photo => photo.url.match(/\.(jpeg|jpg|png|gif)$/) !== null);
+    const selectedUrls = selectedPhotos.map(photo => photo.url);
+    setPhotos(selectedPhotos);
+    onSubmit(selectedUrls);
+  }
 
   return (
     <div>
-      <b>Add Photos(Optional): </b>
-      {uploadButtonVisible && <button className='btn' onClick={handleUpload}>Upload</button>}
-      {imageDataList.map((imageData, index) => (
-        <div key={index}>
-          <img src={imageData.secure_url} alt={imageData.public_id} />
-        </div>
+      <label className='label' htmlFor="photos">
+        <span className='label-text'>Add Photos (up to 5)</span>
+      </label>
+      <textarea
+        id="photos"
+        rows="5"
+        onChange={handlePhotoChange}
+      />
+      {photos.map(photo => (
+        <img
+          key={photo.preview}
+          src={photo.preview}
+          alt={photo.url}
+          width="100"
+          height="100"
+        />
       ))}
     </div>
   );
