@@ -10,12 +10,6 @@ ReactDOM.createRoot(document.getElementById('NewReviewModal')).render(
   <NewReviewModal />
 )
 
-ReactDOM.createRoot(document.getElementById('fullsize-photo')).render(
-  <React.StrictMode>
-    <FullSizePhoto />
-  </React.StrictMode>,
-)
-
 ReactDOM.createRoot(document.getElementById('root')).render(
   <App />
 )

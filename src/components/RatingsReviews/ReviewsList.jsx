@@ -3,10 +3,9 @@ import ReviewTile from './ReviewTile.jsx'
 import SortDropDown from './SortDropDown.jsx'
 import axios from 'axios'
 
-export default function ReviewsList({ id, setPhoto, shownReviews, setShownReviews }) {
+export default function ReviewsList({ id, setPhoto, shownReviews, setShownReviews, allReviews, setAllReviews }) {
 
   const [sort, setSort] = useState('relevant');
-  const [allReviews, setAllReviews] = useState([]);
   const [nextTwo, setNextTwo] = useState([]);
   const [showMore, setShowMore] = useState(true);
 
