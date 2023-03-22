@@ -7,12 +7,12 @@ import { format } from 'date-fns'
 export default function ReviewTile({ review, setPhoto }) {
 
   return (
-    <div className="border-2">
+    <div className="border-2" key={review.review_id}>
       <div className="flex justify-between px-5 pt-5">
         <div>
           <StarsWidget rating={review.rating} />
         </div>
-        <div className="">{format(Date.parse(review.date), 'MMMM d, yyyy')}</div>
+        <div>{review.reviewer_name}, {format(Date.parse(review.date), 'MMMM d, yyyy')}</div>
       </div>
       <div className="px-5 py-5 font-bold text-2xl">{review.summary}</div>
       <div className="px-5 pb-5">{review.body}</div>

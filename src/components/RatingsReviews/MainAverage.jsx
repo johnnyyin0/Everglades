@@ -12,7 +12,7 @@ export default function MainAverage({ avgReview, pctRecommended }) {
           <div className="stat-figure -ml-28 -mt-6 w-max items-start">
             <StarsWidget rating={avgReview}/>
           </div>
-          <div className="stat-desc mt-3">{pctRecommended}% of reviews recommend this product</div>
+          <div className="stat-desc mt-3 ">{pctRecommended}% of reviews recommend this product</div>
         </div>
       </div>
     </div>
