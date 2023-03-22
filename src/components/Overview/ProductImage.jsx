@@ -10,7 +10,7 @@ const ProductImage = ({photo, styleSelected, setPhoto, setFullScreen}) => {
       </div>
       <div className="col-span-1 p-1">
     { photo == null ?
-      <img src={"https://webkit.org/demos/srcset/image-src.png"} className="rounded border bg-white p-1  object-cover h-[500px] w-[500px]" />
+      <img src={"https://webkit.org/demos/srcset/image-src.png"} className="rounded border bg-white p-1  object-cover h-[600px] w-[500px]" />
       : <img className="rounded border bg-white p-1 object-cover h-[600px] w-[500px]" src={photo} alt="image"></img>
     }
     </div>

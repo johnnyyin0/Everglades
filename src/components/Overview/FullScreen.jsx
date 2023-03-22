@@ -1,9 +1,14 @@
 import {useState} from 'react';
 import ReactImageMagnify from 'react-image-magnify';
+import { useImageSize } from 'react-image-size';
+
 const FullScreen = ({setFullScreen, styleSelected}) => {
-console.log(styleSelected);
+
   let [index, setIndex] = useState(0);
 
+  const [dimensions, { loading, error }] = useImageSize(styleSelected.photos[index].thumbnail_url);
+  console.log(dimensions?.width)
+  console.log(dimensions?.width)
   // let [size, setSize] = useState({height: 100, width: 100})
 
   let handleFullScreen = () => {
@@ -26,9 +31,9 @@ console.log(styleSelected);
 
   return (
     <>
-    <div className="">
+    <div className="flex justify-center">
       {/* <img src={styleSelected.photos[index].thumbnail_url} className="w-full max-h-[40%] max-w-[40%] rounded-2xl bg-center bg-cover duration-500 flex-1"></img> */}
-      <div className="max-w-[500px] max-h-[500px]">
+      <div className="max-w-[500px] max-h-[800px] flex-1 mb-6">
 
       <ReactImageMagnify {...{
         smallImage: {
@@ -38,15 +43,16 @@ console.log(styleSelected);
         },
         largeImage: {
           src: styleSelected.photos[index].thumbnail_url,
-          width: 500,
-          height: 500
-        }
+          width: dimensions?.width * 2 + 100,
+          height: dimensions?.height * 2 + 200
+        },
+        enlargedImageContainerDimensions: {width: '150%', height: '100%'}
       }} />
       </div>
-      <div className="absolute top-[10%] left-[10%] rounded-full p-2 bg-black/20">
+      <div className="absolute top-[10%] left-[30%] rounded-full p-2 bg-black/20">
         <button onClick={backButton}>🢀</button>
         </div>
-        <div className="absolute top-[10%] right-[10%] rounded-full p-2 bg-black/20">
+        <div className="absolute top-[10%] right-[30%] rounded-full p-2 bg-black/20">
           <button onClick={nextButton}>🢂</button>
           </div>
           </div>
