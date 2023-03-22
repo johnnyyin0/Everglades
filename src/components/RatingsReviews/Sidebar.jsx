@@ -13,9 +13,7 @@ export default function Sidebar({filter, setFilter, id}) {
 
   useEffect(() => {
     let options = {
-      url: 'http://localhost:3000/reviews/meta',
-      method: 'post',
-      data: { product_id: id}
+      url: `http://localhost:3000/meta/${id}`,
     };
     axios(options)
       .then(res => {
