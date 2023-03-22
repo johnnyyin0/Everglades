@@ -1,18 +1,16 @@
-export default function FitSlider(props) {
+import charMap from './CharMap.js'
 
-  //hardcodes for testing
-  props = props | 7;
-  let value = 2.5
-  const fitChar="Size"
+export default function FitSlider({ fitChar, charId, charVal }) {
 
+  let value = parseFloat(charVal)
 
   const pctLeft = ((value / 5 * 90) - 45).toString() + '%'
   const position = {left: pctLeft}
 
   return (
 
-    <div className="pb-5">
-      <div className="pl-2 pb-3 text-2xl">{fitChar}</div>
+    <div className="pb-5 " key={charId} >
+      <div className="pb-2 text-2xl">{fitChar}</div>
       <div className="relative flex content-center">
           <div className="triangle-slider absolute -mt-2 z-10 text-7xl mask mask-triangle-2 bg-black w-full h-4" style={position}>.</div>
         <div className="flex justify-evenly w-full">
@@ -21,10 +19,10 @@ export default function FitSlider(props) {
           <progress className="progress w-3/12" value="0" max="100"></progress>
         </div>
       </div>
-        <div className="flex justify-between px-2 w-full">
-          <span>Papa Bear</span>
-          <span>Baby Bear</span>
-          <span>Mama Bear</span>
+        <div className="w-full grid grid-cols-12 pt-2">
+          <span className="col-start-1 col-span-4 text-xs text-center -ml-3">{charMap[fitChar][0]}</span>
+          {charMap[fitChar][2] === 'Perfect' && <span className="col-start-5 col-span-4 text-xs  text-center pr-2">{charMap[fitChar][2]}</span>}
+          <span className="col-end-13 col-span-4 text-xs  text-right">{charMap[fitChar][4]}</span>
         </div>
     </div>
   )

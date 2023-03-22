@@ -1,5 +1,6 @@
 
 import React from 'react'
+import _ from 'underscore'
 import FitSlider from './FitSlider.jsx'
 
 export default function FitSliders({ characteristics }) {
@@ -21,9 +22,8 @@ export default function FitSliders({ characteristics }) {
 
   return (
     <div className="px-5 pb-10">
-      <FitSlider />
-      <FitSlider />
-      <FitSlider />
+    {characteristics && _.map(characteristics, (vals, char) => (
+    <FitSlider fitChar={char} charId={vals.id} charVal={vals.value} />))}
     </div>
   )
 }

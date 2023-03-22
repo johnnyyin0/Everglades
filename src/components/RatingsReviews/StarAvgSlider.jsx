@@ -1,11 +1,7 @@
 export default function StarAvgSlider({ star, avg, votes }) {
 
-  //hardcoded for testing
-  let numReviews = 9;
-
   const handleClick = (evt) => {
     console.log('Set filter to ' + evt.target.value)
-    console.log(avg)
   }
 
   return (
