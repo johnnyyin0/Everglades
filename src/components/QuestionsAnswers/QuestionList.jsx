@@ -49,7 +49,7 @@ const QuestionList = ({questions, setQuestions, productId, productName, getQuest
           opacity: searchTerm ? 1 : 0.5,
           border: '1px solid black',
           width: '100%',
-          height: '50px',
+          height: '65px',
         }}
       />
       <div className='question-list'>
@@ -107,6 +107,7 @@ const QuestionList = ({questions, setQuestions, productId, productName, getQuest
             ))}
       </ul>
       </div>
+      <div style={{ display: 'flex'}}>
       {questionsCount < filteredQuestions.length && (
         <button style={{
           border: '1px solid #ccc',
@@ -114,8 +115,11 @@ const QuestionList = ({questions, setQuestions, productId, productName, getQuest
           padding: '10px 10px',
           background: 'none',
           cursor: 'pointer',
+          marginRight: '10px',
         }} onClick={() => setQuestionsCount(questionsCount + 2)}><b>MORE QUESTIONS</b></button> 
-      )} <AddQuestionButton productName={productName} productId={productId} getQuestions={getQuestions}/>
+      )} 
+      <AddQuestionButton productName={productName} productId={productId} getQuestions={getQuestions}/>
+      </div>
     </div>
   );
 }
