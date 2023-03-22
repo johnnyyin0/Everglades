@@ -15,8 +15,11 @@ export default function ReviewsList({ id, setPhoto, shownReviews, setShownReview
       .then(res => {
         setAllReviews(res.data.results)
         setShownReviews(res.data.results.slice(0, 2))
-        if(twoMore.length < 1){
-          setShowMore(false);
+        setRestReviews(res.data.results.slice(2))
+        if(restReviews.length === 0) {
+          setShowMore(false)
+        } else {
+          setShowMore(true)
         }
       })
       .catch(err => console.log(err))
