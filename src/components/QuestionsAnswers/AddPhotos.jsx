@@ -29,7 +29,7 @@ const AddPhotos = () => {
 
   return (
     <div>
-      <b>Add Photos: </b>
+      <b>Add Photos(Optional): </b>
       {uploadButtonVisible && <button className='btn' onClick={handleUpload}>Upload</button>}
       {imageDataList.map((imageData, index) => (
         <div key={index}>

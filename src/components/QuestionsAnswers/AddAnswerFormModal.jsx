@@ -25,7 +25,7 @@ const AddAnswerFormModal = ({questionId, questionBody, closeModal, productName,}
     // console.log('Form data:', {params: { questionId, username, email, answer }});
     axios.post('http://localhost:3000/questions/questionId/answer', {params: { question_id: questionId, name, email, body }})
     .then((response) => {
-      // console.log('Answer submitted successfully', response.data);
+      console.log('Answer submitted successfully!', response.data);
       closeModal();
     })
     .catch((error) => {
