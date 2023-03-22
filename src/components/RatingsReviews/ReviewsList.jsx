@@ -6,18 +6,15 @@ import axios from 'axios'
 export default function ReviewsList({ id, setPhoto, shownReviews, setShownReviews, allReviews, setAllReviews }) {
 
   const [sort, setSort] = useState('relevant');
-  const [nextTwo, setNextTwo] = useState([]);
+  const [restReviews, setRestReviews] = useState([]);
   const [showMore, setShowMore] = useState(true);
 
   useEffect(() => {
-
-    let url = `http://localhost:3000/reviews/${id}/${sort}`;
+    let url = `http://localhost:3000/reviews/${id}/${sort}$`;
     axios.get(url)
       .then(res => {
         setAllReviews(res.data.results)
         setShownReviews(res.data.results.slice(0, 2))
-        let twoMore = res.data.results.slice(2, 4)
-        setNextTwo(twoMore)
         if(twoMore.length < 1){
           setShowMore(false);
         }
@@ -25,12 +22,21 @@ export default function ReviewsList({ id, setPhoto, shownReviews, setShownReview
       .catch(err => console.log(err))
   }, [sort])
 
+  useEffect(() => {
+  let reviewsToParse = allReviews.slice();
+  let firstTwo = reviewsToParse.slice(0,2)
+  setShownReviews(firstTwo)
+  setRestReviews(reviewsToParse.slice(2))
+  }, [allReviews])
+
   const handleMoreReviews = (evt) => {
     let showReviews = shownReviews.slice();
+    let nextTwo = restReviews.slice(0, 2)
     showReviews = showReviews.concat(nextTwo);
-    console.log(showReviews)
-    console.log(nextTwo)
     setShownReviews(showReviews);
+    setRestReviews(restReviews.slice(2))
+    if (restReviews.slice(2).length === 0)
+    setShowMore(false)
   }
 
   return (

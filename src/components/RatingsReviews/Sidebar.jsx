@@ -4,7 +4,7 @@ import MainAverage from './MainAverage.jsx'
 import TotalsFilters from './TotalsFilters.jsx'
 import FitSliders from './FitSliders.jsx'
 
-export default function Sidebar({ id, allReviews, setShownReviews }) {
+export default function Sidebar({ id, allReviews, setAllReviews }) {
 
   const [starFilter, setStarFilter] = useState('')
   const [reviewMeta, setReviewMeta] = useState(null)
@@ -45,7 +45,7 @@ export default function Sidebar({ id, allReviews, setShownReviews }) {
     <div className="flex-column w-max h-max ml-5 mt-5">
       {reviewMeta && <div>
         <MainAverage avgReview={avgReview} pctRecommended={pctRecommended}/>
-        <TotalsFilters setFilter={setStarFilter} ratings={reviewMeta.ratings} totalRatings={ratingsCount} setShownReviews={setShownReviews} allReviews={allReviews}/>
+        <TotalsFilters setFilter={setStarFilter} ratings={reviewMeta.ratings} totalRatings={ratingsCount} setAllReviews={setAllReviews} allReviews={allReviews}/>
         <FitSliders characteristics={reviewMeta.characteristics}/>
       </div>}
     </div>

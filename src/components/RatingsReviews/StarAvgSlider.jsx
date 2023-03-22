@@ -1,9 +1,9 @@
-export default function StarAvgSlider({ star, avg, votes, allReviews, setShownReviews }) {
+export default function StarAvgSlider({ star, avg, votes, allReviews, setAllReviews }) {
 
   const handleClick = (evt) => {
     console.log('Set filter to ' + star)
-    let toFilter = allReviews.slice().filter(review => review.rating === parseInt(star));
-    setShownReviews(toFilter)
+    let filteredReviews = allReviews.slice().filter(review => review.rating === parseInt(star));
+    setAllReviews(filteredReviews)
   }
 
   return (
