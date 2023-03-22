@@ -48,7 +48,7 @@ export default function NewReviewModal(props) {
   const [reqRemaining, setReqRemaining] = useState('Minimum required characters left: 50')
   const [photos, setPhotos] = useState([])
   const [photo, setPhoto] = useState('')
-  const[showButton, setShowButton] = useState(true)
+  const [showButton, setShowButton] = useState(true)
   const [nickname, setNickname] = useState('')
   const [email, setEmail] = useState('')
 
@@ -111,11 +111,11 @@ export default function NewReviewModal(props) {
             <label className="label pt-0 pb-5">
               <span className="label-text-alt" >{reqRemaining}</span>
             </label>
-              { photo && <div className="absolute">
-                <ReviewPhoto src={photo} setPhoto={setPhoto} photos={photos} setPhotos={setPhotos} setShowButton={setShowButton} />
-              </div>}
+            {photo && <div className="absolute">
+              <ReviewPhoto src={photo} setPhoto={setPhoto} photos={photos} setPhotos={setPhotos} setShowButton={setShowButton} />
+            </div>}
             <div>
-              <PhotoUploader photos={photos} setPhotos={setPhotos} setPhoto ={setPhoto} showButton={showButton} setShowButton={setShowButton} />
+              <PhotoUploader photos={photos} setPhotos={setPhotos} setPhoto={setPhoto} showButton={showButton} setShowButton={setShowButton} />
             </div>
             <div>
               <label className="label pb-0 pt-5">
@@ -126,9 +126,9 @@ export default function NewReviewModal(props) {
                 <span className="w-full">What is your email?</span>
               </label>
               <input type="text" placeholder="Example: jackson11@email.com" className="input input-bordered w-full max-w-xs" onChange={handleEmail} />
-              <div className="pt-5">
+              <div className="pt-5 flex justify-between">
                 <button className="btn">Submit Review</button>
-                <label htmlFor="new-review-modal" className="btn">Close modal</label>
+                <label htmlFor="new-review-modal" className="btn">Cancel</label>
               </div>
             </div>
           </div>
