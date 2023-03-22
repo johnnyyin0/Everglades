@@ -7,7 +7,7 @@ import { format } from 'date-fns'
 export default function ReviewTile({ review, setPhoto }) {
 
   return (
-    <div className="border-2">
+    <div className="border-2" key={review.review_id}>
       <div className="flex justify-between px-5 pt-5">
         <div>
           <StarsWidget rating={review.rating} />
