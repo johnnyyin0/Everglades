@@ -42,8 +42,13 @@ export default function NewReviewModal(props) {
       characteristics: charRatings
     }
     let options = {
-      url: "http://localhost:3000/review"
+      url: "http://localhost:3000/review",
+      data: payload,
+      method: 'post'
     }
+    axios(options)
+    .then(res => console.log(res.data))
+    .catch(err => console.log(err.data))
   }
 
   const handleRecommend = (evt) => {

@@ -6,7 +6,8 @@ import FullSizePhoto from './FullSizePhoto.jsx'
 export default function RatingsReviews(props) {
   const [starFilter, setStarFilter] = useState('');
   const [photo, setPhoto] = useState('');
-  const [showPhoto, setShowPhoto] = useState(false)
+  const [showPhoto, setShowPhoto] = useState(false);
+  const [shownReviews, setShownReviews] = useState([]);
 
   let productId = window.location.pathname.slice(1) || 37311;
 
@@ -22,7 +23,7 @@ export default function RatingsReviews(props) {
     <div className="flex flex-row basis-full relative">
       {showPhoto && <div className="card bg-base-100 shadow-x1 absolute z-20"><FullSizePhoto src={photo} setPhoto={setPhoto} /></div>}
       <Sidebar filter={setStarFilter} setFilter={setStarFilter} id={productId}/>
-      <ReviewsList setPhoto={setPhoto} id={productId} />
+      <ReviewsList setPhoto={setPhoto} id={productId} shownReviews={shownReviews} setShownReviews={setShownReviews}/>
     </div>
   )
 }

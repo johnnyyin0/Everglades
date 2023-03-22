@@ -6,7 +6,7 @@ export default function CharRadioSelector({ fitChar, id, best, worst, charRating
   const [ description, setDescription ] = useState('none selected')
 
   const handleClick = (evt) => {
-   let desc = charMap[evt.target.name][parseInt(evt.target['value'])]
+   let desc = charMap[fitChar][parseInt(evt.target['value'])]
    setDescription(desc)
    let charObj = charRatings
    charObj[evt.target.name] = (parseInt(evt.target.value) + 1).toString()

@@ -3,11 +3,10 @@ import ReviewTile from './ReviewTile.jsx'
 import SortDropDown from './SortDropDown.jsx'
 import axios from 'axios'
 
-export default function ReviewsList({ id, setPhoto }) {
+export default function ReviewsList({ id, setPhoto, shownReviews, setShownReviews }) {
 
   const [sort, setSort] = useState('relevant');
   const [allReviews, setAllReviews] = useState([]);
-  const [shownReviews, setShownReviews] = useState([]);
   const [nextTwo, setNextTwo] = useState([]);
   const [showMore, setShowMore] = useState(true);
 
@@ -18,8 +17,9 @@ export default function ReviewsList({ id, setPhoto }) {
       .then(res => {
         setAllReviews(res.data.results)
         setShownReviews(res.data.results.slice(0, 2))
-        setNextTwo(res.data.results.slice(2, 4))
-        if(nextTwo.length < 1){
+        let twoMore = res.data.results.slice(2, 4)
+        setNextTwo(twoMore)
+        if(twoMore.length < 1){
           setShowMore(false);
         }
       })
@@ -28,7 +28,9 @@ export default function ReviewsList({ id, setPhoto }) {
 
   const handleMoreReviews = (evt) => {
     let showReviews = shownReviews.slice();
-    showReviews.concat(nextTwo);
+    showReviews = showReviews.concat(nextTwo);
+    console.log(showReviews)
+    console.log(nextTwo)
     setShownReviews(showReviews);
   }
 
