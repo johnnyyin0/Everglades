@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import Answers from './Answers';
+import AnswersList from './AnswersList';
 import AddQuestionButton from './AddQuestionButton'
 import QuestionHelpful from './QuestionHelpful';
 
@@ -37,7 +37,7 @@ const QuestionList = ({questions, setQuestions, productId, productName, getQuest
                   <QuestionHelpful questions={questions} questionId={question.question_id} setQuestions={setQuestions} questionHelpfulness={question.question_helpfulness}/>
                   </div>
                 </div>
-                <Answers questionId={question.question_id} questionBody={question.question_body} productName={productName}/>
+                <AnswersList questionId={question.question_id} questionBody={question.question_body} productName={productName}/>
               </li>
             ))
           :  filteredQuestions.slice(0, questionsCount).map((question) => (
@@ -50,7 +50,7 @@ const QuestionList = ({questions, setQuestions, productId, productName, getQuest
                   <QuestionHelpful questions={questions} questionId={question.question_id} setQuestions={setQuestions} questionHelpfulness={question.question_helpfulness}/>
                   </div>
                 </div>
-                <Answers questionId={question.question_id} questionBody={question.question_body} productName={productName}/>
+                <AnswersList questionId={question.question_id} questionBody={question.question_body} productName={productName}/>
               </li>
             ))}
       </ul>
