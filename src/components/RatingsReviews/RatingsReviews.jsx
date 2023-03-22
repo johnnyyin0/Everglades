@@ -21,8 +21,8 @@ export default function RatingsReviews(props) {
   return (
     <div className="flex flex-row basis-full relative">
       {showPhoto && <div className="card bg-base-100 shadow-x1 absolute z-20"><FullSizePhoto src={photo} setPhoto={setPhoto} /></div>}
-      <Sidebar filter={setStarFilter} setFilter={setStarFilter} />
-      <ReviewsList setPhoto={setPhoto} />
+      <Sidebar filter={setStarFilter} setFilter={setStarFilter} id={productId}/>
+      <ReviewsList setPhoto={setPhoto} id={productId} />
     </div>
   )
 }

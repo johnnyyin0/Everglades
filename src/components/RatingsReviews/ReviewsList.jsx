@@ -14,7 +14,7 @@ export default function ReviewsList(props) {
 
     let url = "http://localhost:3000/reviews";
     let body = {
-        "product_id": window.location.pathname.slice(1),
+        "product_id": window.location.pathname.slice(1) || 37311,
         "sort": sort
     };
     axios.post(url, body)
