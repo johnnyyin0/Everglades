@@ -23,6 +23,9 @@ let Overview = () => {
   //all the styles from
   let [currentStyle, setCurrentStyle] = useState(exampleStyle.results);
 
+  //index of photo currently selected on
+  let [index, setIndex] = useState(0);
+
   //true false for fullscreen modal
   let [isFullScreen, setFullScreen] = useState(false);
 
@@ -85,14 +88,14 @@ let Overview = () => {
 
 
   return (
-    <div className='flex flex-col justify-center'>
+    <div>
     { isFullScreen ?
-      <FullScreen setFullScreen={setFullScreen} styleSelected={styleSelected}/>
+      <FullScreen setFullScreen={setFullScreen} styleSelected={styleSelected} index={index} setIndex={setIndex} setPhoto={setPhoto}/>
       : <>
       <div className="grid grid-cols-6 gap-2" >
       <div className="col-span-1 row-span-4"></div>
       <div className='rounded-lg  col-span-2 row-span-4'>
-      <ProductImage photo={photo} styleSelected={styleSelected} setPhoto={setPhoto} photo={photo} setFullScreen={setFullScreen}/>
+      <ProductImage photo={photo} styleSelected={styleSelected} setPhoto={setPhoto} photo={photo} setFullScreen={setFullScreen} setIndex={setIndex} index={index}/>
       </div>
 
       <div className=' rounded-lg shadow-xl col-span-2'>

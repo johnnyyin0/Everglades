@@ -55,3 +55,8 @@ SOCIAL MEDIA BUTTONS
 CLOUDINARY DEPENDANCY
 
 npm install cloudinary
+
+PHOTO ZOOM REQUIRED DEPENDENCIES
+
+npm install react-inner-image-zoom --force
+npm install -S react-image-size --force

@@ -3,7 +3,6 @@ import {FacebookShareButton, PinterestShareButton, TwitterShareButton} from "rea
 import {FacebookIcon, PinterestIcon, TwitterIcon} from "react-share";
 
 const RatingsAndShare = ({currentProduct, photo}) => {
-  console.log(currentProduct);
   return (
     <div>
       <StarsWidget />
