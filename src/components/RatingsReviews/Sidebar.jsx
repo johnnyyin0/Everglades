@@ -77,7 +77,7 @@ export default function Sidebar({filter, setFilter, id}) {
 
   return (
 
-    <div className="flex-column w-max h-max border-2 ml-5 mt-5">
+    <div className="flex-column w-max h-max ml-5 mt-5">
       {reviewMeta && <div>
         <MainAverage avgReview={avgReview} pctRecommended={pctRecommended}/>
         <TotalsFilters setFilter={setFilter} ratings={reviewMeta.ratings} totalRatings={ratingsCount}/>

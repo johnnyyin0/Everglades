@@ -35,16 +35,16 @@ export default function ReviewsList({ id, setPhoto, shownReviews, setShownReview
   }
 
   return (
-    <section className="flex-column w-full border-2 max-h-screen">
-      <h3 className="mx-10 mt-20 pb-4">{allReviews.length} reviews, sorted by {<SortDropDown sort={sort} setSort={setSort} />}
+    <section className="flex-column w-full">
+      <h3 className="mx-10 pt-10 pb-4">{allReviews.length} reviews, sorted by {<SortDropDown sort={sort} setSort={setSort} />}
       </h3>
-      <div>
+      <div className="max-h-screen overflow-y-scroll">
         {shownReviews.map(review => (  <ReviewTile setPhoto={setPhoto} review={review} />)
         )}
-      </div>
-      <div className="flex justify-start pt-5 pb-20">
+      <div className="flex justify-start pt-5 pb-20 pl-5">
         {showMore && <button className="btn mr-10" onClick={handleMoreReviews}>More Reviews</button>}
         <label htmlFor="new-review-modal" className="btn">Add Review</label>
+      </div>
       </div>
     </section>
   )
