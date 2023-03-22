@@ -8,8 +8,8 @@ export default function Sidebar({filter, setFilter, id}) {
 
   const [reviewMeta, setReviewMeta] = useState(null)
   const [avgReview, setAvgReview] = useState(0)
-  let totalRatings = 0
-  let pctRecommended = 0
+  const [pctRecommended, setPctRecommended] = useState(0)
+
 
   useEffect(() => {
     let options = {
@@ -21,13 +21,23 @@ export default function Sidebar({filter, setFilter, id}) {
       .then(res => {
         let meta = res.data
         let avgDividend = 0
+        let totalRatings = 0
         setReviewMeta(meta)
         for (let key in meta.ratings) {
           totalRatings += parseInt(meta.ratings[key])
           avgDividend += parseInt(key) * parseInt(meta.ratings[key])
         }
-        console.log(avgDividend)
         setAvgReview((avgDividend/totalRatings).toFixed(1))
+        setPctRecommended(
+          Math.round(
+          (parseInt(meta.recommended.true) /
+          (parseInt(meta.recommended.true) +
+          parseInt(meta.recommended.false))
+          )
+          * 100
+          )
+        )
+
       })
       .catch(err => console.log(err))
   }, [id])
