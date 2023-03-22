@@ -6,6 +6,12 @@ import { format } from 'date-fns'
 
 export default function ReviewTile({ review, setPhoto }) {
 
+  const [helpful, setHelpful] = useState(0)
+
+  const handleHelpful = (evt) => {
+    helpful <= 0 ? setHelpful(1) : setHelpful(0)
+  }
+
   return (
     <div className="border-2" key={review.review_id}>
       <div className="flex justify-between px-5 pt-5">
@@ -30,16 +36,16 @@ export default function ReviewTile({ review, setPhoto }) {
         </div>}</div>
       <div className="px-5 pb-5">
         <small>
-          Helpful?{' '}
+          Helpful?{}
           <span
             style={{
               textDecoration: 'underline',
               cursor: 'pointer'
               //pointerEvents: helpfulClicks.includes(answer.answer_id) ? 'none' : 'auto',
             }}
-            onClick={() => console.log()}
+            onClick={handleHelpful}
           >
-            Yes ({ })
+            Yes ({review.helpfulness + helpful})
           </span>{' '}
           | <Report />
         </small>
