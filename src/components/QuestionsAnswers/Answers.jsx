@@ -3,6 +3,7 @@ import React, { useState, useEffect } from 'react';
 import {format, parseISO} from 'date-fns'
 import ReportButton from './ReportButton';
 import AnswerHelpful from './AnswerHelpful';
+import AnswersPhotos from './AnswersPhotos';
 
 const Answers = ({questionId}) => {
   const [answers, setAnswers] = useState([]);
@@ -41,6 +42,7 @@ const Answers = ({questionId}) => {
                   <AnswerHelpful answers={answers} setAnswers={setAnswers} answerId={answer.answer_id}/>
                   | <ReportButton answerId={answer.answer_id} />
                 </small>
+                <AnswersPhotos photos={answer.photos}/>
               </div>
             ))}
           {answers.length > 2 && (
