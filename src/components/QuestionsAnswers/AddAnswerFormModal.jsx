@@ -1,7 +1,8 @@
 import axios from 'axios';
 import React, { useState } from 'react';
+import AddPhotos from './AddPhotos';
 
-const AddAnswerFormModal = ({ questionId, questionBody, closeModal, productName, }) => {
+const AddAnswerFormModal = ({questionId, questionBody, closeModal, productName,}) => {
 
   const [name, setName] = useState('');
   const [email, setEmail] = useState('');
@@ -18,7 +19,7 @@ const AddAnswerFormModal = ({ questionId, questionBody, closeModal, productName,
   const handleBodyChange = (e) => {
     setBody(e.target.value);
   };
-
+  
   const handleSubmit = (e) => {
     e.preventDefault();
     // console.log('Form data:', {params: { questionId, username, email, answer }});
@@ -94,7 +95,7 @@ const AddAnswerFormModal = ({ questionId, questionBody, closeModal, productName,
               required
             />
           </p>
-          
+          <AddPhotos />
           <button className='btn' style= {{marginTop: '20px',}} type='submit'>SUBMIT</button>
 
         </form>
