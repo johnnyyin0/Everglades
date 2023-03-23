@@ -1,6 +1,6 @@
 let ProductDescription = ({currentProduct}) => {
   return (
-<div className="flex w-[800px] mb-12 mt-5">
+<div className="flex w-[1400px] mb-14 pb-4 mt-5">
   <div className="grid h-20 flex-1 card rounded-box place-items-center w-[30%]">
     <h1 className="text-lg italic mb-2">{currentProduct.slogan}</h1>
     <p>{currentProduct.description}</p></div>
