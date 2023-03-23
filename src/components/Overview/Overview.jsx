@@ -35,6 +35,7 @@ let Overview = () => {
     .catch(err => console.log(err));
   };
 
+
   useEffect(() => {
     Axios.get('http://localhost:3000/cart')
     .then(res => console.log(res.data, 'Items in your cart!'))
@@ -74,20 +75,20 @@ let Overview = () => {
     .then(res => {
       setProducts(res.data)})
       .catch(err => console.log('Failed to load products'));
-  }, [])
+    }, [])
 
 
-  // When the currentId changes, change the current data
-  useEffect(() => {
-    Axios.get(`http://localhost:3000/product/${productId}`)
-    .then(res => setCurrentProduct(res.data))
-    .catch(err => console.log('Failed to load product'))
-    .then(Axios.get(`http://localhost:3000/product/${productId}/styles`)
+    // When the currentId changes, change the current data
+    useEffect(() => {
+      Axios.get(`http://localhost:3000/product/${productId}`)
+      .then(res => setCurrentProduct(res.data))
+      .catch(err => console.log('Failed to load product'))
+      .then(Axios.get(`http://localhost:3000/product/${productId}/styles`)
       .then(res => {
         setCurrentStyle(res.data.results);
         createSkusArray(res.data.results[0].skus);
         setSelectedStyle(res.data.results[0]);
-        setPhoto(res.data.results[0].photos[0].thumbnail_url);
+        setPhoto(res.data.results[0].photos[0].url);
         notLoading(false);
       })
       .catch(err => console.log('Failed to load product styles')));
@@ -105,16 +106,30 @@ let Overview = () => {
       .then(idArray => {
         let relativeItems = [];
         idArray.forEach(id => {
-            Axios.get(`http://localhost:3000/product/${id}/styles`)
-            .then(res => {
-              //adding product id to the style
-              res.data.results[0].productId = id
-              setRelative(relative => [...relative, res.data.results[0]])
-            })
-            })
+          Axios.get(`http://localhost:3000/product/${id}/styles`)
+          .then(res => {
+            //adding product id to the style
+            res.data.results[0].productId = id
+            setRelative(relative => [...relative, res.data.results[0]])
+          })
+        })
         })
       }, [])
 
+      //buttons to change profile index
+      const nextButton = () => {
+        let lastButton = index === styleSelected.photos.length - 1;
+        let newIndex = lastButton ? 0 : index + 1;
+        setIndex(newIndex);
+        setPhoto(styleSelected.photos[newIndex].url)
+      }
+
+      const backButton = () => {
+        let firstButton = index === 0;
+        let newIndex = firstButton ? styleSelected.photos.length - 1 : index - 1;
+        setIndex(newIndex);
+        setPhoto(styleSelected.photos[newIndex].url)
+      }
 
 
       //check if the page is done loading or not to render
@@ -125,30 +140,30 @@ let Overview = () => {
   return (
     <div>
     { isFullScreen ?
-      <FullScreen setFullScreen={setFullScreen} styleSelected={styleSelected} index={index} setIndex={setIndex} setPhoto={setPhoto}/>
+      <FullScreen setFullScreen={setFullScreen} styleSelected={styleSelected} index={index} setIndex={setIndex} setPhoto={setPhoto} nextButton={nextButton} backButton={backButton}/>
       :
       <>
       <div className='flex justify-center'>
       <div className="grid grid-cols-6 gap-2" >
       <div className="col-span-1 row-span-4"></div>
       <div className='rounded-lg content-end col-span-2 row-span-4'>
-      <ProductImage photo={photo} styleSelected={styleSelected} setPhoto={setPhoto} photo={photo} setFullScreen={setFullScreen} setIndex={setIndex} index={index}/>
+      <ProductImage photo={photo} styleSelected={styleSelected} setPhoto={setPhoto} photo={photo} setFullScreen={setFullScreen} setIndex={setIndex} index={index} nextButton={nextButton} backButton={backButton}/>
       </div>
 
-      <div className=' rounded-lg shadow-xl col-span-2 w-[90%] h-[80%]'>
+      <div className='mt-10 rounded-lg shadow-xl col-span-2 w-[650px] h-[100px]'>
       <RatingsAndShare currentProduct={currentProduct} photo={photo}/>
       </div>
 
 
-      <div className=' rounded-lg shadow-xl col-span-2 h-[80%] w-[90%]'>
+      <div className=' rounded-lg shadow-xl col-span-2 h-[200px] w-[650px]'>
       <ProductName currentProduct={currentProduct} styleSelected={styleSelected}/>
       </div>
 
-      <div className=' rounded-lg shadow-xl col-span-2 w-[90%] '>
+      <div className=' rounded-lg shadow-xl col-span-2 w-[650px] h-[330px] overflow-y-auto'>
       <Styles currentStyle={currentStyle} setPhoto={setPhoto} setSelectedStyle={setSelectedStyle} styleSelected={styleSelected} createSkusArray={createSkusArray}/>
       </div>
 
-      <div className=' rounded-lg shadow-xl col-span-2 w-[90%]'>
+      <div className='mt-2 rounded-lg shadow-xl col-span-2 w-[650px] h-[150px]'>
       <AddCart styleSelected={styleSelected} skusArray={skusArray} addCartFunc={addCartFunc}/>
       </div>
 
@@ -159,7 +174,7 @@ let Overview = () => {
       </div>
       </>
       }
-      <div className='flex justify-center'>
+      <div className='flex justify-center mt-10'>
         <Carosel className='flex-1' relative={relative}/>
         </div>
         </div>

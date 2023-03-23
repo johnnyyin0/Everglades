@@ -4,7 +4,7 @@ import InnerImageZoom from 'react-inner-image-zoom';
 import 'react-inner-image-zoom/lib/InnerImageZoom/styles.css';
 import { useImageSize } from 'react-image-size';
 
-const FullScreen = ({setFullScreen, styleSelected, setIndex, index, setPhoto, photo}) => {
+const FullScreen = ({setFullScreen, styleSelected, setIndex, index, setPhoto, photo, nextButton, backButton}) => {
 
 
   const [dimensions, { loading, error }] = useImageSize(styleSelected.photos[index].thumbnail_url);
@@ -13,20 +13,6 @@ const FullScreen = ({setFullScreen, styleSelected, setIndex, index, setPhoto, ph
   let handleFullScreen = () => {
     setFullScreen(false);
   };
-
-  const nextButton = () => {
-    let lastButton = index === styleSelected.photos.length - 1;
-    let newIndex = lastButton ? 0 : index + 1;
-    setIndex(newIndex);
-    setPhoto(styleSelected.photos[newIndex].url)
-  }
-
-  const backButton = () => {
-    let firstButton = index === 0;
-    let newIndex = firstButton ? styleSelected.photos.length - 1 : index - 1;
-    setIndex(newIndex);
-    setPhoto(styleSelected.photos[newIndex].url)
-  }
 
 
   return (
@@ -38,7 +24,7 @@ const FullScreen = ({setFullScreen, styleSelected, setIndex, index, setPhoto, ph
       <InnerImageZoom
             src = {styleSelected.photos[index].url}
             zoomSrc= {styleSelected.photos[index].url}
-            width = {dimensions?.width * 1.5}
+            width = {dimensions?.width * 3}
             zoomScale = {1}
             fullscreenOnMobile={true}
             hideHint={false} // default false
