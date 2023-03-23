@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import charMap from './CharMap.js'
 
-export default function CharRadioSelector({ fitChar, id, best, worst, charRatings, setCharRatings }) {
+export default function CharRadioSelector({ chars, fitChar, id, best, worst, charRatings, setCharRatings, setCharsFilled }) {
 
   const [ description, setDescription ] = useState('none selected')
 
@@ -10,6 +10,9 @@ export default function CharRadioSelector({ fitChar, id, best, worst, charRating
    setDescription(desc)
    let charObj = charRatings
    charObj[evt.target.name] = (parseInt(evt.target.value) + 1).toString()
+   if (Object.keys(charObj).length === Object.keys(chars).length) {
+    setCharsFilled(true)
+   }
    setCharRatings(charObj)
   }
 
