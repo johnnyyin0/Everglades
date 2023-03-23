@@ -1,15 +1,15 @@
 import Style from './style.jsx';
 import {useState} from 'react';
 
-const Styles = ({currentStyle, setPhoto, styleSelected, setSelectedStyle}) => {
+const Styles = ({currentStyle, setPhoto, styleSelected, setSelectedStyle, createSkusArray}) => {
   return (
     <>
       <p>Styles</p>
-    <div className="grid grid-cols-4 gap-2">
+    <div className="h-30 grid grid-cols-4 gap-7 content-center">
       {currentStyle.map(style => {
         return (
           <div>
-          <Style className="col-span-1" style={style} key={style.style_id} setPhoto={setPhoto} setSelectedStyle={setSelectedStyle} styleSelected={styleSelected}/>
+          <Style className="col-span-1" style={style} key={style.style_id} setPhoto={setPhoto} setSelectedStyle={setSelectedStyle} styleSelected={styleSelected} createSkusArray={createSkusArray}/>
         </div>
         )
       })}

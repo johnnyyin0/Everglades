@@ -6,16 +6,25 @@ const RatingsAndShare = ({currentProduct, photo}) => {
   return (
     <div>
       <StarsWidget />
-      <div className="flex justify-start">
-        <FacebookShareButton className="flex-1" url={window.location.href} title={currentProduct.name} quote={currentProduct.description}>
+      <div className="flex flex-row pt-5">
+
+        <div className="" >
+        <FacebookShareButton url={window.location.href} title={currentProduct.name} quote={currentProduct.description}>
           <FacebookIcon className="max-h-[30px]" round={true}></FacebookIcon>
         </FacebookShareButton>
-        <PinterestShareButton className="flex-1" url={window.location.href} media={photo} description={currentProduct.name} >
+        </div>
+
+        <div className="" >
+        <PinterestShareButton url={window.location.href} media={photo} description={currentProduct.name} >
           <PinterestIcon className="max-h-[30px]" round={true}></PinterestIcon>
         </PinterestShareButton>
-        <TwitterShareButton className="flex-1" url={window.location.href} title={currentProduct.name}>
+        </div>
+
+        <div className="" >
+        <TwitterShareButton url={window.location.href} title={currentProduct.name}>
           <TwitterIcon className="max-h-[30px]" round={true}></TwitterIcon>
         </TwitterShareButton>
+        </div>
       </div>
     </div>
   )
