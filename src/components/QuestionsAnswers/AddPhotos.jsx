@@ -21,6 +21,7 @@ const AddPhotos = ({onSubmit}) => {
         <span className='label-text'>Add Photo URL's (only up to 5!)</span>
       </label>
       <textarea
+        className='input input-bordered w-full max-w-xs'
         id="photos"
         rows="5"
         onChange={handlePhotoChange}

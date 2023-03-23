@@ -15,16 +15,14 @@ const AddQuestionButton = ({productName, productId, getQuestions}) => {
   return (
     <span>
       <button
+      className='btn'
         style={{
-          border: '1px solid #ccc',
-          borderRadius: '0px',
+          marginTop: '10px',
           padding: '10px 10px',
-          background: 'none',
-          cursor: 'pointer',
         }}
         onClick={handleAddQuestionClick}
       >
-        <b> ADD A QUESTION ➕</b>
+        ADD A QUESTION +
       </button>
       {showModal && <AddQuestionFormModal closeModal={handleCloseModal} productName={productName} productId={productId} getQuestions={getQuestions}/>}
     </span>
