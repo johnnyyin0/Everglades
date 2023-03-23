@@ -40,9 +40,9 @@ const AddToCart = ({styleSelected, skusArray, addCartFunc}) => {
 
   return (
       <form onSubmit={(e) => handleSubmit(e)}>
-    <div className="grid grid-cols-4 gap-4">
+    <div className="grid grid-cols-4 gap-4 pb-6">
     <div className="dropdown col-span-2 pl-6">
-  <label tabIndex={0} className="btn m-1 w-[110%]">Select Size</label>
+  <label tabIndex={0} className="btn m-1 w-[315px]">Select Size</label>
   <ul tabIndex={0} className="dropdown-content menu p-2 shadow bg-base-100 rounded-box w-52">
     <div className>
     {skusArray.map((size, index) => {
@@ -51,8 +51,8 @@ const AddToCart = ({styleSelected, skusArray, addCartFunc}) => {
     </div>
   </ul>
 </div>
-    <div className="dropdown col-span-1 pl-10">
-    <label tabIndex={0} className="btn m-1 w-[180%]">QTY</label>
+    <div className="dropdown col-span-1 pl-11">
+    <label tabIndex={0} className="btn m-1 w-[240px]">QTY</label>
     <ul tabIndex={0} className="dropdown-content menu p-2 shadow bg-base-100 rounded-box w-52">
     {Array.from(Array(qty), (element, index) =>
       <li><a onClick={(e) => handleQty(index + 1)}>{index + 1}</a></li>
@@ -60,12 +60,12 @@ const AddToCart = ({styleSelected, skusArray, addCartFunc}) => {
     </ul>
   </div>
   <div className="pl-6 col-span-2">
-  <button type="submit" className="btn m-1 w-[125%]">Add to Cart</button>
+  <button type="submit" className="btn m-1 w-[370px]">Add to Cart</button>
   </div>
-  <div className="pl-20 col-span-2">
+  <div className="pl-[100px] col-span-2">
   {isFavorited ?
-  <button type="reset" onClick={handleUnfavorite} className="btn m-1 w-[60%]">★</button>
-  : <button type="reset" onClick={handleFavorite} className="btn m-1 w-[60%]">✰</button>
+  <button type="reset" onClick={handleUnfavorite} className="btn m-1 w-[183px]">★</button>
+  : <button type="reset" onClick={handleFavorite} className="btn m-1 w-[183px]">✰</button>
 }
 </div>
     </div>
