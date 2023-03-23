@@ -16,7 +16,7 @@ export default function ReviewTile({ review, setPhoto }) {
   }
 
   return (
-    <div className="border-b-2 border-l-2" key={review.review_id}>
+    <div className="border-b-2 border-l-2">
       <div className="flex justify-between px-5 pt-5">
         <div>
           <StarsWidget rating={review.rating} />
@@ -35,7 +35,7 @@ export default function ReviewTile({ review, setPhoto }) {
         </div>
       </div>}</div>
       <div>{review.photos.length > 0 && <div className="pb-5 px-5 carousel">
-        {review.photos.map(photo => <CarouselPhoto src={photo.url} setPhoto={setPhoto}/>)}
+        {review.photos.map(photo => <CarouselPhoto src={photo.url} setPhoto={setPhoto} key={photo.id}/>)}
         </div>}</div>
       <div className="px-5 pb-5">
         <small>
