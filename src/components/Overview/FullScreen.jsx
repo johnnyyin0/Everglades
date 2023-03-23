@@ -1,6 +1,6 @@
 import {useState} from 'react';
-import InnerImageZoom from 'react-inner-image-zoom';
 import ImageGallery from './imageGallery.jsx';
+import InnerImageZoom from 'react-inner-image-zoom';
 import 'react-inner-image-zoom/lib/InnerImageZoom/styles.css';
 import { useImageSize } from 'react-image-size';
 
@@ -8,8 +8,6 @@ const FullScreen = ({setFullScreen, styleSelected, setIndex, index, setPhoto, ph
 
 
   const [dimensions, { loading, error }] = useImageSize(styleSelected.photos[index].thumbnail_url);
-  console.log(dimensions?.width)
-  console.log(dimensions?.width)
   // let [size, setSize] = useState({height: 100, width: 100})
 
   let handleFullScreen = () => {
@@ -17,16 +15,17 @@ const FullScreen = ({setFullScreen, styleSelected, setIndex, index, setPhoto, ph
   };
 
   const nextButton = () => {
-    console.log(index);
     let lastButton = index === styleSelected.photos.length - 1;
     let newIndex = lastButton ? 0 : index + 1;
     setIndex(newIndex);
+    setPhoto(styleSelected.photos[newIndex].url)
   }
 
   const backButton = () => {
     let firstButton = index === 0;
     let newIndex = firstButton ? styleSelected.photos.length - 1 : index - 1;
     setIndex(newIndex);
+    setPhoto(styleSelected.photos[newIndex].url)
   }
 
 
@@ -37,7 +36,7 @@ const FullScreen = ({setFullScreen, styleSelected, setIndex, index, setPhoto, ph
       <div className="flex mb-6">
 
       <InnerImageZoom
-            src = {styleSelected.photos[index].thumbnail_url}
+            src = {styleSelected.photos[index].url}
             zoomSrc= {styleSelected.photos[index].url}
             width = {dimensions?.width * 1.5}
             zoomScale = {1}

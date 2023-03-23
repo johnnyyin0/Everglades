@@ -1,7 +1,9 @@
-const Style = ({style, setPhoto, setSelectedStyle, styleSelected}) => {
+const Style = ({style, setPhoto, setSelectedStyle, styleSelected, createSkusArray}) => {
   let styleClick = (e) => {
     setSelectedStyle(style);
-    setPhoto(style.photos[0].thumbnail_url);
+    setPhoto(style.photos[0].url);
+    console.log(style)
+    createSkusArray(style.skus)
   }
 
   return (

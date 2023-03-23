@@ -42,6 +42,28 @@ let productsController = {
       console.log('ERROR ON FETCHING PRODUCTS SERVER: ', err)
     })
   },
+
+  addCart: (req, res) => {
+    Models.products.addCart(req.body)
+    .then(data => {
+      // console.log('DATA RECEIVED', data)
+      res.send(data)
+    })
+    .catch((err) => {
+      // console.log('ERROR ON FETCHING PRODUCTS SERVER: ', err)
+    })
+  },
+
+  getCart:  (req, res) => {
+    Models.products.getCart()
+    .then(data => {
+      // console.log('DATA RECEIVED', data)
+      res.send(data)
+    })
+    .catch((err) => {
+      console.log('ERROR ON FETCHING CART FROM SERVER: ', err)
+    })
+  },
 }
 
 module.exports = productsController;

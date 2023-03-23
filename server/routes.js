@@ -22,5 +22,7 @@ router.get('/products', controller.products.get);
 router.get('/product/:id/styles', controller.products.getStyle);
 router.get('/product/:id/related', controller.products.getRelated);
 router.get('/product/:id', controller.products.getOne);
+router.post('/cart', controller.products.addCart);
+router.get('/cart', controller.products.getCart);
 
 module.exports = router;

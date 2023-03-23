@@ -15,8 +15,40 @@ import Styles from './styles.jsx';
 let Overview = () => {
   let productId = window.location.pathname.slice(1) || 37311;
 
+  //function to get to quantity and sizes of api
+
+  let createSkusArray = (skus) => {
+    let newArr = [];
+    let skusKeys = Object.keys(skus);
+    skusKeys.forEach(id => {
+      newArr.push(skus[id])
+    })
+    setSkusArray(newArr);
+  };
+  let [refresh, setRefresh] = useState('');
+
+  //function to add to cart via POST
+  let addCartFunc = (obj) => {
+    console.log(obj, 'Whats getting sent to the cart');
+    Axios.post('http://localhost:3000/cart', obj)
+    .then(res => setRefresh(res))
+    .catch(err => console.log(err));
+  };
+
+  useEffect(() => {
+    Axios.get('http://localhost:3000/cart')
+    .then(res => console.log(res.data, 'Items in your cart!'))
+    .catch(err => console.log(err));
+  }, [refresh])
   //states
+
+  //loading state
+  let [isLoading, notLoading] = useState(true);
+
   let [products, setProducts] = useState([]);
+
+  //skus array for the size and quantity of products
+  let [skusArray, setSkusArray] = useState([])
 
   //array of all the products from api
   let [currentProduct, setCurrentProduct] = useState(exampleProduct);
@@ -53,8 +85,10 @@ let Overview = () => {
     .then(Axios.get(`http://localhost:3000/product/${productId}/styles`)
       .then(res => {
         setCurrentStyle(res.data.results);
+        createSkusArray(res.data.results[0].skus);
         setSelectedStyle(res.data.results[0]);
         setPhoto(res.data.results[0].photos[0].thumbnail_url);
+        notLoading(false);
       })
       .catch(err => console.log('Failed to load product styles')));
     }, [])
@@ -81,11 +115,12 @@ let Overview = () => {
         })
       }, [])
 
-      // useEffect(()=>{
-      //   Axios.get(`http://localhost:3000/reviews/meta`, {productId})
-      //   .then(res => console.log(res));
-      // }, [])
 
+
+      //check if the page is done loading or not to render
+      if (isLoading) {
+        return <p>Loading</p>
+      }
 
   return (
     <div>
@@ -108,11 +143,11 @@ let Overview = () => {
       </div>
 
       <div className=' rounded-lg shadow-xl col-span-2'>
-      <Styles currentStyle={currentStyle} setPhoto={setPhoto} setSelectedStyle={setSelectedStyle} styleSelected={styleSelected}/>
+      <Styles currentStyle={currentStyle} setPhoto={setPhoto} setSelectedStyle={setSelectedStyle} styleSelected={styleSelected} createSkusArray={createSkusArray}/>
       </div>
 
       <div className=' rounded-lg shadow-xl col-span-2'>
-      <AddCart />
+      <AddCart styleSelected={styleSelected} skusArray={skusArray} addCartFunc={addCartFunc}/>
       </div>
 
       </div>

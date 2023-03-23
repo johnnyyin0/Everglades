@@ -1,7 +1,7 @@
 import Style from './style.jsx';
 import {useState} from 'react';
 
-const Styles = ({currentStyle, setPhoto, styleSelected, setSelectedStyle}) => {
+const Styles = ({currentStyle, setPhoto, styleSelected, setSelectedStyle, createSkusArray}) => {
   return (
     <>
       <p>Styles</p>
@@ -9,7 +9,7 @@ const Styles = ({currentStyle, setPhoto, styleSelected, setSelectedStyle}) => {
       {currentStyle.map(style => {
         return (
           <div>
-          <Style className="col-span-1" style={style} key={style.style_id} setPhoto={setPhoto} setSelectedStyle={setSelectedStyle} styleSelected={styleSelected}/>
+          <Style className="col-span-1" style={style} key={style.style_id} setPhoto={setPhoto} setSelectedStyle={setSelectedStyle} styleSelected={styleSelected} createSkusArray={createSkusArray}/>
         </div>
         )
       })}

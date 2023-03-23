@@ -2,7 +2,7 @@ const SingleImage = ({image, setPhoto, photo, i, setIndex, index}) => {
   //Sets the image to the one clicked on
   const imageClick = () => {
     setIndex(i);
-    setPhoto(image.thumbnail_url);
+    setPhoto(image.url);
   };
   return (
     <div className="flex">
