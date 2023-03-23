@@ -177,7 +177,7 @@ export default function NewReviewModal(props) {
               <input type="text" placeholder="Example: jackson11@email.com" className={`input w-full max-w-xs ${ badSubmission.email && email.indexOf('@') < 1 ? 'input-error' : 'input-bordered'}`} onChange={handleEmail} />
               <div className="pt-5 flex justify-between">
                 <label className="btn" onClick={handleSubmit}>Submit Review</label>
-                <label htmlFor="new-review-modal" className="btn btn-error">Cancel</label>
+                <label className="btn btn-error" onClick={handleExit}>Cancel</label>
               </div>
             </div>
           </div>
