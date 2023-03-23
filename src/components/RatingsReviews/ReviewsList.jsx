@@ -16,7 +16,7 @@ export default function ReviewsList({ id, setPhoto, shownReviews, setShownReview
         setAllReviews(res.data.results)
         setShownReviews(res.data.results.slice(0, 2))
         setRestReviews(res.data.results.slice(2))
-        if(restReviews.length === 0) {
+        if (res.data.results.slice(2).length === 0) {
           setShowMore(false)
         } else {
           setShowMore(true)
@@ -26,10 +26,10 @@ export default function ReviewsList({ id, setPhoto, shownReviews, setShownReview
   }, [sort])
 
   useEffect(() => {
-  let reviewsToParse = allReviews.slice();
-  let firstTwo = reviewsToParse.slice(0,2)
-  setShownReviews(firstTwo)
-  setRestReviews(reviewsToParse.slice(2))
+    let reviewsToParse = allReviews.slice();
+    let firstTwo = reviewsToParse.slice(0, 2)
+    setShownReviews(firstTwo)
+    setRestReviews(reviewsToParse.slice(2))
   }, [allReviews])
 
   const handleMoreReviews = (evt) => {
@@ -39,7 +39,7 @@ export default function ReviewsList({ id, setPhoto, shownReviews, setShownReview
     setShownReviews(showReviews);
     setRestReviews(restReviews.slice(2))
     if (restReviews.slice(2).length === 0)
-    setShowMore(false)
+      setShowMore(false)
   }
 
   return (
@@ -47,12 +47,12 @@ export default function ReviewsList({ id, setPhoto, shownReviews, setShownReview
       <h3 className="mx-10 pt-10 pb-4">{allReviews.length} reviews, sorted by {<SortDropDown sort={sort} setSort={setSort} />}
       </h3>
       <div className="max-h-screen overflow-y-scroll">
-        {shownReviews.map(review => (  <ReviewTile setPhoto={setPhoto} review={review} />)
+        {shownReviews.map(review => (<ReviewTile setPhoto={setPhoto} review={review} />)
         )}
-      <div className="flex justify-start pt-5 pb-20 pl-5">
-        {showMore && <button className="btn mr-10" onClick={handleMoreReviews}>More Reviews</button>}
-        <label htmlFor="new-review-modal" className="btn">Add Review</label>
-      </div>
+        <div className="flex justify-start pt-5 pb-20 pl-5">
+          {showMore && <button className="btn mr-10" onClick={handleMoreReviews}>More Reviews</button>}
+          <label htmlFor="new-review-modal" className="btn">Add Review</label>
+        </div>
       </div>
     </section>
   )
