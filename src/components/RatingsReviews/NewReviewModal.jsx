@@ -10,7 +10,7 @@ export default function NewReviewModal(props) {
   const [productName, setProductName] = useState('')
   const [reviewMeta, setReviewMeta] = useState({})
   const [stars, setStars] = useState("0")
-  const [recommended, setRecommended] = useState(false)
+  const [recommended, setRecommended] = useState(null)
   const [charRatings, setCharRatings] = useState({})
   const [reviewSummary, setReviewSummary] = useState('')
   const [reviewBody, setReviewBody] = useState('')
@@ -20,6 +20,8 @@ export default function NewReviewModal(props) {
   const [showButton, setShowButton] = useState(true)
   const [nickname, setNickname] = useState('')
   const [email, setEmail] = useState('')
+
+  //mandatory: ovarall rating, recommendation, characteristics, body (not summary), nickname, email
 
   //there's gotta be a better way to get the current product ID
   let productId = window.location.pathname.slice(1) || 37311;
@@ -36,25 +38,38 @@ export default function NewReviewModal(props) {
   }, [])
 
   const handleSubmit = (evt) => {
-    let payload = {
-      product_id: productId,
-      rating: parseInt(stars),
-      summary: reviewSummary,
-      body: reviewBody,
-      recommend: recommended,
-      name: nickname,
-      email: email,
-      photos: photos,
-      characteristics: charRatings
+    if (stars !== "0" &&
+    recommended !== null &&
+    Object.keys(charRatings).length === Object.keys(reviewMeta.characteristics).length &&
+    reqRemaining === 'Minimum reached' &&
+    nickname &&
+    email.indexOf('@' > 0)){
+      let payload = {
+        product_id: productId,
+        rating: parseInt(stars),
+        summary: reviewSummary,
+        body: reviewBody,
+        recommend: recommended,
+        name: nickname,
+        email: email,
+        photos: photos,
+        characteristics: charRatings
+      }
+      let options = {
+        url: "http://localhost:3000/review",
+        data: payload,
+        method: 'post'
+      }
+      axios(options)
+       .then(res => console.log(res.data))
+       .catch(err => console.log(err.data))
+    } else {
+      handleIncompleteForm()
     }
-    let options = {
-      url: "http://localhost:3000/review",
-      data: payload,
-      method: 'post'
-    }
-    axios(options)
-    .then(res => console.log(res.data))
-    .catch(err => console.log(err.data))
+  }
+
+  const handleIncompleteForm = (evt) => {
+
   }
 
   const handleRecommend = (evt) => {
@@ -90,7 +105,7 @@ export default function NewReviewModal(props) {
       <input type="checkbox" id="new-review-modal" className="modal-toggle" />
       <div className="modal">
         <div className="modal-box h-full">
-          <div className="text-3xl text-center">Write Your Review</div>
+        <div className="text-3xl text-center">Write Your Review</div>
           <div className="text-center pb-4 pt-2">About the {productName}</div>
           <div className="pb-2 text-xl">Overall Rating:</div>
           <StarsRater stars={stars} setStars={setStars} />
@@ -132,7 +147,7 @@ export default function NewReviewModal(props) {
               </label>
               <input type="text" placeholder="Example: jackson11@email.com" className="input input-bordered w-full max-w-xs" onChange={handleEmail} />
               <div className="pt-5 flex justify-between">
-                <button className="btn" onClick={handleSubmit}>Submit Review</button>
+                <label className="btn" htmlFor="new-review-modal" onClick={handleSubmit}>Submit Review</label>
                 <label htmlFor="new-review-modal" className="btn">Cancel</label>
               </div>
             </div>
