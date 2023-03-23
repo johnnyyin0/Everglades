@@ -9,6 +9,7 @@ const AddPhotos = ({onSubmit}) => {
       url,
       preview: url
     })).filter(photo => photo.url.match(/\.(jpeg|jpg|png|gif)$/) !== null);
+    //remove the preview data
     const selectedUrls = selectedPhotos.map(photo => photo.url);
     setPhotos(selectedPhotos);
     onSubmit(selectedUrls);

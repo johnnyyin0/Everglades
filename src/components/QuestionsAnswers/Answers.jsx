@@ -4,8 +4,9 @@ import {format, parseISO} from 'date-fns'
 import ReportButton from './ReportButton';
 import AnswerHelpful from './AnswerHelpful';
 import AnswersPhotos from './AnswersPhotos';
+import AddAnswerButton from './AddAnswerButton';
 
-const Answers = ({questionId}) => {
+const Answers = ({questionId, questionBody, productName}) => {
   const [answers, setAnswers] = useState([]);
   const [showMore, setShowMore] = useState(false);
 
@@ -16,7 +17,6 @@ const Answers = ({questionId}) => {
   const getAnswers = (questionId) => {
     axios.get('http://localhost:3000/questions/answers', { params: { questionId } })
       .then((response) => {
-        console.log('ANSWER RECEIVED', response.data.results)
         setAnswers(response.data.results);
       })
       .catch((err) => {
@@ -25,6 +25,8 @@ const Answers = ({questionId}) => {
   };
 
   return (
+    <div>
+    <AddAnswerButton getAnswers={getAnswers} questionId={questionId} questionBody={questionBody} productName={productName}/>
     <div>
       {answers.length === 0 ? (
         <div style={{ marginTop: '10px' }}>
@@ -46,10 +48,11 @@ const Answers = ({questionId}) => {
               </div>
             ))}
           {answers.length > 2 && (
-            <button onClick={()=>setShowMore(!showMore)} style={{ marginTop: '5px', background:'none', border: '1px solid #ccc', borderRadius: '0'}}>{showMore ? 'COLLAPSE ANSWERS' : 'LOAD MORE ANSWERS'}</button>
+            <button onClick={()=>setShowMore(!showMore)} style={{ marginTop: '5px', background:'none', border: '1px solid #ccc', borderRadius: '0px'}}>{showMore ? 'COLLAPSE ANSWERS' : 'LOAD MORE ANSWERS'}</button>
           )}
         </div>
       )}
+    </div>
     </div>
   );
 };

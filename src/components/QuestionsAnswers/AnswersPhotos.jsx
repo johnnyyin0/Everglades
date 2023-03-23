@@ -18,8 +18,10 @@ const AnswersPhotos = ({ photos }) => {
 
   return (
     <div>
-      {images.map((image) => (
-        <img className="h-32"
+      {images.map((image,index) => (
+        <img 
+          key={index}
+          className="h-32"
           src={image.thumbnailUrl.url}
           onClick={() => handleImageClick(image)}
         />

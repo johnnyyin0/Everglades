@@ -5,7 +5,7 @@ const QuestionHelpful = ({questions, questionId, setQuestions, questionHelpfulne
     const [helpfulClicks, setHelpfulClicks] = useState([]);
 
     const handleHelpfulClick = (questionId) => {
-        console.log('questionID', questionId)
+        // console.log('questionID', questionId)
         if (!helpfulClicks.includes(questionId)) {
           axios.put(`http://localhost:3000/questions/question/helpful`, { params: { questionId } })
             .then(() => {
