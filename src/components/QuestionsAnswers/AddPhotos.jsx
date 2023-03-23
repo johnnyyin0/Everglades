@@ -18,7 +18,7 @@ const AddPhotos = ({onSubmit}) => {
   return (
     <div>
       <label className='label' htmlFor="photos">
-        <span className='label-text'>Add Photo URL's (only up to 5!)</span>
+        <span className='label-text'>Add Photo URL's (only up to 5)</span>
       </label>
       <textarea
         className='input input-bordered w-full max-w-xs'
