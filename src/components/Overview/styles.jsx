@@ -5,7 +5,7 @@ const Styles = ({currentStyle, setPhoto, styleSelected, setSelectedStyle, create
   return (
     <>
       <p>Styles</p>
-    <div className="grid grid-cols-4 gap-2">
+    <div className="h-30 grid grid-cols-4 gap-7 content-center">
       {currentStyle.map(style => {
         return (
           <div>

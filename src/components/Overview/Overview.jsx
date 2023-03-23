@@ -126,33 +126,36 @@ let Overview = () => {
     <div>
     { isFullScreen ?
       <FullScreen setFullScreen={setFullScreen} styleSelected={styleSelected} index={index} setIndex={setIndex} setPhoto={setPhoto}/>
-      : <>
+      :
+      <>
+      <div className='flex justify-center'>
       <div className="grid grid-cols-6 gap-2" >
       <div className="col-span-1 row-span-4"></div>
-      <div className='rounded-lg  col-span-2 row-span-4'>
+      <div className='rounded-lg content-end col-span-2 row-span-4'>
       <ProductImage photo={photo} styleSelected={styleSelected} setPhoto={setPhoto} photo={photo} setFullScreen={setFullScreen} setIndex={setIndex} index={index}/>
       </div>
 
-      <div className=' rounded-lg shadow-xl col-span-2'>
+      <div className=' rounded-lg shadow-xl col-span-2 w-[90%] h-[80%]'>
       <RatingsAndShare currentProduct={currentProduct} photo={photo}/>
       </div>
 
 
-      <div className=' rounded-lg shadow-xl col-span-2 min-h-[60%]'>
+      <div className=' rounded-lg shadow-xl col-span-2 h-[80%] w-[90%]'>
       <ProductName currentProduct={currentProduct} styleSelected={styleSelected}/>
       </div>
 
-      <div className=' rounded-lg shadow-xl col-span-2'>
+      <div className=' rounded-lg shadow-xl col-span-2 w-[90%] '>
       <Styles currentStyle={currentStyle} setPhoto={setPhoto} setSelectedStyle={setSelectedStyle} styleSelected={styleSelected} createSkusArray={createSkusArray}/>
       </div>
 
-      <div className=' rounded-lg shadow-xl col-span-2'>
+      <div className=' rounded-lg shadow-xl col-span-2 w-[90%]'>
       <AddCart styleSelected={styleSelected} skusArray={skusArray} addCartFunc={addCartFunc}/>
       </div>
 
       </div>
-      <div>
-      <ProductDescription currentProduct={currentProduct}/>
+      </div>
+      <div className='flex justify-center'>
+      <ProductDescription className='flex-1' currentProduct={currentProduct}/>
       </div>
       </>
       }

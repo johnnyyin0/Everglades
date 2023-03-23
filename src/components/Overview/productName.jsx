@@ -1,9 +1,9 @@
 
 let ProductName = ({currentProduct, styleSelected}) => {
   return (
-    <>
+    <div className='ml-6'>
     <p>{currentProduct.category}</p>
-    <h2>{currentProduct.name}</h2>
+    <h2 className="font-semibold text-lg">{currentProduct.name}</h2>
     {styleSelected.sale_price ?
           <>
           <div className="flex justify-start">
@@ -13,7 +13,7 @@ let ProductName = ({currentProduct, styleSelected}) => {
           </>
         : <p>{styleSelected.original_price}</p>}
     <p>{styleSelected.default_price}</p>
-    </>
+    </div>
   )
 }
 

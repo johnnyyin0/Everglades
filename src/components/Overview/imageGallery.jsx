@@ -6,7 +6,7 @@ const ImageGallery = ({styleSelected, setPhoto, photo, setIndex, index}) => {
       {styleSelected.photos.map((image, i) => {
         return <SingleImage key={i} i={i} image={image} setPhoto={setPhoto} photo={photo} setIndex={setIndex} index={index}/>
       })}
-      </>
+    </>
     );
 }
 

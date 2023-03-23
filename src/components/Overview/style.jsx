@@ -2,16 +2,15 @@ const Style = ({style, setPhoto, setSelectedStyle, styleSelected, createSkusArra
   let styleClick = (e) => {
     setSelectedStyle(style);
     setPhoto(style.photos[0].url);
-    console.log(style)
     createSkusArray(style.skus)
   }
 
   return (
     <>
     {style == styleSelected ?
-    <img src={style.photos[0].thumbnail_url} className="max-h-[60px] max-w-[60px] flex-1 rounded-lg mr-2 ml-2 border-4 border-blue-600 hover:scale-105 ease-in-out duration-300"></img>
+    <img src={style.photos[0].thumbnail_url} className="object-fill h-14 w-14 max-w-[70px] rounded-lg ml-4 border-4 border-blue-600 hover:scale-105 ease-in-out duration-300"></img>
       : <div onClick={(e) => styleClick(e)}>
-    <img src={style.photos[0].thumbnail_url} className="max-h-[60px] max-w-[60px] flex-1 rounded-lg mr-2 ml-2 hover:scale-105 ease-in-out duration-300"></img>
+    <img src={style.photos[0].thumbnail_url} className="object-fill h-12 w-11 max-w-[50px] rounded-lg ml-4 hover:scale-105 ease-in-out duration-300"></img>
     </div>
     }
     </>
