@@ -2,14 +2,17 @@ const Models = require('../Models/Models.js');
 
 reviewController = {
   get: (req, res) => {
-      console.log(req.body, 'req.body');
-      Models.reviews.getReviews(req.body)
+      let params = {
+        product_id: req.params.id,
+        sort: req.params.sort
+      }
+      Models.reviews.getReviews(params)
       //req.body must be an object with at least a product_id key
       .then(response => {
         res.send(response.data)
       })
       .catch(err => {
-        console.log(Object.keys(err), 'Failed to fetch reviews!')
+        res.send(err.data)
       })
   },
   post: (req, res) => {
@@ -23,8 +26,7 @@ reviewController = {
     )
   },
   getMeta: (req, res) => {
-    Models.reviews.getMeta(req.body)
-    //req.body must be an object with just a product_id key
+    Models.reviews.getMeta({product_id: req.params.id})
     .then(response =>
       res.send(response.data)
     )
@@ -33,8 +35,7 @@ reviewController = {
     )
   },
   markHelpful: (req, res) => {
-    Models.reviews.markHelpful(req.body)
-    //req.body must be an object with just a product_id key
+    Models.reviews.markHelpful({product_id: req.params.id})
     .then(response =>
       res.send(response.data, 'This review has been marked helpful!')
     )
@@ -42,8 +43,7 @@ reviewController = {
     )
   },
   markReported: (req, res) => {
-    Models.reviews.markReported(req.body)
-    //req.body must be an object with just a product_id key
+    Models.reviews.markReported({product_id: req.params.id})
     .then(response =>
       res.send(response.data, 'This review has been reported!')
       )

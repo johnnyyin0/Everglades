@@ -11,9 +11,9 @@ router.post('/questions/ask', controller.questions.submitQuestion)
 router.put('/answer/report', controller.questions.reportAnswer)
 
 //reviews
-router.post('/reviews', controller.reviews.get);
+router.get('/reviews/:id/:sort', controller.reviews.get);
 router.post('/review', controller.reviews.post);
-router.post('/reviews/meta', controller.reviews.getMeta);
+router.get('/meta/:id', controller.reviews.getMeta);
 router.put('/reviews/helpful', controller.reviews.markHelpful);
 router.put('/reviews/report', controller.reviews.markReported);
 

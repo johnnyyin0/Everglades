@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import axios from 'axios'
 import CharacteristicReview from './CharacteristicReview.jsx'
 import StarsRater from './StarsRater.jsx'
@@ -7,39 +7,7 @@ import ReviewPhoto from './ReviewPhoto.jsx'
 
 export default function NewReviewModal(props) {
 
-  let reviewMeta = {
-    "product_id": "37311",
-    "ratings": {
-      "1": "79",
-      "2": "46",
-      "3": "112",
-      "4": "144",
-      "5": "355"
-    },
-    "recommended": {
-      "false": "126",
-      "true": "610"
-    },
-    "characteristics": {
-      "Fit": {
-        "id": 125031,
-        "value": "3.0805084745762712"
-      },
-      "Length": {
-        "id": 125032,
-        "value": "3.1122661122661123"
-      },
-      "Comfort": {
-        "id": 125033,
-        "value": "3.2139737991266376"
-      },
-      "Quality": {
-        "id": 125034,
-        "value": "3.2433035714285714"
-      }
-    }
-  }
-
+  const [reviewMeta, setReviewMeta] = useState({})
   const [stars, setStars] = useState("0")
   const [recommended, setRecommended] = useState(false)
   const [charRatings, setCharRatings] = useState({})
@@ -48,9 +16,40 @@ export default function NewReviewModal(props) {
   const [reqRemaining, setReqRemaining] = useState('Minimum required characters left: 50')
   const [photos, setPhotos] = useState([])
   const [photo, setPhoto] = useState('')
-  const[showButton, setShowButton] = useState(true)
+  const [showButton, setShowButton] = useState(true)
   const [nickname, setNickname] = useState('')
   const [email, setEmail] = useState('')
+
+  //there's gotta be a better way to get the current product ID
+  let productId = window.location.pathname.slice(1) || 37311;
+
+  useEffect(() => {
+    axios.get(`http://localhost:3000/meta/${productId}`)
+    .then(res => setReviewMeta(res.data))
+    .catch(err => console.log(err))
+  }, [])
+
+  const handleSubmit = (evt) => {
+    let payload = {
+      product_id: productId,
+      rating: parseInt(stars),
+      summary: reviewSummary,
+      body: reviewBody,
+      recommend: recommended,
+      name: nickname,
+      email: email,
+      photos: photos,
+      characteristics: charRatings
+    }
+    let options = {
+      url: "http://localhost:3000/review",
+      data: payload,
+      method: 'post'
+    }
+    axios(options)
+    .then(res => console.log(res.data))
+    .catch(err => console.log(err.data))
+  }
 
   const handleRecommend = (evt) => {
     setRecommended(evt.target.value);
@@ -78,8 +77,6 @@ export default function NewReviewModal(props) {
     setEmail(evt.target.value);
   }
 
-  //there's gotta be a better way to get the current product ID
-  let productId = window.location.pathname.slice(1) || 37311;
 
 
   return (
@@ -97,7 +94,7 @@ export default function NewReviewModal(props) {
             <label className="pl-2">No</label>
           </div>
           <div className="bg-slate-200 px-2">
-            <CharacteristicReview characteristics={reviewMeta.characteristics} setCharRatings={setCharRatings} charRatings={charRatings} />
+            <CharacteristicReview chars={reviewMeta.characteristics} setCharRatings={setCharRatings} charRatings={charRatings} />
           </div>
           <div className="form-control w-full">
             <label className="label pt-5 w-full pb-0">
@@ -111,11 +108,11 @@ export default function NewReviewModal(props) {
             <label className="label pt-0 pb-5">
               <span className="label-text-alt" >{reqRemaining}</span>
             </label>
-              { photo && <div className="absolute">
-                <ReviewPhoto src={photo} setPhoto={setPhoto} photos={photos} setPhotos={setPhotos} setShowButton={setShowButton} />
-              </div>}
+            {photo && <div className="absolute">
+              <ReviewPhoto src={photo} setPhoto={setPhoto} photos={photos} setPhotos={setPhotos} setShowButton={setShowButton} />
+            </div>}
             <div>
-              <PhotoUploader photos={photos} setPhotos={setPhotos} setPhoto ={setPhoto} showButton={showButton} setShowButton={setShowButton} />
+              <PhotoUploader photos={photos} setPhotos={setPhotos} setPhoto={setPhoto} showButton={showButton} setShowButton={setShowButton} />
             </div>
             <div>
               <label className="label pb-0 pt-5">
@@ -126,9 +123,9 @@ export default function NewReviewModal(props) {
                 <span className="w-full">What is your email?</span>
               </label>
               <input type="text" placeholder="Example: jackson11@email.com" className="input input-bordered w-full max-w-xs" onChange={handleEmail} />
-              <div className="pt-5">
-                <button className="btn">Submit Review</button>
-                <label htmlFor="new-review-modal" className="btn">Close modal</label>
+              <div className="pt-5 flex justify-between">
+                <button className="btn" onClick={handleSubmit}>Submit Review</button>
+                <label htmlFor="new-review-modal" className="btn">Cancel</label>
               </div>
             </div>
           </div>

@@ -7,11 +7,13 @@ import RatingsReviews from './components/RatingsReviews/RatingsReviews.jsx'
 function App() {
 
   return (
+
     <div>
       <Overview />
       <QuestionsAnswers />
       <RatingsReviews/>
     </div>
+
   )
 }
 
