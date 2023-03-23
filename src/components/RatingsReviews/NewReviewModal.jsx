@@ -64,6 +64,8 @@ export default function NewReviewModal(props) {
        .then(res => console.log(res.data))
        .catch(err => console.log(err.data))
     } else {
+      console.log('y\'aint done yet')
+      document.getElementById('new-review-modal').checked = true;
       handleIncompleteForm()
     }
   }

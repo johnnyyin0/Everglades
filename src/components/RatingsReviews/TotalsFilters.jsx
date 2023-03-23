@@ -6,7 +6,7 @@ export default function TotalsFilters({ ratings, totalRatings, allReviews, setAl
   return (
     <div className="mb-5">
       {ratings && _.map(ratings, (votes, star) =>
-        <StarAvgSlider star={star} avg={parseInt(votes)/totalRatings} votes={votes} setAllReviews={setAllReviews} allReviews={allReviews} />).reverse()}
+        <StarAvgSlider star={star} avg={parseInt(votes)/totalRatings} votes={votes} setAllReviews={setAllReviews} allReviews={allReviews} key={star}/>).reverse()}
     </div>
   )
 }
