@@ -10,7 +10,7 @@ export default function StarAvgSlider({ star, avg, votes, allReviews, setAllRevi
       <span className="float-right pr-5">{`(${votes})`}</span>
       <span className="btn btn-xs ml-5 w-20" onClick={handleClick}>{star} star{star === 1 ? '' : 's'}</span>
       <span className="" >
-        <progress className="progress progress-success w-32 pl-4" value={avg} max="1"></progress>
+        <progress className="progress progress-success w-32 px-4" value={avg} max="1"></progress>
       </span>
     </div>
   )
