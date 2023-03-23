@@ -3,7 +3,7 @@ import ReviewTile from './ReviewTile.jsx'
 import SortDropDown from './SortDropDown.jsx'
 import axios from 'axios'
 
-export default function ReviewsList({ id, setPhoto, shownReviews, setShownReviews, allReviews, setAllReviews }) {
+export default function ReviewsList({ id, setPhoto, shownReviews, setShownReviews, allReviews, setAllReviews, }) {
 
   const [sort, setSort] = useState('relevant');
   const [restReviews, setRestReviews] = useState([]);
@@ -47,7 +47,7 @@ export default function ReviewsList({ id, setPhoto, shownReviews, setShownReview
       <h3 className="mx-10 pt-10 pb-4">{allReviews.length} reviews, sorted by {<SortDropDown sort={sort} setSort={setSort} />}
       </h3>
       <div className="max-h-screen overflow-y-scroll">
-        {shownReviews.map(review => (<ReviewTile setPhoto={setPhoto} review={review} />)
+        {shownReviews.map(review => (<ReviewTile setPhoto={setPhoto} review={review} key={review.review_id}/>)
         )}
         <div className="flex justify-start pt-5 pb-20 pl-5">
           {showMore && <button className="btn mr-10" onClick={handleMoreReviews}>More Reviews</button>}

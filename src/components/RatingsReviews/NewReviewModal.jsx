@@ -7,9 +7,10 @@ import ReviewPhoto from './ReviewPhoto.jsx'
 
 export default function NewReviewModal(props) {
 
+  const [productName, setProductName] = useState('')
   const [reviewMeta, setReviewMeta] = useState({})
   const [stars, setStars] = useState("0")
-  const [recommended, setRecommended] = useState(false)
+  const [recommended, setRecommended] = useState(null)
   const [charRatings, setCharRatings] = useState({})
   const [reviewSummary, setReviewSummary] = useState('')
   const [reviewBody, setReviewBody] = useState('')
@@ -19,6 +20,7 @@ export default function NewReviewModal(props) {
   const [showButton, setShowButton] = useState(true)
   const [nickname, setNickname] = useState('')
   const [email, setEmail] = useState('')
+  const [badSubmission, setBadSubmission] = useState({})
 
   //there's gotta be a better way to get the current product ID
   let productId = window.location.pathname.slice(1) || 37311;
@@ -26,30 +28,72 @@ export default function NewReviewModal(props) {
   useEffect(() => {
     axios.get(`http://localhost:3000/meta/${productId}`)
     .then(res => setReviewMeta(res.data))
-    .catch(err => console.log(err))
+    .catch(err => console.log(err));
+
+    axios.get(`http://localhost:3000/product/${productId}`)
+    .then(res => setProductName(res.data.name))
+    .catch(err => console.log(err));
+
   }, [])
 
   const handleSubmit = (evt) => {
-    let payload = {
-      product_id: productId,
-      rating: parseInt(stars),
-      summary: reviewSummary,
-      body: reviewBody,
-      recommend: recommended,
-      name: nickname,
-      email: email,
-      photos: photos,
-      characteristics: charRatings
+    if (stars !== "0" &&
+    recommended !== null &&
+    Object.keys(charRatings).length === Object.keys(reviewMeta.characteristics).length &&
+    reqRemaining === 'Minimum reached' &&
+    nickname &&
+    email.indexOf('@' > 0)){
+      setBadSubmission({});
+      let payload = {
+        product_id: productId,
+        rating: parseInt(stars),
+        summary: reviewSummary,
+        body: reviewBody,
+        recommend: recommended,
+        name: nickname,
+        email: email,
+        photos: photos,
+        characteristics: charRatings
+      }
+      let options = {
+        url: "http://localhost:3000/review",
+        data: payload,
+        method: 'post'
+      }
+      axios(options)
+      .then(res => console.log(res.data))
+      .catch(err => console.log(err.data))
+      handleExit()
+    } else {
+      console.log('y\'aint done yet')
+      handleIncompleteForm()
     }
-    let options = {
-      url: "http://localhost:3000/review",
-      data: payload,
-      method: 'post'
-    }
-    axios(options)
-    .then(res => console.log(res.data))
-    .catch(err => console.log(err.data))
   }
+
+  const handleIncompleteForm = (evt) => {
+    const stillRequired = {}
+    if (stars === '0'){
+      stillRequired.stars = true
+    }
+    if (recommended === null) {
+      stillRequired.recommended = true
+    }
+    if (Object.keys(charRatings).length !== Object.keys(reviewMeta.characteristics).length) {
+      stillRequired.charRatings = true
+    }
+    if (reqRemaining !== 'Minimum reached') {
+      stillRequired.bodyLength = true
+    }
+    if (!nickname) {
+      stillRequired.nickname = true
+    }
+    if (email.indexOf('@') < 1) {
+      stillRequired.email = true
+    }
+    console.log(stillRequired)
+    setBadSubmission(stillRequired)
+  }
+  //mandatory: ovarall rating, recommendation, characteristics, body (not summary), nickname, email
 
   const handleRecommend = (evt) => {
     setRecommended(evt.target.value);
@@ -61,7 +105,7 @@ export default function NewReviewModal(props) {
 
   const handleBodyChange = (evt) => {
     setReviewBody(evt.target.value);
-    if (reviewBody.length < 50) {
+    if (evt.target.value.length < 50) {
       let reqString = `Minimum required characters left: ${50 - evt.target.value.length}`
       setReqRemaining(reqString);
     } else {
@@ -77,6 +121,9 @@ export default function NewReviewModal(props) {
     setEmail(evt.target.value);
   }
 
+  const handleExit = (evt) => {
+    document.getElementById('new-review-modal').checked = true;
+  }
 
 
   return (
@@ -84,16 +131,23 @@ export default function NewReviewModal(props) {
       <input type="checkbox" id="new-review-modal" className="modal-toggle" />
       <div className="modal">
         <div className="modal-box h-full">
-          <div className="pb-2 text-xl">Overall Rating:</div>
-          <StarsRater stars={stars} setStars={setStars} />
-          <div className="py-3">
+        <label className="btn btn-circle btn-xs btn-ghost absolute top-3 right-3"  htmlFor="new-review-modal">
+          <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M6 18L18 6M6 6l12 12" /></svg>
+        </label>
+        <div className="text-3xl text-center">Write Your Review</div>
+          <div className="text-center pb-4 pt-2">About the {productName}</div>
+          <div className={`${badSubmission.stars ? 'border-2 border-error' : ''}`}>
+            <div className="pb-2 text-xl">Overall Rating:</div>
+            <StarsRater stars={stars} setStars={setStars} />
+          </div>
+          <div className={`py-3 ${badSubmission.recommended && recommended === null ? 'border-2 border-error' : ''}`}>
             <span className="py-2 pr-7">Do you recommend this product?</span>
-            <input type="radio" name="radio-1" id="yes" value="yes" />
+            <input type="radio" name="radio-1" id="yes" value="yes" onClick={handleRecommend}/>
             <label className="pr-5 pl-2">Yes</label>
-            <input type="radio" name="radio-1" id="no" value="no" />
+            <input type="radio" name="radio-1" id="no" value="no" onClick={handleRecommend}/>
             <label className="pl-2">No</label>
           </div>
-          <div className="bg-slate-200 px-2">
+          <div className={`bg-slate-200 px-2 ${badSubmission.charRatings && Object.keys(charRatings).length !== Object.keys(reviewMeta.characteristics).length ? 'border-2 border-error' : ''}`}>
             <CharacteristicReview chars={reviewMeta.characteristics} setCharRatings={setCharRatings} charRatings={charRatings} />
           </div>
           <div className="form-control w-full">
@@ -104,13 +158,11 @@ export default function NewReviewModal(props) {
             <label className="label pt-5 pb-0">
               <span className="text-xl">Review body:</span>
             </label>
-            <textarea className="textarea textarea-bordered" placeholder="Why did you like this product or not?" onChange={handleBodyChange}></textarea>
+            <textarea className={`textarea ${badSubmission.bodyLength && reqRemaining !== 'Minimum reached' ? 'textarea-error' : 'textarea-bordered'}`} placeholder="Why did you like this product or not?" onChange={handleBodyChange}></textarea>
             <label className="label pt-0 pb-5">
-              <span className="label-text-alt" >{reqRemaining}</span>
+              <span className={`label-text-alt ${badSubmission.bodyLength && reqRemaining !== 'Minimum reached' ? 'text-error' : ''}`} >{reqRemaining}</span>
             </label>
-            {photo && <div className="absolute">
-              <ReviewPhoto src={photo} setPhoto={setPhoto} photos={photos} setPhotos={setPhotos} setShowButton={setShowButton} />
-            </div>}
+            {photo && <ReviewPhoto src={photo} setPhoto={setPhoto} photos={photos} setPhotos={setPhotos} setShowButton={setShowButton} />}
             <div>
               <PhotoUploader photos={photos} setPhotos={setPhotos} setPhoto={setPhoto} showButton={showButton} setShowButton={setShowButton} />
             </div>
@@ -118,14 +170,14 @@ export default function NewReviewModal(props) {
               <label className="label pb-0 pt-5">
                 <span className="label">What is your nickname?</span>
               </label>
-              <input type="text" placeholder="Example: jackson11!" className="input input-bordered w-full max-w-xs" onChange={handleNickname} />
+              <input type="text" placeholder="Example: jackson11!" className={`input w-full max-w-xs ${ badSubmission.nickname ? 'input-error' : 'input-bordered'}`} onChange={handleNickname} />
               <label className="label pb-0 pt-5">
                 <span className="w-full">What is your email?</span>
               </label>
-              <input type="text" placeholder="Example: jackson11@email.com" className="input input-bordered w-full max-w-xs" onChange={handleEmail} />
+              <input type="text" placeholder="Example: jackson11@email.com" className={`input w-full max-w-xs ${ badSubmission.email ? 'input-error' : 'input-bordered'}`} onChange={handleEmail} />
               <div className="pt-5 flex justify-between">
-                <button className="btn" onClick={handleSubmit}>Submit Review</button>
-                <label htmlFor="new-review-modal" className="btn">Cancel</label>
+                <label className="btn" onClick={handleSubmit}>Submit Review</label>
+                <label htmlFor="new-review-modal" className="btn btn-error">Cancel</label>
               </div>
             </div>
           </div>

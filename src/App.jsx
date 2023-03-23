@@ -8,7 +8,7 @@ function App() {
 
   return (
 
-    <div>
+    <div className="mx-auto max-w-screen-2xl w-11/12">
       <Overview />
       <QuestionsAnswers />
       <RatingsReviews/>
