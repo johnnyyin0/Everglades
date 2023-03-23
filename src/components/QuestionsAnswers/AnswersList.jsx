@@ -6,7 +6,7 @@ import AnswerHelpful from './AnswerHelpful';
 import AnswersPhotos from './AnswersPhotos';
 import AddAnswerButton from './AddAnswerButton';
 
-const Answers = ({questionId, questionBody, productName}) => {
+const AnswersList = ({questionId, questionBody, productName}) => {
   const [answers, setAnswers] = useState([]);
   const [showMore, setShowMore] = useState(false);
 
@@ -48,7 +48,7 @@ const Answers = ({questionId, questionBody, productName}) => {
               </div>
             ))}
           {answers.length > 2 && (
-            <button onClick={()=>setShowMore(!showMore)} style={{ marginTop: '5px', background:'none', border: '1px solid #ccc', borderRadius: '0px'}}>{showMore ? 'COLLAPSE ANSWERS' : 'LOAD MORE ANSWERS'}</button>
+            <button onClick={()=>setShowMore(!showMore)} style={{marginTop: '10px', background:'none', borderRadius: '10px', border: '1px solid #ccc'}}>{showMore ? 'COLLAPSE ANSWERS' : 'LOAD MORE ANSWERS'}</button>
           )}
         </div>
       )}
@@ -57,4 +57,4 @@ const Answers = ({questionId, questionBody, productName}) => {
   );
 };
 
-export default Answers;
+export default AnswersList;

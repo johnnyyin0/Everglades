@@ -47,7 +47,7 @@ let questionController = {
   },
 
   submitAnswer: (req, res) => {
-    console.log('SUBMITTING INFO ON SERVERSIDE', req.body.params)
+    // console.log('SUBMITTING INFO ON SERVERSIDE', req.body.params)
     const question_id = req.body.params.question_id
     const params = {
       body: req.body.params.body,
@@ -64,7 +64,7 @@ let questionController = {
     })
   },
   submitQuestion: (req, res) => {
-    console.log('SUBMITTING INFO ON SERVERSIDE', req.body.params)
+    // console.log('SUBMITTING INFO ON SERVERSIDE', req.body.params)
     const params = {
       body: req.body.params.body,
       name: req.body.params.name,
@@ -80,7 +80,7 @@ let questionController = {
     })
   },
   reportAnswer: (req, res) => {
-    console.log('REPORT INFO ON SERVER SIDE', req.body.answerId)
+    // console.log('REPORT INFO ON SERVER SIDE', req.body.answerId)
     let answerId = req.body.answerId;
     Models.questions.reportAnswer(answerId)
     .then(data => {
