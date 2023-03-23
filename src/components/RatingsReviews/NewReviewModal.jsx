@@ -7,6 +7,7 @@ import ReviewPhoto from './ReviewPhoto.jsx'
 
 export default function NewReviewModal(props) {
 
+  const [productName, setProductName] = useState('')
   const [reviewMeta, setReviewMeta] = useState({})
   const [stars, setStars] = useState("0")
   const [recommended, setRecommended] = useState(false)
@@ -25,8 +26,13 @@ export default function NewReviewModal(props) {
 
   useEffect(() => {
     axios.get(`http://localhost:3000/meta/${productId}`)
-    .then(res => setReviewMeta(res.data))
-    .catch(err => console.log(err))
+      .then(res => setReviewMeta(res.data))
+      .catch(err => console.log(err));
+
+    axios.get(`http://localhost:3000/product/${productId}`)
+      .then(res => setProductName(res.data.name))
+      .catch(err => console.log(err));
+
   }, [])
 
   const handleSubmit = (evt) => {
@@ -84,6 +90,8 @@ export default function NewReviewModal(props) {
       <input type="checkbox" id="new-review-modal" className="modal-toggle" />
       <div className="modal">
         <div className="modal-box h-full">
+          <div className="text-3xl text-center">Write Your Review</div>
+          <div className="text-center pb-4 pt-2">About the {productName}</div>
           <div className="pb-2 text-xl">Overall Rating:</div>
           <StarsRater stars={stars} setStars={setStars} />
           <div className="py-3">
