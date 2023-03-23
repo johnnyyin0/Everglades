@@ -6,8 +6,17 @@ import { format } from 'date-fns'
 
 export default function ReviewTile({ review, setPhoto }) {
 
+  const [helpful, setHelpful] = useState(0)
+
+  const handleHelpful = (evt) => {
+    helpful <= 0 ? setHelpful(1) : setHelpful(0)
+  }
+  const handleHurtful = (evt) => {
+    helpful >= 0 ? setHelpful(-1) : setHelpful(0)
+  }
+
   return (
-    <div className="border-2" key={review.review_id}>
+    <div className="border-b-2 border-l-2" key={review.review_id}>
       <div className="flex justify-between px-5 pt-5">
         <div>
           <StarsWidget rating={review.rating} />
@@ -21,7 +30,7 @@ export default function ReviewTile({ review, setPhoto }) {
         <span className="pl-3 mt-1 text-s pb-5">I recommend this product</span></div>}</div>
       <div>{review.response && <div className="pb-5">
         <div className="ml-5 mr-5 bg-slate-200">
-          <div className="px-3 py-3 font-bold">Response:</div>
+          <div className="px-3 py-3 font-bold">Response from the seller:</div>
           <div className="pl-3 pb-3">{review.response}</div>
         </div>
       </div>}</div>
@@ -30,16 +39,16 @@ export default function ReviewTile({ review, setPhoto }) {
         </div>}</div>
       <div className="px-5 pb-5">
         <small>
-          Helpful?{' '}
-          <span
+          Helpful?{}
+          <span className="cursor-pointer underline pl-1"
             style={{
-              textDecoration: 'underline',
-              cursor: 'pointer'
+
+
               //pointerEvents: helpfulClicks.includes(answer.answer_id) ? 'none' : 'auto',
             }}
-            onClick={() => console.log()}
+            onClick={handleHelpful}
           >
-            Yes ({ })
+            Yes ({review.helpfulness + helpful})
           </span>{' '}
           | <Report />
         </small>
