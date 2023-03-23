@@ -46,6 +46,7 @@ export default function NewReviewModal(props) {
     nickname &&
     email.indexOf('@' > 0)){
       setBadSubmission({});
+      handleExit()
       let payload = {
         product_id: productId,
         rating: parseInt(stars),
@@ -62,7 +63,6 @@ export default function NewReviewModal(props) {
         data: payload,
         method: 'post'
       }
-      handleExit()
       axios(options)
       .then(res => console.log(res.data))
       .catch(err => console.log(err.data))
@@ -122,7 +122,7 @@ export default function NewReviewModal(props) {
   }
 
   const handleExit = (evt) => {
-    document.getElementById('new-review-modal').checked = true;
+    document.getElementById('new-review-modal').checked = true ? false : true
   }
 
 
