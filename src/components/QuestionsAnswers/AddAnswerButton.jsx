@@ -14,27 +14,22 @@ const AddAnswerButton = ({ questionId, productName, questionBody, getAnswers}) =
   };
 
   return (
-    <div style={{ display: 'flex', justifyContent: 'flex-end' }}>
+    <span>
       {questionId && (
         <>
           <span
             style={{ textDecoration: 'underline', cursor: 'pointer' }}
             onClick={handleAddAnswerClick}
           >
-            <small>Add Your Answer</small>
+            <small>Add Answer</small>
           </span>
           {showModal && (
-            <AddAnswerFormModal
-              getAnswers={getAnswers}
-              questionId={questionId}
-              questionBody={questionBody}
-              closeModal={handleCloseModal}
-              productName={productName}
+            <AddAnswerFormModal getAnswers={getAnswers} questionId={questionId} questionBody={questionBody} closeModal={handleCloseModal} productName={productName}
             />
           )}
         </>
       )}
-    </div>
+    </span>
   );
 };
 

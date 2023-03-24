@@ -26,10 +26,7 @@ const AnswerHelpful = ({answers, setAnswers, answerId,}) => {
     return (
         <span>        
         <span
-        style={{
-          textDecoration: 'underline',
-          cursor: 'pointer',
-          pointerEvents: helpfulClicks.includes(answerId) ? 'none' : 'auto',
+        style={{textDecoration: 'underline', cursor: 'pointer', pointerEvents: helpfulClicks.includes(answerId) ? 'none' : 'auto',
         }}
         onClick={() => handleHelpfulClick(answerId)}
       >

@@ -1,10 +1,10 @@
 import React, {useState} from 'react';
 import AddQuestionFormModal from './AddQuestionFormModal';
 
-const AddQuestionButton = ({productName, productId, getQuestions}) => {
+const AddQuestionButton = ({productName, productId, getQuestions,}) => {
   const [showModal, setShowModal] = useState(false);
 
-  const handleAddQuestionClick = () => {
+  const handleAddQuestionClick = (e) => {
     setShowModal(true);
   };
 
@@ -14,12 +14,8 @@ const AddQuestionButton = ({productName, productId, getQuestions}) => {
 
   return (
     <span>
-      <button
-      className='btn'
-        style={{
-          marginTop: '10px',
-          padding: '10px 10px',
-        }}
+      <button className='btn'
+        style={{marginTop: '10px',padding: '10px 10px',}}
         onClick={handleAddQuestionClick}
       >
         ADD A QUESTION +
