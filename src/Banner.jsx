@@ -74,7 +74,7 @@ const Banner = () => {
       <div
         style={{
           position: 'relative',
-          top: '80px',
+          top: '90px',
           display: 'flex',
           alignItems: 'center',
           justifyContent: 'center',
