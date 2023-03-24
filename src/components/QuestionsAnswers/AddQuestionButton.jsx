@@ -14,12 +14,8 @@ const AddQuestionButton = ({productName, productId, getQuestions,}) => {
 
   return (
     <span>
-      <button
-      className='btn'
-        style={{
-          marginTop: '10px',
-          padding: '10px 10px',
-        }}
+      <button className='btn'
+        style={{marginTop: '10px',padding: '10px 10px',}}
         onClick={handleAddQuestionClick}
       >
         ADD A QUESTION +

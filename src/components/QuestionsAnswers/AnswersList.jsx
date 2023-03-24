@@ -32,19 +32,9 @@ const AnswersList = ({questionId, questionBody, productName, questions, setQuest
           <b style={{fontSize:'20px'}}> Q: {questionBody}</b>
         </span>
         <span style={{justifyContent:'flex-end'}}>
-          <QuestionHelpful
-            questionId={questionId}
-            questions={questions}
-            setQuestions={setQuestions}
-            questionHelpfulness={questionHelpfulness}
-          />{' '}
-          |{' '}
-          <AddAnswerButton
-            getAnswers={getAnswers}
-            questionId={questionId}
-            questionBody={questionBody}
-            productName={productName}
-          />
+          <QuestionHelpful questionId={questionId} questions={questions} setQuestions={setQuestions} questionHelpfulness={questionHelpfulness}/>
+          {' '} | {' '}
+          <AddAnswerButton getAnswers={getAnswers} questionId={questionId} questionBody={questionBody} productName={productName}/>
         </span>
       </span>
       <div>

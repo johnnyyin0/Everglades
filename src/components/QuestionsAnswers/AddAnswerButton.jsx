@@ -24,12 +24,7 @@ const AddAnswerButton = ({ questionId, productName, questionBody, getAnswers}) =
             <small>Add Answer</small>
           </span>
           {showModal && (
-            <AddAnswerFormModal
-              getAnswers={getAnswers}
-              questionId={questionId}
-              questionBody={questionBody}
-              closeModal={handleCloseModal}
-              productName={productName}
+            <AddAnswerFormModal getAnswers={getAnswers} questionId={questionId} questionBody={questionBody} closeModal={handleCloseModal} productName={productName}
             />
           )}
         </>
