@@ -29,7 +29,7 @@ const AnswersList = ({questionId, questionBody, productName, questions, setQuest
     <span>
       <span style={{display:'flex', justifyContent:'space-between'}}>
         <span style={{justifyContent:'flex-start'}}>
-          <b> Q: {questionBody}</b>
+          <b style={{fontSize:'20px'}}> Q: {questionBody}</b>
         </span>
         <span style={{justifyContent:'flex-end'}}>
           <QuestionHelpful
