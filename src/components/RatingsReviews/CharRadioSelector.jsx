@@ -9,7 +9,7 @@ export default function CharRadioSelector({ chars, fitChar, id, best, worst, cha
    let desc = charMap[fitChar][parseInt(evt.target['value'])]
    setDescription(desc)
    let charObj = charRatings
-   charObj[evt.target.name] = (parseInt(evt.target.value) + 1).toString()
+   charObj[evt.target.name] = (parseInt(evt.target.value) + 1)
    if (Object.keys(charObj).length === Object.keys(chars).length) {
     setCharsFilled(true)
    }

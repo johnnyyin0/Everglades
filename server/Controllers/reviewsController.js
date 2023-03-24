@@ -7,7 +7,6 @@ reviewController = {
         sort: req.params.sort
       }
       Models.reviews.getReviews(params)
-      //req.body must be an object with at least a product_id key
       .then(response => {
         res.send(response.data)
       })
@@ -22,7 +21,7 @@ reviewController = {
       res.send(response.data)
     )
     .catch(err =>
-      res.status(422).send(err.data, 'Failed to post review!')
+      console.log(err.response.data, 'Failed to post review!')
     )
   },
   getMeta: (req, res) => {

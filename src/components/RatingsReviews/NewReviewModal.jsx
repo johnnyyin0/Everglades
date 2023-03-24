@@ -25,7 +25,7 @@ export default function NewReviewModal(props) {
   const [badSubmission, setBadSubmission] = useState({})
 
   //there's gotta be a better way to get the current product ID
-  let productId = window.location.pathname.slice(1) || 37311;
+  let productId = Number(window.location.pathname.slice(1)) || 37311;
 
   useEffect(() => {
     axios.get(`http://localhost:3000/meta/${productId}`)
@@ -96,7 +96,7 @@ export default function NewReviewModal(props) {
   //mandatory: ovarall rating, recommendation, characteristics, body (not summary), nickname, email
 
   const handleRecommend = (evt) => {
-    setRecommended(evt.target.value);
+    setRecommended(evt.target.value === 'yes' ? true : false);
   }
 
   const handleSummaryChange = (evt) => {

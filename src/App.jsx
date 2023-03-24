@@ -9,7 +9,7 @@ function App() {
   return (
 
     <div className="mx-auto max-w-screen-2xl w-11/12">
-      {/* <Overview /> */}
+      <Overview />
       <QuestionsAnswers />
       <RatingsReviews/>
     </div>
