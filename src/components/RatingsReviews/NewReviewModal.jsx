@@ -136,18 +136,18 @@ export default function NewReviewModal(props) {
         </label>
         <div className="text-3xl text-center">Write Your Review</div>
           <div className="text-center pb-4 pt-2">About the {productName}</div>
-          <div className={`${badSubmission.stars && stars === "0" ? 'border-2 border-error' : ''}`}>
+          <div className={`${badSubmission.stars && stars === "0" ? 'text-error' : ''}`}>
             <div className="pb-2 text-xl">Overall Rating:</div>
             <StarsRater stars={stars} setStars={setStars} />
           </div>
-          <div className={`py-3 ${badSubmission.recommended && recommended === null ? 'border-2 border-error' : ''}`}>
+          <div className={`py-3 ${badSubmission.recommended && recommended === null ? 'text-error' : ''}`}>
             <span className="py-2 pr-7">Do you recommend this product?</span>
             <input type="radio" name="radio-1" id="yes" value="yes" onClick={handleRecommend}/>
             <label className="pr-5 pl-2">Yes</label>
             <input type="radio" name="radio-1" id="no" value="no" onClick={handleRecommend}/>
             <label className="pl-2">No</label>
           </div>
-          <div className={`bg-slate-200 px-2 ${badSubmission.charRatings && !charsFilled ? 'border-2 border-error' : ''}`}>
+          <div className={`bg-slate-200 dark:bg-zinc-700 px-2 ${badSubmission.charRatings && !charsFilled ? 'border-2 border-error' : ''}`}>
             <CharacteristicReview chars={reviewMeta.characteristics} setCharRatings={setCharRatings} charRatings={charRatings} setCharsFilled={setCharsFilled} />
           </div>
           <div className="form-control w-full">

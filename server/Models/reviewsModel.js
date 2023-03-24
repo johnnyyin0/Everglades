@@ -1,7 +1,6 @@
 const axios = require('axios');
 const config = require('../../config.js');
 const path = require('path');
-const cloudinary = require('cloudinary').v2
 
 let reviewsModel = {
   url: 'https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfe/reviews',
