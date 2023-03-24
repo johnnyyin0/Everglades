@@ -12,6 +12,7 @@ export default function ReviewTile({ review, setPhoto }) {
   const restReview = review.body.slice(251)
   const [showMore, setShowMore] = useState(!!restReview)
   const [showLess, setShowLess] = useState(false)
+  const [report, setReport] = useState('Report')
 
   const handleShowMore = (evt) => {
     setShowMore(false)
@@ -38,7 +39,7 @@ export default function ReviewTile({ review, setPhoto }) {
       data: { review_id: review.review_id },
     }
     axios(options)
-    .then(res => console.log(res.data))
+    .then(res => setReport(res.data))
     .catch(err => console.log(err.data))
   }
 
@@ -84,7 +85,7 @@ export default function ReviewTile({ review, setPhoto }) {
           </span>
           {' '}|
           <span className="cursor-pointer underline pl-1" onClick={handleHurtful}>
-            Report
+            {report}
           </span>
         </small>
       </div>

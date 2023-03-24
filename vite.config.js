@@ -2,6 +2,7 @@ import { defineConfig } from 'vite'
 import react from '@vitejs/plugin-react'
 import dotenv from 'dotenv'
 import http from 'https'
+import path from 'path'
 
 dotenv.config()
 
