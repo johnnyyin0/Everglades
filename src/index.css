@@ -130,7 +130,7 @@ button:focus-visible {
 }
 
 .answer-list {
-  width: 50%;
+  width: 70%;
   max-height: 200px;
   overflow-y: scroll;
 }
