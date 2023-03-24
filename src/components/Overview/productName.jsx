@@ -1,7 +1,7 @@
 
 let ProductName = ({currentProduct, styleSelected}) => {
   return (
-    <div className='ml-6 mt-10'>
+    <div className='ml-6 mt-2'>
     <p className="font-sans text-2xl">{currentProduct.category}</p>
     <h2 className="font-sans font-semibold text-5xl">{currentProduct.name}</h2>
     {styleSelected.sale_price ?

@@ -7,8 +7,6 @@ import ProductImage from './ProductImage.jsx';
 import FullScreen from './FullScreen.jsx';
 import AddCart from './AddCart.jsx';
 import RatingsAndShare from './RatingsAndShare.jsx';
-import exampleStyle from './exampleStyle.js';
-import exampleProduct from './exampleProduct.js';
 import Carosel from './Carosel.jsx';
 import Styles from './styles.jsx';
 
@@ -36,11 +34,11 @@ let Overview = () => {
   };
 
 
-  useEffect(() => {
-    Axios.get('http://localhost:3000/cart')
-    .then(res => console.log(res.data, 'Items in your cart!'))
-    .catch(err => console.log(err));
-  }, [refresh])
+  // useEffect(() => {
+  //   Axios.get('http://localhost:3000/cart')
+  //   .then(res => console.log(res.data, 'Items in your cart!'))
+  //   .catch(err => console.log(err));
+  // }, [refresh])
   //states
 
   //loading state
@@ -52,9 +50,10 @@ let Overview = () => {
   let [skusArray, setSkusArray] = useState([])
 
   //array of all the products from api
-  let [currentProduct, setCurrentProduct] = useState(exampleProduct);
+  let [currentProduct, setCurrentProduct] = useState([]);
+
   //all the styles from
-  let [currentStyle, setCurrentStyle] = useState(exampleStyle.results);
+  let [currentStyle, setCurrentStyle] = useState([]);
 
   //index of photo currently selected on
   let [index, setIndex] = useState(0);
@@ -65,7 +64,7 @@ let Overview = () => {
   //state to be "selected" when picture is showing on overview
   let [styleSelected, setSelectedStyle] = useState(currentStyle[0])
 
-  let [photo, setPhoto] = useState(currentStyle[0].photos[0].thumbnail_url);
+  let [photo, setPhoto] = useState([]);
 
   let [relative, setRelative] = useState([]);
 
@@ -138,7 +137,7 @@ let Overview = () => {
       }
 
   return (
-    <div>
+    <div className="pt-16">
     { isFullScreen ?
       <FullScreen setFullScreen={setFullScreen} styleSelected={styleSelected} index={index} setIndex={setIndex} setPhoto={setPhoto} nextButton={nextButton} backButton={backButton}/>
       :
@@ -150,16 +149,16 @@ let Overview = () => {
       <ProductImage photo={photo} styleSelected={styleSelected} setPhoto={setPhoto} photo={photo} setFullScreen={setFullScreen} setIndex={setIndex} index={index} nextButton={nextButton} backButton={backButton}/>
       </div>
 
-      <div className='mt-10 rounded-lg shadow-xl col-span-2 w-[650px] h-[100px]'>
+      <div className='mt-10 rounded-lg shadow-xl col-span-2 w-[650px] h-[90px]'>
       <RatingsAndShare currentProduct={currentProduct} photo={photo}/>
       </div>
 
 
-      <div className=' rounded-lg shadow-xl col-span-2 h-[200px] w-[650px]'>
+      <div className=' rounded-lg shadow-xl col-span-2 h-[150px] w-[650px]'>
       <ProductName currentProduct={currentProduct} styleSelected={styleSelected}/>
       </div>
 
-      <div className=' rounded-lg shadow-xl col-span-2 w-[650px] h-[330px] overflow-y-auto'>
+      <div className=' rounded-lg shadow-xl col-span-2 w-[650px] h-[180px] overflow-y-auto'>
       <Styles currentStyle={currentStyle} setPhoto={setPhoto} setSelectedStyle={setSelectedStyle} styleSelected={styleSelected} createSkusArray={createSkusArray}/>
       </div>
 
@@ -175,7 +174,7 @@ let Overview = () => {
       </>
       }
       <div className='flex justify-center mt-10'>
-        <Carosel className='flex-1' relative={relative}/>
+        <Carosel className='flex-1 h-[200px]' relative={relative} currentProduct={currentProduct} styleSelected={styleSelected}/>
         </div>
         </div>
       );

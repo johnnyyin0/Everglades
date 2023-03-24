@@ -15,7 +15,7 @@ const ProductImage = ({photo, styleSelected, setPhoto, setFullScreen, setIndex, 
   return (
     <div className="grid grid-cols-6 gap-2">
       <div className="col-span-1">
-        <div className='flex flex-col justify-between gap-7 overflow-y-auto h-[800px] pt-12'>
+        <div className='flex flex-col justify-between overflow-y-auto w-[100px] h-[600px] pt-12'>
         <ImageGallery styleSelected={styleSelected} setPhoto={setPhoto} photo={photo} setFullScreen={setFullScreen} setIndex={setIndex} index={index}/>
         </div>
       </div>
@@ -24,12 +24,12 @@ const ProductImage = ({photo, styleSelected, setPhoto, setFullScreen, setIndex, 
       <img src={"https://webkit.org/demos/srcset/image-src.png"} className="rounded border bg-white p-1  object-cover h-[600px] w-[500px]" />
       :
       <>
-      <div className='flex flex-row justify-between w-[95%]'>
-      <div><button onClick={backButton} classname="btn m-1">Back</button></div>
-      <div><button onClick={nextButton} classname="btn m-1">Next</button></div>
+      <div className='flex flex-row justify-between w-[95%] ml-6 '>
+      <div className="border-black border-2 rounded-xl"><button onClick={backButton} classname="btn m-1">Back</button></div>
+      <div className="border-black border-2 rounded-xl"><button onClick={nextButton} classname="btn m-1 ">Next</button></div>
       </div>
 
-      <div onClick={handleFullScreen} className="h-[95%] w-[95%]">
+      <div onClick={handleFullScreen} className=" w-[95%] ml-6">
       <InnerImageZoom
             src = {photo}
             zoomSrc= {photo}
@@ -39,7 +39,7 @@ const ProductImage = ({photo, styleSelected, setPhoto, setFullScreen, setIndex, 
             fullscreenOnMobile={true}
             hideHint={true} // default false
             zoomType="hover"
-            className="cursor-crosshair rounded border bg-white p-1 object-fill max-h-[800px] max-w-[99%]"
+            className="cursor-crosshair rounded border bg-white p-1 object-fill max-w-[99%]"
             />
       </div>
       </>
@@ -48,9 +48,5 @@ const ProductImage = ({photo, styleSelected, setPhoto, setFullScreen, setIndex, 
     </div>
   )
 }
-// width = {dimensions?.height}
-// height = {dimensions?.height}
 
-// {/* <img className="rounded border bg-white p-1 object-cover h-[600px] w-[500px]" src={photo} alt="image" onClick={handleFullScreen}></img> */}
-// rounded border bg-white p-1 object-cover h-[600px] w-[500px]
 export default ProductImage;
