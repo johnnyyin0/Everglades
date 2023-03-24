@@ -17,11 +17,12 @@ const AnswersPhotos = ({ photos }) => {
   };
 
   return (
-    <div>
-      {images.map((image,index) => (
+    <div style={{ display: 'flex' }}>
+      {images.map((image, index) => (
         <img 
           key={index}
           className="h-32"
+          style={{ marginTop:'10px', marginBottom:'10px', marginRight: '10px' }}
           src={image.thumbnailUrl.url}
           onClick={() => handleImageClick(image)}
         />
