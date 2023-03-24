@@ -137,7 +137,7 @@ let Overview = () => {
       }
 
   return (
-    <div>
+    <div className="pt-16">
     { isFullScreen ?
       <FullScreen setFullScreen={setFullScreen} styleSelected={styleSelected} index={index} setIndex={setIndex} setPhoto={setPhoto} nextButton={nextButton} backButton={backButton}/>
       :
