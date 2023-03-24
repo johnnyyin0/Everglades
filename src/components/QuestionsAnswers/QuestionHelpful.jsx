@@ -28,9 +28,9 @@ const QuestionHelpful = ({questions, questionId, setQuestions, questionHelpfulne
     <span>
       <small>Helpful? </small>
       <span style={{ textDecoration: 'underline', cursor: 'pointer' }}
-      onClick={() => handleHelpfulClick(questionId)}>
-        <small> Yes ({questionHelpfulness})</small>
-      </span>
+        onClick={() => {handleHelpfulClick(questionId)}}>
+        <small> Yes ({questionHelpfulness})</small> 
+      </span> 
     </span>
     )
 }

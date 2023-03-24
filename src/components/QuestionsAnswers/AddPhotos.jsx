@@ -27,12 +27,7 @@ const AddPhotos = ({onSubmit}) => {
         onChange={handlePhotoChange}
       />
       {photos.map(photo => (
-        <img
-          key={photo.preview}
-          src={photo.preview}
-          alt={photo.url}
-          width="100"
-          height="100"
+        <img key={photo.preview} src={photo.preview} alt={photo.url} width="100" height="100"
         />
       ))}
     </div>

@@ -130,12 +130,20 @@ button:focus-visible {
 }
 
 .answer-list {
-  width: 65%;
+  width: 70%;
   max-height: 200px;
   overflow-y: scroll;
+}
+
+.answer-list::-webkit-scrollbar {
+  display: none;
 }
 
 .question-list {
   overflow-y: scroll;
   max-height: 600px;
+}
+
+.question-list::-webkit-scrollbar {
+  display: none;
 }
