@@ -10,7 +10,7 @@ const Logo = ({}) => {
     return(
         <>
             <div style={{display: 'flex', alignItems: 'center', justifyContent: 'space-between', background: '#213547', padding: '20px'}}>
-                <div style={{fontWeight: 'bold', fontSize: '24px', color:'white'}}>
+                <div style={{fontWeight: 'bold', fontSize: '30px', color:'white'}}>
                     EVERGLADES
                 </div>
                 <div style={{display: 'flex', alignItems: 'center'}}>

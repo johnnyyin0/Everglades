@@ -28,7 +28,7 @@ const QuestionList = ({questions, setQuestions, productId, productName, getQuest
       <ul>
         {searchTerm === ''
           ? questions.slice(0, questionsCount).map((question) => (
-              <li key={question.question_id} style={{ marginBottom: '5px', padding: '10px', border: '1px solid #ccc'}}>
+              <li key={question.question_id} style={{ marginBottom: '5px', padding: '10px',}}>
                 <div style={{ display: 'flex', justifyContent: 'space-between' }}>
                   <div>
                     <b>Q: {question.question_body}</b>
@@ -41,7 +41,7 @@ const QuestionList = ({questions, setQuestions, productId, productName, getQuest
               </li>
             ))
           :  filteredQuestions.slice(0, questionsCount).map((question) => (
-              <li key={question.question_id} style={{ marginBottom: '10px', padding: '10px', border: '1px solid #ccc'}}>
+              <li key={question.question_id} style={{ marginBottom: '10px', padding: '10px',}}>
                 <div style={{ display: 'flex', justifyContent: 'space-between' }}>
                   <div>
                     <b>Q: {question.question_body}</b>
