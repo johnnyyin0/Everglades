@@ -17,9 +17,10 @@ let reviewsModel = {
   },
   postReview: ( params ) => {
     const options = {
+      method: 'post',
       url: reviewsModel.url,
       headers: reviewsModel.headers,
-      params:params
+      data:params
       //object should include: product_id, rating (1-5), summary, body, recommend(bool), name, email, photos(array), characteristics(obj)
     }
     return axios(options)
@@ -35,6 +36,7 @@ let reviewsModel = {
   },
   markHelpful: ( params ) => {
     const options = {
+      method: 'put',
       url: path.join(reviewsModel.url, params.product_id, '/helpful'),
       headers: reviewsModel.headers,
       params: params
@@ -44,6 +46,7 @@ let reviewsModel = {
   },
   markReported: ( params ) => {
     const options = {
+      method: 'put',
       url: path.join(reviewsModel.url, params.product_id, '/report'),
       headers: reviewsModel.headers,
       params: params
