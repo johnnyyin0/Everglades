@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
 import AnswersList from './AnswersList';
 import AddQuestionButton from './AddQuestionButton'
-import QuestionHelpful from './QuestionHelpful';
 
 const QuestionList = ({questions, setQuestions, productId, productName, getQuestions}) => {
   const [searchTerm, setSearchTerm] = useState('');
@@ -22,42 +21,26 @@ const QuestionList = ({questions, setQuestions, productId, productName, getQuest
         value={searchTerm}
         onChange={handleChange}
         placeholder="HAVE A QUESTION? SEARCH FOR ANSWERS...🔍"
-        style={{margin: '10px 0', opacity: searchTerm ? 1 : 0.5, border: '1px solid black', width: '100%', height: '60px', marginBottom:'10px'}}
+        style={{margin: '10px 0', opacity: searchTerm ? 1 : 0.5, border: '1px solid black', width: '100%', height: '60px', marginBottom:'10px', marginTop: '10px',}}
       />
       <div className='question-list'>
-      <ul>
-        {searchTerm === ''
-          ? questions.slice(0, questionsCount).map((question) => (
-              <li key={question.question_id} style={{ marginBottom: '5px', padding: '10px',}}>
-                <div style={{ display: 'flex', justifyContent: 'space-between' }}>
-                  <div>
-                    <b>Q: {question.question_body}</b>
-                  </div>
-                  <div>
-                  <QuestionHelpful questions={questions} questionId={question.question_id} setQuestions={setQuestions} questionHelpfulness={question.question_helpfulness}/>
-                  </div>
-                </div>
-                <AnswersList questionId={question.question_id} questionBody={question.question_body} productName={productName}/>
-              </li>
-            ))
-          :  filteredQuestions.slice(0, questionsCount).map((question) => (
-              <li key={question.question_id} style={{ marginBottom: '10px', padding: '10px',}}>
-                <div style={{ display: 'flex', justifyContent: 'space-between' }}>
-                  <div>
-                    <b>Q: {question.question_body}</b>
-                  </div>
-                  <div>
-                  <QuestionHelpful questions={questions} questionId={question.question_id} setQuestions={setQuestions} questionHelpfulness={question.question_helpfulness}/>
-                  </div>
-                </div>
-                <AnswersList questionId={question.question_id} questionBody={question.question_body} productName={productName}/>
-              </li>
-            ))}
-      </ul>
+        <ul>
+          {searchTerm === ''
+            ? questions.slice(0, questionsCount).map((question) => (
+                <li key={question.question_id} style={{ marginBottom: '10px', padding: '10px',}}>
+                      <AnswersList questionId={question.question_id} questionBody={question.question_body} productName={productName} questions={questions} setQuestions={setQuestions} questionHelpfulness={question.question_helpfulness}/>          
+                </li>
+              ))
+            :  filteredQuestions.slice(0, questionsCount).map((question) => (
+              <li key={question.question_id} style={{ marginBottom: '10px', padding: '10px',}}>              
+                      <AnswersList questionId={question.question_id} questionBody={question.question_body} productName={productName} questions={questions} setQuestions={setQuestions} questionHelpfulness={question.question_helpfulness}/>
+                </li>
+              ))}
+        </ul>
       </div>
       <div style={{ display: 'flex'}}>
-      {questionsCount < filteredQuestions.length && (
-        <button className= 'btn' style={{padding: '10px 10px', marginRight: '10px', marginTop: '10px'}} onClick={() => setQuestionsCount(questionsCount + 2)}>LOAD MORE QUESTIONS</button> 
+        {questionsCount < filteredQuestions.length && (
+          <button className= 'btn' style={{padding: '10px 10px', marginRight: '10px', marginTop: '10px'}} onClick={()=>{ setQuestionsCount(questionsCount + 2)}}>LOAD MORE QUESTIONS</button>
       )} 
       <AddQuestionButton productName={productName} productId={productId} getQuestions={getQuestions}/>
       </div>

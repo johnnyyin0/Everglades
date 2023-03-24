@@ -1,10 +1,10 @@
 import React, {useState} from 'react';
 import AddQuestionFormModal from './AddQuestionFormModal';
 
-const AddQuestionButton = ({productName, productId, getQuestions}) => {
+const AddQuestionButton = ({productName, productId, getQuestions,}) => {
   const [showModal, setShowModal] = useState(false);
 
-  const handleAddQuestionClick = () => {
+  const handleAddQuestionClick = (e) => {
     setShowModal(true);
   };
 
