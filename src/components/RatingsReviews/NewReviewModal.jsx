@@ -154,7 +154,7 @@ export default function NewReviewModal(props) {
             <label className="label pt-5 w-full pb-0">
               <span className="text-xl w-full">Review summary:</span>
             </label>
-            <input type="text" className="input input-bordered w-full" placeholder="Example: Pest purchase ever!" onChange={handleSummaryChange} />
+            <input type="text" className="input input-bordered w-full" placeholder="Example: Pest purchase ever!" onChange={handleSummaryChange} maxLength={60} />
             <label className="label pt-5 pb-0">
               <span className="text-xl">Review body:</span>
             </label>
@@ -171,10 +171,16 @@ export default function NewReviewModal(props) {
                 <span className="label">What is your nickname?</span>
               </label>
               <input type="text" placeholder="Example: jackson11!" className={`input w-full max-w-xs ${ badSubmission.nickname && !nickname ? 'input-error' : 'input-bordered'}`} onChange={handleNickname} />
+              <label className="label pt-0 pb-0">
+              <span className="label-text-alt">For privacy reasons, do not use your full name or email address</span>
+            </label>
               <label className="label pb-0 pt-5">
                 <span className="w-full">What is your email?</span>
               </label>
               <input type="text" placeholder="Example: jackson11@email.com" className={`input w-full max-w-xs ${ badSubmission.email && email.indexOf('@') < 1 ? 'input-error' : 'input-bordered'}`} onChange={handleEmail} />
+              <label className="label pt-0 pb-0">
+              <span className="label-text-alt" >For authentication reasons, you will not be emailed</span>
+            </label>
               <div className="pt-5 flex justify-between">
                 <label className="btn" onClick={handleSubmit}>Submit Review</label>
                 <label className="btn btn-error" onClick={handleExit}>Cancel</label>
