@@ -9,7 +9,6 @@ export default function RatingsReviews(props) {
   const [showPhoto, setShowPhoto] = useState(false);
   const [allReviews, setAllReviews] = useState([]);
   const [shownReviews, setShownReviews] = useState([]);
-  const [newReview, setNewReview] = useState(true);
 
 
   let productId = window.location.pathname.slice(1) || 37311;
@@ -24,10 +23,10 @@ export default function RatingsReviews(props) {
 
   return (
     <div className="flex flex-row basis-full relative">
-      <NewReviewModal setNewReview={setNewReview}/>
+      <NewReviewModal />
       {showPhoto && <div className="card bg-base-100 shadow-x1 absolute z-20"><FullSizePhoto src={photo} setPhoto={setPhoto} /></div>}
       <Sidebar id={productId} setShownReviews={setShownReviews} allReviews={allReviews} setAllReviews={setAllReviews}/>
-      <ReviewsList setPhoto={setPhoto} id={productId} shownReviews={shownReviews} setShownReviews={setShownReviews} allReviews={allReviews} setAllReviews={setAllReviews} setNewReview={setNewReview}/>
+      <ReviewsList setPhoto={setPhoto} id={productId} shownReviews={shownReviews} setShownReviews={setShownReviews} allReviews={allReviews} setAllReviews={setAllReviews} />
     </div>
   )
 }
