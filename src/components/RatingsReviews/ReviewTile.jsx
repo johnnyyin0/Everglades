@@ -1,4 +1,5 @@
 import React, { useState } from 'react'
+import axios from 'axios'
 import StarsWidget from './StarsWidget'
 import Report from '../QuestionsAnswers/ReportButton.jsx'
 import CarouselPhoto from './CarouselPhoto.jsx'
@@ -23,10 +24,22 @@ export default function ReviewTile({ review, setPhoto }) {
   }
 
   const handleHelpful = (evt) => {
-    helpful <= 0 ? setHelpful(1) : setHelpful(0)
+    let options = {
+      url:"/api/reviews/helpful",
+      method:"put",
+      data: { review_id: review.review_id },
+    }
+
   }
   const handleHurtful = (evt) => {
-    helpful >= 0 ? setHelpful(-1) : setHelpful(0)
+    let options = {
+      url:"/api/reviews/report",
+      method:"put",
+      data: { review_id: review.review_id },
+    }
+    axios(options)
+    .then(res => console.log(res.data))
+    .catch(err => console.log(err.data))
   }
 
   return (
@@ -66,17 +79,13 @@ export default function ReviewTile({ review, setPhoto }) {
       <div className="px-5 pb-5">
         <small>
           Helpful?{ }
-          <span className="cursor-pointer underline pl-1"
-            style={{
-
-
-              //pointerEvents: helpfulClicks.includes(answer.answer_id) ? 'none' : 'auto',
-            }}
-            onClick={handleHelpful}
-          >
+          <span className="cursor-pointer underline pl-1" onClick={handleHelpful}>
             Yes ({review.helpfulness + helpful})
-          </span>{' '}
-          | <Report />
+          </span>
+          {' '}|
+          <span className="cursor-pointer underline pl-1" onClick={handleHurtful}>
+            Report
+          </span>
         </small>
       </div>
     </div>

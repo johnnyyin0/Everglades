@@ -3,14 +3,14 @@ import ReviewTile from './ReviewTile.jsx'
 import SortDropDown from './SortDropDown.jsx'
 import axios from 'axios'
 
-export default function ReviewsList({ id, setPhoto, shownReviews, setShownReviews, allReviews, setAllReviews, }) {
+export default function ReviewsList({ id, setPhoto, shownReviews, setShownReviews, allReviews, setAllReviews, sort, setSort }) {
 
-  const [sort, setSort] = useState('relevant');
+
   const [restReviews, setRestReviews] = useState([]);
   const [showMore, setShowMore] = useState(true);
 
   useEffect(() => {
-    let url = `http://localhost:3000/reviews/${id}/${sort}$`;
+    let url = `/api/reviews/${id}/${sort}`;
     axios.get(url)
       .then(res => {
         setAllReviews(res.data.results)

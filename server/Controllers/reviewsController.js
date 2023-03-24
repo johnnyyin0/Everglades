@@ -6,6 +6,7 @@ reviewController = {
         product_id: req.params.id,
         sort: req.params.sort
       }
+      console.log('ye made it!')
       Models.reviews.getReviews(params)
       .then(response => {
         res.send(response.data)
@@ -30,25 +31,28 @@ reviewController = {
       res.send(response.data)
     )
     .catch(err =>
-      res.send(err.data, 'Failed to fetch review metadata!')
+      res.send(err.data)
     )
   },
   markHelpful: (req, res) => {
-    Models.reviews.markHelpful({product_id: req.params.id})
+    Models.reviews.markHelpful(req.body)
     .then(response =>
-      res.send(response.data, 'This review has been marked helpful!')
+      res.send(response.data)
     )
-    .catch(err => res.send(err.data, 'Failed to mark review helpful!')
+    .catch(err => res.send(err.data)
     )
   },
   markReported: (req, res) => {
-    Models.reviews.markReported({product_id: req.params.id})
-    .then(response =>
-      res.send(response.data, 'This review has been reported!')
-      )
-    .catch(err =>
-      res.send(err.data, 'Failed to report review!')
-      )
+    console.log(req.headers, 'cookies')
+    res.cookie('votedReviews', 'butts')
+
+    // Models.reviews.markReported(req.body)
+    // .then(response =>
+    //   res.send(response.data)
+    //   )
+    // .catch(err =>
+    //   res.send(err.data)
+    //   )
   }
 }
 
