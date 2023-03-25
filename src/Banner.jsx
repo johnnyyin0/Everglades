@@ -21,6 +21,7 @@ const Banner = () => {
           <button style={{ padding: '5px', borderRadius: '0px', border: 'none', backgroundColor: 'white', color: 'grey',}}>
           <img src="../icons/search_icon.jpg" alt ="search icon" style={{width: '30px', height: '30px', background: 'white'}}></img>
           </button>
+          <img src="../icons/heart.png" alt="cart icon" style={{width: '25px', height: '25px', marginLeft: '20px', cursor:'pointer',}}></img>
           <img src="../icons/cart.png" alt="cart icon" style={{width: '30px', height: '30px', marginLeft: '20px', cursor:'pointer',}}></img>
         </div>
       </div>
