@@ -42,12 +42,12 @@ const CaroselProduct = ({product, setModal, selectClickedProduct}) => {
   }
 
   return (
-    <div className="border-2 border-[#21355F] mr-2 ml-2 hover:scale-105 ease-in-out duration-300 bg-white rounded-lg min-w-[220px]">
+    <div className="border-2 border-[#21355F] mr-2 ml-2 hover:scale-105 ease-in-out duration-300 bg-white rounded-lg min-w-[220px] dark:bg-zinc-800 dark:border-slate-200">
     <div >
       <a href={hrefUrl}>
     { product.photos[0].thumbnail_url == null ?
-      <img src={"https://webkit.org/demos/srcset/image-src.png"} className="rounded border bg-white p-1 object-cover h-[270px] w-[300px]" />
-      : <img src={product.photos[0].thumbnail_url} className="rounded border bg-white p-1 object-cover h-[270px] w-[300px]" />
+      <img src={"https://webkit.org/demos/srcset/image-src.png"} className="rounded border bg-white p-1 object-cover h-[270px] w-[300px] dark:bg-zinc-800 dark:border-zinc-800" />
+      : <img src={product.photos[0].thumbnail_url} className="rounded border bg-white p-1 object-cover h-[270px] w-[300px] dark:bg-zinc-800 dark:border-zinc-800" />
     }
         </a>
     <StarsWidget rating={avgReview} />
