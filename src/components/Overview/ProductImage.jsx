@@ -24,9 +24,12 @@ const ProductImage = ({photo, styleSelected, setPhoto, setFullScreen, setIndex, 
       <img src={"https://webkit.org/demos/srcset/image-src.png"} className="rounded border bg-white p-1  object-cover h-[600px] w-[500px]" />
       :
       <>
-      <div className='flex flex-row justify-between w-[95%] ml-6 '>
-      <div className="border-black border-2 rounded-xl"><button onClick={backButton} classname="btn m-1">Back</button></div>
-      <div className="border-black border-2 rounded-xl"><button onClick={nextButton} classname="btn m-1 ">Next</button></div>
+      <div className='flex flex-row justify-between w-[95%] ml-6'>
+{/* buttons */}
+      <div className="border-black border-2 rounded-xl"><button onClick={backButton} >Back</button></div>
+
+      <div className="border-black border-2 rounded-xl"><button onClick={nextButton} >Next</button></div>
+
       </div>
 
       <div onClick={handleFullScreen} className=" w-[95%] ml-6">

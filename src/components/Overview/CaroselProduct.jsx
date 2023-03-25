@@ -41,7 +41,7 @@ const CaroselProduct = ({product, setModal, selectClickedProduct}) => {
         </div>
       </a>
         </div>
-        <button className="max-h-[50px] max-w-[60px] bg-[#505050] absolute -right-0 -top-1 hover:scale-105 ease-in-out duration-300 rounded" onClick={handleModal}>⭐</button>
+        <button className="max-h-[50px] max-w-[60px] absolute -right-0 -top-0 hover:scale-105 ease-in-out duration-300 rounded opacity-80" onClick={handleModal}>⍟</button>
         </div>
         );
       }

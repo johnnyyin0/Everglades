@@ -1,10 +1,6 @@
 
 
 const CompareModal = ({modalVisable, setModal, clickedProduct,clickedProductStyle, currentProduct, styleSelected}) => {
-  console.log(currentProduct)
-  console.log(styleSelected)
-  console.log(clickedProduct)
-  console.log(clickedProductStyle)
   let handleClose = () => {
     setModal(false);
   }
