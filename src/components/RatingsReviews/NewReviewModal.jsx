@@ -64,7 +64,10 @@ export default function NewReviewModal(props) {
         method: 'post'
       }
       axios(options)
-      .then(res => console.log(res.data))
+      .then(res => {
+        console.log(res.data)
+        setSort('relevant')
+      })
       .catch(err => console.log(err.data))
     } else {
       handleIncompleteForm()

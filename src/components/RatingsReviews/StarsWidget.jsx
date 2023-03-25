@@ -16,8 +16,8 @@ export default function StarsWidget({ rating }) {
 
   return (
     <div className="flex-row -ml-1">
-      {starsArray.map(star => {
-        return <Star pctFilled={star} />
+      {starsArray.map((star, i) => {
+        return <Star pctFilled={star} key={i}/>
       })
       }
     </div>
