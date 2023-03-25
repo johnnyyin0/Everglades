@@ -34,7 +34,8 @@ const AddQuestionFormModal = ({ closeModal, productName, productId, getQuestions
                 Nickname*
               </span>
             </label>
-            <input type='text'
+            <input
+              type='text'
               placeholder='Example: jackson11!'
               className='input input-bordered w-full max-w-xs'
               value={name}
