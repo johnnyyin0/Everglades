@@ -7,7 +7,7 @@ const AddToCart = ({styleSelected, skusArray, addCartFunc}) => {
 
   let [formData, setForm] = useState({
     sku_id: "",
-    count: ""
+    count: 0
   });
 
   let handleSubmit = (e) => {
@@ -44,9 +44,9 @@ const AddToCart = ({styleSelected, skusArray, addCartFunc}) => {
     <div className="dropdown col-span-2 pl-6">
   <label tabIndex={0} className="btn m-1 w-[315px]">Select Size</label>
   <ul tabIndex={0} className="dropdown-content menu p-2 shadow bg-base-100 rounded-box w-52">
-    <div className>
+    <div>
     {skusArray.map((size, index) => {
-      return <li><a onClick={(e) => handleSize(size.size)}>{size.size}</a></li>
+      return <li key={index}><a onClick={(e) => handleSize(size.size)}>{size.size}</a></li>
     })}
     </div>
   </ul>
@@ -55,7 +55,7 @@ const AddToCart = ({styleSelected, skusArray, addCartFunc}) => {
     <label tabIndex={0} className="btn m-1 w-[240px]">QTY</label>
     <ul tabIndex={0} className="dropdown-content menu p-2 shadow bg-base-100 rounded-box w-52">
     {Array.from(Array(qty), (element, index) =>
-      <li><a onClick={(e) => handleQty(index + 1)}>{index + 1}</a></li>
+      <li key={index}><a onClick={(e) => handleQty(index + 1)}>{index + 1}</a></li>
    )}
     </ul>
   </div>

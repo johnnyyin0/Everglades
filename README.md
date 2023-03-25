@@ -48,15 +48,11 @@ it('Should perform expected action', () => {
 
 SOCIAL MEDIA BUTTONS
 
-//To install dependencies for social media buttons run:
+//To install dependencies run:
 
-  npm install react-share --save
-
-CLOUDINARY DEPENDANCY
-
+npm install react-share --save
 npm install cloudinary
-
-PHOTO ZOOM REQUIRED DEPENDENCIES
-
 npm install react-inner-image-zoom --force
 npm install -S react-image-size --force
+npm install cookie-parser --force
+npm install react-icons
