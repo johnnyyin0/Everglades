@@ -1,4 +1,3 @@
-import StarsWidget from '../RatingsReviews/StarsWidget.jsx';
 import CaroselProduct from './CaroselProduct.jsx';
 import CompareModal from './CompareModal.jsx'
 import {useState, useEffect} from 'react';
@@ -20,7 +19,7 @@ let Carosel = ({relative, currentProduct, styleSelected}) => {
 
   return (
 
-    <div className="carousel carousel-center rounded-lg h-[300px]">
+    <div className="flex flex-row">
       {relative.map( product =>
       <CaroselProduct key={product.style_id} product={product} setModal={setModal} selectClickedProduct={selectClickedProduct}/>
       )}
