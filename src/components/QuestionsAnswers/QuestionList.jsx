@@ -40,8 +40,7 @@ const QuestionList = ({questions, setQuestions, productId, productName, getQuest
       </div>
       <div style={{ display: 'flex'}}>
         {questionsCount < filteredQuestions.length && (
-          <button className= 'btn' style={{padding: '10px 10px', marginRight: '10px', marginTop: '10px'}} 
-          onClick={()=>{ setQuestionsCount(questionsCount + 2)}}>LOAD MORE QUESTIONS</button>
+          <button className= 'btn' style={{padding: '10px 10px', marginRight: '10px', marginTop: '10px'}} onClick={()=>{ setQuestionsCount(questionsCount + 2)}}>LOAD MORE QUESTIONS</button>
       )} 
       <AddQuestionButton productName={productName} productId={productId} getQuestions={getQuestions}/>
       </div>

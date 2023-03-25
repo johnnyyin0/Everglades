@@ -6,7 +6,7 @@ const Banner = () => {
   const handleSearch = (event) => {
     setSearchText(event.target.value);
   };
-
+  
   return (
     <>
       <div style={{position: 'fixed', top: 0, left: 0, right: 0, display: 'flex', alignItems: 'center', justifyContent: 'space-between', background: '#213547', padding: '20px',  zIndex: 1, }}>
@@ -36,5 +36,4 @@ const Banner = () => {
     </>
   );
 };
-
 export default Banner;
