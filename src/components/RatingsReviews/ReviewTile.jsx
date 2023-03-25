@@ -7,12 +7,13 @@ import { format } from 'date-fns'
 
 export default function ReviewTile({ review, setPhoto }) {
 
-  const [helpful, setHelpful] = useState(0)
+  const [helpful, setHelpful] = useState(false)
   const clippedReview = review.body.slice(0, 251)
   const restReview = review.body.slice(251)
   const [showMore, setShowMore] = useState(!!restReview)
   const [showLess, setShowLess] = useState(false)
   const [report, setReport] = useState('Report')
+  const [helpfulLabel, setHelpfulLabel] = useState('Yes')
 
   const handleShowMore = (evt) => {
     setShowMore(false)
@@ -30,6 +31,15 @@ export default function ReviewTile({ review, setPhoto }) {
       method:"put",
       data: { review_id: review.review_id },
     }
+    axios(options)
+      .then(res => {
+        if (res.data !== 'Feedback already recieved'){
+          console.log(res)
+          setHelpful(true)
+          setHelpfulLabel('Thank you!')
+        }
+      })
+      .catch(err => console.log(err))
 
   }
   const handleHurtful = (evt) => {
@@ -81,7 +91,7 @@ export default function ReviewTile({ review, setPhoto }) {
         <small>
           Helpful?{ }
           <span className="cursor-pointer underline pl-1" onClick={handleHelpful}>
-            Yes ({review.helpfulness + helpful})
+            {helpfulLabel} ({ helpful ? review.helpfulness + 1 : review.helpfulness })
           </span>
           {' '}|
           <span className="cursor-pointer underline pl-1" onClick={handleHurtful}>

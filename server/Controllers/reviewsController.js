@@ -39,10 +39,14 @@ reviewController = {
       let alreadyVoted = req.cookies.votedReviews.split(',')
       if (alreadyVoted.includes(req.body.review_id.toString())) {
         res.end('Feedback already recieved')
+        return
       } else {
         alreadyVoted.push(req.body.review_id)
       }
       res.cookie('votedReviews', alreadyVoted.join(','))
+      Models.reviews.markHelpful(req.body)
+      .then(response => res.end('Thanks for your feedback!'))
+      .catch(err => res.end(err.data))
     } else {
       res.cookie('votedReviews', req.body.review_id)
       Models.reviews.markHelpful(req.body)
@@ -51,15 +55,18 @@ reviewController = {
     }
   },
   markReported: (req, res) => {
-    console.log(req.cookies)
     if (req.cookies.votedReviews) {
       let alreadyVoted = req.cookies.votedReviews.split(',')
       if (alreadyVoted.includes(req.body.review_id.toString())) {
         res.end('Feedback already recieved')
+        return
       } else {
         alreadyVoted.push(req.body.review_id)
       }
       res.cookie('votedReviews', alreadyVoted.join(','))
+      Models.reviews.markReported(req.body)
+      .then(response => res.end('Thanks for your feedback!'))
+      .catch(err => res.end(err.data))
     } else {
       res.cookie('votedReviews', req.body.review_id)
       Models.reviews.markReported(req.body)

@@ -36,7 +36,7 @@ let reviewsModel = {
   markHelpful: ( data ) => {
     const options = {
       method: 'put',
-      url: path.join(reviewsModel.url, req.body.review.id.toString(), '/helpful'),
+      url: path.join(reviewsModel.url, data.review_id.toString(), '/helpful'),
       headers: reviewsModel.headers,
       data: data
       //should be an object with a product_id key
