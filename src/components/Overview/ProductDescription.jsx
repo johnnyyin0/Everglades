@@ -1,3 +1,5 @@
+import React from 'react';
+
 let ProductDescription = ({currentProduct}) => {
   return (
 <div className="flex w-[1150px] mb-14 pb-4 mt-5">

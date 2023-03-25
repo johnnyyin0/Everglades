@@ -146,7 +146,7 @@ let Overview = () => {
       <div className="grid grid-cols-6 gap-2" >
       <div className="col-span-1 row-span-4"></div>
       <div className='rounded-lg content-end col-span-2 row-span-4'>
-      <ProductImage photo={photo} styleSelected={styleSelected} setPhoto={setPhoto} photo={photo} setFullScreen={setFullScreen} setIndex={setIndex} index={index} nextButton={nextButton} backButton={backButton}/>
+      <ProductImage photo={photo} styleSelected={styleSelected} setPhoto={setPhoto} setFullScreen={setFullScreen} setIndex={setIndex} index={index} nextButton={nextButton} backButton={backButton}/>
       </div>
 
       <div className='mt-10 rounded-lg shadow-xl col-span-2 w-[650px] h-[90px]'>
