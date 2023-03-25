@@ -42,24 +42,24 @@ const CaroselProduct = ({product, setModal, selectClickedProduct}) => {
   }
 
   return (
-    <div className="border-2 border-[#21355F] mr-2 ml-2 hover:scale-105 ease-in-out duration-300 bg-white rounded-lg">
-    <div className="grid grid-cols-1 auto-rows-max gap-2">
+    <div className="border-2 border-[#21355F] mr-2 ml-2 hover:scale-105 ease-in-out duration-300 bg-white rounded-lg min-w-[220px]">
+    <div >
       <a href={hrefUrl}>
     { product.photos[0].thumbnail_url == null ?
-      <img src={"https://webkit.org/demos/srcset/image-src.png"} className="rounded border bg-white p-1 object-cover h-[180px] w-[180px]" />
-      : <img src={product.photos[0].thumbnail_url} className="rounded border bg-white p-1 object-cover h-[180px] w-[180px]" />
+      <img src={"https://webkit.org/demos/srcset/image-src.png"} className="rounded border bg-white p-1 object-cover h-[270px] w-[300px]" />
+      : <img src={product.photos[0].thumbnail_url} className="rounded border bg-white p-1 object-cover h-[270px] w-[300px]" />
     }
         </a>
     <StarsWidget rating={avgReview} />
-      <div className="underline">
-        <p className="">{carouselProduct.category}</p>
-        <p className="">{carouselProduct.name}</p>
+      <div>
+        <p className="font-sans text-lg">{carouselProduct.category}</p>
+        <p className="font-sans font-semibold text-1xl">{carouselProduct.name}</p>
           {product.sale_price ?
           <>
-          <p className="line-through">{product.original_price}</p>
-          <p>{product.sale_price}</p>
+          <p className="line-through font-sans text-lg">{product.original_price}</p>
+          <p className="font-sans text-lg">{product.sale_price}</p>
           </>
-        : <p>{product.original_price}</p>}
+        : <p className="font-sans text-lg">{product.original_price}</p>}
         </div>
         </div>
         <button className="max-h-[50px] max-w-[60px] absolute -right-0 -top-0 hover:scale-105 ease-in-out duration-300 rounded opacity-80" onClick={handleModal}>⍟</button>
