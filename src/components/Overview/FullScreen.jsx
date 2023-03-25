@@ -24,7 +24,7 @@ const FullScreen = ({setFullScreen, styleSelected, setIndex, index, setPhoto, ph
       <InnerImageZoom
             src = {styleSelected.photos[index].url}
             zoomSrc= {styleSelected.photos[index].url}
-            width = {dimensions?.width * 3}
+            width = {dimensions?.width * 2}
             zoomScale = {1}
             fullscreenOnMobile={true}
             hideHint={false} // default false
