@@ -6,10 +6,10 @@ const Styles = ({currentStyle, setPhoto, styleSelected, setSelectedStyle, create
     <>
       <p className="pl-4 pb-2 text-xl">Styles</p>
     <div className="h-30 grid grid-cols-4 gap-2 content-center ">
-      {currentStyle.map(style => {
+      {currentStyle.map((style, index) => {
         return (
-          <div>
-          <Style className="col-span-1" style={style} key={style.style_id} setPhoto={setPhoto} setSelectedStyle={setSelectedStyle} styleSelected={styleSelected} createSkusArray={createSkusArray}/>
+          <div key={index}>
+          <Style className="col-span-1" style={style} setPhoto={setPhoto} setSelectedStyle={setSelectedStyle} styleSelected={styleSelected} createSkusArray={createSkusArray}/>
         </div>
         )
       })}

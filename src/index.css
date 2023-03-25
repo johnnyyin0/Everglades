@@ -147,3 +147,7 @@ button:focus-visible {
 .question-list::-webkit-scrollbar {
   display: none;
 }
+
+#slider::-webkit-scrollbar {
+  display: none;
+}
