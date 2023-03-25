@@ -21,11 +21,11 @@ const Banner = () => {
           <button style={{ padding: '5px', borderRadius: '0px', border: 'none', backgroundColor: 'white', color: 'grey',}}>
           <img src="../icons/search_icon.jpg" alt ="search icon" style={{width: '30px', height: '30px', background: 'white'}}></img>
           </button>
-          <img src="../icons/heart.png" alt="cart icon" style={{width: '25px', height: '25px', marginLeft: '20px', cursor:'pointer',}}></img>
+          <img src="../icons/heart.png" alt="heart icon" className="w-[25px] h-[25px] ml-[20px] cursor-pointer" ></img>
           <img src="../icons/cart.png" alt="cart icon" style={{width: '30px', height: '30px', marginLeft: '20px', cursor:'pointer',}}></img>
         </div>
       </div>
-      <div style={{position: 'relative', top: '90px', display: 'flex', alignItems: 'center', justifyContent: 'center', background: '#f2f2f2', padding: '10px', marginBottom: '60px',}}>
+      <div className="relative top-[90px] flex items-center justify-center bg-[#f2f2f2] p-[10px] mb-[60px] dark:bg-zinc-600">
         <div>
           <b>
             SIGN UP NOW AND GET 20% OFF + FREE SHIPPING ON YOUR FIRST ORDER!{' '}
