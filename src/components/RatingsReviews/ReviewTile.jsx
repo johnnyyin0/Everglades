@@ -1,4 +1,5 @@
 import React, { useState } from 'react'
+import axios from 'axios'
 import StarsWidget from './StarsWidget'
 import Report from '../QuestionsAnswers/ReportButton.jsx'
 import CarouselPhoto from './CarouselPhoto.jsx'
@@ -6,11 +7,13 @@ import { format } from 'date-fns'
 
 export default function ReviewTile({ review, setPhoto }) {
 
-  const [helpful, setHelpful] = useState(0)
+  const [helpful, setHelpful] = useState(false)
   const clippedReview = review.body.slice(0, 251)
   const restReview = review.body.slice(251)
   const [showMore, setShowMore] = useState(!!restReview)
   const [showLess, setShowLess] = useState(false)
+  const [report, setReport] = useState('Report')
+  const [helpfulLabel, setHelpfulLabel] = useState('Yes')
 
   const handleShowMore = (evt) => {
     setShowMore(false)
@@ -23,10 +26,31 @@ export default function ReviewTile({ review, setPhoto }) {
   }
 
   const handleHelpful = (evt) => {
-    helpful <= 0 ? setHelpful(1) : setHelpful(0)
+    let options = {
+      url:"/api/reviews/helpful",
+      method:"put",
+      data: { review_id: review.review_id },
+    }
+    axios(options)
+      .then(res => {
+        if (res.data !== 'Feedback already recieved'){
+          console.log(res)
+          setHelpful(true)
+          setHelpfulLabel('Thank you!')
+        }
+      })
+      .catch(err => console.log(err))
+
   }
   const handleHurtful = (evt) => {
-    helpful >= 0 ? setHelpful(-1) : setHelpful(0)
+    let options = {
+      url:"/api/reviews/report",
+      method:"put",
+      data: { review_id: review.review_id },
+    }
+    axios(options)
+    .then(res => setReport(res.data))
+    .catch(err => console.log(err.data))
   }
 
   return (
@@ -66,17 +90,13 @@ export default function ReviewTile({ review, setPhoto }) {
       <div className="px-5 pb-5">
         <small>
           Helpful?{ }
-          <span className="cursor-pointer underline pl-1"
-            style={{
-
-
-              //pointerEvents: helpfulClicks.includes(answer.answer_id) ? 'none' : 'auto',
-            }}
-            onClick={handleHelpful}
-          >
-            Yes ({review.helpfulness + helpful})
-          </span>{' '}
-          | <Report />
+          <span className="cursor-pointer underline pl-1" onClick={handleHelpful}>
+            {helpfulLabel} ({ helpful ? review.helpfulness + 1 : review.helpfulness })
+          </span>
+          {' '}|
+          <span className="cursor-pointer underline pl-1" onClick={handleHurtful}>
+            {report}
+          </span>
         </small>
       </div>
     </div>

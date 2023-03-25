@@ -6,7 +6,6 @@ let reviewsModel = {
   url: 'https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfe/reviews',
   headers: { 'Authorization' : config.TOKEN},
   getReviews: ( params ) => {
-    console.log(params, 'what we setting as params')
     const options = {
       url: reviewsModel.url,
       headers: reviewsModel.headers,
@@ -15,12 +14,12 @@ let reviewsModel = {
     }
     return axios(options)
   },
-  postReview: ( params ) => {
+  postReview: ( data ) => {
     const options = {
       method: 'post',
       url: reviewsModel.url,
       headers: reviewsModel.headers,
-      data:params
+      data: data
       //object should include: product_id, rating (1-5), summary, body, recommend(bool), name, email, photos(array), characteristics(obj)
     }
     return axios(options)
@@ -34,22 +33,22 @@ let reviewsModel = {
     }
     return axios(options)
   },
-  markHelpful: ( params ) => {
+  markHelpful: ( data ) => {
     const options = {
       method: 'put',
-      url: path.join(reviewsModel.url, params.product_id, '/helpful'),
+      url: path.join(reviewsModel.url, data.review_id.toString(), '/helpful'),
       headers: reviewsModel.headers,
-      params: params
+      data: data
       //should be an object with a product_id key
     }
     return axios(options)
   },
-  markReported: ( params ) => {
+  markReported: ( data ) => {
     const options = {
       method: 'put',
-      url: path.join(reviewsModel.url, params.product_id, '/report'),
+      url: path.join(reviewsModel.url, data.review_id.toString(), '/report'),
       headers: reviewsModel.headers,
-      params: params
+      data: data
      //should be an object with a product_id key
     }
     return axios(options)
