@@ -14,7 +14,7 @@ export default function Sidebar({ id, allReviews, setAllReviews }) {
 
   useEffect(() => {
     let options = {
-      url: `http://localhost:3000/meta/${id}`,
+      url: `/api/meta/${id}`,
     };
     axios(options)
       .then(res => {
