@@ -42,7 +42,7 @@ export default function Sidebar({ id, allReviews, setAllReviews }) {
 
   return (
 
-    <div className="w-max h-max ml-5 mt-5 pb-16">
+    <div className="w-max h-max ml-5 mt-5 pb-16" title='ratings-reviews-sidebar'>
       {reviewMeta && <div>
         <MainAverage avgReview={avgReview} pctRecommended={pctRecommended}/>
         <TotalsFilters setFilter={setStarFilter} ratings={reviewMeta.ratings} totalRatings={ratingsCount} setAllReviews={setAllReviews} allReviews={allReviews}/>
