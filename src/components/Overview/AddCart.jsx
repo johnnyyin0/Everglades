@@ -59,7 +59,7 @@ const AddToCart = ({styleSelected, skusArray, addCartFunc}) => {
     <div className="grid grid-cols-4 gap-4 pb-6">
     <div className="dropdown col-span-2 pl-6">
   <label tabIndex={0} className="btn m-1 w-[315px]">Select Size</label>
-  <label tabIndex={0} className={!redSelectSize ? 'btn m-1 w-[315px]' : 'btn btn-error w-[315px]'} require>Select Size</label>
+
 
   { redSelectSize ?
   <p className='text-rose-700 text-center'>Please Select a Size</p>
