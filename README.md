@@ -77,11 +77,10 @@ To start the test monitoring:
 ```
 npm test
 ```
-
-//To test coverage:
-//npm run coverage
-//NOT YET IMPLEMENTED
-
+//To test coverage(WIP):
+```
+npm run coverage
+```
 To add tests:
 (ref: https://vitest.dev/api/)
 1. Create a new file in the 'spec' folder with the suffix 'spec.js'
