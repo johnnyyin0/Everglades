@@ -15,15 +15,11 @@ export default function RatingsReviews(props) {
   let productId = window.location.pathname.slice(1) || 37311;
 
   useEffect(() => {
-    //
-  }, [])
-
-  useEffect(() => {
     photo ? setShowPhoto(true) : setShowPhoto(false)
   }, [photo]);
 
   return (
-    <div className="flex flex-row basis-full relative">
+    <div className="flex flex-row basis-full relative" title="ratings-reviews-module">
       <NewReviewModal setSort={setSort}/>
       {showPhoto && <div className="card bg-base-100 shadow-x1 absolute z-20"><FullSizePhoto src={photo} setPhoto={setPhoto} /></div>}
       <Sidebar id={productId} setShownReviews={setShownReviews} allReviews={allReviews} setAllReviews={setAllReviews}/>

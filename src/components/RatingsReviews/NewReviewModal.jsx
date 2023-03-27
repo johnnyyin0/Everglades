@@ -130,7 +130,7 @@ export default function NewReviewModal(props) {
 
 
   return (
-    <div className="static">
+    <div className="static" title="new-review-modal">
       <input type="checkbox" id="new-review-modal" className="modal-toggle" />
       <div className="modal">
         <div className="modal-box h-full">

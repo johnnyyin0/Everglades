@@ -43,7 +43,7 @@ export default function ReviewsList({ id, setPhoto, shownReviews, setShownReview
   }
 
   return (
-    <section className="flex-column w-full">
+    <section className="flex-column w-full" title="reviews-list">
       <h3 className="mx-10 pt-10 pb-4">{allReviews.length} reviews, sorted by {<SortDropDown sort={sort} setSort={setSort} />}
       </h3>
       <div className="max-h-screen overflow-y-scroll">
