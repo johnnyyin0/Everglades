@@ -15,7 +15,7 @@ In this mockup project, we created a modern and user-friendly single-page shoppi
 ![Jest](https://img.shields.io/badge/Jest-323330?style=for-the-badge&logo=Jest&logoColor=white)
 ![MongoDB](https://img.shields.io/badge/MongoDB-%234ea94b.svg?style=for-the-badge&logo=mongodb&logoColor=white)
 
-## Demo Videos for our Components
+## Components
 
 ### Overview:
 
