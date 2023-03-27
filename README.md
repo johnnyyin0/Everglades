@@ -13,6 +13,18 @@ Our teams objective is to deliver a fully functional web application that meets 
 ![Axios](https://img.shields.io/badge/-Axios-671ddf?logo=axios&logoColor=black&style=for-the-badge)
 ![TailwindCSS](https://img.shields.io/badge/tailwindcss-%2338B2AC.svg?style=for-the-badge&logo=tailwind-css&logoColor=white)
 ![Jest](https://img.shields.io/badge/Jest-323330?style=for-the-badge&logo=Jest&logoColor=white)
+![MongoDB](https://img.shields.io/badge/MongoDB-%234ea94b.svg?style=for-the-badge&logo=mongodb&logoColor=white)
+
+## Demo Videos
+
+### Overview:
+
+### Questions and Answers:
+
+### Ratings and Reviews:
+
+### Related Items and Outfits:
+
 
 ## Installation & Use
 1. Clone repo
@@ -43,9 +55,9 @@ npm install react-icons
 // this enables simultaneous operation of vite and nodemon via a single command
 npm i -g concurrently
 ```
-5. setup enviornmental variables in using the example.env and config.example.js:
+5. setup enviornmental variables files:
 
-create a copy of these two files and remove 'example' from the file name
+using the example.env and config.example.js, create a copy of these two files and remove 'example' from the file name
 
 PORT - whichever port you want to run the backend server on, defaults to 3000 in 'server/index.js'
 
