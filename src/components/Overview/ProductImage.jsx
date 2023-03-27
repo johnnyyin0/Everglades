@@ -26,9 +26,9 @@ const ProductImage = ({photo, styleSelected, setPhoto, setFullScreen, setIndex, 
       <>
       <div className='flex flex-row justify-between w-[95%] ml-6'>
 {/* buttons */}
-      <div className="border-black border-2 rounded-xl"><button onClick={backButton} >Back</button></div>
+      <div className="rounded-xl"><button className="btn m-1" onClick={backButton} >Back</button></div>
 
-      <div className="border-black border-2 rounded-xl"><button onClick={nextButton} >Next</button></div>
+      <div className="rounded-xl"><button className="btn m-1" onClick={nextButton} >Next</button></div>
 
       </div>
 

@@ -30,7 +30,7 @@ let Carosel = ({relative, currentProduct, styleSelected}) => {
 
   return (
 
-    <div className="flex items-center relative ">
+    <div className="flex items-center relative">
       <MdChevronLeft onClick={slideLeft} size={60} className="cursor-pointer opacity-50 hover:opacity-100"/>
       <div id='slider' className='w-[1100px] h-[415px] h-full flex flex-row overflow-x-scroll scroll whitespace-nowrap scroll-smooth'>
       {relative.map( product =>

@@ -42,7 +42,7 @@ const CaroselProduct = ({product, setModal, selectClickedProduct}) => {
   }
 
   return (
-    <div className="border-2 border-[#21355F] mr-2 ml-2 hover:scale-105 ease-in-out duration-300 bg-white rounded-lg min-w-[220px] dark:bg-zinc-800 dark:border-slate-200">
+    <div className="border-2 border-[#21355F] relative  scale-90 hover:scale-100 ease-in-out duration-300 bg-white rounded-lg min-w-[220px] dark:bg-zinc-800 dark:border-slate-200">
     <div >
       <a href={hrefUrl}>
     { product.photos[0].thumbnail_url == null ?
@@ -62,7 +62,7 @@ const CaroselProduct = ({product, setModal, selectClickedProduct}) => {
         : <p className="font-sans text-lg">{product.original_price}</p>}
         </div>
         </div>
-        <button className="max-h-[50px] max-w-[60px] absolute -right-0 -top-0 hover:scale-105 ease-in-out duration-300 rounded opacity-80" onClick={handleModal}>⍟</button>
+        <button className="max-h-[50px] max-w-[60px] absolute right-0 -top-0 hover:scale-100 ease-in-out duration-300 rounded opacity-80" onClick={handleModal}>⍟</button>
         </div>
         );
       }
