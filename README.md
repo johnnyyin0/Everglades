@@ -19,20 +19,19 @@ Our goal is to provide a modern, user-friendly interface that will increase sale
 
 ### Overview:
 
-
+> video
 
 ### Questions and Answers:
 
-
+> video
 
 ### Ratings and Reviews:
 
-
+> video
 
 ### Related Items & Comparison:
 
-
-
+> video
 
 ## Installation & Use
 1. Clone repo
