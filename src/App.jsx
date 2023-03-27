@@ -11,7 +11,9 @@ function App() {
 
   useEffect(() => {
     if (localStorage.getItem('color-theme') === 'dark' || (!('color-theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)){
+
       setTheme('dark')
+      document.getElementById('themetoggle').checked = false
     }
   }, [])
 
