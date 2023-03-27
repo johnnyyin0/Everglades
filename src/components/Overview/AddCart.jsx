@@ -65,7 +65,7 @@ const AddToCart = ({styleSelected, skusArray, addCartFunc}) => {
 
   return (
   <form onSubmit={(e) => handleSubmit(e)}>
-    <div className="grid grid-cols-4 gap-4 pb-6">
+    <div className="grid grid-cols-4 gap-4 pb-6" title="add-cart">
       <div className="dropdown col-span-2 pl-6">
 
         { redSelectSize ?

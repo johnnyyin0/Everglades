@@ -4,7 +4,7 @@ import StarsWidget from '../RatingsReviews/StarsWidget.jsx';
 import {useState, useEffect} from 'react';
 
 const CaroselProduct = ({product, setModal, selectClickedProduct}) => {
-  console.log(product);
+
   let hrefUrl = `http://localhost:5173/${product.productId}`;
 
   let [carouselProduct, setCarouselProduct] = useState('');

@@ -85,7 +85,10 @@ let Overview = () => {
       Axios.get(`http://localhost:3000/product/${productId}`)
       .then(res => setCurrentProduct(res.data))
       .catch(err => console.log('Failed to load product'))
-      .then(Axios.get(`http://localhost:3000/product/${productId}/styles`)
+    }, [])
+
+    useEffect(() => {
+      Axios.get(`http://localhost:3000/product/${productId}/styles`)
       .then(res => {
         setCurrentStyle(res.data.results);
         createSkusArray(res.data.results[0].skus);
@@ -93,9 +96,8 @@ let Overview = () => {
         setPhoto(res.data.results[0].photos[0].url);
         notLoading(false);
       })
-      .catch(err => console.log('Failed to load product styles')));
-    }, [])
-
+      .catch(err => console.log('Failed to load product styles'))
+    })
 
     let relativeIdNumbers = [];
     useEffect(() => {

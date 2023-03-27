@@ -28,7 +28,7 @@ const RatingsAndShare = ({currentProduct, photo}) => {
   }, [])
 
   return (
-    <div>
+    <div title="rating-and-share">
       <div className="pl-5">
       <StarsWidget rating={avgReview} />
       </div>
