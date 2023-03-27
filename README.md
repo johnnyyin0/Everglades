@@ -1,6 +1,6 @@
 # Team Everglades: FEC-project-atelier
 
-Our goal is to provide a modern, user-friendly interface that will increase sales numbers and enhance the overall customer experience. In this mockup project, we have focused on designing a clean and intuitive interface that will allow customers to easily browse through our single-page shopping website.
+Our goal is to provide a modern, user-friendly interface that should enhance the overall customer experience for an ecommerce website. In this mockup project, we focused on designing a clean and intuitive interface that will allow customers to easily browse through our single-page shopping website.
 
 ## Tech Stack
 
