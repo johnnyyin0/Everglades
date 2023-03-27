@@ -19,19 +19,19 @@ In this mockup project, we created a modern and user-friendly single-page shoppi
 
 ### Overview:
 
-> video
+> video placeholder here
 
 ### Questions and Answers:
 
-> video
+> video placeholder here
 
 ### Ratings and Reviews:
 
-> video
+> video placeholder here
 
 ### Related Items & Comparison:
 
-> video
+> video placeholder here
 
 ## Installation & Use
 1. Clone repo
@@ -64,11 +64,11 @@ npm i -g concurrently
 ```
 5. setup enviornmental variables files:
 
-using the example.env and config.example.js, create a copy of these two files and remove 'example' from the file name
+* using the example.env and config.example.js, create a copy of these two files and remove 'example' from the file name
 
-PORT - whichever port you want to run the backend server on, defaults to 3000 in 'server/index.js'
+* PORT - whichever port you want to run the backend server on, defaults to 3000 in 'server/index.js'
 
-DB_USERNAME and DB_PASSWORD -- you will need to create a new user for a new or existing MongoDB Atlas Cluster. Log in to cloud.mongodb.com, go to 'Database Access" under "SECURITY" on the left sidebar, and click "ADD NEW DATABASE USER." Once you assign the new user at least one role or permission, you will be given the option to enter a password. Store the username and password under environmental variables DB_USERNAME and DB_PASSWORD, respectively.
+* DB_USERNAME and DB_PASSWORD -- you will need to create a new user for a new or existing MongoDB Atlas Cluster. Log in to cloud.mongodb.com, go to 'Database Access" under "SECURITY" on the left sidebar, and click "ADD NEW DATABASE USER." Once you assign the new user at least one role or permission, you will be given the option to enter a password. Store the username and password under environmental variables DB_USERNAME and DB_PASSWORD, respectively.
 
 ## Testing:
 
