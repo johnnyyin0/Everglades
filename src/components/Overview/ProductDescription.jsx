@@ -2,7 +2,7 @@ import React from 'react';
 
 let ProductDescription = ({currentProduct}) => {
   return (
-<div className="flex w-[1150px] mb-14 pb-4 mt-5">
+<div className="flex w-[1150px] m-auto mt-12" title='product-description'>
   <div className="grid h-20 flex-1 card rounded-box place-items-center w-[30%]">
     <h1 className="text-lg italic mb-2">{currentProduct.slogan}</h1>
     <p>{currentProduct.description}</p></div>
