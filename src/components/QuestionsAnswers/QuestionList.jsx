@@ -21,7 +21,7 @@ const QuestionList = ({questions, setQuestions, productId, productName, getQuest
         value={searchTerm}
         onChange={handleChange}
         placeholder=" HAVE A QUESTION? SEARCH FOR ANSWERS...🔍"
-        style={{margin: '10px 0', opacity: searchTerm ? 1 : 0.5, border: '1px solid black', width: '100%', height: '60px', marginBottom:'10px', marginTop: '10px',}}
+        style={{margin: '10px 0', opacity: searchTerm ? 1 : 0.5, border: '1px solid black', width: '100%', height: '60px', marginBottom:'10px', marginTop: '10px', }}
       />
       <div className='question-list'>
         <ul>
