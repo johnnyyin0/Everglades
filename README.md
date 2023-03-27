@@ -77,7 +77,7 @@ To start the test monitoring:
 ```
 npm test
 ```
-//To test coverage(WIP):
+To test coverage(WIP):
 ```
 npm run coverage
 ```
@@ -87,6 +87,7 @@ To add tests:
 2. import { it, expect } from 'vitest'
 3. use the following format for all tests on the page:
 
+```
 it('Should perform expected action', () => {
   expect(firstResultOfTestedThing).toBe(firstExpectedResult)
   expect(resultOfTestedThing).to.equal(secondExpectedResult)
@@ -95,3 +96,4 @@ it('Should perform expected action', () => {
                                 vitest supports all Chai and Jest assertion formats. See the following for details:
                                 Chai: https://www.chaijs.com/api/bdd/
                                 Jest: https://jestjs.io/docs/expect
+```
