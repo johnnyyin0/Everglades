@@ -24,7 +24,7 @@ In this mockup project, we created a modern and user-friendly single-page shoppi
 ### Questions and Answers:
 This component lets users search up existing questions on the selected item, add a question they may have, answer any questions, report any answers, and let users know if the question or answer was helpful.
 
-[![Imgur](https://i.imgur.com/lwATgd4.png)](https://i.imgur.com/hGtiRdG.mp4)
+[![Imgur](https://i.imgur.com/riSdeYw.png)](https://i.imgur.com/hGtiRdG.mp4)
 
 ### Ratings and Reviews:
 
