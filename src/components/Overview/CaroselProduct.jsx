@@ -5,13 +5,15 @@ import {useState, useEffect} from 'react';
 
 const CaroselProduct = ({product, setModal, selectClickedProduct}) => {
 
-  let hrefUrl = `http://localhost:5173/${product.productId}`;
+  let id = product.productId || 37311;
+
+  let hrefUrl = `http://localhost:5173/${id}`;
 
   let [carouselProduct, setCarouselProduct] = useState('');
   let [avgReview, setAvgReview] = useState(3)
 
   useEffect(() => {
-    axios.get(`http://localhost:3000/product/${product.productId}`)
+    axios.get(`http://localhost:3000/product/${id}`)
     .then(res => {
       setCarouselProduct(res.data);
     })
@@ -19,7 +21,7 @@ const CaroselProduct = ({product, setModal, selectClickedProduct}) => {
 
   useEffect(() => {
     let options = {
-      url: `http://localhost:3000/meta/${product.productId}`,
+      url: `http://localhost:3000/meta/${id}`,
     };
     axios(options)
       .then(res => {

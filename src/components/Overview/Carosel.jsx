@@ -34,8 +34,8 @@ let Carosel = ({relative, currentProduct, styleSelected}) => {
     <div className="flex items-center relative">
       <MdChevronLeft onClick={slideLeft} size={60} className="cursor-pointer opacity-50 hover:opacity-100"/>
       <div id='slider' className='w-[1100px] h-[415px] h-full flex flex-row overflow-x-scroll scroll whitespace-nowrap scroll-smooth'>
-      {relative.map( product =>
-      <CaroselProduct key={product.style_id} product={product} setModal={setModal} selectClickedProduct={selectClickedProduct}/>
+      {relative.map( (product, index) =>
+      <CaroselProduct key={index} product={product} setModal={setModal} selectClickedProduct={selectClickedProduct}/>
       )}
       </div>
       <CompareModal modalVisable={modalVisable} setModal={setModal} styleSelected={styleSelected} clickedProductStyle={clickedProductStyle} currentProduct={currentProduct} clickedProduct={clickedProduct}/>
