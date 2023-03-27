@@ -54,7 +54,7 @@ export default function ReviewTile({ review, setPhoto }) {
   }
 
   return (
-    <div className="border-b-2 border-l-2">
+    <div className="border-b-2 border-l-2" title="review-tile">
       <div className="flex justify-between px-5 pt-5">
         <div>
           <StarsWidget rating={review.rating} />

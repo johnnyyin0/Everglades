@@ -7,7 +7,7 @@ export default function FullSizePhoto({ src, setPhoto }) {
   }
 
   return (
-    <div  onClick={handleClick}>
+    <div  onClick={handleClick} title="fullsize-review-photo">
       <figure><img src={src} alt="Review Photo" /></figure>
     </div>
   )

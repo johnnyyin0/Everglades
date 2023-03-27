@@ -14,7 +14,7 @@ export default function StarsRater({ stars, setStars }) {
   }
 
   return (
-    <div className="py-1" value="outside">
+    <div className="py-1" value="outside" title="stars-rater">
       <span className="rating" value="outside">
         <input type="radio" name="rating-1" className="mask mask-star" value="1" onClick={handleClick}/>
         <input type="radio" name="rating-1" className="mask mask-star" value="2" onClick={handleClick}/>
