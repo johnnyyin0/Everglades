@@ -7,6 +7,7 @@ import Banner from './Banner.jsx'
 function App() {
 
   const [theme, setTheme] = useState('light')
+  const [cartItems, setCartItems] = useState(0)
 
   useEffect(() => {
     if (localStorage.getItem('color-theme') === 'dark' || (!('color-theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)){
@@ -37,10 +38,10 @@ function App() {
   return (
     <div className={theme}>
       <div className="bg-inherit text-inherit dark:text-slate-200 dark:bg-zinc-800">
-        <Banner setTheme={setTheme}/>
+        <Banner setTheme={setTheme} theme={theme} cartItems={cartItems}/>
         <div className="mx-auto max-w-screen-2xl w-11/12">
           <div onClick={handleOverviewClick}>
-            <Overview />
+            <Overview setCartItems={setCartItems}/>
           </div>
           <div onClick={handleQuestionsAnswersClick}>
             <QuestionsAnswers />

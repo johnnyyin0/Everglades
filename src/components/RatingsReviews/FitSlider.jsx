@@ -9,7 +9,7 @@ export default function FitSlider({ fitChar, charId, charVal }) {
 
   return (
 
-    <div className="pb-5 " key={charId} >
+    <div className="pb-5 " key={charId} title="fit-slider">
       <div className="pb-2 text-2xl">{fitChar}</div>
       <div className="relative flex content-center">
           <div className="triangle-slider absolute -mt-2 z-10 text-7xl mask mask-triangle-2 bg-black dark:bg-slate-200 w-full h-4" style={position}>.</div>

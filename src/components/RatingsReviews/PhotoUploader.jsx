@@ -33,7 +33,7 @@ export default function PhotoUploader({ photos, setPhotos, setPhoto, showButton,
   }
 
   return (
-    <div>
+    <div title="photo-uploader">
       <div>{photos.length > 0 && <div className="pb-5 px-5 carousel">
         {photos.length > 0 && photos.map(photo => <CarouselPhoto src={photo} setPhoto={setPhoto} key={photo.slice(-20)}/>)}
       </div>}</div>
