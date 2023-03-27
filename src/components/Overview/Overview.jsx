@@ -88,16 +88,20 @@ let Overview = () => {
     }, [])
 
     useEffect(() => {
+      console.log(productId);
       Axios.get(`http://localhost:3000/product/${productId}/styles`)
-      .then(res => {
-        setCurrentStyle(res.data.results);
-        createSkusArray(res.data.results[0].skus);
-        setSelectedStyle(res.data.results[0]);
-        setPhoto(res.data.results[0].photos[0].url);
-        notLoading(false);
-      })
-      .catch(err => console.log('Failed to load product styles'))
-    },[])
+        .then(res => {
+          setCurrentStyle(res.data.results);
+          setSelectedStyle(res.data.results[0]);
+          createSkusArray(res.data.results[0].skus);
+          setPhoto(res.data.results[0].photos[0].url);
+          notLoading(false);
+        })
+        .catch(err => {
+          console.log('Failed to load product styles');
+          notLoading(false);
+        });
+    }, []);
 
     let relativeIdNumbers = [];
     useEffect(() => {
@@ -110,6 +114,7 @@ let Overview = () => {
       .then(idArray => {
         let relativeItems = [];
         idArray.forEach(id => {
+          console.log(id);
           Axios.get(`http://localhost:3000/product/${id}/styles`)
           .then(res => {
             //adding product id to the style
