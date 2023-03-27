@@ -97,7 +97,7 @@ let Overview = () => {
         notLoading(false);
       })
       .catch(err => console.log('Failed to load product styles'))
-    })
+    },[])
 
     let relativeIdNumbers = [];
     useEffect(() => {
