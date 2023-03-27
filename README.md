@@ -19,19 +19,19 @@ In this mockup project, we created a modern and user-friendly single-page shoppi
 
 ### Overview:
 
-> video
+> video placeholder here
 
 ### Questions and Answers:
 
-> video
+> video placeholder here
 
 ### Ratings and Reviews:
 
-> video
+> video placeholder here
 
 ### Related Items & Comparison:
 
-> video
+> video placeholder here
 
 ## Installation & Use
 1. Clone repo
