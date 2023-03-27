@@ -1,6 +1,7 @@
 import React from 'react';
 import {useEffect, useState} from 'react';
 import Axios from 'axios';
+import exampleStyle from './exampleStyle.js';
 import ProductName from './productName.jsx';
 import ProductDescription from './ProductDescription.jsx';
 import ProductImage from './ProductImage.jsx';
@@ -68,6 +69,8 @@ let Overview = () => {
 
   let [relative, setRelative] = useState([]);
 
+  let [outfit, setOutfit] = useState([]);
+
   //useEffect
   useEffect(() => {
     Axios.get('http://localhost:3000/products')
@@ -82,7 +85,10 @@ let Overview = () => {
       Axios.get(`http://localhost:3000/product/${productId}`)
       .then(res => setCurrentProduct(res.data))
       .catch(err => console.log('Failed to load product'))
-      .then(Axios.get(`http://localhost:3000/product/${productId}/styles`)
+    }, [])
+
+    useEffect(() => {
+      Axios.get(`http://localhost:3000/product/${productId}/styles`)
       .then(res => {
         setCurrentStyle(res.data.results);
         createSkusArray(res.data.results[0].skus);
@@ -90,9 +96,8 @@ let Overview = () => {
         setPhoto(res.data.results[0].photos[0].url);
         notLoading(false);
       })
-      .catch(err => console.log('Failed to load product styles')));
-    }, [])
-
+      .catch(err => console.log('Failed to load product styles'))
+    })
 
     let relativeIdNumbers = [];
     useEffect(() => {
@@ -175,6 +180,9 @@ let Overview = () => {
       }
       <div className='flex justify-center mt-10'>
         <Carosel className='flex-1 h-[200px]' relative={relative} currentProduct={currentProduct} styleSelected={styleSelected}/>
+        </div>
+        <div className="flex justify-center mt-10">
+        <Carosel className='flex-1 h-[200px]' relative={exampleStyle} currentProduct={currentProduct} styleSelected={styleSelected}/>
         </div>
         </div>
       );
