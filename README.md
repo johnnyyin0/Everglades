@@ -1,6 +1,6 @@
-# Team Everglades: FEC- project-atelier
+# Team Everglades: FEC-project-atelier
 
-Our teams objective is to deliver a fully functional web application that meets the specifications and requirements. Work together on a single code base by dividing up the work among team members but working collaboratively to produce a single front end application. Integrate your front end with the existing API for the product, and demonstrate your working application at the end of the project timeline.
+In this mockup project, we created a modern and user-friendly single-page shopping website. We focused on designing a clean and intuitive interface that will allow customers to easily browse through and should enhance the overall customer experience.
 
 ## Tech Stack
 
@@ -15,16 +15,23 @@ Our teams objective is to deliver a fully functional web application that meets 
 ![Jest](https://img.shields.io/badge/Jest-323330?style=for-the-badge&logo=Jest&logoColor=white)
 ![MongoDB](https://img.shields.io/badge/MongoDB-%234ea94b.svg?style=for-the-badge&logo=mongodb&logoColor=white)
 
-## Demo Videos
+## Demo Videos for our Components
 
 ### Overview:
 
+> video placeholder here
+
 ### Questions and Answers:
+
+> video placeholder here
 
 ### Ratings and Reviews:
 
-### Related Items and Outfits:
+> video placeholder here
 
+### Related Items & Comparison:
+
+> video placeholder here
 
 ## Installation & Use
 1. Clone repo
@@ -57,11 +64,11 @@ npm i -g concurrently
 ```
 5. setup enviornmental variables files:
 
-using the example.env and config.example.js, create a copy of these two files and remove 'example' from the file name
+* using the example.env and config.example.js, create a copy of these two files and remove 'example' from the file name
 
-PORT - whichever port you want to run the backend server on, defaults to 3000 in 'server/index.js'
+* PORT - whichever port you want to run the backend server on, defaults to 3000 in 'server/index.js'
 
-DB_USERNAME and DB_PASSWORD -- you will need to create a new user for a new or existing MongoDB Atlas Cluster. Log in to cloud.mongodb.com, go to 'Database Access" under "SECURITY" on the left sidebar, and click "ADD NEW DATABASE USER." Once you assign the new user at least one role or permission, you will be given the option to enter a password. Store the username and password under environmental variables DB_USERNAME and DB_PASSWORD, respectively.
+* DB_USERNAME and DB_PASSWORD -- you will need to create a new user for a new or existing MongoDB Atlas Cluster. Log in to cloud.mongodb.com, go to 'Database Access" under "SECURITY" on the left sidebar, and click "ADD NEW DATABASE USER." Once you assign the new user at least one role or permission, you will be given the option to enter a password. Store the username and password under environmental variables DB_USERNAME and DB_PASSWORD, respectively.
 
 ## Testing:
 
@@ -69,17 +76,17 @@ To start the test monitoring:
 ```
 npm test
 ```
-
-//To test coverage:
-//npm run coverage
-//NOT YET IMPLEMENTED
-
+To test coverage(WIP):
+```
+npm run coverage
+```
 To add tests:
 (ref: https://vitest.dev/api/)
 1. Create a new file in the 'spec' folder with the suffix 'spec.js'
 2. import { it, expect } from 'vitest'
 3. use the following format for all tests on the page:
 
+```
 it('Should perform expected action', () => {
   expect(firstResultOfTestedThing).toBe(firstExpectedResult)
   expect(resultOfTestedThing).to.equal(secondExpectedResult)
@@ -88,3 +95,4 @@ it('Should perform expected action', () => {
                                 vitest supports all Chai and Jest assertion formats. See the following for details:
                                 Chai: https://www.chaijs.com/api/bdd/
                                 Jest: https://jestjs.io/docs/expect
+```
