@@ -1,6 +1,6 @@
 import axios from 'axios';
 import React, { useState, useEffect } from 'react';
-import {format, parseISO} from 'date-fns'
+import {format} from 'date-fns'
 import ReportButton from './ReportButton';
 import AnswerHelpful from './AnswerHelpful';
 import AnswersPhotos from './AnswersPhotos';
@@ -50,7 +50,7 @@ const AnswersList = ({questionId, questionBody, productName, questions, setQuest
                 <b>A:</b> {answer.body}
                 <br />
                 <small>
-                  by {answer.answerer_name === 'Seller' ? <b>{answer.answerer_name}</b> : answer.answerer_name}, on {format(parseISO(answer.date), "MMMM-dd-yyyy")} | Helpful?{' '}
+                  by {answer.answerer_name === 'Seller' ? <b>{answer.answerer_name}</b> : answer.answerer_name}, on {format(Date.parse(answer.date), "MMMM-dd-yyyy")} | Helpful?{' '}
                   <AnswerHelpful answers={answers} setAnswers={setAnswers} answerId={answer.answer_id}/> | <ReportButton answerId={answer.answer_id} />
                 </small>
                 <AnswersPhotos photos={answer.photos}/>
