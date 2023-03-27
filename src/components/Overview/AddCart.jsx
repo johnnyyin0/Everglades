@@ -4,6 +4,8 @@ const AddToCart = ({styleSelected, skusArray, addCartFunc}) => {
   let [isFavorited, setFavorite] = useState(false);
 
   let [qty, setQty] = useState(2);
+  let [redSelectSize, setRedSelectSize] = useState(false);
+  let [redSelectQty, setRedSelectQty] = useState(false);
 
   let [formData, setForm] = useState({
     sku_id: "",
@@ -12,7 +14,21 @@ const AddToCart = ({styleSelected, skusArray, addCartFunc}) => {
 
   let handleSubmit = (e) => {
     e.preventDefault();
-    addCartFunc(formData);
+
+    //if form is empty, make the buttons background red
+    if (formData.sku_id === '') {
+      setRedSelectSize(true);
+    } else if (formData.count === 0) {
+      setRedSelectQty(true)
+    }
+
+    //check so the form isn't empty
+    if (formData.sku_id.length !== 0 && formData.count !== 0) {
+      setRedSelectQty(false);
+      setRedSelectSize(false);
+      addCartFunc(formData);
+    }
+
   };
 
   let handleQty = (num) => {
@@ -43,6 +59,13 @@ const AddToCart = ({styleSelected, skusArray, addCartFunc}) => {
     <div className="grid grid-cols-4 gap-4 pb-6">
     <div className="dropdown col-span-2 pl-6">
   <label tabIndex={0} className="btn m-1 w-[315px]">Select Size</label>
+  <label tabIndex={0} className={!redSelectSize ? 'btn m-1 w-[315px]' : 'btn btn-error w-[315px]'} require>Select Size</label>
+
+  { redSelectSize ?
+  <p className='text-rose-700 text-center'>Please Select a Size</p>
+  : null
+  }
+
   <ul tabIndex={0} className="dropdown-content menu p-2 shadow bg-base-100 rounded-box w-52">
     <div>
     {skusArray.map((size, index) => {
