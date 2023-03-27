@@ -1,11 +1,12 @@
 # Team Everglades: FEC- project-atelier
 
-Objective is to deliver a fully functional web application that meets the specifications and requirements. Work together on a single code base by dividing up the work among team members but working collaboratively to produce a single front end application. Integrate your front end with the existing API for the product, and demonstrate your working application at the end of the project timeline.
+Our teams objective is to deliver a fully functional web application that meets the specifications and requirements. Work together on a single code base by dividing up the work among team members but working collaboratively to produce a single front end application. Integrate your front end with the existing API for the product, and demonstrate your working application at the end of the project timeline.
 
 ## Tech Stack
-![Vite](https://img.shields.io/badge/vite-%23646CFF.svg?style=for-the-badge&logo=vite&logoColor=white)
+
 ![JavaScript](https://img.shields.io/badge/JavaScript-F7DF1E?style=for-the-badge&logo=javascript&logoColor=black)
 ![React](https://img.shields.io/badge/-React-61DAFB?logo=react&logoColor=white&style=for-the-badge)
+![Vite](https://img.shields.io/badge/vite-%23646CFF.svg?style=for-the-badge&logo=vite&logoColor=white)
 ![Node](https://img.shields.io/badge/-Node-9ACD32?logo=node.js&logoColor=white&style=for-the-badge)
 ![Nodemon](https://img.shields.io/badge/NODEMON-%23323330.svg?style=for-the-badge&logo=nodemon&logoColor=%BBDEAD)
 ![Express](https://img.shields.io/badge/-Express-DCDCDC?logo=express&logoColor=black&style=for-the-badge)
