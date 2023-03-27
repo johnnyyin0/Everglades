@@ -6,6 +6,7 @@ import { MdChevronLeft, MdChevronRight } from 'react-icons/md'
 
 
 let Carosel = ({relative, currentProduct, styleSelected}) => {
+
   let [modalVisable, setModal] = useState(false);
 
   //state to find which product was clicked on

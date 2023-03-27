@@ -1,6 +1,7 @@
 import React from 'react';
 import {useEffect, useState} from 'react';
 import Axios from 'axios';
+import exampleStyle from './exampleStyle.js';
 import ProductName from './productName.jsx';
 import ProductDescription from './ProductDescription.jsx';
 import ProductImage from './ProductImage.jsx';
@@ -67,6 +68,8 @@ let Overview = () => {
   let [photo, setPhoto] = useState([]);
 
   let [relative, setRelative] = useState([]);
+
+  let [outfit, setOutfit] = useState([]);
 
   //useEffect
   useEffect(() => {
@@ -175,6 +178,9 @@ let Overview = () => {
       }
       <div className='flex justify-center mt-10'>
         <Carosel className='flex-1 h-[200px]' relative={relative} currentProduct={currentProduct} styleSelected={styleSelected}/>
+        </div>
+        <div className="flex justify-center mt-10">
+        <Carosel className='flex-1 h-[200px]' relative={exampleStyle} currentProduct={currentProduct} styleSelected={styleSelected}/>
         </div>
         </div>
       );

@@ -4,7 +4,7 @@ import StarsWidget from '../RatingsReviews/StarsWidget.jsx';
 import {useState, useEffect} from 'react';
 
 const CaroselProduct = ({product, setModal, selectClickedProduct}) => {
-
+  console.log(product);
   let hrefUrl = `http://localhost:5173/${product.productId}`;
 
   let [carouselProduct, setCarouselProduct] = useState('');
@@ -46,14 +46,14 @@ const CaroselProduct = ({product, setModal, selectClickedProduct}) => {
     <div >
       <a href={hrefUrl}>
     { product.photos[0].thumbnail_url == null ?
-      <img src={"https://webkit.org/demos/srcset/image-src.png"} className="rounded border bg-white p-1 object-cover h-[270px] w-[300px] dark:bg-zinc-800 dark:border-zinc-800" />
-      : <img src={product.photos[0].thumbnail_url} className="rounded border bg-white p-1 object-cover h-[270px] w-[300px] dark:bg-zinc-800 dark:border-zinc-800" />
+      <img src={"https://webkit.org/demos/srcset/image-src.png"} className="rounded border bg-white p-1 object-cover h-[320px] w-[230px] dark:bg-zinc-800 dark:border-zinc-800" />
+      : <img src={product.photos[0].thumbnail_url} className="rounded border bg-white p-1 object-cover h-[320px] w-[230px] dark:bg-zinc-800 dark:border-zinc-800" />
     }
         </a>
     <StarsWidget rating={avgReview} />
       <div>
-        <p className="font-sans text-lg">{carouselProduct.category}</p>
-        <p className="font-sans font-semibold text-1xl">{carouselProduct.name}</p>
+        <p className="font-sans text-lg">{carouselProduct.category || 'Product Name'}</p>
+        <p className="font-sans font-semibold text-1xl">{carouselProduct.name || 'Outfit Name'}</p>
           {product.sale_price ?
           <>
           <p className="line-through font-sans text-lg">{product.original_price}</p>
