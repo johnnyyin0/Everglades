@@ -13,7 +13,7 @@ const ProductImage = ({photo, styleSelected, setPhoto, setFullScreen, setIndex, 
   };
 
   return (
-    <div className="grid grid-cols-6 gap-2">
+    <div className="grid grid-cols-6 gap-2" title='product-image'>
       <div className="col-span-1">
         <div className='flex flex-col justify-between overflow-y-auto w-[100px] h-[600px] pt-12'>
         <ImageGallery styleSelected={styleSelected} setPhoto={setPhoto} photo={photo} setFullScreen={setFullScreen} setIndex={setIndex} index={index}/>
@@ -26,9 +26,9 @@ const ProductImage = ({photo, styleSelected, setPhoto, setFullScreen, setIndex, 
       <>
       <div className='flex flex-row justify-between w-[95%] ml-6'>
 {/* buttons */}
-      <div className="border-black border-2 rounded-xl"><button onClick={backButton} >Back</button></div>
+      <div className="rounded-xl"><button className="btn m-1" onClick={backButton} >Back</button></div>
 
-      <div className="border-black border-2 rounded-xl"><button onClick={nextButton} >Next</button></div>
+      <div className="rounded-xl"><button className="btn m-1" onClick={nextButton} >Next</button></div>
 
       </div>
 

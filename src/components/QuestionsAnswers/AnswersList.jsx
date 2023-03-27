@@ -1,6 +1,7 @@
 import axios from 'axios';
 import React, { useState, useEffect } from 'react';
-import {format, parseISO} from 'date-fns'
+import format from 'date-fns/format';
+import parseISO from 'date-fns/parseISO'
 import ReportButton from './ReportButton';
 import AnswerHelpful from './AnswerHelpful';
 import AnswersPhotos from './AnswersPhotos';
