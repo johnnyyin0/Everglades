@@ -23,7 +23,7 @@ In this mockup project, we created a modern and user-friendly single-page shoppi
 
 ### Questions and Answers:
 
-> video placeholder here
+<iframe src="https://drive.google.com/file/d/1VwMVDa2mo4rjBxONt1ALx2ZzhPWQyj1y/preview" width="640" height="480" allow="autoplay"></iframe>
 
 ### Ratings and Reviews:
 
