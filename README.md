@@ -1,6 +1,6 @@
 # Team Everglades: FEC- project-atelier
 
-Our teams objective is to deliver a fully functional web application that meets the specifications and requirements. Work together on a single code base by dividing up the work among team members but working collaboratively to produce a single front end application. Integrate your front end with the existing API for the product, and demonstrate your working application at the end of the project timeline.
+Our team created a simplistic but modern single page shopping website.
 
 ## Tech Stack
 
@@ -15,15 +15,23 @@ Our teams objective is to deliver a fully functional web application that meets 
 ![Jest](https://img.shields.io/badge/Jest-323330?style=for-the-badge&logo=Jest&logoColor=white)
 ![MongoDB](https://img.shields.io/badge/MongoDB-%234ea94b.svg?style=for-the-badge&logo=mongodb&logoColor=white)
 
-## Demo Videos
+## Demo Videos for our Components
 
 ### Overview:
 
+
+
 ### Questions and Answers:
+
+
 
 ### Ratings and Reviews:
 
-### Related Items and Outfits:
+
+
+### Related Items & Comparison:
+
+
 
 
 ## Installation & Use
