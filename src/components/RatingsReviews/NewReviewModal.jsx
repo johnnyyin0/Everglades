@@ -6,7 +6,7 @@ import PhotoUploader from './PhotoUploader.jsx'
 import ReviewPhoto from './ReviewPhoto.jsx'
 
 
-export default function NewReviewModal(props) {
+export default function NewReviewModal({ id }) {
 
   const [productName, setProductName] = useState('')
   const [reviewMeta, setReviewMeta] = useState({})
@@ -24,19 +24,17 @@ export default function NewReviewModal(props) {
   const [email, setEmail] = useState('')
   const [badSubmission, setBadSubmission] = useState({})
 
-  //there's gotta be a better way to get the current product ID
-  let productId = Number(window.location.pathname.slice(1)) || 37311;
 
   useEffect(() => {
-    axios.get(`http://localhost:3000/meta/${productId}`)
+    axios.get(`api/meta/${id}`)
     .then(res => setReviewMeta(res.data))
     .catch(err => console.log(err));
 
-    axios.get(`http://localhost:3000/product/${productId}`)
+    axios.get(`api/product/${id}`)
     .then(res => setProductName(res.data.name))
     .catch(err => console.log(err));
 
-  }, [])
+  }, [id])
 
   const handleSubmit = (evt) => {
     if (stars !== "0" &&
@@ -48,7 +46,7 @@ export default function NewReviewModal(props) {
       setBadSubmission({});
       handleExit()
       let payload = {
-        product_id: productId,
+        product_id: id,
         rating: parseInt(stars),
         summary: reviewSummary,
         body: reviewBody,
