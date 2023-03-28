@@ -26,11 +26,11 @@ export default function NewReviewModal({ id }) {
 
 
   useEffect(() => {
-    axios.get(`http://localhost:3000/meta/${id}`)
+    axios.get(`api/meta/${id}`)
     .then(res => setReviewMeta(res.data))
     .catch(err => console.log(err));
 
-    axios.get(`http://localhost:3000/product/${id}`)
+    axios.get(`api/product/${id}`)
     .then(res => setProductName(res.data.name))
     .catch(err => console.log(err));
 
