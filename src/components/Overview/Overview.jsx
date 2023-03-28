@@ -13,6 +13,7 @@ import Styles from './styles.jsx';
 
 let Overview = () => {
   let productId = window.location.pathname.slice(1) || 37311;
+  console.log(window.location)
 
 
 
@@ -55,7 +56,7 @@ let Overview = () => {
     //function to add to cart via POST
     let addCartFunc = (obj) => {
       console.log(obj, 'Whats getting sent to the cart');
-      Axios.post('http://localhost:3000/cart', obj)
+      Axios.post('api/cart', obj)
       .then(res => setRefresh(res))
       .catch(err => console.log(err));
     };
@@ -147,32 +148,32 @@ let Overview = () => {
       }
 
   return (
-    <div className="pt-16">
+    <div className='pt-16'>
     { isFullScreen ?
       <FullScreen setFullScreen={setFullScreen} styleSelected={styleSelected} index={index} setIndex={setIndex} setPhoto={setPhoto} nextButton={nextButton} backButton={backButton}/>
       :
       <>
-      <div className='flex justify-center'>
+      <div className='flex justify-center '>
       <div className="grid grid-cols-6 gap-2" >
       <div className="col-span-1 row-span-4"></div>
       <div className='rounded-lg content-end col-span-2 row-span-4'>
       <ProductImage photo={photo} styleSelected={styleSelected} setPhoto={setPhoto} setFullScreen={setFullScreen} setIndex={setIndex} index={index} nextButton={nextButton} backButton={backButton}/>
       </div>
 
-      <div className='mt-10 rounded-lg shadow-xl col-span-2 w-[650px] h-[90px]'>
+      <div className='mt-10 rounded-lg shadow-xl col-span-2 w-[525px] h-[90px]'>
       <RatingsAndShare currentProduct={currentProduct} photo={photo}/>
       </div>
 
 
-      <div className=' rounded-lg shadow-xl col-span-2 h-[150px] w-[650px]'>
+      <div className=' rounded-lg shadow-xl col-span-2 h-[150px] w-[525px]'>
       <ProductName currentProduct={currentProduct} styleSelected={styleSelected}/>
       </div>
 
-      <div className=' rounded-lg shadow-xl col-span-2 w-[650px] h-[190px] overflow-y-auto'>
+      <div className=' rounded-lg shadow-xl col-span-2 w-[525px] h-[190px] overflow-y-auto'>
       <Styles currentStyle={currentStyle} setPhoto={setPhoto} setSelectedStyle={setSelectedStyle} styleSelected={styleSelected} createSkusArray={createSkusArray}/>
       </div>
 
-      <div className='mt-2 rounded-lg shadow-xl col-span-2 w-[650px] h-[150px]'>
+      <div className='mt-2 rounded-lg shadow-xl col-span-2 w-[525px] h-[150px]'>
       <AddCart styleSelected={styleSelected} skusArray={skusArray} addCartFunc={addCartFunc}/>
       </div>
 
@@ -187,7 +188,7 @@ let Overview = () => {
         <Carosel className='flex-1 h-[200px]' relative={relative} currentProduct={currentProduct} styleSelected={styleSelected}/>
         </div>
         <div className="flex justify-center mt-10">
-        <Carosel className='flex-1 h-[200px]' relative={exampleStyle} currentProduct={currentProduct} styleSelected={styleSelected}/>
+        <Carosel className='flex-1' relative={exampleStyle} currentProduct={currentProduct} styleSelected={styleSelected}/>
         </div>
         </div>
       );
