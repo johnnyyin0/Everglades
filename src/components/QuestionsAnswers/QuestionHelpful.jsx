@@ -7,7 +7,7 @@ const QuestionHelpful = ({questions, questionId, setQuestions, questionHelpfulne
     const handleHelpfulClick = (questionId) => {
         // console.log('questionID', questionId)
         if (!helpfulClicks.includes(questionId)) {
-          axios.put(`http://localhost:3000/questions/question/helpful`, { params: { questionId } })
+          axios.put(`/api/questions/question/helpful`, { params: { questionId } })
             .then(() => {
               const updatedQuestions = questions.map((question) => {
                 if (question.question_id === questionId) {

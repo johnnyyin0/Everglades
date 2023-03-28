@@ -17,7 +17,7 @@ const QuestionsAnswers = () => {
     let productId = window.location.pathname.slice(1) || 37311;
     
     const getProductName = () => {
-        axios.get(`http://localhost:3000/product/${productId}`)
+        axios.get(`/api/product/${productId}`)
         .then(response => {
             // console.log('DATA RECEIVED FROM PRODUCTNAME: ', response.data.name)
             setProductName(response.data.name)
@@ -28,7 +28,7 @@ const QuestionsAnswers = () => {
     }
 
     const getQuestions = () => {
-        axios.get('http://localhost:3000/questions', { params: { productId } })
+        axios.get('/api/questions', { params: { productId } })
         .then(response => {
             setQuestions(response.data.results)
             // console.log('DATA RECEIVED FROM GETQUESTIONS: ', response.data.results)
