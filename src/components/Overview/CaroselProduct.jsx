@@ -35,7 +35,7 @@ const CaroselProduct = ({ product, setModal, selectClickedProduct }) => {
     setModal(true);
   };
 
-  const hrefUrl = `http://localhost:5173/${product.productId || 37311}`;
+  const hrefUrl = `http://${window.location.host}/${product.productId || 37311}`;
 
   return (
     <div className="border-2 border-[#21355F] relative  scale-90 hover:scale-100 ease-in-out duration-300 bg-white rounded-lg min-w-[220px] dark:bg-zinc-800 dark:border-slate-200">
