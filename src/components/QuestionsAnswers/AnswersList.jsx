@@ -30,7 +30,7 @@ const AnswersList = ({questionId, questionBody, productName, questions, setQuest
     <span>
       <span style={{display:'flex', justifyContent:'space-between'}}>
         <span style={{justifyContent:'flex-start'}}>
-          <b style={{fontSize:'20px'}}> Q: {questionBody}</b>
+          <b style={{fontSize:'20px',}}> Q: {questionBody}</b>
         </span>
         <span style={{justifyContent:'flex-end'}}>
           <QuestionHelpful questionId={questionId} questions={questions} setQuestions={setQuestions} questionHelpfulness={questionHelpfulness}/>
@@ -50,7 +50,7 @@ const AnswersList = ({questionId, questionBody, productName, questions, setQuest
               <div key={answer.answer_id} style={{marginTop: '10px', marginBottom: '10px'}} >
                 <b>A:</b> {answer.body}
                 <br />
-                <small>
+                <small style={{color: 'black'}}>
                   by {answer.answerer_name === 'Seller' ? <b>{answer.answerer_name}</b> : answer.answerer_name}, on {format(Date.parse(answer.date), "MMMM-dd-yyyy")} | Helpful?{' '}
                   <AnswerHelpful answers={answers} setAnswers={setAnswers} answerId={answer.answer_id}/> | <ReportButton answerId={answer.answer_id} />
                 </small>
@@ -58,7 +58,7 @@ const AnswersList = ({questionId, questionBody, productName, questions, setQuest
               </div>
             ))}
             {answers.length > 2 && (
-              <button onClick={()=>setShowMore(!showMore)} style={{marginTop: '10px', background:'none', borderRadius: '10px', border: '1px solid #ccc'}}>{showMore ? 'COLLAPSE ANSWERS' : 'LOAD MORE ANSWERS'}</button>
+              <button onClick={()=>setShowMore(!showMore)} style={{marginTop: '10px', background:'none', borderRadius: '10px', border: '1px solid black'}}>{showMore ? 'COLLAPSE ANSWERS' : 'LOAD MORE ANSWERS'}</button>
             )}
           </div>
         )}
