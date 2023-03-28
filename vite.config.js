@@ -19,7 +19,7 @@ export default defineConfig({
 		      host:true,
 		      proxy: {
 			            "/api" : {
-					    target: `http://ec2-3-137-215-47.us-east-2.compute.amazonaws.com:${process.env.PORT}`,
+					    target: `http://ec2-3-145-2-125.us-east-2.compute.amazonaws.com:${process.env.PORT}`,
 					            changeOrigin: true,
 					            secure: false,
 					            rewrite: ( path ) => path.replace(/^\/api/, '')
