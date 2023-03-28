@@ -17,7 +17,7 @@ const AnswersList = ({questionId, questionBody, productName, questions, setQuest
   }, [questionId]);
 
   const getAnswers = (questionId) => {
-    axios.get('http://localhost:3000/questions/answers', { params: { questionId } })
+    axios.get('/api/questions/answers', { params: { questionId } })
       .then((response) => {
         setAnswers(response.data.results);
       })

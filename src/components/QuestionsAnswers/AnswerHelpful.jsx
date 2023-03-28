@@ -6,7 +6,7 @@ const AnswerHelpful = ({answers, setAnswers, answerId,}) => {
 
     const handleHelpfulClick = (answerId) => {
         if (!helpfulClicks.includes(answerId)) {
-          axios.put(`http://localhost:3000/questions/answer/helpful`, { params: { answerId } })
+          axios.put(`/api/questions/answer/helpful`, { params: { answerId } })
             .then((response) => {
               const updatedAnswers = answers.map((answer) => {
                 if (answer.answer_id === answerId) {
