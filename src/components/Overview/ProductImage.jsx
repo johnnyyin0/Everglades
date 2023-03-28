@@ -42,7 +42,7 @@ const ProductImage = ({photo, styleSelected, setPhoto, setFullScreen, setIndex, 
             fullscreenOnMobile={true}
             hideHint={true} // default false
             zoomType="hover"
-            className="cursor-crosshair rounded border bg-white p-1 object-fill max-w-[99%]"
+            className="cursor-crosshair rounded border bg-white p-1 object-fill max-w-[99%] "
             />
       </div>
       </>

@@ -151,26 +151,25 @@ let Overview = () => {
       :
       <>
       <div className='flex justify-center '>
-      <div className="grid grid-cols-6 gap-2" >
-      <div className="col-span-1 row-span-4"></div>
-      <div className='rounded-lg content-end col-span-2 row-span-4'>
+      <div className="grid grid-cols-6 gap-2 max-h-[800px] max-w-[1200px]" >
+      <div className='rounded-lg content-end col-span-3 row-span-4'>
       <ProductImage photo={photo} styleSelected={styleSelected} setPhoto={setPhoto} setFullScreen={setFullScreen} setIndex={setIndex} index={index} nextButton={nextButton} backButton={backButton}/>
       </div>
 
-      <div className='mt-10 rounded-lg shadow-xl col-span-2 w-[525px] h-[90px]'>
+      <div className='mt-10 rounded-lg shadow-xl col-span-2 w-[625px] h-[90px]'>
       <RatingsAndShare currentProduct={currentProduct} photo={photo}/>
       </div>
 
 
-      <div className=' rounded-lg shadow-xl col-span-2 h-[150px] w-[525px]'>
+      <div className=' rounded-lg shadow-xl col-span-2 h-[150px] w-[625px]'>
       <ProductName currentProduct={currentProduct} styleSelected={styleSelected}/>
       </div>
 
-      <div className=' rounded-lg shadow-xl col-span-2 w-[525px] h-[200px] overflow-y-auto'>
+      <div className=' rounded-lg shadow-xl col-span-2 w-[625px] h-[200px] overflow-y-auto'>
       <Styles currentStyle={currentStyle} setPhoto={setPhoto} setSelectedStyle={setSelectedStyle} styleSelected={styleSelected} createSkusArray={createSkusArray}/>
       </div>
 
-      <div className='mt-2 rounded-lg shadow-xl col-span-2 w-[525px] h-[150px]'>
+      <div className='mt-2 rounded-lg shadow-xl col-span-2 w-[625px] h-[150px]'>
       <AddCart styleSelected={styleSelected} skusArray={skusArray} addCartFunc={addCartFunc}/>
       </div>
 
