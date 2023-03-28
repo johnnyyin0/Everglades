@@ -6,7 +6,6 @@ reviewController = {
       product_id: req.params.id,
       sort: req.params.sort
     }
-    console.log('ye made it!')
     Models.reviews.getReviews(params)
       .then(response => {
         res.send(response.data)
