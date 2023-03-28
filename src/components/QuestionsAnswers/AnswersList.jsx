@@ -27,7 +27,7 @@ const AnswersList = ({questionId, questionBody, productName, questions, setQuest
   };
 
   return (
-    <span>
+    <span style={{backgroundColor:'#FFFFFF'}}>
       <span style={{display:'flex', justifyContent:'space-between'}}>
         <span style={{justifyContent:'flex-start'}}>
           <b style={{fontSize:'20px',}}> Q: {questionBody}</b>
@@ -40,25 +40,24 @@ const AnswersList = ({questionId, questionBody, productName, questions, setQuest
       </span>
       <div>
         {answers.length === 0 ? (
-          <div style={{ marginTop: '10px' }}>
+          <div style={{ marginTop: '20px', marginBottom: '20px'}}>
             <b>A:</b>
             <i> No answer yet...</i>
           </div>
         ) : (
-          <div className='answer-list' style={{marginTop: '10px', marginBottom: '10px'}}>
+          <div className='answer-list' style={{marginTop: '20px', marginBottom: '20px',}}>
             {answers.slice(0, showMore ? answers.length : 2).map((answer) => (
-              <div key={answer.answer_id} style={{marginTop: '10px', marginBottom: '10px'}} >
+              <div key={answer.answer_id} style={{ marginBottom: '30px'}}>
                 <b>A:</b> {answer.body}
-                <br />
-                <small style={{color: 'black'}}>
+                <div style={{marginTop: '10px'}}>
                   by {answer.answerer_name === 'Seller' ? <b>{answer.answerer_name}</b> : answer.answerer_name}, on {format(Date.parse(answer.date), "MMMM-dd-yyyy")} | Helpful?{' '}
                   <AnswerHelpful answers={answers} setAnswers={setAnswers} answerId={answer.answer_id}/> | <ReportButton answerId={answer.answer_id} />
-                </small>
                 <AnswersPhotos photos={answer.photos}/>
+                </div>
               </div>
             ))}
             {answers.length > 2 && (
-              <button onClick={()=>setShowMore(!showMore)} style={{marginTop: '10px', background:'none', borderRadius: '10px', border: '1px solid black'}}>{showMore ? 'COLLAPSE ANSWERS' : 'LOAD MORE ANSWERS'}</button>
+              <button onClick={()=>setShowMore(!showMore)} style={{marginTop: '10px', background:'none', borderRadius: '10px', border: '1px solid #ccc'}}>{showMore ? 'COLLAPSE ANSWERS' : 'LOAD MORE ANSWERS'}</button>
             )}
           </div>
         )}
