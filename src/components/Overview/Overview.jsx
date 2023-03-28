@@ -73,7 +73,7 @@ let Overview = () => {
     let [refresh, setRefresh] = useState('');
   //useEffect
   useEffect(() => {
-    Axios.get('http://localhost:3000/products')
+    Axios.get('api/products')
     .then(res => {
       setProducts(res.data)})
       .catch(err => console.log('Failed to load products'));
@@ -82,14 +82,14 @@ let Overview = () => {
 
     // When the currentId changes, change the current data
     useEffect(() => {
-      Axios.get(`http://localhost:3000/product/${productId}`)
+      Axios.get(`api/product/${productId}`)
       .then(res => setCurrentProduct(res.data))
       .catch(err => console.log('Failed to load product'))
     }, [])
 
     useEffect(() => {
       // console.log(productId);
-      Axios.get(`http://localhost:3000/product/${productId}/styles`)
+      Axios.get(`api/product/${productId}/styles`)
         .then(res => {
           setCurrentStyle(res.data.results);
           setSelectedStyle(res.data.results[0]);
@@ -105,7 +105,7 @@ let Overview = () => {
 
     let relativeIdNumbers = [];
     useEffect(() => {
-      Axios.get(`http://localhost:3000/product/${productId}/related`)
+      Axios.get(`api/product/${productId}/related`)
       .then(res => {
         relativeIdNumbers = [...res.data];
         return relativeIdNumbers
@@ -115,7 +115,7 @@ let Overview = () => {
         let relativeItems = [];
         idArray.forEach(id => {
           // console.log(id);
-          Axios.get(`http://localhost:3000/product/${id}/styles`)
+          Axios.get(`api/product/${id}/styles`)
           .then(res => {
             //adding product id to the style
             res.data.results[0].productId = id

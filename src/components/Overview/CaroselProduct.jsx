@@ -10,8 +10,8 @@ const CaroselProduct = ({ product, setModal, selectClickedProduct }) => {
     const fetchData = async () => {
       try {
         const [carouselProductRes, metaRes] = await Promise.all([
-          axios.get(`http://localhost:3000/product/${product.productId || 37311}`),
-          axios.get(`http://localhost:3000/meta/${product.productId || 37311}`),
+          axios.get(`api/product/${product.productId || 37311}`),
+          axios.get(`api/meta/${product.productId || 37311}`),
         ]);
         setCarouselProduct(carouselProductRes.data);
 

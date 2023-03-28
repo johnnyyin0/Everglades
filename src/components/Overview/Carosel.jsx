@@ -13,7 +13,7 @@ let Carosel = ({relative, currentProduct, styleSelected}) => {
   let [clickedProductStyle, selectClickedProductStyle] = useState('');
 
   useEffect(()=> {
-    Axios.get(`http://localhost:3000/product/${clickedProduct.id}/styles`)
+    Axios.get(`api/product/${clickedProduct.id}/styles`)
     .then(res => selectClickedProductStyle(res.data.results[0]))
     .catch(err => console.log(err));
   }, [clickedProduct])
