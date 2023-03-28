@@ -14,63 +14,63 @@ import Styles from './styles.jsx';
 let Overview = () => {
   let productId = window.location.pathname.slice(1) || 37311;
 
-  //function to get to quantity and sizes of api
-
-  let createSkusArray = (skus) => {
-    let newArr = [];
-    let skusKeys = Object.keys(skus);
-    skusKeys.forEach(id => {
-      newArr.push(skus[id])
-    })
-    setSkusArray(newArr);
-  };
-  let [refresh, setRefresh] = useState('');
-
-  //function to add to cart via POST
-  let addCartFunc = (obj) => {
-    console.log(obj, 'Whats getting sent to the cart');
-    Axios.post('http://localhost:3000/cart', obj)
-    .then(res => setRefresh(res))
-    .catch(err => console.log(err));
-  };
 
 
   // useEffect(() => {
-  //   Axios.get('http://localhost:3000/cart')
-  //   .then(res => console.log(res.data, 'Items in your cart!'))
-  //   .catch(err => console.log(err));
-  // }, [refresh])
-  //states
+    //   Axios.get('http://localhost:3000/cart')
+    //   .then(res => console.log(res.data, 'Items in your cart!'))
+    //   .catch(err => console.log(err));
+    // }, [refresh])
+    //states
 
-  //loading state
-  let [isLoading, notLoading] = useState(true);
+    //loading state
+    let [isLoading, notLoading] = useState(true);
 
-  let [products, setProducts] = useState([]);
+    let [products, setProducts] = useState([]);
 
-  //skus array for the size and quantity of products
-  let [skusArray, setSkusArray] = useState([])
+    //skus array for the size and quantity of products
+    let [skusArray, setSkusArray] = useState([])
 
-  //array of all the products from api
-  let [currentProduct, setCurrentProduct] = useState([]);
+    //array of all the products from api
+    let [currentProduct, setCurrentProduct] = useState([]);
 
-  //all the styles from
-  let [currentStyle, setCurrentStyle] = useState([]);
+    //all the styles from
+    let [currentStyle, setCurrentStyle] = useState([]);
 
-  //index of photo currently selected on
-  let [index, setIndex] = useState(0);
+    //index of photo currently selected on
+    let [index, setIndex] = useState(0);
 
-  //true false for fullscreen modal
-  let [isFullScreen, setFullScreen] = useState(false);
+    //true false for fullscreen modal
+    let [isFullScreen, setFullScreen] = useState(false);
 
-  //state to be "selected" when picture is showing on overview
-  let [styleSelected, setSelectedStyle] = useState(currentStyle[0])
+    //state to be "selected" when picture is showing on overview
+    let [styleSelected, setSelectedStyle] = useState(currentStyle[0])
 
-  let [photo, setPhoto] = useState([]);
+    let [photo, setPhoto] = useState([]);
 
-  let [relative, setRelative] = useState([]);
+    let [relative, setRelative] = useState([]);
 
-  let [outfit, setOutfit] = useState([]);
+    let [outfit, setOutfit] = useState([]);
 
+    //function to add to cart via POST
+    let addCartFunc = (obj) => {
+      console.log(obj, 'Whats getting sent to the cart');
+      Axios.post('http://localhost:3000/cart', obj)
+      .then(res => setRefresh(res))
+      .catch(err => console.log(err));
+    };
+
+    //function to get to quantity and sizes of api
+
+    let createSkusArray = (skus) => {
+      let newArr = [];
+      let skusKeys = Object.keys(skus);
+      skusKeys.forEach(id => {
+        newArr.push(skus[id])
+      })
+      setSkusArray(newArr);
+    };
+    let [refresh, setRefresh] = useState('');
   //useEffect
   useEffect(() => {
     Axios.get('http://localhost:3000/products')
@@ -168,7 +168,7 @@ let Overview = () => {
       <ProductName currentProduct={currentProduct} styleSelected={styleSelected}/>
       </div>
 
-      <div className=' rounded-lg shadow-xl col-span-2 w-[650px] h-[180px] overflow-y-auto'>
+      <div className=' rounded-lg shadow-xl col-span-2 w-[650px] h-[190px] overflow-y-auto'>
       <Styles currentStyle={currentStyle} setPhoto={setPhoto} setSelectedStyle={setSelectedStyle} styleSelected={styleSelected} createSkusArray={createSkusArray}/>
       </div>
 
