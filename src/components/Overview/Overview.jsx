@@ -13,9 +13,6 @@ import Styles from './styles.jsx';
 
 let Overview = () => {
   let productId = window.location.pathname.slice(1) || 37311;
-  console.log(window.location)
-
-
 
   // useEffect(() => {
     //   Axios.get('http://localhost:3000/cart')
@@ -169,7 +166,7 @@ let Overview = () => {
       <ProductName currentProduct={currentProduct} styleSelected={styleSelected}/>
       </div>
 
-      <div className=' rounded-lg shadow-xl col-span-2 w-[525px] h-[190px] overflow-y-auto'>
+      <div className=' rounded-lg shadow-xl col-span-2 w-[525px] h-[200px] overflow-y-auto'>
       <Styles currentStyle={currentStyle} setPhoto={setPhoto} setSelectedStyle={setSelectedStyle} styleSelected={styleSelected} createSkusArray={createSkusArray}/>
       </div>
 

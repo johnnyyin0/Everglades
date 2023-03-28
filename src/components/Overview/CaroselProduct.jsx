@@ -2,7 +2,7 @@ import React, { useState, useEffect, useMemo } from 'react';
 import axios from 'axios';
 import StarsWidget from '../RatingsReviews/StarsWidget.jsx';
 
-const CaroselProduct = ({ product, setModal, selectClickedProduct }) => {
+const CaroselProduct = ({ product, setModal, selectClickedProduct, productClicked }) => {
   const [carouselProduct, setCarouselProduct] = useState({});
   const [avgReview, setAvgReview] = useState(3);
 
@@ -31,7 +31,7 @@ const CaroselProduct = ({ product, setModal, selectClickedProduct }) => {
   }, [memoizedFetchData]);
 
   const handleModal = () => {
-    selectClickedProduct(carouselProduct);
+    productClicked(carouselProduct);
     setModal(true);
   };
 
