@@ -7,15 +7,16 @@ import path from 'path'
 
 dotenv.config()
 
-// https://vitejs.dev/config/
 export default defineConfig({
   plugins: [react(), viteCompression()],
+  body: '/',
   test: {
     globals: true,
     environment: 'jsdom',
     setupFiles: './spec/setup.js'
   },
   server: {
+    host: true,
     proxy: {
       "/api" : {
         target: `http://localhost:${process.env.PORT}`,
