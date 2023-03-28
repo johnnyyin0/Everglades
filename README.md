@@ -56,6 +56,7 @@ npm install react-inner-image-zoom --force
 npm install -S react-image-size --force
 npm install cookie-parser --force
 npm install react-icons
+npm i vite-plugin-compression
 ```
 
 ```

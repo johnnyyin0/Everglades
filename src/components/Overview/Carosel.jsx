@@ -32,7 +32,7 @@ let Carosel = ({relative, currentProduct, styleSelected}) => {
 
     <div className="flex items-center relative">
       <button onClick={slideLeft} className="btn-ghost btn-circle cursor-pointer opacity-50 hover:opacity-100">❮</button>
-      <div id='slider' className='w-[1100px] h-[415px] h-full flex flex-row overflow-x-scroll scroll whitespace-nowrap scroll-smooth'>
+      <div id='slider' className='w-[1100px] h-[415px] h-full flex flex-row overflow-x-scroll scroll whitespace-nowrap scroll-smooth items-center'>
       {relative.map( (product, index) =>
       <CaroselProduct key={index} product={product} setModal={setModal} selectClickedProduct={selectClickedProduct}/>
       )}
