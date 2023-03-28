@@ -6,22 +6,23 @@ import path from 'path'
 
 dotenv.config()
 
-// https://vitejs.dev/config/
 export default defineConfig({
-  plugins: [react()],
-  test: {
-    globals: true,
-    environment: 'jsdom',
-    setupFiles: './spec/setup.js'
-  },
-  server: {
-    proxy: {
-      "/api" : {
-        target: `http://localhost:${process.env.PORT}`,
-        changeOrigin: true,
-        secure: false,
-        rewrite: ( path ) => path.replace(/^\/api/, '')
-      }
-    }
-  }
+	  plugins: [react()],
+	  test: {
+		      globals: true,
+		      environment: 'jsdom',
+		      setupFiles: './spec/setup.js'
+		    },
+	  server: {
+		      host:true,
+		      proxy: {
+			            "/api" : {
+					            target: `http://ec2-3-137-181-202.us-east-2.compute.amazonaws.com:${process.env.PORT}`,
+					            changeOrigin: true,
+					            secure: false,
+					            rewrite: ( path ) => path.replace(/^\/api/, '')
+					          }
+			          }
+		    }
 })
+
