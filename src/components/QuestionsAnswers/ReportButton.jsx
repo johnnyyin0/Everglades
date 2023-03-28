@@ -9,7 +9,7 @@ const ReportButton = ({ answerId }) => {
     if (isReported) {
       return;
     }
-    axios.put('http://localhost:3000/answer/report', {answerId})
+    axios.put('/api/answer/report', {answerId})
     .then(()=>{
       setIsReported(true)
       // console.log('SUCCESSFULLY REPORTED: ', answerId)

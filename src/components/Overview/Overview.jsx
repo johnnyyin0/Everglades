@@ -13,67 +13,68 @@ import Styles from './styles.jsx';
 
 let Overview = () => {
   let productId = window.location.pathname.slice(1) || 37311;
+  console.log(window.location)
 
-  //function to get to quantity and sizes of api
-
-  let createSkusArray = (skus) => {
-    let newArr = [];
-    let skusKeys = Object.keys(skus);
-    skusKeys.forEach(id => {
-      newArr.push(skus[id])
-    })
-    setSkusArray(newArr);
-  };
-  let [refresh, setRefresh] = useState('');
-
-  //function to add to cart via POST
-  let addCartFunc = (obj) => {
-    console.log(obj, 'Whats getting sent to the cart');
-    Axios.post('http://localhost:3000/cart', obj)
-    .then(res => setRefresh(res))
-    .catch(err => console.log(err));
-  };
 
 
   // useEffect(() => {
-  //   Axios.get('http://localhost:3000/cart')
-  //   .then(res => console.log(res.data, 'Items in your cart!'))
-  //   .catch(err => console.log(err));
-  // }, [refresh])
-  //states
+    //   Axios.get('http://localhost:3000/cart')
+    //   .then(res => console.log(res.data, 'Items in your cart!'))
+    //   .catch(err => console.log(err));
+    // }, [refresh])
+    //states
 
-  //loading state
-  let [isLoading, notLoading] = useState(true);
+    //loading state
+    let [isLoading, notLoading] = useState(true);
 
-  let [products, setProducts] = useState([]);
+    let [products, setProducts] = useState([]);
 
-  //skus array for the size and quantity of products
-  let [skusArray, setSkusArray] = useState([])
+    //skus array for the size and quantity of products
+    let [skusArray, setSkusArray] = useState([])
 
-  //array of all the products from api
-  let [currentProduct, setCurrentProduct] = useState([]);
+    //array of all the products from api
+    let [currentProduct, setCurrentProduct] = useState([]);
 
-  //all the styles from
-  let [currentStyle, setCurrentStyle] = useState([]);
+    //all the styles from
+    let [currentStyle, setCurrentStyle] = useState([]);
 
-  //index of photo currently selected on
-  let [index, setIndex] = useState(0);
+    //index of photo currently selected on
+    let [index, setIndex] = useState(0);
 
-  //true false for fullscreen modal
-  let [isFullScreen, setFullScreen] = useState(false);
+    //true false for fullscreen modal
+    let [isFullScreen, setFullScreen] = useState(false);
 
-  //state to be "selected" when picture is showing on overview
-  let [styleSelected, setSelectedStyle] = useState(currentStyle[0])
+    //state to be "selected" when picture is showing on overview
+    let [styleSelected, setSelectedStyle] = useState(currentStyle[0])
 
-  let [photo, setPhoto] = useState([]);
+    let [photo, setPhoto] = useState([]);
 
-  let [relative, setRelative] = useState([]);
+    let [relative, setRelative] = useState([]);
 
-  let [outfit, setOutfit] = useState([]);
+    let [outfit, setOutfit] = useState([]);
 
+    //function to add to cart via POST
+    let addCartFunc = (obj) => {
+      console.log(obj, 'Whats getting sent to the cart');
+      Axios.post('api/cart', obj)
+      .then(res => setRefresh(res))
+      .catch(err => console.log(err));
+    };
+
+    //function to get to quantity and sizes of api
+
+    let createSkusArray = (skus) => {
+      let newArr = [];
+      let skusKeys = Object.keys(skus);
+      skusKeys.forEach(id => {
+        newArr.push(skus[id])
+      })
+      setSkusArray(newArr);
+    };
+    let [refresh, setRefresh] = useState('');
   //useEffect
   useEffect(() => {
-    Axios.get('http://localhost:3000/products')
+    Axios.get('api/products')
     .then(res => {
       setProducts(res.data)})
       .catch(err => console.log('Failed to load products'));
@@ -82,14 +83,14 @@ let Overview = () => {
 
     // When the currentId changes, change the current data
     useEffect(() => {
-      Axios.get(`http://localhost:3000/product/${productId}`)
+      Axios.get(`api/product/${productId}`)
       .then(res => setCurrentProduct(res.data))
       .catch(err => console.log('Failed to load product'))
     }, [])
 
     useEffect(() => {
       // console.log(productId);
-      Axios.get(`http://localhost:3000/product/${productId}/styles`)
+      Axios.get(`api/product/${productId}/styles`)
         .then(res => {
           setCurrentStyle(res.data.results);
           setSelectedStyle(res.data.results[0]);
@@ -105,7 +106,7 @@ let Overview = () => {
 
     let relativeIdNumbers = [];
     useEffect(() => {
-      Axios.get(`http://localhost:3000/product/${productId}/related`)
+      Axios.get(`api/product/${productId}/related`)
       .then(res => {
         relativeIdNumbers = [...res.data];
         return relativeIdNumbers
@@ -115,7 +116,7 @@ let Overview = () => {
         let relativeItems = [];
         idArray.forEach(id => {
           // console.log(id);
-          Axios.get(`http://localhost:3000/product/${id}/styles`)
+          Axios.get(`api/product/${id}/styles`)
           .then(res => {
             //adding product id to the style
             res.data.results[0].productId = id
@@ -147,32 +148,32 @@ let Overview = () => {
       }
 
   return (
-    <div className="pt-16">
+    <div className='pt-16'>
     { isFullScreen ?
       <FullScreen setFullScreen={setFullScreen} styleSelected={styleSelected} index={index} setIndex={setIndex} setPhoto={setPhoto} nextButton={nextButton} backButton={backButton}/>
       :
       <>
-      <div className='flex justify-center'>
+      <div className='flex justify-center '>
       <div className="grid grid-cols-6 gap-2" >
       <div className="col-span-1 row-span-4"></div>
       <div className='rounded-lg content-end col-span-2 row-span-4'>
       <ProductImage photo={photo} styleSelected={styleSelected} setPhoto={setPhoto} setFullScreen={setFullScreen} setIndex={setIndex} index={index} nextButton={nextButton} backButton={backButton}/>
       </div>
 
-      <div className='mt-10 rounded-lg shadow-xl col-span-2 w-[650px] h-[90px]'>
+      <div className='mt-10 rounded-lg shadow-xl col-span-2 w-[525px] h-[90px]'>
       <RatingsAndShare currentProduct={currentProduct} photo={photo}/>
       </div>
 
 
-      <div className=' rounded-lg shadow-xl col-span-2 h-[150px] w-[650px]'>
+      <div className=' rounded-lg shadow-xl col-span-2 h-[150px] w-[525px]'>
       <ProductName currentProduct={currentProduct} styleSelected={styleSelected}/>
       </div>
 
-      <div className=' rounded-lg shadow-xl col-span-2 w-[650px] h-[180px] overflow-y-auto'>
+      <div className=' rounded-lg shadow-xl col-span-2 w-[525px] h-[190px] overflow-y-auto'>
       <Styles currentStyle={currentStyle} setPhoto={setPhoto} setSelectedStyle={setSelectedStyle} styleSelected={styleSelected} createSkusArray={createSkusArray}/>
       </div>
 
-      <div className='mt-2 rounded-lg shadow-xl col-span-2 w-[650px] h-[150px]'>
+      <div className='mt-2 rounded-lg shadow-xl col-span-2 w-[525px] h-[150px]'>
       <AddCart styleSelected={styleSelected} skusArray={skusArray} addCartFunc={addCartFunc}/>
       </div>
 
@@ -187,7 +188,7 @@ let Overview = () => {
         <Carosel className='flex-1 h-[200px]' relative={relative} currentProduct={currentProduct} styleSelected={styleSelected}/>
         </div>
         <div className="flex justify-center mt-10">
-        <Carosel className='flex-1 h-[200px]' relative={exampleStyle} currentProduct={currentProduct} styleSelected={styleSelected}/>
+        <Carosel className='flex-1' relative={exampleStyle} currentProduct={currentProduct} styleSelected={styleSelected}/>
         </div>
         </div>
       );
