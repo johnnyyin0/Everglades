@@ -1,6 +1,6 @@
 import { assert, expect, it } from 'vitest'
 import {render, screen, fireEvent, waitFor, queryByText } from '@testing-library/react'
-import sampleReviewData from './sampleReviewData.js'
+import sampleReviewData from './SampleReviewData.js'
 import ReviewsList from '../../src/components/RatingsReviews/ReviewsList.jsx'
 
 //requires id, setPhoto, shownReviews, setShownReviews, allReviews, setAllReviews, sort, setSort

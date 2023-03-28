@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react'
 import axios from 'axios'
 import ReviewTile from './ReviewTile.jsx'
 import SortDropDown from './SortDropDown.jsx'
-import sampleReviewData from '../../../spec/ratingsreviewsspec/sampleReviewData.js'
+import sampleReviewData from '../../../spec/ratingsreviewsspec/SampleReviewData.js'
 
 export default function ReviewsList({ id, setPhoto, shownReviews, setShownReviews, allReviews, setAllReviews, sort, setSort }) {
 

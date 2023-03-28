@@ -1,4 +1,4 @@
-import { it, expect } from 'vitest';
+import { it, expect, } from 'vitest';
 import { render, screen } from '@testing-library/react';
 import QuestionsAnswers from '../../src/components/QuestionsAnswers/QuestionsAnswers';
 
