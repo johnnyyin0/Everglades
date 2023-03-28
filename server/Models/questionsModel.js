@@ -1,5 +1,6 @@
 const axios = require('axios');
 const config = require('../../config.js');
+const path = require('path');
 
 const apiURL = 'https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfe/qa/'
 
@@ -72,6 +73,7 @@ let questionsModel = {
   },
 
   submitAnswer: (questionId, params) => {
+    console.log('this is the path', path)
     let options = {
       method: 'POST',
       url: apiURL+ `questions/${questionId}/answers`,
