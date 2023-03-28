@@ -7,7 +7,7 @@ let productsController = {
       res.send(data)
     })
     .catch((err) => {
-      console.log('ERROR ON FETCHING PRODUCTS SERVER: ', err)
+      console.log('ERROR ON FETCHING PRODUCTS SERVER: ', err.data)
     })
   },
 
@@ -17,7 +17,7 @@ let productsController = {
       res.send(data)
     })
     .catch((err) => {
-      console.log('ERROR ON FETCHING PRODUCTS SERVER: ', err)
+      console.log('ERROR ON FETCHING PRODUCTS SERVER: ', err.data)
     })
   },
 
@@ -28,7 +28,7 @@ let productsController = {
       res.send(data)
     })
     .catch((err) => {
-      console.log('ERROR ON FETCHING PRODUCTS SERVER: ', err)
+      console.log('ERROR ON FETCHING PRODUCTS SERVER: ', err.data)
     })
   },
 
@@ -39,7 +39,7 @@ let productsController = {
       res.send(data)
     })
     .catch((err) => {
-      console.log('ERROR ON FETCHING PRODUCTS SERVER: ', err)
+      console.log('ERROR ON FETCHING PRODUCTS SERVER: ', err.data)
     })
   },
 
@@ -61,7 +61,7 @@ let productsController = {
       res.send(data)
     })
     .catch((err) => {
-      console.log('ERROR ON FETCHING CART FROM SERVER: ', err)
+      console.log('ERROR ON FETCHING CART FROM SERVER: ', err.data)
     })
   },
 }
