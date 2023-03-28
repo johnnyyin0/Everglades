@@ -1,10 +1,10 @@
 import React, { useState, useEffect } from 'react'
+import axios from 'axios'
 import ReviewTile from './ReviewTile.jsx'
 import SortDropDown from './SortDropDown.jsx'
-import axios from 'axios'
+import sampleReviewData from '../../../spec/ratingsreviewsspec/SampleReviewData.js'
 
 export default function ReviewsList({ id, setPhoto, shownReviews, setShownReviews, allReviews, setAllReviews, sort, setSort }) {
-
 
   const [restReviews, setRestReviews] = useState([]);
   const [showMore, setShowMore] = useState(true);
@@ -30,6 +30,9 @@ export default function ReviewsList({ id, setPhoto, shownReviews, setShownReview
     let firstTwo = reviewsToParse.slice(0, 2)
     setShownReviews(firstTwo)
     setRestReviews(reviewsToParse.slice(2))
+    if(reviewsToParse.slice(2).length === 0){
+      setShowMore(false)
+    }
   }, [allReviews])
 
   const handleMoreReviews = (evt) => {

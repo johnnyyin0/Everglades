@@ -1,6 +1,7 @@
 import axios from 'axios';
 import React, { useState, useEffect } from 'react';
-import {format, parseISO} from 'date-fns'
+import format from 'date-fns/format';
+import parseISO from 'date-fns/parseISO'
 import ReportButton from './ReportButton';
 import AnswerHelpful from './AnswerHelpful';
 import AnswersPhotos from './AnswersPhotos';
@@ -26,10 +27,10 @@ const AnswersList = ({questionId, questionBody, productName, questions, setQuest
   };
 
   return (
-    <span>
+    <span style={{backgroundColor:'#FFFFFF'}}>
       <span style={{display:'flex', justifyContent:'space-between'}}>
         <span style={{justifyContent:'flex-start'}}>
-          <b style={{fontSize:'20px'}}> Q: {questionBody}</b>
+          <b style={{fontSize:'20px',}}> Q: {questionBody}</b>
         </span>
         <span style={{justifyContent:'flex-end'}}>
           <QuestionHelpful questionId={questionId} questions={questions} setQuestions={setQuestions} questionHelpfulness={questionHelpfulness}/>
@@ -39,21 +40,20 @@ const AnswersList = ({questionId, questionBody, productName, questions, setQuest
       </span>
       <div>
         {answers.length === 0 ? (
-          <div style={{ marginTop: '10px' }}>
+          <div style={{ marginTop: '20px', marginBottom: '20px'}}>
             <b>A:</b>
             <i> No answer yet...</i>
           </div>
         ) : (
-          <div className='answer-list' style={{marginTop: '10px', marginBottom: '10px'}}>
+          <div className='answer-list' style={{marginTop: '20px', marginBottom: '20px',}}>
             {answers.slice(0, showMore ? answers.length : 2).map((answer) => (
-              <div key={answer.answer_id} style={{marginTop: '10px', marginBottom: '10px'}} >
+              <div key={answer.answer_id} style={{ marginBottom: '30px'}}>
                 <b>A:</b> {answer.body}
-                <br />
-                <small>
-                  by {answer.answerer_name === 'Seller' ? <b>{answer.answerer_name}</b> : answer.answerer_name}, on {format(parseISO(answer.date), "MMMM-dd-yyyy")} | Helpful?{' '}
+                <div style={{marginTop: '10px'}}>
+                  by {answer.answerer_name === 'Seller' ? <b>{answer.answerer_name}</b> : answer.answerer_name}, on {format(Date.parse(answer.date), "MMMM-dd-yyyy")} | Helpful?{' '}
                   <AnswerHelpful answers={answers} setAnswers={setAnswers} answerId={answer.answer_id}/> | <ReportButton answerId={answer.answer_id} />
-                </small>
                 <AnswersPhotos photos={answer.photos}/>
+                </div>
               </div>
             ))}
             {answers.length > 2 && (

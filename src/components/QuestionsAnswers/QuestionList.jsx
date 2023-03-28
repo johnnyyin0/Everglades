@@ -17,26 +17,34 @@ const QuestionList = ({questions, setQuestions, productId, productName, getQuest
   return (
     <div>
       <input
-        type="text"
-        value={searchTerm}
-        onChange={handleChange}
-        placeholder="HAVE A QUESTION? SEARCH FOR ANSWERS...🔍"
-        style={{margin: '10px 0', opacity: searchTerm ? 1 : 0.5, border: '1px solid black', width: '100%', height: '60px', marginBottom:'10px', marginTop: '10px',}}
-      />
+  type="text"
+  value={searchTerm}
+  onChange={handleChange}
+  placeholder=" HAVE A QUESTION? SEARCH FOR ANSWERS...🔍"
+  style={{
+    margin: '10px 0',
+    border: '1px solid #ccc',
+    width: '100%',
+    height: '60px',
+    marginBottom: '10px',
+    marginTop: '10px',
+    backgroundColor: '#FFFFFF'
+  }}
+/>
       <div className='question-list'>
-        <ul>
-          {searchTerm === ''
-            ? questions.slice(0, questionsCount).map((question) => (
-                <li key={question.question_id} style={{ marginBottom: '10px', padding: '10px',}}>
-                      <AnswersList questionId={question.question_id} questionBody={question.question_body} productName={productName} questions={questions} setQuestions={setQuestions} questionHelpfulness={question.question_helpfulness}/>          
-                </li>
-              ))
-            :  filteredQuestions.slice(0, questionsCount).map((question) => (
-              <li key={question.question_id} style={{ marginBottom: '10px', padding: '10px',}}>              
-                      <AnswersList questionId={question.question_id} questionBody={question.question_body} productName={productName} questions={questions} setQuestions={setQuestions} questionHelpfulness={question.question_helpfulness}/>
-                </li>
-              ))}
-        </ul>
+      <ul>
+  {searchTerm === ''
+    ? questions.slice(0, questionsCount).map((question) => (
+        <li key={question.question_id} style={{ marginBottom: '10px', padding: '10px', }}>
+          <AnswersList questionId={question.question_id} questionBody={question.question_body} productName={productName} questions={questions} setQuestions={setQuestions} questionHelpfulness={question.question_helpfulness}/>          
+        </li>
+      ))
+    :  filteredQuestions.slice(0, questionsCount).map((question) => (
+      <li key={question.question_id} style={{ marginBottom: '10px', padding: '10px', }}>              
+        <AnswersList questionId={question.question_id} questionBody={question.question_body} productName={productName} questions={questions} setQuestions={setQuestions} questionHelpfulness={question.question_helpfulness}/>
+      </li>
+    ))}
+</ul>
       </div>
       <div style={{ display: 'flex'}}>
         {questionsCount < filteredQuestions.length && (

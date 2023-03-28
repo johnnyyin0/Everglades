@@ -88,6 +88,7 @@ let Overview = () => {
     }, [])
 
     useEffect(() => {
+      // console.log(productId);
       Axios.get(`http://localhost:3000/product/${productId}/styles`)
         .then(res => {
           setCurrentStyle(res.data.results);
@@ -113,7 +114,7 @@ let Overview = () => {
       .then(idArray => {
         let relativeItems = [];
         idArray.forEach(id => {
-          console.log(id);
+          // console.log(id);
           Axios.get(`http://localhost:3000/product/${id}/styles`)
           .then(res => {
             //adding product id to the style

@@ -22,15 +22,16 @@ const AnswersPhotos = ({ photos }) => {
         <img 
           key={index}
           className="h-32"
-          style={{ marginTop:'10px', marginBottom:'10px', marginRight: '10px' }}
+          style={{ width: '150px', height: '150px', objectFit: 'cover', marginTop:'10px', marginBottom:'10px', marginRight: '10px' }}
           src={image.thumbnailUrl.url}
+          alt="answer photos"
           onClick={() => handleImageClick(image)}
         />
       ))}
       {modalImage && (
         <div className='question-answer-modal-overlay'>
         <div className='question-answer-modal-box'>
-        <img src={modalImage.fullUrl.url}/>
+        <img src={modalImage.fullUrl.url} style={{ width: '100%', height: '100%', objectFit: 'contain' }} alt="answer photos full"/>
         <span className='close' onClick={handleModalClose}>
           &times;
         </span>
