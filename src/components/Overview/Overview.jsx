@@ -1,7 +1,6 @@
 import React from 'react';
 import {useEffect, useState} from 'react';
 import Axios from 'axios';
-import exampleStyle from './exampleStyle.js';
 import ProductName from './productName.jsx';
 import ProductDescription from './ProductDescription.jsx';
 import ProductImage from './ProductImage.jsx';
@@ -69,8 +68,6 @@ let Overview = () => {
 
   let [relative, setRelative] = useState([]);
 
-  let [outfit, setOutfit] = useState([]);
-
   //useEffect
   useEffect(() => {
     Axios.get('http://localhost:3000/products')
@@ -85,23 +82,17 @@ let Overview = () => {
       Axios.get(`http://localhost:3000/product/${productId}`)
       .then(res => setCurrentProduct(res.data))
       .catch(err => console.log('Failed to load product'))
+      .then(Axios.get(`http://localhost:3000/product/${productId}/styles`)
+      .then(res => {
+        setCurrentStyle(res.data.results);
+        createSkusArray(res.data.results[0].skus);
+        setSelectedStyle(res.data.results[0]);
+        setPhoto(res.data.results[0].photos[0].url);
+        notLoading(false);
+      })
+      .catch(err => console.log('Failed to load product styles')));
     }, [])
 
-    useEffect(() => {
-      console.log(productId);
-      Axios.get(`http://localhost:3000/product/${productId}/styles`)
-        .then(res => {
-          setCurrentStyle(res.data.results);
-          setSelectedStyle(res.data.results[0]);
-          createSkusArray(res.data.results[0].skus);
-          setPhoto(res.data.results[0].photos[0].url);
-          notLoading(false);
-        })
-        .catch(err => {
-          console.log('Failed to load product styles');
-          notLoading(false);
-        });
-    }, []);
 
     let relativeIdNumbers = [];
     useEffect(() => {
@@ -114,7 +105,6 @@ let Overview = () => {
       .then(idArray => {
         let relativeItems = [];
         idArray.forEach(id => {
-          console.log(id);
           Axios.get(`http://localhost:3000/product/${id}/styles`)
           .then(res => {
             //adding product id to the style
@@ -185,9 +175,6 @@ let Overview = () => {
       }
       <div className='flex justify-center mt-10'>
         <Carosel className='flex-1 h-[200px]' relative={relative} currentProduct={currentProduct} styleSelected={styleSelected}/>
-        </div>
-        <div className="flex justify-center mt-10">
-        <Carosel className='flex-1 h-[200px]' relative={exampleStyle} currentProduct={currentProduct} styleSelected={styleSelected}/>
         </div>
         </div>
       );

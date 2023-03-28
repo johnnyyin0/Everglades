@@ -15,16 +15,15 @@ In this mockup project, we created a modern and user-friendly single-page shoppi
 ![Jest](https://img.shields.io/badge/Jest-323330?style=for-the-badge&logo=Jest&logoColor=white)
 ![MongoDB](https://img.shields.io/badge/MongoDB-%234ea94b.svg?style=for-the-badge&logo=mongodb&logoColor=white)
 
-## Components
+## Demo Videos for our Components
 
 ### Overview:
 
 > video placeholder here
 
 ### Questions and Answers:
-This component lets users search up existing questions on the selected item, add a question they may have, answer any questions, report any answers, and let users know if the question or answer was helpful.
 
-[![Imgur](https://i.imgur.com/riSdeYw.png)](https://i.imgur.com/hGtiRdG.mp4)
+> video placeholder here
 
 ### Ratings and Reviews:
 

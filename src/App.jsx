@@ -39,7 +39,7 @@ function App() {
 
   return (
     <div className={theme}>
-      <div className="bg-white text-zinc-900 dark:text-slate-200 dark:bg-zinc-800 w-max">
+      <div className="bg-white text-zinc-900 dark:text-slate-200 dark:bg-zinc-800">
         <Banner setTheme={setTheme} theme={theme} cartItems={cartItems}/>
         <div className="mx-auto max-w-screen-2xl w-11/12">
           <div onClick={handleOverviewClick}>

@@ -3,7 +3,7 @@ import axios from 'axios'
 import StarsWidget from './StarsWidget'
 import Report from '../QuestionsAnswers/ReportButton.jsx'
 import CarouselPhoto from './CarouselPhoto.jsx'
-import format from 'date-fns/format'
+import { format } from 'date-fns'
 
 export default function ReviewTile({ review, setPhoto }) {
 
