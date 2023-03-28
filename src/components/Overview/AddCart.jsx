@@ -42,17 +42,22 @@ const AddToCart = ({styleSelected, skusArray, addCartFunc}) => {
     setForm({...formData, count: num});
   };
 
-  let handleSize = (input) => {
+  const sizeToSkuMap = {};
+  Object.keys(styleSelected.skus).forEach((id) => {
+    const size = styleSelected.skus[id].size;
+    sizeToSkuMap[size] = id;
+  });
+
+  const handleSize = (input) => {
     setRedSelectSize(false);
     setqtyAvailable(true);
     setSelectSize(input);
-    let skusObject = styleSelected.skus;
-    Object.keys(skusObject).forEach(id => {
-      if ( skusObject[id].size === input ) {
-        setForm({...formData, sku_id: id});
-        setQty(skusObject[id].quantity);
-      }
-    })
+    const skuId = sizeToSkuMap[input];
+    if (skuId) {
+      const sku = styleSelected.skus[skuId];
+      setQty(sku.quantity);
+      setForm({ ...formData, sku_id: skuId });
+    }
   };
 
   let handleFavorite = () => {
