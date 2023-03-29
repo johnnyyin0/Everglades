@@ -46,9 +46,38 @@ let Overview = () => {
 
     let [photo, setPhoto] = useState([]);
 
+
+    //relative and outfits are the arrays the carousel iterates through
     let [relative, setRelative] = useState([]);
 
-    let [outfit, setOutfit] = useState([]);
+    //array of style objects
+    let [outfits, setOutfits] = useState([]);
+
+    //array of ids
+    let [outfitsId, setOutfitsId] = useState([]);
+
+    //function that takes productId and adds it to the outfit list, and then local storage
+    let addOutfit = (id) => {
+      console.log(id);
+      localStorage.setItem('outfits', JSON.stringify([id, ...outfitsId]))
+      setOutfitsId(outfitsId => [...outfitsId, id])
+    }
+
+    let deleteOutfit = (id) => {
+      console.log('clicked');
+      let index = outfitsId.indexOf(id);
+      let outfitCopy = [...outfitsId];
+      outfitCopy.splice(index, 1);
+      localStorage.setItem('outfits', JSON.stringify([...outfitCopy]))
+      setOutfitsId(outfitCopy);
+    }
+
+    useEffect(()=> {
+      let outfitArray = JSON.parse(localStorage.getItem("outfits"));
+      console.log(outfitArray);
+      setOutfitsId(outfitArray);
+    }, []);
+
 
     //function to add to cart via POST
     let addCartFunc = (obj) => {
@@ -103,25 +132,58 @@ let Overview = () => {
 
     let relativeIdNumbers = [];
     useEffect(() => {
-      Axios.get(`api/product/${productId}/related`)
-      .then(res => {
-        relativeIdNumbers = [...res.data];
-        return relativeIdNumbers
-      })
-      //iterate over the relativeIdNumbers, do a axios get request on each id
-      .then(idArray => {
-        let relativeItems = [];
-        idArray.forEach(id => {
-          // console.log(id);
+      // Check if the response for the given productId is already cached in localStorage
+      const cachedData = localStorage.getItem(`product_${productId}_related`);
+      if (cachedData) {
+        setRelative(JSON.parse(cachedData));
+      } else {
+        Axios.get(`api/product/${productId}/related`)
+          .then(res => {
+            relativeIdNumbers = [...res.data];
+            return relativeIdNumbers
+          })
+          //iterate over the relativeIdNumbers, do a axios get request on each id
+          .then(idArray => {
+            let relativeItems = [];
+            idArray.forEach(id => {
+              // console.log(id);
+              Axios.get(`api/product/${id}/styles`)
+              .then(res => {
+                //adding product id to the style
+                res.data.results[0].productId = id;
+                relativeItems.push(res.data.results[0]);
+                // Check if all the API calls are complete
+                if (relativeItems.length === idArray.length) {
+                  setRelative(relativeItems);
+                  // Cache the API response for the given productId
+                  localStorage.setItem(`product_${productId}_related`, JSON.stringify(relativeItems));
+                  setRefresh(res);
+                }
+              })
+            })
+          });
+      }
+    }, [productId]);
+
+    useEffect(() => {
+      outfitsId.forEach(id => {
+        // Check if the response for the given outfitId is already cached in localStorage
+        const cachedData = localStorage.getItem(`product_${id}_styles`);
+        if (cachedData) {
+          setOutfits(outfits => [...outfits, JSON.parse(cachedData)]);
+        } else {
           Axios.get(`api/product/${id}/styles`)
           .then(res => {
             //adding product id to the style
-            res.data.results[0].productId = id
-            setRelative(relative => [...relative, res.data.results[0]])
+            res.data.results[0].productId = id;
+            setOutfits(outfits => [res.data.results[0], ...outfits]);
+            setRefresh(res);
+            // Cache the API response for the given outfitId
+            localStorage.setItem(`product_${id}_styles`, JSON.stringify(res.data.results[0]));
           })
-        })
-        })
-      }, [])
+        }
+      })
+    }, [outfitsId]);
 
       //buttons to change profile index
       const nextButton = () => {
@@ -181,10 +243,10 @@ let Overview = () => {
       </>
       }
       <div className='flex justify-center mt-10'>
-        <Carosel className='flex-1 h-[200px]' relative={relative} currentProduct={currentProduct} styleSelected={styleSelected}/>
+        <Carosel className='flex-1 h-[200px]' relative={relative} currentProduct={currentProduct} styleSelected={styleSelected} outfitCarousel={false} outfitsId={outfitsId} addOutfit={addOutfit} deleteOutfit={deleteOutfit}/>
         </div>
         <div className="flex justify-center mt-10">
-        <Carosel className='flex-1' relative={exampleStyle} currentProduct={currentProduct} styleSelected={styleSelected}/>
+        <Carosel className='flex-1' relative={outfits} currentProduct={currentProduct} styleSelected={styleSelected} outfitCarousel={true} outfitsId={outfitsId} addOutfit={addOutfit} deleteOutfit={deleteOutfit}/>
         </div>
         </div>
       );
