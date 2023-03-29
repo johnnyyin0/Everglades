@@ -8,7 +8,7 @@ import FitSlider from '../../src/components/RatingsReviews/FitSlider.jsx'
 
 describe('FitSlider', () => {
   const props = {};
-  props.fitChar = "Strength";
+  props.fitChar = "Size";
   props.charId = "27739";
   props.charVal = 3.9891234
 
