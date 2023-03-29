@@ -43,10 +43,10 @@ function App() {
             <Overview setCartItems={setCartItems}/>
           </div>
           <div onClick={handleQuestionsAnswersClick}>
-            {/* <QuestionsAnswers /> */}
+            <QuestionsAnswers />
           </div>
           <div onClick={handleRatingsReviewsClick}>
-            {/* <RatingsReviews /> */}
+            <RatingsReviews />
           </div>
         </div>
       </div>
