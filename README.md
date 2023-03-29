@@ -78,7 +78,7 @@ To start the test monitoring:
 ```
 npm test
 ```
-To test coverage(WIP):
+To test coverage:
 ```
 npm run coverage
 ```
