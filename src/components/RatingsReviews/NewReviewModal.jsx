@@ -1,9 +1,9 @@
 import React, { useState, useEffect } from 'react'
-import axios from 'axios'
 import CharacteristicReview from './CharacteristicReview.jsx'
 import StarsRater from './StarsRater.jsx'
 import PhotoUploader from './PhotoUploader.jsx'
 import ReviewPhoto from './ReviewPhoto.jsx'
+import { getMeta, getProduct, sendReview } from './reviewsapi'
 
 
 export default function NewReviewModal({ id }) {
@@ -26,11 +26,19 @@ export default function NewReviewModal({ id }) {
 
 
   useEffect(() => {
+<<<<<<< HEAD
     axios.get(`api/meta/${id}`)
     .then(res => setReviewMeta(res.data))
     .catch(err => console.log(err));
 
     axios.get(`api/product/${id}`)
+=======
+    getMeta(id)
+    .then(res => setReviewMeta(res.data))
+    .catch(err => console.log(err));
+
+    getProduct(id)
+>>>>>>> b6b2f94eef4cdb09848bb5dfc432a6453cddc7c8
     .then(res => setProductName(res.data.name))
     .catch(err => console.log(err));
 
@@ -56,12 +64,7 @@ export default function NewReviewModal({ id }) {
         photos: photos,
         characteristics: charRatings
       }
-      let options = {
-        url: "http://localhost:3000/review",
-        data: payload,
-        method: 'post'
-      }
-      axios(options)
+      sendReview(payload)
       .then(res => {
         console.log(res.data)
         setSort('relevant')

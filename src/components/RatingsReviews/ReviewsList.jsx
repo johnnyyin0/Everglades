@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react'
 import ReviewTile from './ReviewTile.jsx'
 import SortDropDown from './SortDropDown.jsx'
-import axios from 'axios'
+import { getAllReviews } from './reviewsapi.js'
 
 export default function ReviewsList({ id, setPhoto, shownReviews, setShownReviews, allReviews, setAllReviews, sort, setSort }) {
 
@@ -10,8 +10,7 @@ export default function ReviewsList({ id, setPhoto, shownReviews, setShownReview
   const [showMore, setShowMore] = useState(true);
 
   useEffect(() => {
-    let url = `/api/reviews/${id}/${sort}`;
-    axios.get(url)
+    getAllReviews(id, sort)
       .then(res => {
         setAllReviews(res.data.results)
         setShownReviews(res.data.results.slice(0, 2))
