@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react'
-import axios from 'axios'
+import { getMeta } from './reviewsapi.js'
 import MainAverage from './MainAverage.jsx'
 import TotalsFilters from './TotalsFilters.jsx'
 import FitSliders from './FitSliders.jsx'
@@ -13,10 +13,7 @@ export default function Sidebar({ id, allReviews, setAllReviews }) {
   const [ratingsCount, setRatingsCount] = useState(0)
 
   useEffect(() => {
-    let options = {
-      url: `/api/meta/${id}`,
-    };
-    axios(options)
+    getMeta(id)
       .then(res => {
         let meta = res.data
         let avgDividend = 0
