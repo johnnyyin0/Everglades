@@ -105,7 +105,8 @@ dist
 
 # config
 config.js
+
+
+# vite config
 vite.config.js
 
-# certs
-*.cer

@@ -13,7 +13,7 @@ import Styles from './styles.jsx';
 
 let Overview = () => {
   let productId = window.location.pathname.slice(1) || 37311;
-  console.log(window.location)
+  // console.log(window.location)
 
 
 
