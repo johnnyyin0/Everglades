@@ -14,6 +14,7 @@ import Styles from './styles.jsx';
 let Overview = () => {
   let productId = window.location.pathname.slice(1) || 37311;
 
+
   // useEffect(() => {
     //   Axios.get('http://localhost:3000/cart')
     //   .then(res => console.log(res.data, 'Items in your cart!'))
@@ -28,7 +29,6 @@ let Overview = () => {
 
     //skus array for the size and quantity of products
     let [skusArray, setSkusArray] = useState([])
-console.log(skusArray);
     //array of all the products from api
     let [currentProduct, setCurrentProduct] = useState([]);
 
