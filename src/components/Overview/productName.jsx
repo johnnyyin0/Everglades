@@ -3,7 +3,7 @@ let ProductName = ({currentProduct, styleSelected}) => {
   return (
     <div className='ml-6 mt-2' title='product-name'>
     <p className="font-sans text-2xl">{currentProduct.category}</p>
-    <h2 className="font-sans font-semibold text-5xl">{currentProduct.name}</h2>
+    <h2 className="font-sans font-semibold text-4xl whitespace-nowrap">{currentProduct.name}</h2>
     {styleSelected.sale_price ?
           <>
           <div className="flex justify-start">
