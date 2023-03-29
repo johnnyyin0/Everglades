@@ -6,7 +6,7 @@ export const getProduct = (id) => {
   return axios.get(`/api/product/${id}`)
 }
 
-export const getAlReviews = (id, sort) => {
+export const getAllReviews = (id, sort) => {
   let url = `/api/reviews/${id}/${sort}`;
   return axios.get(url)
 }
