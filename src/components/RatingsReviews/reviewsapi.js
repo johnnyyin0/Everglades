@@ -1,3 +1,5 @@
+import axios from 'axios'
+
 export const getMeta = (id) => {
   return axios.get(`/api/meta/${id}`)
 }
@@ -13,7 +15,7 @@ export const getAllReviews = (id, sort) => {
 
 export const sendReview = (payload) => {
   let options = {
-    url: "api/review",
+    url: "/api/review",
     data: payload,
     method: 'post'
   }
