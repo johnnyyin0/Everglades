@@ -8,6 +8,10 @@ import FitSliders from '../../src/components/RatingsReviews/FitSliders.jsx'
 describe('FitSliders', () => {
   it('Should render to the DOM', () => {
     render(<FitSliders characteristics={sampleMeta.characteristics}/>);
-    expect(screen.getByTitle('fit-sliders')).toBeInTheDocument
+    expect(screen.getByTitle('fit-sliders')).toBeInTheDocument()
+  });
+  it('Should render a FitSlider for each present characteristic', () => {
+    render(<FitSliders characteristics={sampleMeta.characteristics} />);
+    expect(screen.getAllByTitle('fit-slider').length).toBe(Object.keys(sampleMeta.characteristics).length)
   })
 })
