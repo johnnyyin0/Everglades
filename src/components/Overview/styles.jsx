@@ -4,8 +4,8 @@ import {useState} from 'react';
 const Styles = ({currentStyle, setPhoto, styleSelected, setSelectedStyle, createSkusArray}) => {
   return (
     <>
-      <p className="pl-4 pb-2 text-xl" title="styles">Styles -> {styleSelected.name}</p>
-    <div className="h-30 grid grid-cols-4 gap-2 content-center ">
+      <p className="pl-4 pb-2 text-xl" title="styles">Styles -❯ {styleSelected.name}</p>
+    <div className="h-30 grid grid-cols-4 gap-4 content-center ">
       {currentStyle.map((style, index) => {
         return (
           <div key={index}>

@@ -65,57 +65,51 @@ const AddToCart = ({styleSelected, skusArray, addCartFunc}) => {
   };
 
   return (
-  <form onSubmit={(e) => handleSubmit(e)}>
-    <div className="grid grid-cols-4 gap-4 pb-6" title="add-cart">
-      <div className="dropdown col-span-2 pl-6">
-
-        { redSelectSize ?
-       <p className='text-rose-700 text-center'>Please Select a Size</p>
-       : null
-       }
-
-        <label tabIndex={0} className={!redSelectSize ? "btn m-1 w-[290px]" : 'btn btn-error w-[290px]'}>{selectSize}</label>
-
-       <ul tabIndex={0} className="dropdown-content menu p-2 shadow bg-base-100 rounded-box w-52">
-        <div>
-          {skusArray.map((size, index) => {
-            return <li key={index}><a onClick={(e) => handleSize(size.size)}>{size.size}</a></li>
-            })}
-            </div>
-            </ul>
-            </div>
-            <div className="dropdown col-span-1 pl-16">
-
-              { redSelectQty ?
-              <p className='text-rose-700 text-center whitespace-nowrap'>Please Select a Quantity</p>
-              : null
-              }
-              <label tabIndex={0} className={!redSelectSize ? "btn m-1 w-[162px]" : 'btn btn-error w-[162px]'}>{selectQty}</label>
-
-              <ul tabIndex={0} className="dropdown-content menu p-2 shadow bg-base-100 rounded-box w-52">
-                { qtyAvailable ?
-                  <div>
-                  {Array.from(Array(qty), (element, index) =>
-                    <li key={index}><a onClick={(e) => handleQty(index + 1)}>{index + 1}</a></li>
-                    )}
-                    </div>
-                    : null
-                  }
-
-                </ul>
-                </div>
-                <div className="pl-6 col-span-2">
-                  <button type="submit" className="btn m-1 w-[260px]">Add to Cart</button>
-                  </div>
-                  <div className="pl-[35px] col-span-2">
-                    {isFavorited ?
-                    <button type="reset" onClick={handleUnfavorite} className="btn m-1 w-[183px]">★</button>
-                    : <button type="reset" onClick={handleFavorite} className="btn m-1 w-[190px]">✰</button>
+    <form onSubmit={(e) => handleSubmit(e)}>
+      <div className="grid grid-cols-4 gap-4 pb-6" title="add-cart">
+        <div className="dropdown col-span-2 pl-6">
+          { redSelectSize ?
+         <p className='text-rose-700 text-center'>Please Select a Size</p>
+         : null
+         }
+          <label tabIndex={0} className={!redSelectSize ? "btn m-1 w-[315px]" : 'btn btn-error w-[315px]'}>{selectSize}</label>
+         <ul tabIndex={0} className="dropdown-content menu p-2 shadow bg-base-100 rounded-box w-52">
+          <div>
+            {skusArray.map((size, index) => {
+              return <li key={index}><a onClick={(e) => handleSize(size.size)}>{size.size}</a></li>
+              })}
+              </div>
+              </ul>
+              </div>
+              <div className="dropdown col-span-1 pl-11">
+                { redSelectQty ?
+                <p className='text-rose-700 text-center whitespace-nowrap'>Please Select a Quantity</p>
+                : null
+                }
+                <label tabIndex={0} className={!redSelectSize ? "btn m-1 w-[240px]" : 'btn btn-error w-[240px]'}>{selectQty}</label>
+                <ul tabIndex={0} className="dropdown-content menu p-2 shadow bg-base-100 rounded-box w-52">
+                  { qtyAvailable ?
+                    <div>
+                    {Array.from(Array(qty), (element, index) =>
+                      <li key={index}><a onClick={(e) => handleQty(index + 1)}>{index + 1}</a></li>
+                      )}
+                      </div>
+                      : null
                     }
+                  </ul>
+                  </div>
+                  <div className="pl-6 col-span-2">
+                    <button type="submit" className="btn m-1 w-[370px]">Add to Cart</button>
                     </div>
-                    </div>
-                    </form>
-                    )
-                  }
+                    <div className="pl-[100px] col-span-2">
+                      {isFavorited ?
+                      <button type="reset" onClick={handleUnfavorite} className="btn m-1 w-[183px]">★</button>
+                      : <button type="reset" onClick={handleFavorite} className="btn m-1 w-[183px]">✰</button>
+                      }
+                      </div>
+                      </div>
+                      </form>
+                      )
+                    }
 
 export default AddToCart;

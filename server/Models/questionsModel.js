@@ -73,7 +73,6 @@ let questionsModel = {
   },
 
   submitAnswer: (questionId, params) => {
-    console.log('this is the path', path)
     let options = {
       method: 'POST',
       url: apiURL+ `questions/${questionId}/answers`,

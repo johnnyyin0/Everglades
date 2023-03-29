@@ -9,7 +9,7 @@ const RatingsAndShare = ({ currentProduct, photo }) => {
 
   useEffect(() => {
     const options = {
-      url: `http://localhost:3000/meta/${currentProduct.id}`,
+      url: `api/meta/${currentProduct.id}`,
     };
     axios(options)
       .then((res) => {
