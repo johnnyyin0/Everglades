@@ -13,7 +13,7 @@ const ProductImage = ({photo, styleSelected, setPhoto, setFullScreen, setIndex, 
   };
 
   return (
-    <div className="grid grid-cols-6 gap-2">
+    <div className="grid grid-cols-6 gap-2" title="product-image">
       <div className="col-span-1">
         <div className='flex flex-col justify-start gap-1 overflow-y-auto w-[100px] h-[625px] pt-12'>
         <ImageGallery styleSelected={styleSelected} setPhoto={setPhoto} photo={photo} setFullScreen={setFullScreen} setIndex={setIndex} index={index}/>
@@ -42,7 +42,7 @@ const ProductImage = ({photo, styleSelected, setPhoto, setFullScreen, setIndex, 
             fullscreenOnMobile={true}
             hideHint={true} // default false
             zoomType="hover"
-            className="cursor-crosshair rounded border bg-white p-1 object-fill max-w-[99%] "
+            className="cursor-crosshair rounded border bg-white p-1 object-fill max-w-[99%]"
             />
       </div>
       </>

@@ -15,7 +15,7 @@ let Carosel = ({relative, currentProduct, styleSelected}) => {
 
 
   let productClicked = (clickedProduct) => {
-    console.log(productClicked);
+    console.log(clickedProduct);
     Axios.get(`api/product/${clickedProduct.id}/styles`)
     .then(res => selectClickedProductStyle(res.data.results[0]))
     .catch(err => console.log(err));

@@ -28,7 +28,7 @@ let Overview = () => {
 
     //skus array for the size and quantity of products
     let [skusArray, setSkusArray] = useState([])
-
+console.log(skusArray);
     //array of all the products from api
     let [currentProduct, setCurrentProduct] = useState([]);
 
