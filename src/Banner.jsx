@@ -25,7 +25,7 @@ const Banner = ({ theme, setTheme, cartItems }) => {
 
   return (
     <>
-      <div style={{ position: 'fixed', top: 0, left: 0, right: 0, display: 'flex', alignItems: 'center', justifyContent: 'space-between', background: '#213547', padding: '20px', zIndex: 20, }} className="dark:bg-zinc-800">
+      <div style={{ position: 'fixed', top: 0, left: 0, right: 0, display: 'flex', alignItems: 'center', justifyContent: 'space-between', background: '#213547', padding: '20px', zIndex: 15, }} className="dark:bg-zinc-800">
         <div style={{ fontWeight: 'bold', fontSize: '30px', color: 'white', display: 'flex', alignItems: 'center', cursor: 'pointer' }}>
           EVERGLADES
           <img src="../icons/gator_icon.jpeg" alt="Everglades logo" style={{ width: '50px', height: '50px', borderRadius: '50%', marginLeft: '10px', }} />
