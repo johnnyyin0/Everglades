@@ -24,6 +24,7 @@ let Overview = () => {
 
     //loading state
     let [isLoading, notLoading] = useState(true);
+    let [refresh, setRefresh] = useState(1);
 
     let [products, setProducts] = useState([]);
 
@@ -56,27 +57,29 @@ let Overview = () => {
     //array of ids
     let [outfitsId, setOutfitsId] = useState([]);
 
+    let [deleted, setDeleted] = useState(1);
+
+
     //function that takes productId and adds it to the outfit list, and then local storage
     let addOutfit = (id) => {
       console.log(id);
       localStorage.setItem('outfits', JSON.stringify([id, ...outfitsId]))
-      setOutfitsId(outfitsId => [...outfitsId, id])
+      setRefresh(refresh + 1);
     }
 
     let deleteOutfit = (id) => {
-      console.log('clicked');
       let index = outfitsId.indexOf(id);
       let outfitCopy = [...outfitsId];
       outfitCopy.splice(index, 1);
       localStorage.setItem('outfits', JSON.stringify([...outfitCopy]))
-      setOutfitsId(outfitCopy);
+      setRefresh(refresh + 1);
     }
 
     useEffect(()=> {
       let outfitArray = JSON.parse(localStorage.getItem("outfits"));
-      console.log(outfitArray);
       setOutfitsId(outfitArray);
-    }, []);
+    }, [refresh]);
+
 
 
     //function to add to cart via POST
@@ -97,7 +100,6 @@ let Overview = () => {
       })
       setSkusArray(newArr);
     };
-    let [refresh, setRefresh] = useState('');
   //useEffect
   useEffect(() => {
     Axios.get('api/products')
@@ -133,7 +135,7 @@ let Overview = () => {
     let relativeIdNumbers = [];
     useEffect(() => {
       // Check if the response for the given productId is already cached in localStorage
-      const cachedData = localStorage.getItem(`product_${productId}_related`);
+      const cachedData = localStorage.getItem(`product${productId}related`);
       if (cachedData) {
         setRelative(JSON.parse(cachedData));
       } else {
@@ -156,7 +158,7 @@ let Overview = () => {
                 if (relativeItems.length === idArray.length) {
                   setRelative(relativeItems);
                   // Cache the API response for the given productId
-                  localStorage.setItem(`product_${productId}_related`, JSON.stringify(relativeItems));
+                  localStorage.setItem(`product${productId}related`, JSON.stringify(relativeItems));
                   setRefresh(res);
                 }
               })
@@ -166,9 +168,11 @@ let Overview = () => {
     }, [productId]);
 
     useEffect(() => {
+      setOutfits([]);
       outfitsId.forEach(id => {
+        console.log('happened', outfitsId, outfits)
         // Check if the response for the given outfitId is already cached in localStorage
-        const cachedData = localStorage.getItem(`product_${id}_styles`);
+        const cachedData = localStorage.getItem(`product${id}styles`);
         if (cachedData) {
           setOutfits(outfits => [...outfits, JSON.parse(cachedData)]);
         } else {
@@ -177,9 +181,8 @@ let Overview = () => {
             //adding product id to the style
             res.data.results[0].productId = id;
             setOutfits(outfits => [res.data.results[0], ...outfits]);
-            setRefresh(res);
-            // Cache the API response for the given outfitId
-            localStorage.setItem(`product_${id}_styles`, JSON.stringify(res.data.results[0]));
+          // Cache the API response for the given outfitId
+            localStorage.setItem(`product${id}styles`, JSON.stringify(res.data.results[0]));
           })
         }
       })
