@@ -22,7 +22,7 @@ In this mockup project, we created a modern and user-friendly single-page shoppi
 
 <img src="https://i.imgur.com/PdMy3C1.png" alt="image" style="width: 50%;">
 
-### Related Items and Comparison
+### Related Items and Comparison:
 
 <img src="https://i.imgur.com/nhvCtsk.png" alt="image" style="width: 50%;">
 
