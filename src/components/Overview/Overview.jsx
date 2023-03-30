@@ -22,14 +22,9 @@ let Overview = () => {
   // }, [refresh])
   //states
 
-<<<<<<< HEAD
-  //loading state
-  let [isLoading, notLoading] = useState(true);
-=======
     //loading state
     let [isLoading, notLoading] = useState(true);
     let [refresh, setRefresh] = useState(1);
->>>>>>> 982887f77d1e2aa9332838572dbfc36ab77413c2
 
   let [products, setProducts] = useState([]);
 
@@ -62,32 +57,6 @@ let Overview = () => {
   //array of ids
   let [outfitsId, setOutfitsId] = useState([]);
 
-<<<<<<< HEAD
-  //function that takes productId and adds it to the outfit list, and then local storage
-  let addOutfit = (id) => {
-    console.log(id);
-    localStorage.setItem('outfits', JSON.stringify([id, ...outfitsId]))
-    setOutfitsId(outfitsId => [...outfitsId, id])
-  }
-
-  let deleteOutfit = (id) => {
-    console.log('clicked');
-    let index = outfitsId.indexOf(id);
-    let outfitCopy = [...outfitsId];
-    outfitCopy.splice(index, 1);
-    localStorage.setItem('outfits', JSON.stringify([...outfitCopy]))
-    setOutfitsId(outfitCopy);
-  }
-
-  useEffect(() => {
-    let storedOutfits = localStorage.getItem("outfits");
-    if (storedOutfits) {
-      let outfitArray = JSON.parse(storedOutfits);
-      console.log(outfitArray);
-      setOutfitsId(outfitArray);
-    }
-  }, []);
-=======
     let [deleted, setDeleted] = useState(1);
 
 
@@ -111,7 +80,6 @@ let Overview = () => {
       setOutfitsId(outfitArray);
     }, [refresh]);
 
->>>>>>> 982887f77d1e2aa9332838572dbfc36ab77413c2
 
 
   //function to add to cart via POST
@@ -124,17 +92,6 @@ let Overview = () => {
 
   //function to get to quantity and sizes of api
 
-<<<<<<< HEAD
-  let createSkusArray = (skus) => {
-    let newArr = [];
-    let skusKeys = Object.keys(skus);
-    skusKeys.forEach(id => {
-      newArr.push(skus[id])
-    })
-    setSkusArray(newArr);
-  };
-  let [refresh, setRefresh] = useState('');
-=======
     let createSkusArray = (skus) => {
       let newArr = [];
       let skusKeys = Object.keys(skus);
@@ -143,7 +100,6 @@ let Overview = () => {
       })
       setSkusArray(newArr);
     };
->>>>>>> 982887f77d1e2aa9332838572dbfc36ab77413c2
   //useEffect
   useEffect(() => {
     Axios.get('api/products')
@@ -189,14 +145,6 @@ let Overview = () => {
           relativeIdNumbers = [...res.data];
           return relativeIdNumbers
         })
-<<<<<<< HEAD
-        //iterate over the relativeIdNumbers, do a axios get request on each id
-        .then(idArray => {
-          let relativeItems = [];
-          idArray.forEach(id => {
-            // console.log(id);
-            Axios.get(`api/product/${id}/styles`)
-=======
         .catch(err => {
           console.log('Failed to load product styles');
           notLoading(false);
@@ -221,7 +169,6 @@ let Overview = () => {
             idArray.forEach(id => {
               // console.log(id);
               Axios.get(`api/product/${id}/styles`)
->>>>>>> 982887f77d1e2aa9332838572dbfc36ab77413c2
               .then(res => {
                 //adding product id to the style
                 res.data.results[0].productId = id;
@@ -239,16 +186,6 @@ let Overview = () => {
     }
   }, [productId]);
 
-<<<<<<< HEAD
-  useEffect(() => {
-    outfitsId.forEach(id => {
-      // Check if the response for the given outfitId is already cached in localStorage
-      const cachedData = localStorage.getItem(`product_${id}_styles`);
-      if (cachedData) {
-        setOutfits(outfits => [...outfits, JSON.parse(cachedData)]);
-      } else {
-        Axios.get(`api/product/${id}/styles`)
-=======
     useEffect(() => {
       setOutfits([]);
       outfitsId.forEach(id => {
@@ -259,7 +196,6 @@ let Overview = () => {
           setOutfits(outfits => [...outfits, JSON.parse(cachedData)]);
         } else {
           Axios.get(`api/product/${id}/styles`)
->>>>>>> 982887f77d1e2aa9332838572dbfc36ab77413c2
           .then(res => {
             //adding product id to the style
             res.data.results[0].productId = id;
