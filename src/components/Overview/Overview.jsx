@@ -133,7 +133,7 @@ let Overview = () => {
       });
   }, []);
 
-  let relativeIdNumbers = [];
+
   useEffect(() => {
     // Check if the response for the given productId is already cached in localStorage
     const cachedData = localStorage.getItem(`product_${productId}_related`);
@@ -149,7 +149,9 @@ let Overview = () => {
           console.log('Failed to load product styles');
           notLoading(false);
         });
-    }, []);
+    }
+  }, []);
+
 
     let relativeIdNumbers = [];
     useEffect(() => {

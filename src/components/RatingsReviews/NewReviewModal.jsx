@@ -46,7 +46,7 @@ export default function NewReviewModal({ id }) {
       setBadSubmission({});
       handleExit()
       let payload = {
-        product_id: id,
+        product_id: parseInt(id),
         rating: parseInt(stars),
         summary: reviewSummary,
         body: reviewBody,
