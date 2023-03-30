@@ -12,7 +12,7 @@ export default function FullSizePhoto({ src, setPhoto }) {
           <div className="modal p-5">
             <div className="modal-box max-w-none max-h-full h-min w-max p-0 m-0 scrollbar-hide overflow-x-auto ">
           <label htmlFor="fullsize-photo-modal" className="">
-          <img src={src} alt="Review Photo" className="rounded-lg" onClick={handleClick}/>
+          <img src={src} alt="Review Photo" className="rounded-lg review-photo" onClick={handleClick}/>
           </label>
             </div>
           </div>
