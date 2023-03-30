@@ -62,7 +62,6 @@ let Overview = () => {
 
     //function that takes productId and adds it to the outfit list, and then local storage
     let addOutfit = (id) => {
-      console.log(id);
       localStorage.setItem('outfits', JSON.stringify([id, ...outfitsId]))
       setRefresh(refresh + 1);
     }
@@ -170,7 +169,6 @@ let Overview = () => {
     useEffect(() => {
       setOutfits([]);
       outfitsId.forEach(id => {
-        console.log('happened', outfitsId, outfits)
         // Check if the response for the given outfitId is already cached in localStorage
         const cachedData = localStorage.getItem(`product${id}styles`);
         if (cachedData) {
@@ -216,31 +214,31 @@ let Overview = () => {
       :
       <>
       <div className='flex justify-center '>
-      <div className="grid grid-cols-6 gap-2 max-h-[800px] max-w-[1200px]" >
-      <div className='rounded-lg content-end col-span-3 row-span-4'>
+      <div className="grid grid-cols-6 gap-2 min-h-[800px] max-h-[800px] max-w-[1200px]" >
+      <div className='rounded-lg content-end col-span-4 row-span-4'>
       <ProductImage photo={photo} styleSelected={styleSelected} setPhoto={setPhoto} setFullScreen={setFullScreen} setIndex={setIndex} index={index} nextButton={nextButton} backButton={backButton}/>
       </div>
 
-      <div className='mt-10 rounded-lg shadow-xl col-span-2 w-[625px] h-[90px]'>
+      <div className=' rounded-lg col-span-2 w-[420px] h-[100%] border-b'>
       <RatingsAndShare currentProduct={currentProduct} photo={photo}/>
       </div>
 
 
-      <div className=' rounded-lg shadow-xl col-span-2 h-[150px] w-[625px]'>
+      <div className=' rounded-lg  pt-14 col-span-2 h-[100%] w-[420px]'>
       <ProductName currentProduct={currentProduct} styleSelected={styleSelected}/>
       </div>
 
-      <div className=' rounded-lg shadow-xl col-span-2 w-[625px] h-[200px] overflow-y-auto'>
+      <div className='rounded-lg pt-14 shadow-lg col-span-2 w-[420px] h-[290px] overflow-y-auto'>
       <Styles currentStyle={currentStyle} setPhoto={setPhoto} setSelectedStyle={setSelectedStyle} styleSelected={styleSelected} createSkusArray={createSkusArray}/>
       </div>
 
-      <div className='mt-2 rounded-lg shadow-xl col-span-2 w-[625px] h-[150px]'>
+      <div className='rounded-lg shadow-lg  col-span-2 w-[420px] h-[160px]'>
       <AddCart styleSelected={styleSelected} skusArray={skusArray} addCartFunc={addCartFunc}/>
       </div>
 
       </div>
       </div>
-      <div className='flex justify-center'>
+      <div className='flex justify-center pt-[200px]'>
       <ProductDescription className='flex-1' currentProduct={currentProduct}/>
       </div>
       </>
