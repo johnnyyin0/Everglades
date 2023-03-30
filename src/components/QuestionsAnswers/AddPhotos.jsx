@@ -25,10 +25,9 @@ const AddPhotos = ({ onSubmit }) => {
             preview: result.info.public_id
           }
         ];
-        //set photos for the state inside the modal(ie: be used for previews)
         setPhotos(selectedPhotos);
         const selectedUrls = selectedPhotos.map(photo => photo.url);
-        //onsubmit will send the urls to the api to process
+        // console.log('selectedUrls', selectedUrls)
         onSubmit(selectedUrls);
       }
     });
