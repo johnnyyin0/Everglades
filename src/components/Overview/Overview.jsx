@@ -76,10 +76,10 @@ let Overview = () => {
 
     useEffect(()=> {
       let outfitArray = JSON.parse(localStorage.getItem("outfits"));
-      setOutfitsId(outfitArray);
+      if (Array.isArray(outfitArray)) {
+        setOutfitsId(outfitArray);
+      }
     }, [refresh]);
-
-
 
     //function to add to cart via POST
     let addCartFunc = (obj) => {
@@ -116,8 +116,7 @@ let Overview = () => {
     }, [])
 
     useEffect(() => {
-      // console.log(productId);
-      Axios.get(`api/product/${productId}/styles`)
+        Axios.get(`api/product/${productId}/styles`)
         .then(res => {
           setCurrentStyle(res.data.results);
           setSelectedStyle(res.data.results[0]);
@@ -126,7 +125,6 @@ let Overview = () => {
           notLoading(false);
         })
         .catch(err => {
-          console.log('Failed to load product styles');
           notLoading(false);
         });
     }, []);
@@ -134,7 +132,7 @@ let Overview = () => {
     let relativeIdNumbers = [];
     useEffect(() => {
       // Check if the response for the given productId is already cached in localStorage
-      const cachedData = localStorage.getItem(`product${productId}related`);
+      let cachedData = localStorage.getItem(`product${productId}related`);
       if (cachedData) {
         setRelative(JSON.parse(cachedData));
       } else {
@@ -228,7 +226,7 @@ let Overview = () => {
       <ProductName currentProduct={currentProduct} styleSelected={styleSelected}/>
       </div>
 
-      <div className='rounded-lg pt-14 shadow-lg col-span-2 w-[420px] h-[290px] overflow-y-auto'>
+      <div className='rounded-lg pt-14 shadow-lg col-span-2 w-[420px] h-[260px] overflow-y-auto'>
       <Styles currentStyle={currentStyle} setPhoto={setPhoto} setSelectedStyle={setSelectedStyle} styleSelected={styleSelected} createSkusArray={createSkusArray}/>
       </div>
 
@@ -243,9 +241,11 @@ let Overview = () => {
       </div>
       </>
       }
+      <div className='flex justify-center' style={{marginTop:'60px', fontSize:'20px', marginBottom:'10px'}}><b>RELATED PRODUCTS</b></div>
       <div className='flex justify-center mt-10'>
         <Carosel className='flex-1 h-[200px]' relative={relative} currentProduct={currentProduct} styleSelected={styleSelected} outfitCarousel={false} outfitsId={outfitsId} addOutfit={addOutfit} deleteOutfit={deleteOutfit}/>
         </div>
+        <div className='flex justify-center' style={{marginTop:'60px', fontSize:'20px', marginBottom:'10px'}}><b>RELATED PRODUCTS</b></div>
         <div className="flex justify-center mt-10">
         <Carosel className='flex-1' relative={outfits} currentProduct={currentProduct} styleSelected={styleSelected} outfitCarousel={true} outfitsId={outfitsId} addOutfit={addOutfit} deleteOutfit={deleteOutfit}/>
         </div>

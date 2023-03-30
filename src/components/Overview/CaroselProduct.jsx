@@ -32,6 +32,7 @@ const CaroselProduct = ({ product, setModal, selectClickedProduct, productClicke
   }, [memoizedFetchData]);
 
   const handleModal = () => {
+    productClicked(carouselProduct);
     selectClickedProduct(carouselProduct);
     setModal(true);
   };
@@ -62,14 +63,20 @@ const CaroselProduct = ({ product, setModal, selectClickedProduct, productClicke
         className="rounded border bg-white p-1 object-cover h-[320px] w-[215px] max-w-[215px] dark:bg-zinc-800 dark:border-zinc-800"
         />
         )}
-        </a>
+
+          </a>
+        {addOutfitCard ?
+        <div className="flex justify-center">
+        <p>Add to Outfit!</p>
+        </div>
+        :<>
         <StarsWidget rating={avgReview} />
          <div>
         <p className="font-sans text-lg">{carouselProduct.category || 'Outfit Category'}</p>
         <p className="font-sans font-semibold text-1xl">{carouselProduct.name || 'Outfit Name'}</p>
 
          {product.sale_price ? (
-          <>
+           <>
           <p className="line-through font-sans text-lg">{product.original_price}</p>
           <p className="font-sans text-lg">{product.sale_price}</p>
           </>
@@ -77,10 +84,12 @@ const CaroselProduct = ({ product, setModal, selectClickedProduct, productClicke
             <p className="font-sans text-lg">{product.original_price}</p>
             )}
             </div>
+          </>
+          }
             </div>
             <div className="text-black">
             { addOutfitCard ?
-            <button className=" absolute bottom-28 left-0 right-0 top-0 hover:scale-100 ease-in-out duration-300 rounded opacity-80" onClick={handleAddOutfit}>+</button>
+            <button className=" absolute bottom-7 left-0 right-0 top-0 hover:scale-100 ease-in-out duration-300 rounded opacity-80" onClick={handleAddOutfit}>+</button>
             : outfitCarousel ?
             <button className="max-h-[50px] max-w-[60px] absolute right-1 top-1 hover:scale-100 ease-in-out duration-300 rounded opacity-80" onClick={handleDeleteOutfit}>
               X</button>

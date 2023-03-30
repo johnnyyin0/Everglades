@@ -17,9 +17,17 @@ let Carosel = ({relative, currentProduct, styleSelected, outfitCarousel, outfits
 
   let productClicked = (clickedProduct) => {
     console.log(clickedProduct);
-    Axios.get(`api/product/${clickedProduct.id}/styles`)
-    .then(res => selectClickedProductStyle(res.data.results[0]))
-    .catch(err => console.log(err));
+    let cached = localStorage.getItem(`product${clickedProduct.id}styles`);
+    if (cached) {
+      selectClickedProductStyle(JSON.parse(cached))
+    } else {
+      Axios.get(`api/product/${clickedProduct.id}/styles`)
+      .then(res => {
+        selectClickedProductStyle(res.data.results[0])
+        localStorage.setItem(`product${clickedProduct.id}styles`, JSON.stringify(res.data.results[0]))
+      })
+      .catch(err => console.log(err));
+    }
   }
 
   const slideLeft = () => {
@@ -38,7 +46,7 @@ let Carosel = ({relative, currentProduct, styleSelected, outfitCarousel, outfits
 
     <div className="flex items-center relative">
       <button onClick={slideLeft} className="btn-ghost btn-circle cursor-pointer opacity-50 hover:opacity-100">❮</button>
-      <div id={elementId} className='w-[1100px] h-[415px] h-full flex flex-row overflow-x-scroll scroll whitespace-nowrap scroll-smooth items-center'>
+      <div id={elementId} className='w-[850px] h-[415px] h-full flex flex-row overflow-x-scroll scroll whitespace-nowrap scroll-smooth items-center'>
         {notinOutfitState && outfitCarousel ?
         <CaroselProduct product={styleSelected} setModal={setModal} selectClickedProduct={selectClickedProduct} productClicked={productClicked} outfitCarousel={outfitCarousel} addOutfitCard={true} addOutfit={addOutfit} deleteOutfit={deleteOutfit}/>
       : null}
