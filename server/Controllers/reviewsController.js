@@ -15,13 +15,14 @@ reviewController = {
       })
   },
   post: (req, res) => {
+    console.log(req.body)
     Models.reviews.postReview(req.body)
       //req.body should include: product_id, rating (1-5), summary, body, recommend(bool), name, email, photos(array), characteristics(obj)
       .then(response =>
-        res.send(response.data)
+        res.status(201).send(response.data)
       )
       .catch(err =>
-        console.log(err.response.data, 'Failed to post review!')
+        console.log(err.data, 'Failed to post review!')
       )
   },
   getMeta: (req, res) => {

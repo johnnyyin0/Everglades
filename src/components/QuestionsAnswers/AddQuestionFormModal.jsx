@@ -78,9 +78,11 @@ const AddQuestionFormModal = ({ closeModal, productName, productId, getQuestions
     maxLength={1000}
     required
   />
+  <div>
   <button className='btn' style={{ marginTop: '20px' }} type='submit'>
     SUBMIT
   </button>
+  </div>
 </form>
       </div>
     </div>

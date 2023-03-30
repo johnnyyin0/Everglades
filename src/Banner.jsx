@@ -8,7 +8,13 @@ const Banner = ({ theme, setTheme, cartItems }) => {
   };
 
   const handleTheme = (evt) => {
-    evt.target.checked === true ? setTheme('light') : setTheme('dark')
+    if (evt.target.checked){
+      setTheme('light');
+      localStorage.setItem('color-theme', 'light')
+    } else {
+      setTheme('dark');
+      localStorage.setItem('color-theme', 'dark')
+    }
   }
 
   useEffect(() => {
