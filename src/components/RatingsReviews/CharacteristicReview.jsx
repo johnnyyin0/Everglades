@@ -1,6 +1,7 @@
 import _ from 'underscore'
 import charMap from './CharMap.js'
 import CharRadioSelector from './CharRadioSelector.jsx'
+import React, { useState, useEffect } from 'react'
 
 export default function CharacteristicReview( { chars, charRatings, setCharRatings, setCharsFilled }) {
 
