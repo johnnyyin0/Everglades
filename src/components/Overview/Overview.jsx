@@ -73,12 +73,12 @@ let Overview = () => {
       localStorage.setItem('outfits', JSON.stringify([...outfitCopy]))
       setRefresh(refresh + 1);
     }
-
     useEffect(()=> {
       let outfitArray = JSON.parse(localStorage.getItem("outfits"));
-      setOutfitsId(outfitArray);
+      if (Array.isArray(outfitArray)) {
+        setOutfitsId(outfitArray);
+      }
     }, [refresh]);
-
 
 
     //function to add to cart via POST
