@@ -13,9 +13,9 @@ const ProductImage = ({photo, styleSelected, setPhoto, setFullScreen, setIndex, 
   };
 
   return (
-    <div className="grid grid-cols-6 gap-2" title="product-image">
+    <div className="grid grid-cols-6 gap-2 h-[835px] w-[100%] pr-20" title="product-image">
       <div className="col-span-1">
-        <div className='flex flex-col justify-start gap-1 overflow-y-auto w-[100px] h-[625px] pt-12'>
+        <div className='flex flex-col gap-2 justify-between overflow-y-auto w-[100px] h-[625px] pt-0 ml-[120px]'>
         <ImageGallery styleSelected={styleSelected} setPhoto={setPhoto} photo={photo} setFullScreen={setFullScreen} setIndex={setIndex} index={index}/>
         </div>
       </div>
@@ -24,15 +24,15 @@ const ProductImage = ({photo, styleSelected, setPhoto, setFullScreen, setIndex, 
       <img src={"https://webkit.org/demos/srcset/image-src.png"} className="rounded border bg-white p-1  object-cover h-[600px] w-[500px]" />
       :
       <>
-      <div className='flex flex-row justify-between w-[95%] ml-6'>
+      <div className='flex flex-row justify-between w-[100%] ml-6'>
 {/* buttons */}
-      <div className="rounded-xl"><button className="btn m-1" onClick={backButton} >Back</button></div>
 
-      <div className="rounded-xl"><button className="btn m-1" onClick={nextButton} >Next</button></div>
 
       </div>
 
-      <div onClick={handleFullScreen} className=" w-[95%] ml-6">
+        <div className="relative">
+      <div onClick={handleFullScreen} className=" w-[90%] ml-[100px]">
+
       <InnerImageZoom
             src = {photo}
             zoomSrc= {photo}
@@ -44,7 +44,10 @@ const ProductImage = ({photo, styleSelected, setPhoto, setFullScreen, setIndex, 
             zoomType="hover"
             className="cursor-crosshair rounded border bg-white p-1 object-fill max-w-[99%]"
             />
-      </div>
+            </div>
+      <div className="rounded-xl absolute left-[130px] top-2 z-5"><button className="btn-circle cursor-pointer hover: opacity-50" onClick={backButton} >❮</button></div>
+      <div className="rounded-xl absolute top-2 right-0 z-5"><button className="btn-circle cursor-pointer hover: opacity-50" onClick={nextButton} >❯</button></div>
+            </div>
       </>
     }
     </div>
