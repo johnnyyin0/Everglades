@@ -2,7 +2,7 @@ import React from 'react';
 import {useEffect, useState} from 'react';
 import Axios from 'axios';
 import exampleStyle from './exampleStyle.js';
-import ProductName from './productName.jsx';
+import ProductName from './ProductName.jsx';
 import ProductDescription from './ProductDescription.jsx';
 import ProductImage from './ProductImage.jsx';
 import FullScreen from './FullScreen.jsx';

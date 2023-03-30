@@ -158,3 +158,9 @@ button:focus-visible {
 .overflow-y-scroll::-webkit-scrollbar {
   display: none;
 }
+
+.product-description-container {
+  background-color: #f2f2f2;
+  padding: 40px;
+  margin: 16px;
+}
