@@ -8,6 +8,7 @@ In this mockup project, we created a modern and user-friendly single-page shoppi
 ![React](https://img.shields.io/badge/-React-61DAFB?logo=react&logoColor=white&style=for-the-badge)
 ![Vite](https://img.shields.io/badge/vite-%23646CFF.svg?style=for-the-badge&logo=vite&logoColor=white)
 ![Node](https://img.shields.io/badge/-Node-9ACD32?logo=node.js&logoColor=white&style=for-the-badge)
+![NPM](https://img.shields.io/badge/NPM-%23CB3837.svg?style=for-the-badge&logo=npm&logoColor=white)
 ![Nodemon](https://img.shields.io/badge/NODEMON-%23323330.svg?style=for-the-badge&logo=nodemon&logoColor=%BBDEAD)
 ![Express](https://img.shields.io/badge/-Express-DCDCDC?logo=express&logoColor=black&style=for-the-badge)
 ![Axios](https://img.shields.io/badge/-Axios-671ddf?logo=axios&logoColor=black&style=for-the-badge)
@@ -19,20 +20,20 @@ In this mockup project, we created a modern and user-friendly single-page shoppi
 
 ### Overview:
 
-> video placeholder here
+<img src="https://i.imgur.com/PdMy3C1.png" alt="image" style="width: 50%;">
+
+### Related Items and Comparison
+
+<img src="https://i.imgur.com/nhvCtsk.png" alt="image" style="width: 50%;">
 
 ### Questions and Answers:
 This component lets users search up existing questions on the selected item, add a question they may have, answer any questions, report any answers, and let users know if the question or answer was helpful.
 
-[![Imgur](https://i.imgur.com/riSdeYw.png)](https://i.imgur.com/hGtiRdG.mp4)
+<img src="https://i.imgur.com/iCIvSTy.png" alt="image" style="width: 50%;">
 
 ### Ratings and Reviews:
 
-> video placeholder here
-
-### Related Items & Comparison:
-
-> video placeholder here
+<img src="https://i.imgur.com/1HTRF5m.png" alt="image" style="width: 50%;">
 
 ## Installation & Use
 1. Clone repo
@@ -71,6 +72,8 @@ npm i -g concurrently
 * PORT - whichever port you want to run the backend server on, defaults to 3000 in 'server/index.js'
 
 * DB_USERNAME and DB_PASSWORD -- you will need to create a new user for a new or existing MongoDB Atlas Cluster. Log in to cloud.mongodb.com, go to 'Database Access" under "SECURITY" on the left sidebar, and click "ADD NEW DATABASE USER." Once you assign the new user at least one role or permission, you will be given the option to enter a password. Store the username and password under environmental variables DB_USERNAME and DB_PASSWORD, respectively.
+
+6. Enjoy browsing!
 
 ## Testing:
 

@@ -5,8 +5,8 @@ import FullSizePhoto from './FullSizePhoto.jsx'
 import NewReviewModal from './NewReviewModal.jsx'
 
 export default function RatingsReviews(props) {
+  const [showPhoto, setShowPhoto] = useState(false)
   const [photo, setPhoto] = useState('');
-  const [showPhoto, setShowPhoto] = useState(false);
   const [allReviews, setAllReviews] = useState([]);
   const [shownReviews, setShownReviews] = useState([]);
   const [sort, setSort] = useState('relevant');
@@ -19,9 +19,9 @@ export default function RatingsReviews(props) {
   }, [photo]);
 
   return (
-    <div className="flex flex-row basis-full relative" title="ratings-reviews-module">
+    <div className="flex relative" title="ratings-reviews-module">
       <NewReviewModal setSort={setSort} id={productId}/>
-      {showPhoto && <div className="card bg-base-100 shadow-x1 absolute z-20"><FullSizePhoto src={photo} setPhoto={setPhoto} /></div>}
+     <FullSizePhoto src={photo} setPhoto={setPhoto} />
       <Sidebar id={productId} setShownReviews={setShownReviews} allReviews={allReviews} setAllReviews={setAllReviews}/>
       <ReviewsList setPhoto={setPhoto} id={productId} shownReviews={shownReviews} setShownReviews={setShownReviews} allReviews={allReviews} setAllReviews={setAllReviews} sort={sort} setSort={setSort} />
     </div>
