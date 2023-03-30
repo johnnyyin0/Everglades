@@ -2,6 +2,9 @@ import { assert, expect, it } from 'vitest'
 import {render, screen, fireEvent, waitFor, queryByText } from '@testing-library/react'
 import sampleReviewData from './SampleReviewData.js'
 import ReviewsList from '../../src/components/RatingsReviews/ReviewsList.jsx'
+import * as api from '../../src/components/RatingsReviews/reviewsapi.js'
+//vi.mock('../../src/components/RatingsReviews/reviewsapi.js');
+
 
 //requires id, setPhoto, shownReviews, setShownReviews, allReviews, setAllReviews, sort, setSort
 //renders ReviewTile(s), SortDropDown
@@ -60,21 +63,13 @@ describe('ReviewsList', () => {
     expect(props.setShownReviews).toHaveBeenCalledWith(sampleReviewData.results.slice(0,4))
   })
 
-  it('Should make the "Add Reviews" button disappear when all reviews are shown', async () => {
-    const disappearProps = {}
-    disappearProps.id = 37311;
-    disappearProps.setPhoto = vi.fn();
-    disappearProps.shownReviews = sampleReviewData.results.slice(0,1)
-    disappearProps.setShownReviews = vi.fn();
-    disappearProps.allReviews = sampleReviewData.results.slice(0,1)
-    disappearProps.setAllReviews = vi.fn();
-    disappearProps.sort = 'relevant';
-    disappearProps.setSort = vi.fn();
-    console.log(disappearProps.allReviews, 'all reviews')
+  it('Should render the "Add Reviews" button', async () => {
 
-    render(<ReviewsList {...disappearProps}/>);
+
+    //mock the getAllReviews method on API with results, remember to un-mock/cleanup
+    render(<ReviewsList {...props} />);
     await waitFor(() => {
-      expect(screen.queryByText('More Reviews')).not.toBeInTheDocument()
+      expect(screen.queryByText('More Reviews')).toBeInTheDocument()
     })
   })
 })

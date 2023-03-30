@@ -24,6 +24,7 @@ let Overview = () => {
 
     //loading state
     let [isLoading, notLoading] = useState(true);
+    let [refresh, setRefresh] = useState(1);
 
     let [products, setProducts] = useState([]);
 
@@ -46,9 +47,46 @@ let Overview = () => {
 
     let [photo, setPhoto] = useState([]);
 
+
+    //relative and outfits are the arrays the carousel iterates through
     let [relative, setRelative] = useState([]);
 
-    let [outfit, setOutfit] = useState([]);
+    //array of style objects
+    let [outfits, setOutfits] = useState([]);
+
+    //array of ids
+    let [outfitsId, setOutfitsId] = useState([]);
+
+    let [deleted, setDeleted] = useState(1);
+
+
+    //function that takes productId and adds it to the outfit list, and then local storage
+    let addOutfit = (id) => {
+      localStorage.setItem('outfits', JSON.stringify([id, ...outfitsId]))
+      setRefresh(refresh + 1);
+    }
+
+    let deleteOutfit = (id) => {
+      let index = outfitsId.indexOf(id);
+      let outfitCopy = [...outfitsId];
+      outfitCopy.splice(index, 1);
+      localStorage.setItem('outfits', JSON.stringify([...outfitCopy]))
+      setRefresh(refresh + 1);
+    }
+
+    useEffect(() => {
+      let storedOutfits = localStorage.getItem("outfits");
+      if (storedOutfits) {
+        let outfitArray = JSON.parse(storedOutfits);
+        setOutfitsId(outfitArray);
+      }
+    }, []);
+
+    useEffect(()=> {
+      let outfitArray = JSON.parse(localStorage.getItem("outfits"));
+      setOutfitsId(outfitArray);
+    }, [refresh]);
+
 
     //function to add to cart via POST
     let addCartFunc = (obj) => {
@@ -68,7 +106,6 @@ let Overview = () => {
       })
       setSkusArray(newArr);
     };
-    let [refresh, setRefresh] = useState('');
   //useEffect
   useEffect(() => {
     Axios.get('api/products')
@@ -103,25 +140,58 @@ let Overview = () => {
 
     let relativeIdNumbers = [];
     useEffect(() => {
-      Axios.get(`api/product/${productId}/related`)
-      .then(res => {
-        relativeIdNumbers = [...res.data];
-        return relativeIdNumbers
-      })
-      //iterate over the relativeIdNumbers, do a axios get request on each id
-      .then(idArray => {
-        let relativeItems = [];
-        idArray.forEach(id => {
-          // console.log(id);
+      // Check if the response for the given productId is already cached in localStorage
+      const cachedData = localStorage.getItem(`product${productId}related`);
+      if (cachedData) {
+        setRelative(JSON.parse(cachedData));
+      } else {
+        Axios.get(`api/product/${productId}/related`)
+          .then(res => {
+            relativeIdNumbers = [...res.data];
+            return relativeIdNumbers
+          })
+          //iterate over the relativeIdNumbers, do a axios get request on each id
+          .then(idArray => {
+            let relativeItems = [];
+            idArray.forEach(id => {
+              // console.log(id);
+              Axios.get(`api/product/${id}/styles`)
+              .then(res => {
+                //adding product id to the style
+                res.data.results[0].productId = id;
+                relativeItems.push(res.data.results[0]);
+                // Check if all the API calls are complete
+                if (relativeItems.length === idArray.length) {
+                  setRelative(relativeItems);
+                  // Cache the API response for the given productId
+                  localStorage.setItem(`product${productId}related`, JSON.stringify(relativeItems));
+                  setRefresh(res);
+                }
+              })
+            })
+          });
+      }
+    }, [productId]);
+
+    useEffect(() => {
+      setOutfits([]);
+      outfitsId.forEach(id => {
+        // Check if the response for the given outfitId is already cached in localStorage
+        const cachedData = localStorage.getItem(`product${id}styles`);
+        if (cachedData) {
+          setOutfits(outfits => [...outfits, JSON.parse(cachedData)]);
+        } else {
           Axios.get(`api/product/${id}/styles`)
           .then(res => {
             //adding product id to the style
-            res.data.results[0].productId = id
-            setRelative(relative => [...relative, res.data.results[0]])
+            res.data.results[0].productId = id;
+            setOutfits(outfits => [res.data.results[0], ...outfits]);
+          // Cache the API response for the given outfitId
+            localStorage.setItem(`product${id}styles`, JSON.stringify(res.data.results[0]));
           })
-        })
-        })
-      }, [])
+        }
+      })
+    }, [outfitsId]);
 
       //buttons to change profile index
       const nextButton = () => {
@@ -151,40 +221,40 @@ let Overview = () => {
       :
       <>
       <div className='flex justify-center '>
-      <div className="grid grid-cols-6 gap-2 max-h-[800px] max-w-[1200px]" >
-      <div className='rounded-lg content-end col-span-3 row-span-4'>
+      <div className="grid grid-cols-6 gap-2 min-h-[800px] max-h-[800px] max-w-[1200px]" >
+      <div className='rounded-lg content-end col-span-4 row-span-4'>
       <ProductImage photo={photo} styleSelected={styleSelected} setPhoto={setPhoto} setFullScreen={setFullScreen} setIndex={setIndex} index={index} nextButton={nextButton} backButton={backButton}/>
       </div>
 
-      <div className='mt-10 rounded-lg shadow-xl col-span-2 w-[625px] h-[90px]'>
+      <div className=' rounded-lg col-span-2 w-[420px] h-[100%] border-b'>
       <RatingsAndShare currentProduct={currentProduct} photo={photo}/>
       </div>
 
 
-      <div className=' rounded-lg shadow-xl col-span-2 h-[150px] w-[625px]'>
+      <div className=' rounded-lg  pt-14 col-span-2 h-[100%] w-[420px]'>
       <ProductName currentProduct={currentProduct} styleSelected={styleSelected}/>
       </div>
 
-      <div className=' rounded-lg shadow-xl col-span-2 w-[625px] h-[200px] overflow-y-auto'>
+      <div className='rounded-lg pt-14 shadow-lg col-span-2 w-[420px] h-[290px] overflow-y-auto'>
       <Styles currentStyle={currentStyle} setPhoto={setPhoto} setSelectedStyle={setSelectedStyle} styleSelected={styleSelected} createSkusArray={createSkusArray}/>
       </div>
 
-      <div className='mt-2 rounded-lg shadow-xl col-span-2 w-[625px] h-[150px]'>
+      <div className='rounded-lg shadow-lg  col-span-2 w-[420px] h-[160px]'>
       <AddCart styleSelected={styleSelected} skusArray={skusArray} addCartFunc={addCartFunc}/>
       </div>
 
       </div>
       </div>
-      <div className='flex justify-center'>
+      <div className='flex justify-center pt-[200px]'>
       <ProductDescription className='flex-1' currentProduct={currentProduct}/>
       </div>
       </>
       }
       <div className='flex justify-center mt-10'>
-        <Carosel className='flex-1 h-[200px]' relative={relative} currentProduct={currentProduct} styleSelected={styleSelected}/>
+        <Carosel className='flex-1 h-[200px]' relative={relative} currentProduct={currentProduct} styleSelected={styleSelected} outfitCarousel={false} outfitsId={outfitsId} addOutfit={addOutfit} deleteOutfit={deleteOutfit}/>
         </div>
         <div className="flex justify-center mt-10">
-        <Carosel className='flex-1' relative={exampleStyle} currentProduct={currentProduct} styleSelected={styleSelected}/>
+        <Carosel className='flex-1' relative={outfits} currentProduct={currentProduct} styleSelected={styleSelected} outfitCarousel={true} outfitsId={outfitsId} addOutfit={addOutfit} deleteOutfit={deleteOutfit}/>
         </div>
         </div>
       );

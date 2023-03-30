@@ -34,11 +34,11 @@ const FullScreen = ({setFullScreen, styleSelected, setIndex, index, setPhoto, ph
           <div className="flex flex-row justify-center">
             <ImageGallery className="flex-1 mb-6" styleSelected={styleSelected} setPhoto={setPhoto} photo={photo} setIndex={setIndex} index={index}/>
           </div>
-      <div className="absolute top-[10%] left-[30%] rounded-full p-2 bg-black/20">
-        <button onClick={backButton}>🢀</button>
+      <div className="absolute top-[40%] left-[30%] rounded-full p-2 bg-black/20">
+        <button className="btn-circle cursor-pointer hover: opacity-50" onClick={backButton}>❮</button>
         </div>
-        <div className="absolute top-[10%] right-[30%] rounded-full p-2 bg-black/20">
-          <button onClick={nextButton}>🢂</button>
+        <div className="absolute top-[40%] right-[30%] rounded-full p-2 bg-black/20">
+          <button className="btn-circle cursor-pointer hover: opacity-50" onClick={nextButton}>❯</button>
           </div>
     <div className="flex justify-center">
       <button className='btn flex-1 mb-6' onClick={() => handleFullScreen()}>Exit Full Screen</button>
