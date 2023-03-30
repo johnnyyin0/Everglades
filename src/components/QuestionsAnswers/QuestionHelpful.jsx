@@ -26,10 +26,10 @@ const QuestionHelpful = ({questions, questionId, setQuestions, questionHelpfulne
     
     return (
     <span>
-      <small>Helpful? </small>
+        Helpful?
       <span style={{ textDecoration: 'underline', cursor: 'pointer' }}
         onClick={() => {handleHelpfulClick(questionId)}}>
-        <small> Yes ({questionHelpfulness})</small> 
+          Yes ({questionHelpfulness})
       </span> 
     </span>
     )

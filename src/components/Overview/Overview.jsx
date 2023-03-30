@@ -243,11 +243,12 @@ let Overview = () => {
       </div>
       </>
       }
-
-      <div className='flex justify-center mt-14'>
+      <div className='flex justify-center' style={{marginTop:'60px', fontSize:'20px', marginBottom:'10px'}}><b>RELATED PRODUCTS</b></div>
+      <div className='flex justify-center'>
         <Carosel className='flex-1' relative={relative} currentProduct={currentProduct} styleSelected={styleSelected} outfitCarousel={false} outfitsId={outfitsId} addOutfit={addOutfit} deleteOutfit={deleteOutfit}/>
         </div>
-        <div className="flex justify-center mt-5">
+        <div className='flex justify-center' style={{marginTop:'10px', fontSize:'20px', marginBottom:'10px'}}><b>YOUR OUTFITS</b></div>
+        <div className='flex justify-center'>
         <Carosel className='flex-1' relative={outfits} currentProduct={currentProduct} styleSelected={styleSelected} outfitCarousel={true} outfitsId={outfitsId} addOutfit={addOutfit} deleteOutfit={deleteOutfit}/>
         </div>
         </div>

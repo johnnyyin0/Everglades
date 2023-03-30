@@ -21,7 +21,7 @@ const AddAnswerButton = ({ questionId, productName, questionBody, getAnswers}) =
             style={{ textDecoration: 'underline', cursor: 'pointer' }}
             onClick={handleAddAnswerClick}
           >
-            <small>Add Answer</small>
+            Add Answer
           </span>
           {showModal && (
             <AddAnswerFormModal getAnswers={getAnswers} questionId={questionId} questionBody={questionBody} closeModal={handleCloseModal} productName={productName}

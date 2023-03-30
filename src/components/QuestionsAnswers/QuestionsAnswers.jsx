@@ -39,7 +39,7 @@ const QuestionsAnswers = () => {
     }
 
     return (
-        <div style={{ margin: '0 auto', maxWidth: '100%', marginBottom: '50px', marginTop: '50px',}}>
+        <div style={{ margin: '0 auto', maxWidth: '100%', marginBottom: '60px', marginTop: '60px',}}>
             <b style={{fontSize:'20px'}}>QUESTIONS & ANSWERS</b>
             <QuestionList questions={questions} setQuestions={setQuestions} productId={productId} productName={productName} getQuestions={getQuestions}/>
         </div>
