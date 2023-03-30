@@ -4,6 +4,7 @@ import StarsRater from './StarsRater.jsx'
 import PhotoUploader from './PhotoUploader.jsx'
 import ReviewPhoto from './ReviewPhoto.jsx'
 import { getMeta, getProduct, sendReview } from './reviewsapi'
+import axios from 'axios'
 
 
 export default function NewReviewModal({ id }) {
@@ -26,6 +27,11 @@ export default function NewReviewModal({ id }) {
 
 
   useEffect(() => {
+    axios.get(`api/meta/${id}`)
+    .then(res => setReviewMeta(res.data))
+    .catch(err => console.log(err));
+
+    axios.get(`api/product/${id}`)
     getMeta(id)
     .then(res => setReviewMeta(res.data))
     .catch(err => console.log(err));
