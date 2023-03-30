@@ -3,12 +3,20 @@ import React, { useState } from 'react';
 export default function FullSizePhoto({ src, setPhoto }) {
 
   const handleClick = (evt) => {
-    setPhoto('')
+    document.body.style.overflow = 'auto'
   }
 
   return (
-    <div  onClick={handleClick} title="fullsize-review-photo" className="bg-base-100 shadow-x1 absolute inset-0 z-20 w-max h-max rounded-lg m-auto backdrop-blur-md">
-      <figure><img src={src} alt="Review Photo" className="rounded-lg" /></figure>
-    </div>
+      <div className="h-min">
+        <input type="checkbox" id="fullsize-photo-modal" className="modal-toggle" />
+          <div className="modal p-5">
+            <div className="modal-box max-w-none max-h-full h-min w-max p-0 m-0 scrollbar-hide overflow-x-auto ">
+          <label htmlFor="fullsize-photo-modal" className="">
+          <img src={src} alt="Review Photo" className="rounded-lg" onClick={handleClick}/>
+          </label>
+            </div>
+          </div>
+      </div>
+
   )
 }
