@@ -79,11 +79,10 @@ let Overview = () => {
       let storedOutfits = localStorage.getItem("outfits");
       if (storedOutfits) {
         let outfitArray = JSON.parse(storedOutfits);
-        console.log(outfitArray);
         setOutfitsId(outfitArray);
       }
     }, []);
-    
+
     useEffect(()=> {
       let outfitArray = JSON.parse(localStorage.getItem("outfits"));
       setOutfitsId(outfitArray);
@@ -178,7 +177,6 @@ let Overview = () => {
     useEffect(() => {
       setOutfits([]);
       outfitsId.forEach(id => {
-        console.log('happened', outfitsId, outfits)
         // Check if the response for the given outfitId is already cached in localStorage
         const cachedData = localStorage.getItem(`product${id}styles`);
         if (cachedData) {

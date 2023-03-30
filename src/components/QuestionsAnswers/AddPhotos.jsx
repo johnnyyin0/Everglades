@@ -1,35 +1,62 @@
 import React, { useState } from 'react';
+import { Image } from 'cloudinary-react';
 
-const AddPhotos = ({onSubmit}) => {
+const AddPhotos = ({ onSubmit }) => {
   const [photos, setPhotos] = useState([]);
+  const [uploadWidget, setUploadWidget] = useState(null);
 
-  const handlePhotoChange = (e) => {
-    const urls = e.target.value.split('\n');
-    const selectedPhotos = urls.slice(0, 5).map(url => ({
-      url,
-      preview: url
-    })).filter(photo => photo.url.match(/\.(jpeg|jpg|png|gif)$/) !== null);
-    //remove the preview data
-    const selectedUrls = selectedPhotos.map(photo => photo.url);
-    setPhotos(selectedPhotos);
-    onSubmit(selectedUrls);
+  const handleUploadClick = (e) => {
+    e.preventDefault()
+    const widget = window.cloudinary.createUploadWidget({
+      cloudName: 'dyrlg2pzz',
+      uploadPreset: 'tiigxyou',
+      multiple: true,
+      maxFiles: 5 - photos.length,
+      resourceType: 'image',
+      showAdvancedOptions: false,
+      cropping: false,
+      theme: 'minimal'
+    }, (error, result) => {
+      if (!error && result && result.event === 'success') {
+        const selectedPhotos = [
+          ...photos,
+          {
+            url: result.info.secure_url,
+            preview: result.info.public_id
+          }
+        ];
+        setPhotos(selectedPhotos);
+        const selectedUrls = selectedPhotos.map(photo => photo.url);
+        console.log('selectedUrls', selectedUrls)
+        onSubmit(selectedUrls);
+      }
+    });
+    setUploadWidget(widget);
+    widget.open();
   }
 
   return (
     <div>
-      <label className='label' htmlFor="photos">
-        <span className='label-text'>Add Photo URL's (only up to 5)</span>
-      </label>
-      <textarea
-        className='input input-bordered w-full max-w-xs'
-        id="photos"
-        rows="5"
-        onChange={handlePhotoChange}
-      />
-      {photos.map(photo => (
-        <img key={photo.preview} src={photo.preview} alt={photo.url} width="100" height="100"
-        />
-      ))}
+        <div style={{marginTop:'10px'}}>
+        {photos.length < 5 && (
+          <button className="btn" onClick={handleUploadClick}>
+            Add Photo
+          </button>
+        )}
+      </div>
+      <div style={{marginTop:'10px'}}>
+        {photos.map(photo => (
+          <Image 
+            key={photo.preview}
+            cloudName="dyrlg2pzz"
+            publicId={photo.preview}
+            width="100"
+            height="100"
+            crop="fill"
+            alt={photo.url}
+          />
+        ))}
+      </div>
     </div>
   );
 };
