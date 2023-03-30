@@ -27,7 +27,7 @@ const AddPhotos = ({ onSubmit }) => {
         ];
         setPhotos(selectedPhotos);
         const selectedUrls = selectedPhotos.map(photo => photo.url);
-        console.log('selectedUrls', selectedUrls)
+        // console.log('selectedUrls', selectedUrls)
         onSubmit(selectedUrls);
       }
     });
@@ -36,7 +36,8 @@ const AddPhotos = ({ onSubmit }) => {
   }
 
   return (
-    <div>
+    <div style={{marginTop:'10px'}}>
+     <b>{'('}OPTIONAL: Add up to 5 photos{')'}</b> 
         <div style={{marginTop:'10px'}}>
         {photos.length < 5 && (
           <button className="btn" onClick={handleUploadClick}>
