@@ -32,7 +32,6 @@ export default function NewReviewModal({ id }) {
     .catch(err => console.log(err));
 
     axios.get(`api/product/${id}`)
-
     getMeta(id)
     .then(res => setReviewMeta(res.data))
     .catch(err => console.log(err));
