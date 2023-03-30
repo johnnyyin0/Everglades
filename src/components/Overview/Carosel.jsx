@@ -35,22 +35,27 @@ let Carosel = ({relative, currentProduct, styleSelected, outfitCarousel, outfits
   let notinOutfitState = !outfitsId.includes(currentProduct.id);
 
   return (
-
-    <div className="flex items-center relative">
+    <>
+    <div className="flex items-center relative justify-center w-[900px] max-w-[900px]">
       <button onClick={slideLeft} className="btn-ghost btn-circle cursor-pointer opacity-50 hover:opacity-100">❮</button>
-      <div id={elementId} className='w-[1100px] h-[415px] h-full flex flex-row overflow-x-scroll scroll whitespace-nowrap scroll-smooth items-center'>
+
+
+      <div id={elementId} className='h-[415px] w-[800px] h-full flex flex-row overflow-x-scroll whitespace-nowrap scroll-smooth items-center'>
         {notinOutfitState && outfitCarousel ?
         <CaroselProduct product={styleSelected} setModal={setModal} selectClickedProduct={selectClickedProduct} productClicked={productClicked} outfitCarousel={outfitCarousel} addOutfitCard={true} addOutfit={addOutfit} deleteOutfit={deleteOutfit}/>
-      : null}
+        : null}
 
       {relative.map( (product, index) =>
       <CaroselProduct key={index} product={product} setModal={setModal} selectClickedProduct={selectClickedProduct} productClicked={productClicked} outfitCarousel={outfitCarousel} addOutfitCard={false} addOutfit={addOutfit} deleteOutfit={deleteOutfit}/>
       )}
 
       </div>
+      <div className="text-black z-10">
       <CompareModal modalVisable={modalVisable} setModal={setModal} styleSelected={styleSelected} clickedProductStyle={clickedProductStyle} currentProduct={currentProduct} clickedProduct={clickedProduct}/>
       <button onClick={slideRight} className="btn-ghost btn-circle cursor-pointer opacity-50 hover: opacity-50">❯</button>
+      </div>
 </div>
+      </>
  );
 }
 export default Carosel;
