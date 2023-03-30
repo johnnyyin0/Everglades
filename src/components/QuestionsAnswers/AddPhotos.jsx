@@ -27,7 +27,7 @@ const AddPhotos = ({ onSubmit }) => {
         ];
         setPhotos(selectedPhotos);
         const selectedUrls = selectedPhotos.map(photo => photo.url);
-        console.log('selectedUrls', selectedUrls)
+        //console.log('selectedUrls', selectedUrls)
         onSubmit(selectedUrls);
       }
     });
