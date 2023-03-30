@@ -72,12 +72,14 @@ let Overview = () => {
       setOutfitsId(outfitCopy);
     }
 
-    useEffect(()=> {
-      let outfitArray = JSON.parse(localStorage.getItem("outfits"));
-      console.log(outfitArray);
-      setOutfitsId(outfitArray);
+    useEffect(() => {
+      let storedOutfits = localStorage.getItem("outfits");
+      if (storedOutfits) {
+        let outfitArray = JSON.parse(storedOutfits);
+        console.log(outfitArray);
+        setOutfitsId(outfitArray);
+      }
     }, []);
-
 
     //function to add to cart via POST
     let addCartFunc = (obj) => {
