@@ -151,7 +151,3 @@ button:focus-visible {
 #slider::-webkit-scrollbar {
   display: none;
 }
-
-#outfitSlider::-webkit-scrollbar {
-  display: none;
-}
