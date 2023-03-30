@@ -19,9 +19,9 @@ export default function RatingsReviews(props) {
   }, [photo]);
 
   return (
-    <div className="flex flex-row basis-full relative" title="ratings-reviews-module">
+    <div className="flex relative" title="ratings-reviews-module">
       <NewReviewModal setSort={setSort} id={productId}/>
-      {showPhoto && <div className="card bg-base-100 shadow-x1 absolute z-20"><FullSizePhoto src={photo} setPhoto={setPhoto} /></div>}
+      {showPhoto && <div><FullSizePhoto src={photo} setPhoto={setPhoto} /></div>}
       <Sidebar id={productId} setShownReviews={setShownReviews} allReviews={allReviews} setAllReviews={setAllReviews}/>
       <ReviewsList setPhoto={setPhoto} id={productId} shownReviews={shownReviews} setShownReviews={setShownReviews} allReviews={allReviews} setAllReviews={setAllReviews} sort={sort} setSort={setSort} />
     </div>
