@@ -52,7 +52,7 @@ export default function NewReviewModal({ id }) {
       setBadSubmission({});
       handleExit()
       let payload = {
-        product_id: id,
+        product_id: parseInt(id),
         rating: parseInt(stars),
         summary: reviewSummary,
         body: reviewBody,
@@ -132,7 +132,7 @@ export default function NewReviewModal({ id }) {
     <div className="static" title="new-review-modal">
       <input type="checkbox" id="new-review-modal" className="modal-toggle" />
       <div className="modal">
-        <div className="modal-box h-full">
+        <div className="modal-box h-full dark:bg-zinc-600 dark:text-slate-200">
         <label className="btn btn-circle btn-xs btn-ghost absolute top-3 right-3"  htmlFor="new-review-modal">
           <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M6 18L18 6M6 6l12 12" /></svg>
         </label>
@@ -149,20 +149,20 @@ export default function NewReviewModal({ id }) {
             <input type="radio" name="radio-1" id="no" value="no" onClick={handleRecommend}/>
             <label className="pl-2">No</label>
           </div>
-          <div className={`bg-slate-200 dark:bg-zinc-700 px-2 ${badSubmission.charRatings && !charsFilled ? 'border-2 border-error' : ''}`}>
+          <div className={`bg-slate-200 dark:bg-zinc-700 dark:text-slate-200 px-2 ${badSubmission.charRatings && !charsFilled ? 'border-2 border-error' : ''}`}>
             <CharacteristicReview chars={reviewMeta.characteristics} setCharRatings={setCharRatings} charRatings={charRatings} setCharsFilled={setCharsFilled} />
           </div>
           <div className="form-control w-full">
             <label className="label pt-5 w-full pb-0">
               <span className="text-xl w-full">Review summary:</span>
             </label>
-            <input type="text" className="input input-bordered w-full" placeholder="Example: Pest purchase ever!" onChange={handleSummaryChange} maxLength={60} />
+            <input type="text" className="input input-bordered w-full text-black" placeholder="Example: Pest purchase ever!" onChange={handleSummaryChange} maxLength={60} />
             <label className="label pt-5 pb-0">
               <span className="text-xl">Review body:</span>
             </label>
-            <textarea className={`textarea ${badSubmission.bodyLength && reqRemaining !== 'Minimum reached' ? 'textarea-error' : 'textarea-bordered'}`} placeholder="Why did you like this product or not?" onChange={handleBodyChange}></textarea>
+            <textarea className={`textarea text-black ${badSubmission.bodyLength && reqRemaining !== 'Minimum reached' ? 'textarea-error' : 'textarea-bordered'}`} placeholder="Why did you like this product or not?" onChange={handleBodyChange}></textarea>
             <label className="label pt-0 pb-5">
-              <span className={`label-text-alt ${badSubmission.bodyLength && reqRemaining !== 'Minimum reached' ? 'text-error' : ''}`} >{reqRemaining}</span>
+              <span className={`label-text-alt ${badSubmission.bodyLength && reqRemaining !== 'Minimum reached' ? 'text-error' : 'dark:text-slate-400'}`} >{reqRemaining}</span>
             </label>
             {photo && <ReviewPhoto src={photo} setPhoto={setPhoto} photos={photos} setPhotos={setPhotos} setShowButton={setShowButton} />}
             <div>
@@ -172,16 +172,16 @@ export default function NewReviewModal({ id }) {
               <label className="label pb-0 pt-5">
                 <span className="label">What is your nickname?</span>
               </label>
-              <input type="text" placeholder="Example: jackson11!" className={`input w-full max-w-xs ${ badSubmission.nickname && !nickname ? 'input-error' : 'input-bordered'}`} onChange={handleNickname} />
+              <input type="text" placeholder="Example: jackson11!" className={`input w-full max-w-xs text-black ${ badSubmission.nickname && !nickname ? 'input-error' : 'input-bordered'}`} onChange={handleNickname} />
               <label className="label pt-0 pb-0">
-              <span className="label-text-alt">For privacy reasons, do not use your full name or email address</span>
+              <span className="label-text-alt dark:text-slate-400">For privacy reasons, do not use your full name or email address</span>
             </label>
               <label className="label pb-0 pt-5">
                 <span className="w-full">What is your email?</span>
               </label>
-              <input type="text" placeholder="Example: jackson11@email.com" className={`input w-full max-w-xs ${ badSubmission.email && email.indexOf('@') < 1 ? 'input-error' : 'input-bordered'}`} onChange={handleEmail} />
+              <input type="text" placeholder="Example: jackson11@email.com" className={`input w-full max-w-xs text-black ${ badSubmission.email && email.indexOf('@') < 1 ? 'input-error' : 'input-bordered'}`} onChange={handleEmail} />
               <label className="label pt-0 pb-0">
-              <span className="label-text-alt" >For authentication reasons, you will not be emailed</span>
+              <span className="label-text-alt dark:text-slate-400" >For authentication reasons, you will not be emailed</span>
             </label>
               <div className="pt-5 flex justify-between">
                 <label className="btn" onClick={handleSubmit}>Submit Review</label>

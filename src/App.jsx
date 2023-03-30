@@ -16,7 +16,6 @@ function App() {
   }, [])
 
   const handleOverviewClick = (e) => {
-    console.log(localStorage.getItem('color-theme'), 'theme')
     console.log('Overview')
     console.log('Clicked: ', e.target)
     console.log('at: ', new Date(Date.now()).toString())
