@@ -42,7 +42,7 @@ const Banner = ({ theme, setTheme, cartItems }) => {
 </div>
         </div>
       </div>
-      <div className="relative top-[90px] flex items-center justify-center bg-[#f2f2f2] p-[10px] mb-[60px] dark:bg-zinc-600" style={{ width: '100%' }}>
+      <div className="relative top-[90px] flex items-center justify-center bg-slate-200 p-[10px] mb-[60px] dark:bg-zinc-600" style={{ width: '100%' }}>
   <b>
     SIGN UP NOW AND GET 20% OFF + FREE SHIPPING ON YOUR FIRST ORDER!{' '}
     <u style={{ cursor: 'pointer' }}>Details Here</u>

@@ -7,18 +7,19 @@ import path from 'path'
 
 dotenv.config()
 
-// https://vitejs.dev/config/
 export default defineConfig({
   plugins: [react(), viteCompression()],
+  body: '/',
   test: {
     globals: true,
     environment: 'jsdom',
     setupFiles: './spec/setup.js'
   },
   server: {
+    host: true,
     proxy: {
       "/api" : {
-        target: `http://ec2-52-201-177-157.compute-1.amazonaws.com:${process.env.PORT}`,
+        target: `http://localhost:${process.env.PORT}`,
         changeOrigin: true,
         secure: false,
         rewrite: ( path ) => path.replace(/^\/api/, '')

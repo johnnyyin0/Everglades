@@ -1,9 +1,9 @@
 import React, { useState } from 'react'
-import axios from 'axios'
 import StarsWidget from './StarsWidget'
 import Report from '../QuestionsAnswers/ReportButton.jsx'
 import CarouselPhoto from './CarouselPhoto.jsx'
 import format from 'date-fns/format'
+import { sendHelpful, sendHurtful } from './reviewsapi.js'
 
 export default function ReviewTile({ review, setPhoto }) {
 
@@ -26,12 +26,7 @@ export default function ReviewTile({ review, setPhoto }) {
   }
 
   const handleHelpful = (evt) => {
-    let options = {
-      url:"/api/reviews/helpful",
-      method:"put",
-      data: { review_id: review.review_id },
-    }
-    axios(options)
+      sendHelpful(review.review_id)
       .then(res => {
         if (res.data !== 'Feedback already recieved'){
           console.log(res)
@@ -43,12 +38,7 @@ export default function ReviewTile({ review, setPhoto }) {
 
   }
   const handleHurtful = (evt) => {
-    let options = {
-      url:"/api/reviews/report",
-      method:"put",
-      data: { review_id: review.review_id },
-    }
-    axios(options)
+    sendHurtful(review.review_id)
     .then(res => setReport(res.data))
     .catch(err => console.log(err.data))
   }
