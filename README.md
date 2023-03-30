@@ -20,24 +20,20 @@ In this mockup project, we created a modern and user-friendly single-page shoppi
 
 ### Overview:
 
-> placeholder here
+<img src="https://i.imgur.com/PdMy3C1.png" alt="image" style="width: 50%;">
 
 ### Related Items and Comparison
 
-> placeholder here
+<img src="https://i.imgur.com/nhvCtsk.png" alt="image" style="width: 50%;">
 
 ### Questions and Answers:
 This component lets users search up existing questions on the selected item, add a question they may have, answer any questions, report any answers, and let users know if the question or answer was helpful.
 
-> placeholder here
+<img src="https://i.imgur.com/iCIvSTy.png" alt="image" style="width: 50%;">
 
 ### Ratings and Reviews:
 
-> placeholder here
-
-### Related Items & Comparison:
-
-> placeholder here
+<img src="https://i.imgur.com/1HTRF5m.png" alt="image" style="width: 50%;">
 
 ## Installation & Use
 1. Clone repo
