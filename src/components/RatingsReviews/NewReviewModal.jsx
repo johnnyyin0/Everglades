@@ -26,19 +26,11 @@ export default function NewReviewModal({ id }) {
 
 
   useEffect(() => {
-<<<<<<< HEAD
-    axios.get(`api/meta/${id}`)
-    .then(res => setReviewMeta(res.data))
-    .catch(err => console.log(err));
-
-    axios.get(`api/product/${id}`)
-=======
     getMeta(id)
     .then(res => setReviewMeta(res.data))
     .catch(err => console.log(err));
 
     getProduct(id)
->>>>>>> b6b2f94eef4cdb09848bb5dfc432a6453cddc7c8
     .then(res => setProductName(res.data.name))
     .catch(err => console.log(err));
 
