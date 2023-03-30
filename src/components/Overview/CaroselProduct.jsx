@@ -32,7 +32,7 @@ const CaroselProduct = ({ product, setModal, selectClickedProduct, productClicke
   }, [memoizedFetchData]);
 
   const handleModal = () => {
-    productClicked(carouselProduct);
+    selectClickedProduct(carouselProduct);
     setModal(true);
   };
 
@@ -78,14 +78,16 @@ const CaroselProduct = ({ product, setModal, selectClickedProduct, productClicke
             )}
             </div>
             </div>
+            <div className="text-black">
             { addOutfitCard ?
             <button className=" absolute bottom-28 left-0 right-0 top-0 hover:scale-100 ease-in-out duration-300 rounded opacity-80" onClick={handleAddOutfit}>+</button>
             : outfitCarousel ?
-              <button className="max-h-[50px] max-w-[60px] absolute right-1 top-1 hover:scale-100 ease-in-out duration-300 rounded opacity-80" onClick={handleDeleteOutfit}>
+            <button className="max-h-[50px] max-w-[60px] absolute right-1 top-1 hover:scale-100 ease-in-out duration-300 rounded opacity-80" onClick={handleDeleteOutfit}>
               X</button>
               : <button className="max-h-[50px] max-w-[60px] absolute right-1 top-1 hover:scale-100 ease-in-out duration-300 rounded opacity-80"onClick={handleModal}>
               ⍟</button>
             }
+            </div>
             </div>
             );
               };
