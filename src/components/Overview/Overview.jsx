@@ -74,18 +74,11 @@ let Overview = () => {
       setRefresh(refresh + 1);
     }
 
-    useEffect(() => {
-      let storedOutfits = localStorage.getItem("outfits");
-      if (storedOutfits) {
-        let outfitArray = JSON.parse(storedOutfits);
-        setOutfitsId(outfitArray);
-      }
-    }, []);
-
     useEffect(()=> {
       let outfitArray = JSON.parse(localStorage.getItem("outfits"));
       setOutfitsId(outfitArray);
     }, [refresh]);
+
 
 
     //function to add to cart via POST
@@ -221,17 +214,17 @@ let Overview = () => {
       :
       <>
       <div className='flex justify-center '>
-      <div className="grid grid-cols-6 gap-2 min-h-[800px] max-h-[800px] max-w-[1200px]" >
+      <div className="grid grid-cols-6 gap-2 min-h-[600px] max-h-[600px] max-w-[1200px]" >
       <div className='rounded-lg content-end col-span-4 row-span-4'>
       <ProductImage photo={photo} styleSelected={styleSelected} setPhoto={setPhoto} setFullScreen={setFullScreen} setIndex={setIndex} index={index} nextButton={nextButton} backButton={backButton}/>
       </div>
 
-      <div className=' rounded-lg col-span-2 w-[420px] h-[100%] border-b'>
+      <div className=' col-span-2 w-[420px] h-[100%] border-b'>
       <RatingsAndShare currentProduct={currentProduct} photo={photo}/>
       </div>
 
 
-      <div className=' rounded-lg  pt-14 col-span-2 h-[100%] w-[420px]'>
+      <div className=' rounded-lg shadow-lg pt-14 col-span-2 h-[100%] w-[420px]'>
       <ProductName currentProduct={currentProduct} styleSelected={styleSelected}/>
       </div>
 
