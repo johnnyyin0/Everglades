@@ -9,7 +9,7 @@ let reviewsModel = {
     const options = {
       url: reviewsModel.url,
       headers: reviewsModel.headers,
-      params: params,
+      params: {count: 1000, ...params},
       //an object with at least a product_id key but can include sort options
     }
     return axios(options)
