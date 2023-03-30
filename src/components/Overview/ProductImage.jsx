@@ -13,9 +13,9 @@ const ProductImage = ({photo, styleSelected, setPhoto, setFullScreen, setIndex, 
   };
 
   return (
-    <div className="grid grid-cols-6 gap-2 h-[835px] w-[100%] pr-20" title="product-image">
-      <div className="col-span-1">
-        <div className='flex flex-col gap-2 justify-between overflow-y-auto w-[100px] h-[625px] pt-0 ml-[120px]'>
+    <div className="grid grid-cols-6 gap-2 h-[500px] w-[100%] pr-20" title="product-image">
+      <div className="col-span-1 relative pl-[100px]">
+        <div className='flex flex-col gap-2 justify-between overflow-y-auto w-[100px] h-[625px] pt-0'>
         <ImageGallery styleSelected={styleSelected} setPhoto={setPhoto} photo={photo} setFullScreen={setFullScreen} setIndex={setIndex} index={index}/>
         </div>
       </div>
@@ -31,7 +31,7 @@ const ProductImage = ({photo, styleSelected, setPhoto, setFullScreen, setIndex, 
       </div>
 
         <div className="relative">
-      <div onClick={handleFullScreen} className=" w-[90%] ml-[100px]">
+      <div onClick={handleFullScreen} className=" w-[80%] ml-[140px]">
 
       <InnerImageZoom
             src = {photo}
@@ -45,7 +45,7 @@ const ProductImage = ({photo, styleSelected, setPhoto, setFullScreen, setIndex, 
             className="cursor-crosshair rounded border bg-white p-1 object-fill max-w-[99%]"
             />
             </div>
-      <div className="rounded-xl absolute left-[130px] top-2 z-5"><button className="btn-circle cursor-pointer hover: opacity-50" onClick={backButton} >❮</button></div>
+      <div className="rounded-xl absolute left-[155px] top-2 z-5"><button className="btn-circle cursor-pointer hover: opacity-50" onClick={backButton} >❮</button></div>
       <div className="rounded-xl absolute top-2 right-0 z-5"><button className="btn-circle cursor-pointer hover: opacity-50" onClick={nextButton} >❯</button></div>
             </div>
       </>
