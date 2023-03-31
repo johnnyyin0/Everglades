@@ -224,7 +224,11 @@ let Overview = () => {
       </div>
 
 
+<<<<<<< HEAD
       <div className=' rounded-lg shadow-lg pt-3 col-span-2 h-[100%] w-[420px]'>
+=======
+      <div className=' rounded-lg shadow-lg pt-2 col-span-2 h-[100%] w-[420px]'>
+>>>>>>> 9dc29113854fcf32c51ce6d72ee077a9415698d4
       <ProductName currentProduct={currentProduct} styleSelected={styleSelected}/>
       </div>
 
@@ -247,8 +251,13 @@ let Overview = () => {
       <div className='flex justify-center'>
         <Carosel className='flex-1' relative={relative} currentProduct={currentProduct} styleSelected={styleSelected} outfitCarousel={false} outfitsId={outfitsId} addOutfit={addOutfit} deleteOutfit={deleteOutfit}/>
         </div>
+<<<<<<< HEAD
         <div className='flex justify-center' style={{marginTop:'10px', fontSize:'20px', marginBottom:'10px'}}><b>YOUR OUTFITS</b></div>
         <div className='flex justify-center'>
+=======
+        <div className='flex justify-center' style={{marginTop:'60px', fontSize:'20px', marginBottom:'10px'}}><b>MY OUTFIT</b></div>
+        <div className="flex justify-center mt-10">
+>>>>>>> 9dc29113854fcf32c51ce6d72ee077a9415698d4
         <Carosel className='flex-1' relative={outfits} currentProduct={currentProduct} styleSelected={styleSelected} outfitCarousel={true} outfitsId={outfitsId} addOutfit={addOutfit} deleteOutfit={deleteOutfit}/>
         </div>
         </div>

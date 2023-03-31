@@ -16,10 +16,24 @@ let Carosel = ({relative, currentProduct, styleSelected, outfitCarousel, outfits
   let elementId = outfitCarousel ? 'outfitSlider' : 'slider';
 
   let productClicked = (clickedProduct) => {
+<<<<<<< HEAD
     console.log(clickedProduct);
     Axios.get(`api/product/${clickedProduct.id}/styles`)
     .then(res => selectClickedProductStyle(res.data.results[0]))
     .catch(err => console.log(err));
+=======
+    let cached = localStorage.getItem(`product${clickedProduct.id}styles`);
+    if (cached) {
+      selectClickedProductStyle(JSON.parse(cached))
+    } else {
+      Axios.get(`api/product/${clickedProduct.id}/styles`)
+      .then(res => {
+        selectClickedProductStyle(res.data.results[0])
+        localStorage.setItem(`product${clickedProduct.id}styles`, JSON.stringify(res.data.results[0]))
+      })
+      .catch(err => console.log(err));
+    }
+>>>>>>> 9dc29113854fcf32c51ce6d72ee077a9415698d4
   }
 
   const slideLeft = () => {

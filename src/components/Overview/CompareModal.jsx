@@ -8,7 +8,7 @@ const CompareModal = ({modalVisable, setModal, clickedProduct,clickedProductStyl
     return null;
   }
   return (
-    <div className="fixed inset-0 bg-black bg-opacity-30 backdrop-blur-sm flex justify-center items-center text-black">
+    <div className="fixed inset-0 bg-black bg-opacity-30 backdrop-blur-sm flex justify-center items-center text-black z-20">
       <div className="bg-white p-2 rounded">
         <div>
           <h1 className="italic">Compare the product!</h1>
