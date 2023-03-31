@@ -16,7 +16,6 @@ let Carosel = ({relative, currentProduct, styleSelected, outfitCarousel, outfits
   let elementId = outfitCarousel ? 'outfitSlider' : 'slider';
 
   let productClicked = (clickedProduct) => {
-    console.log(clickedProduct);
     let cached = localStorage.getItem(`product${clickedProduct.id}styles`);
     if (cached) {
       selectClickedProductStyle(JSON.parse(cached))

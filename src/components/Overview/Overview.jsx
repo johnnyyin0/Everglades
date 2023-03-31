@@ -222,11 +222,11 @@ let Overview = () => {
       </div>
 
 
-      <div className=' rounded-lg shadow-lg pt-14 col-span-2 h-[100%] w-[420px]'>
+      <div className=' rounded-lg shadow-lg pt-2 col-span-2 h-[100%] w-[420px]'>
       <ProductName currentProduct={currentProduct} styleSelected={styleSelected}/>
       </div>
 
-      <div className='rounded-lg pt-14 shadow-lg col-span-2 w-[420px] h-[260px] overflow-y-auto'>
+      <div className='rounded-lg pt-8 shadow-lg col-span-2 w-[420px] h-[260px] overflow-y-auto'>
       <Styles currentStyle={currentStyle} setPhoto={setPhoto} setSelectedStyle={setSelectedStyle} styleSelected={styleSelected} createSkusArray={createSkusArray}/>
       </div>
 
@@ -245,7 +245,7 @@ let Overview = () => {
       <div className='flex justify-center mt-10'>
         <Carosel className='flex-1 h-[200px]' relative={relative} currentProduct={currentProduct} styleSelected={styleSelected} outfitCarousel={false} outfitsId={outfitsId} addOutfit={addOutfit} deleteOutfit={deleteOutfit}/>
         </div>
-        <div className='flex justify-center' style={{marginTop:'60px', fontSize:'20px', marginBottom:'10px'}}><b>RELATED PRODUCTS</b></div>
+        <div className='flex justify-center' style={{marginTop:'60px', fontSize:'20px', marginBottom:'10px'}}><b>MY OUTFIT</b></div>
         <div className="flex justify-center mt-10">
         <Carosel className='flex-1' relative={outfits} currentProduct={currentProduct} styleSelected={styleSelected} outfitCarousel={true} outfitsId={outfitsId} addOutfit={addOutfit} deleteOutfit={deleteOutfit}/>
         </div>
