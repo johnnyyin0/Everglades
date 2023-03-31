@@ -81,7 +81,7 @@ const CaroselProduct = ({ product, setModal, selectClickedProduct, productClicke
           <p className="font-sans text-lg">{product.sale_price}</p>
           </>
           ) : (
-            <p className="font-sans text-lg">{product.original_price}</p>
+            <p className="font-sans text-lg">${product.original_price}</p>
             )}
             </div>
           </>

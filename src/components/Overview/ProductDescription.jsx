@@ -8,11 +8,11 @@ let ProductDescription = ({currentProduct}) => {
     <p>{currentProduct.description}</p></div>
   <div className="divider divider-horizontal"></div>
   <div className="grid h-20 flex-1 card rounded-box place-items-center">
-    <ul>
-      {currentProduct.features.map(feature => {
-        return <li key={feature.feature}>•{feature.feature}: {feature.value}</li>
-        })}
-        </ul>
+  <ul>
+  {currentProduct.features?.map(feature => {
+    return <li key={feature.feature}>•{feature.feature}: {feature.value}</li>
+  })}
+</ul>
       </div>
     </div>
   )
