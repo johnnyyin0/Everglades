@@ -116,7 +116,8 @@ let Overview = () => {
     }, [])
 
     useEffect(() => {
-        Axios.get(`api/product/${productId}/styles`)
+      // console.log(productId);
+      Axios.get(`api/product/${productId}/styles`)
         .then(res => {
           setCurrentStyle(res.data.results);
           setSelectedStyle(res.data.results[0]);
@@ -125,6 +126,7 @@ let Overview = () => {
           notLoading(false);
         })
         .catch(err => {
+          console.log('Failed to load product styles');
           notLoading(false);
         });
     }, []);
@@ -132,7 +134,7 @@ let Overview = () => {
     let relativeIdNumbers = [];
     useEffect(() => {
       // Check if the response for the given productId is already cached in localStorage
-      let cachedData = localStorage.getItem(`product${productId}related`);
+      const cachedData = localStorage.getItem(`product${productId}related`);
       if (cachedData) {
         setRelative(JSON.parse(cachedData));
       } else {
@@ -222,11 +224,11 @@ let Overview = () => {
       </div>
 
 
-      <div className=' rounded-lg shadow-lg pt-14 col-span-2 h-[100%] w-[420px]'>
+      <div className=' rounded-lg shadow-lg pt-3 col-span-2 h-[100%] w-[420px]'>
       <ProductName currentProduct={currentProduct} styleSelected={styleSelected}/>
       </div>
 
-      <div className='rounded-lg pt-14 shadow-lg col-span-2 w-[420px] h-[260px] overflow-y-auto'>
+      <div className='rounded-lg pt-8 shadow-lg col-span-2 w-[420px] h-[260px] overflow-y-auto'>
       <Styles currentStyle={currentStyle} setPhoto={setPhoto} setSelectedStyle={setSelectedStyle} styleSelected={styleSelected} createSkusArray={createSkusArray}/>
       </div>
 
@@ -236,16 +238,17 @@ let Overview = () => {
 
       </div>
       </div>
-      <div className='flex justify-center pt-[200px]'>
+      <div className='flex justify-center pt-[150px]'>
       <ProductDescription className='flex-1' currentProduct={currentProduct}/>
       </div>
       </>
       }
-
-      <div className='flex justify-center mt-14'>
+      <div className='flex justify-center' style={{marginTop:'60px', fontSize:'20px', marginBottom:'10px'}}><b>RELATED PRODUCTS</b></div>
+      <div className='flex justify-center'>
         <Carosel className='flex-1' relative={relative} currentProduct={currentProduct} styleSelected={styleSelected} outfitCarousel={false} outfitsId={outfitsId} addOutfit={addOutfit} deleteOutfit={deleteOutfit}/>
         </div>
-        <div className="flex justify-center mt-5">
+        <div className='flex justify-center' style={{marginTop:'10px', fontSize:'20px', marginBottom:'10px'}}><b>YOUR OUTFITS</b></div>
+        <div className='flex justify-center'>
         <Carosel className='flex-1' relative={outfits} currentProduct={currentProduct} styleSelected={styleSelected} outfitCarousel={true} outfitsId={outfitsId} addOutfit={addOutfit} deleteOutfit={deleteOutfit}/>
         </div>
         </div>

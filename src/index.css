@@ -164,3 +164,10 @@ button:focus-visible {
   padding: 40px;
   margin: 16px;
 }
+.vertical-text {
+  display: flex;
+  flex-direction: row;
+  transform: rotate(-90deg);
+  transform-origin: right top;
+  white-space: nowrap;
+}
