@@ -156,6 +156,9 @@ button:focus-visible {
 .overflow-y-scroll::-webkit-scrollbar {
   display: none;
 }
+.overflow-x-auto::-webkit-scrollbar {
+  display: none;
+}
 
 .product-description-container {
   background-color: #f2f2f2;
