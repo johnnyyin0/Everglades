@@ -9,10 +9,10 @@ describe('CharRadioSelector', () => {
 
   const props = {};
   props.chars = sampleMeta.characteristics;
-  props.fitChar = "Strength";
+  props.fitChar = 'Strength';
   props.id = 37114;
-  props.best = "strong";
-  props.worst = "weak";
+  props.best = 'strong';
+  props.worst = 'weak';
   props.charRatings = {};
   props.setCharRatings = vi.fn();
   props.setCharsFilled = vi.fn();

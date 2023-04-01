@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 
-export default function ReviewPhoto({ src, setPhoto, photos, setPhotos, setShowButton }) {
+export default function ReviewPhoto({ src, setPhoto, photos, setForm, setShowButton }) {
 
   const handleClick = (evt) => {
     setPhoto('')
@@ -8,13 +8,13 @@ export default function ReviewPhoto({ src, setPhoto, photos, setPhotos, setShowB
 
   const handleDelete = (evt) => {
     if (photos.length === 1) {
-      setPhotos([]);
+      setForm({...form, photos:[]});
     } else {
       let currentPhotos = photos.slice();
       let thisIndex = currentPhotos.indexOf(src);
       currentPhotos.splice(thisIndex, 1);
       setShowButton(true);
-      setPhotos(currentPhotos);
+      setForm({...form, photos: currentPhotos});
     }
   }
 

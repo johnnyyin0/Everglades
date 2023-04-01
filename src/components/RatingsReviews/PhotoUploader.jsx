@@ -2,7 +2,7 @@ import React, { useState } from 'react'
 import CarouselPhoto from './CarouselPhoto.jsx'
 //import Path from 'path'
 
-export default function PhotoUploader({ photos, setPhotos, setPhoto, showButton, setShowButton }) {
+export default function PhotoUploader({ photos, form, setForm, setPhoto, showButton, setShowButton }) {
 
 
 
@@ -22,7 +22,7 @@ export default function PhotoUploader({ photos, setPhotos, setPhoto, showButton,
           if (newPhotos.length >= 5) {
             setShowButton(false)
           }
-          setPhotos(newPhotos)
+          setForm({...form, photos:newPhotos})
 
         }
       })

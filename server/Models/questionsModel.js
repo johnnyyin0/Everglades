@@ -10,7 +10,7 @@ let questionsModel = {
       method: 'GET',
       url: apiURL + `questions?product_id=${productId}&count=100`,
       headers: {
-        "Authorization": config.TOKEN
+        'Authorization': config.TOKEN
       },
     };
  return axios(options)
@@ -27,7 +27,7 @@ let questionsModel = {
       method: 'GET',
       url: apiURL+ `questions/${questionId}/answers?count=100`,
       headers: {
-        "Authorization": config.TOKEN
+        'Authorization': config.TOKEN
       },
     }
     return axios(options)
@@ -44,7 +44,7 @@ let questionsModel = {
       method: 'PUT',
       url: apiURL+ `answers/${answerId}/helpful`,
       headers: {
-        "Authorization": config.TOKEN
+        'Authorization': config.TOKEN
       },
     }
     return axios(options)
@@ -60,7 +60,7 @@ let questionsModel = {
       method: 'PUT',
       url: apiURL+ `questions/${questionId}/helpful`,
       headers: {
-        "Authorization": config.TOKEN
+        'Authorization': config.TOKEN
       },
     }
     return axios(options)
@@ -77,7 +77,7 @@ let questionsModel = {
       method: 'POST',
       url: apiURL+ `questions/${questionId}/answers`,
       headers: {
-        "Authorization": config.TOKEN
+        'Authorization': config.TOKEN
       },
       data: params
     }
@@ -94,7 +94,7 @@ let questionsModel = {
       method: 'POST',
       url: apiURL+ `questions`,
       headers: {
-        "Authorization": config.TOKEN
+        'Authorization': config.TOKEN
       },
       data: params
     }
@@ -111,7 +111,7 @@ let questionsModel = {
       method: 'PUT',
       url: apiURL+ `answers/${answerId}/report`,
       headers: {
-        "Authorization": config.TOKEN
+        'Authorization': config.TOKEN
       },
     }
   return axios(options)

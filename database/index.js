@@ -12,8 +12,8 @@ const testSchema = new mongoose.Schema({
 const TestModel = mongoose.model('test', testSchema);
 
 let test = new TestModel({
-  title: "this is just a test",
-  author: "Brengeley",
+  title: 'this is just a test',
+  author: 'Brengeley',
   favorite: true
 })
 

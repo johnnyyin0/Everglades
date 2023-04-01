@@ -1,14 +1,14 @@
-/** @type {import('tailwindcss').Config} */
+/** @type {import("tailwindcss").Config} */
 module.exports = {
   content: ["./index.html",
     "./src/**/*.jsx"],
-  darkMode: 'class',
+  darkMode: "class",
   theme: {
     extend: {
       backgroundImage: {
-        'review-photo' : "url('https://webkit.org/demos/srcset/image-src.png')",
+        "review-photo" : "url('https://webkit.org/demos/srcset/image-src.png')",
       }
     },
   },
-  plugins: [require("daisyui"), require('tailwind-scrollbar-hide')],
+  plugins: [require("daisyui"), require("tailwind-scrollbar-hide")],
 }

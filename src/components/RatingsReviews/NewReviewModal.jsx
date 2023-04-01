@@ -7,31 +7,24 @@ import { getMeta, getProduct, sendReview } from './reviewsapi'
 import axios from 'axios'
 
 
-export default function NewReviewModal({ id }) {
+export default function NewReviewModal({ id, photo, setPhoto }) {
 
   const [productName, setProductName] = useState('')
   const [reviewMeta, setReviewMeta] = useState({})
-  const [stars, setStars] = useState("0")
-  const [recommended, setRecommended] = useState(null)
-  const [charRatings, setCharRatings] = useState({})
   const [charsFilled, setCharsFilled] = useState(false)
-  const [reviewSummary, setReviewSummary] = useState('')
-  const [reviewBody, setReviewBody] = useState('')
   const [reqRemaining, setReqRemaining] = useState('Minimum required characters left: 50')
-  const [photos, setPhotos] = useState([])
-  const [photo, setPhoto] = useState('')
   const [showButton, setShowButton] = useState(true)
-  const [nickname, setNickname] = useState('')
-  const [email, setEmail] = useState('')
   const [badSubmission, setBadSubmission] = useState({})
+  const [form, setForm] = useState({
+    charRatings:{},
+    stars: "0",
+    email: '',
+    photos: []
+  })
 
 
   useEffect(() => {
-    axios.get(`api/meta/${id}`)
-    .then(res => setReviewMeta(res.data))
-    .catch(err => console.log(err));
 
-    axios.get(`api/product/${id}`)
     getMeta(id)
     .then(res => setReviewMeta(res.data))
     .catch(err => console.log(err));
@@ -43,8 +36,8 @@ export default function NewReviewModal({ id }) {
   }, [id])
 
   const handleSubmit = (evt) => {
-    if (stars !== "0" &&
-    recommended !== null &&
+    if (form.stars !== "0" &&
+    form.recommended !== null &&
     charsFilled &&
     reqRemaining === 'Minimum reached' &&
     nickname &&
@@ -53,14 +46,14 @@ export default function NewReviewModal({ id }) {
       handleExit()
       let payload = {
         product_id: parseInt(id),
-        rating: parseInt(stars),
-        summary: reviewSummary,
-        body: reviewBody,
-        recommend: recommended,
-        name: nickname,
-        email: email,
-        photos: photos,
-        characteristics: charRatings
+        rating: parseInt(form.stars),
+        summary: form.reviewSummary,
+        body: form.reviewBody,
+        recommend: form.recommended,
+        name: form.nickname,
+        email: form.email,
+        photos: form.photos,
+        characteristics: form.charRatings
       }
       sendReview(payload)
       .then(res => {
@@ -75,10 +68,10 @@ export default function NewReviewModal({ id }) {
 
   const handleIncompleteForm = (evt) => {
     const stillRequired = {}
-    if (stars === '0'){
+    if (form.stars === '0'){
       stillRequired.stars = true
     }
-    if (recommended === null) {
+    if (form.recommended === undefined) {
       stillRequired.recommended = true
     }
     if (!charsFilled) {
@@ -87,10 +80,10 @@ export default function NewReviewModal({ id }) {
     if (reqRemaining !== 'Minimum reached') {
       stillRequired.bodyLength = true
     }
-    if (!nickname) {
+    if (!form.nickname) {
       stillRequired.nickname = true
     }
-    if (email.indexOf('@') < 1) {
+    if (form.email.indexOf('@') < 1) {
       stillRequired.email = true
     }
     setBadSubmission(stillRequired)
@@ -98,14 +91,17 @@ export default function NewReviewModal({ id }) {
   //mandatory: ovarall rating, recommendation, characteristics, body (not summary), nickname, email
 
   const handleRecommend = (evt) => {
+    setForm({...form, recommended: evt.target.value === 'yes' ? true : false})
     setRecommended(evt.target.value === 'yes' ? true : false);
   }
 
   const handleSummaryChange = (evt) => {
+    setForm({...form, reviewSummary: evt.target.value})
     setReviewSummary(evt.target.value);
   }
 
   const handleBodyChange = (evt) => {
+    setForm({...form, reviewBody: evt.target.value})
     setReviewBody(evt.target.value);
     if (evt.target.value.length < 50) {
       let reqString = `Minimum required characters left: ${50 - evt.target.value.length}`
@@ -116,10 +112,12 @@ export default function NewReviewModal({ id }) {
   }
 
   const handleNickname = (evt) => {
+    setForm({...form, nickname:evt.target.value})
     setNickname(evt.target.value);
   }
 
   const handleEmail = (evt) => {
+    setForm({...form, email:evt.target.value})
     setEmail(evt.target.value);
   }
 
@@ -138,11 +136,11 @@ export default function NewReviewModal({ id }) {
         </label>
         <div className="text-3xl text-center">Write Your Review</div>
           <div className="text-center pb-4 pt-2">About the {productName}</div>
-          <div className={`${badSubmission.stars && stars === "0" ? 'text-error' : ''}`}>
+          <div className={`${badSubmission.stars && form.stars === "0" ? 'text-error' : ''}`}>
             <div className="pb-2 text-xl">Overall Rating:</div>
-            <StarsRater stars={stars} setStars={setStars} />
+            <StarsRater form={form} setForm={setForm} />
           </div>
-          <div className={`py-3 ${badSubmission.recommended && recommended === null ? 'text-error' : ''}`}>
+          <div className={`py-3 ${badSubmission.recommended && form.recommended === undefined ? 'text-error' : ''}`}>
             <span className="py-2 pr-7">Do you recommend this product?</span>
             <input type="radio" name="radio-1" id="yes" value="yes" onClick={handleRecommend}/>
             <label className="pr-5 pl-2">Yes</label>
@@ -150,7 +148,7 @@ export default function NewReviewModal({ id }) {
             <label className="pl-2">No</label>
           </div>
           <div className={`bg-slate-200 dark:bg-zinc-700 dark:text-slate-200 px-2 ${badSubmission.charRatings && !charsFilled ? 'border-2 border-error' : ''}`}>
-            <CharacteristicReview chars={reviewMeta.characteristics} setCharRatings={setCharRatings} charRatings={charRatings} setCharsFilled={setCharsFilled} />
+            <CharacteristicReview chars={reviewMeta.characteristics} setForm={setForm} form={form} setCharsFilled={setCharsFilled} />
           </div>
           <div className="form-control w-full">
             <label className="label pt-5 w-full pb-0">
@@ -164,22 +162,22 @@ export default function NewReviewModal({ id }) {
             <label className="label pt-0 pb-5">
               <span className={`label-text-alt ${badSubmission.bodyLength && reqRemaining !== 'Minimum reached' ? 'text-error' : 'dark:text-slate-400'}`} >{reqRemaining}</span>
             </label>
-            {photo && <ReviewPhoto src={photo} setPhoto={setPhoto} photos={photos} setPhotos={setPhotos} setShowButton={setShowButton} />}
+            {photo && <ReviewPhoto src={photo} setPhoto={setPhoto} photos={form.photos} setForm={setForm} setShowButton={setShowButton} />}
             <div>
-              <PhotoUploader photos={photos} setPhotos={setPhotos} setPhoto={setPhoto} showButton={showButton} setShowButton={setShowButton} />
+              <PhotoUploader form={form} photos={form.photos} setForm={setForm} setPhoto={setPhoto} showButton={showButton} setShowButton={setShowButton} />
             </div>
             <div>
               <label className="label pb-0 pt-5">
                 <span className="label">What is your nickname?</span>
               </label>
-              <input type="text" placeholder="Example: jackson11!" className={`input w-full max-w-xs text-black ${ badSubmission.nickname && !nickname ? 'input-error' : 'input-bordered'}`} onChange={handleNickname} />
+              <input type="text" placeholder="Example: jackson11!" className={`input w-full max-w-xs text-black ${ badSubmission.nickname && !form.nickname ? 'input-error' : 'input-bordered'}`} onChange={handleNickname} />
               <label className="label pt-0 pb-0">
               <span className="label-text-alt dark:text-slate-400">For privacy reasons, do not use your full name or email address</span>
             </label>
               <label className="label pb-0 pt-5">
                 <span className="w-full">What is your email?</span>
               </label>
-              <input type="text" placeholder="Example: jackson11@email.com" className={`input w-full max-w-xs text-black ${ badSubmission.email && email.indexOf('@') < 1 ? 'input-error' : 'input-bordered'}`} onChange={handleEmail} />
+              <input type="text" placeholder="Example: jackson11@email.com" className={`input w-full max-w-xs text-black ${ badSubmission.email && form.email.indexOf('@') < 1 ? 'input-error' : 'input-bordered'}`} onChange={handleEmail} />
               <label className="label pt-0 pb-0">
               <span className="label-text-alt dark:text-slate-400" >For authentication reasons, you will not be emailed</span>
             </label>
