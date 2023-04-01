@@ -74,7 +74,7 @@ export default function ReviewTile({ review, setPhoto }) {
       </div>
       <div>
         {review.photos.length > 0 && <div className="pb-5 px-5 carousel">
-          {review.photos.map(photo => <CarouselPhoto src={photo.url} setPhoto={setPhoto} key={photo.id} />)}
+          {review.photos.map(photo => <CarouselPhoto src={photo.url} setPhoto={setPhoto} key={photo.id} setDelButton={() => {}}/>)}
         </div>}
       </div>
       <div className="px-5 pb-5">

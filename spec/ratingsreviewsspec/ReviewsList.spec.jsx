@@ -26,7 +26,7 @@ describe('ReviewsList', () => {
     render(<ReviewsList {...props} />);
     expect(screen.getByTitle('reviews-list')).toBeInTheDocument()
   })
-  it('Should include buttons for "More Reviews" and "Add a Review"', () => {
+  it('Should include buttons for 'More Reviews' and 'Add a Review'', () => {
     render(<ReviewsList {...props} />);
     expect(screen.getByRole('button', { name: 'More Reviews'})).toBeInTheDocument();
     expect(screen.getByText('Add Review')).toBeInTheDocument();
@@ -37,7 +37,7 @@ describe('ReviewsList', () => {
     expect(screen.getByText(/5\s*reviews/)).toBeInTheDocument();
   })
 
-  it('Should have sort options that default to "relevant"', () => {
+  it('Should have sort options that default to 'relevant'', () => {
     render(<ReviewsList {...props} />);
     expect(screen.getByTitle('sort-dropdown')).toBeInTheDocument();
     expect(screen.getByText('relevant')).toBeInTheDocument();
@@ -56,14 +56,14 @@ describe('ReviewsList', () => {
     expect(screen.getAllByTitle('review-tile').length).toBe(2)
   })
 
-  it('Should render two additional review tiles when "More Reviews" is clicked', () => {
+  it('Should render two additional review tiles when 'More Reviews' is clicked', () => {
     render(<ReviewsList {...props} />);
     const moreReviews = screen.getByText('More Reviews')
     fireEvent.click(moreReviews)
     expect(props.setShownReviews).toHaveBeenCalledWith(sampleReviewData.results.slice(0,4))
   })
 
-  it('Should render the "Add Reviews" button', async () => {
+  it('Should render the 'Add Reviews' button', async () => {
 
 
     //mock the getAllReviews method on API with results, remember to un-mock/cleanup
