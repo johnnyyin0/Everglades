@@ -19,7 +19,7 @@ export default function ReviewPhoto({ src, setPhoto, photos, setForm, setShowBut
   }
 
   return (
-    <div onClick={handleClick} className="absolute object-cover" title="new-review-photo">
+    <div onClick={handleClick} className="fixed object-cover z-10000" title="new-review-photo">
       <figure>
         <button className="btn btn-xs btn-error absolute top-3 right-3" onClick={handleDelete}>
           REMOVE

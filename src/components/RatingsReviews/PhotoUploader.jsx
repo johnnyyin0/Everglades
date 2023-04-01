@@ -2,7 +2,7 @@ import React, { useState } from 'react'
 import CarouselPhoto from './CarouselPhoto.jsx'
 //import Path from 'path'
 
-export default function PhotoUploader({ photos, form, setForm, setPhoto, showButton, setShowButton }) {
+export default function PhotoUploader({ photos, form, setForm, setPhoto, showButton, setShowButton, setDelButton }) {
 
 
 
@@ -34,7 +34,8 @@ export default function PhotoUploader({ photos, form, setForm, setPhoto, showBut
   return (
     <div title="photo-uploader">
       <div>{photos.length > 0 && <div className="pb-5 px-5 carousel">
-        {photos.length > 0 && photos.map(photo => <CarouselPhoto src={photo} setPhoto={setPhoto} key={photo.slice(-20)}/>)}
+        {photos.length > 0 && photos.map(photo =>
+        <CarouselPhoto src={photo} setPhoto={setPhoto} key={photo.slice(-20)} setDelButton={setDelButton}/>)}
       </div>}</div>
       {showButton && <div>
         <button className="btn" onClick={handleSubmit}>Add Photo</button>

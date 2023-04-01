@@ -7,7 +7,7 @@ import { getMeta, getProduct, sendReview } from './reviewsapi'
 import axios from 'axios'
 
 
-export default function NewReviewModal({ id, photo, setPhoto }) {
+export default function NewReviewModal({ id, photo, setPhoto, form, setForm, setDelButton }) {
 
   const [productName, setProductName] = useState('')
   const [reviewMeta, setReviewMeta] = useState({})
@@ -15,12 +15,7 @@ export default function NewReviewModal({ id, photo, setPhoto }) {
   const [reqRemaining, setReqRemaining] = useState('Minimum required characters left: 50')
   const [showButton, setShowButton] = useState(true)
   const [badSubmission, setBadSubmission] = useState({})
-  const [form, setForm] = useState({
-    charRatings:{},
-    stars: "0",
-    email: '',
-    photos: []
-  })
+
 
 
   useEffect(() => {
@@ -162,9 +157,8 @@ export default function NewReviewModal({ id, photo, setPhoto }) {
             <label className="label pt-0 pb-5">
               <span className={`label-text-alt ${badSubmission.bodyLength && reqRemaining !== 'Minimum reached' ? 'text-error' : 'dark:text-slate-400'}`} >{reqRemaining}</span>
             </label>
-            {photo && <ReviewPhoto src={photo} setPhoto={setPhoto} photos={form.photos} setForm={setForm} setShowButton={setShowButton} />}
             <div>
-              <PhotoUploader form={form} photos={form.photos} setForm={setForm} setPhoto={setPhoto} showButton={showButton} setShowButton={setShowButton} />
+              <PhotoUploader form={form} photos={form.photos} setForm={setForm} setPhoto={setPhoto} showButton={showButton} setShowButton={setShowButton} setDelButton={setDelButton} />
             </div>
             <div>
               <label className="label pb-0 pt-5">
