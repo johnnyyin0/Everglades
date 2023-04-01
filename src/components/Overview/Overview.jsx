@@ -81,11 +81,8 @@ let Overview = () => {
       }
     }, [refresh]);
 
-
-
     //function to add to cart via POST
     let addCartFunc = (obj) => {
-      console.log(obj, 'Whats getting sent to the cart');
       Axios.post('api/cart', obj)
       .then(res => setRefresh(res))
       .catch(err => console.log(err));
@@ -103,40 +100,66 @@ let Overview = () => {
     };
   //useEffect
   useEffect(() => {
-    Axios.get('api/products')
-    .then(res => {
-      setProducts(res.data)})
-      .catch(err => console.log('Failed to load products'));
+    let cached = localStorage.getItem('products')
+    if (cached) {
+      setProducts(JSON.parse(cached));
+    } else {
+      Axios.get('api/products')
+      .then(res => {
+        localStorage.setItem('products', JSON.stringify(res.data));
+        setProducts(res.data)})
+        .catch(err => console.log('Failed to load products'));
+      }
     }, [])
 
 
     // When the currentId changes, change the current data
     useEffect(() => {
-      Axios.get(`api/product/${productId}`)
-      .then(res => setCurrentProduct(res.data))
-      .catch(err => console.log('Failed to load product'))
+      let cached = localStorage.getItem(`product${productId}`);
+      if (cached) {
+        setCurrentProduct(JSON.parse(cached));
+      } else {
+        Axios.get(`api/product/${productId}`)
+        .then(res => {
+          localStorage.setItem(`product${productId}`, JSON.stringify(res.data))
+          setCurrentProduct(res.data)})
+        .catch(err => console.log('Failed to load product'))
+      }
     }, [])
 
     useEffect(() => {
-      // console.log(productId);
-      Axios.get(`api/product/${productId}/styles`)
-        .then(res => {
-          setCurrentStyle(res.data.results);
-          setSelectedStyle(res.data.results[0]);
-          createSkusArray(res.data.results[0].skus);
-          setPhoto(res.data.results[0].photos[0].url);
-          notLoading(false);
-        })
-        .catch(err => {
-          console.log('Failed to load product styles');
-          notLoading(false);
-        });
+      let cached = localStorage.getItem(`product${productId}styles`);
+
+      if (cached) {
+        let parsed = JSON.parse(cached);
+        setCurrentStyle(parsed.currentStyle);
+        setSelectedStyle(parsed.selectedStyle);
+        createSkusArray(parsed.selectedStyle.skus);
+        setPhoto(parsed.selectedStyle.photos[0].url);
+        notLoading(false);
+      } else {
+        Axios.get(`api/product/${productId}/styles`)
+          .then(res => {
+            setCurrentStyle(res.data.results);
+            setSelectedStyle(res.data.results[0]);
+            createSkusArray(res.data.results[0].skus);
+            setPhoto(res.data.results[0].photos[0].url);
+            localStorage.setItem(`product${productId}styles`, JSON.stringify({
+              currentStyle: res.data.results,
+              selectedStyle: res.data.results[0]
+            }));
+            notLoading(false);
+          })
+          .catch(err => {
+            notLoading(false);
+          });
+      }
     }, []);
 
     let relativeIdNumbers = [];
     useEffect(() => {
       // Check if the response for the given productId is already cached in localStorage
-      const cachedData = localStorage.getItem(`product${productId}related`);
+      let cachedData = localStorage.getItem(`product${productId}related`);
       if (cachedData) {
         setRelative(JSON.parse(cachedData));
       } else {
@@ -149,7 +172,6 @@ let Overview = () => {
           .then(idArray => {
             let relativeItems = [];
             idArray.forEach(id => {
-              // console.log(id);
               Axios.get(`api/product/${id}/styles`)
               .then(res => {
                 //adding product id to the style
@@ -226,7 +248,7 @@ let Overview = () => {
       </div>
 
 
-      <div className=' rounded-lg shadow-lg pt-3 col-span-2 h-[100%] w-[420px]'>
+      <div className=' rounded-lg shadow-lg pt-2 col-span-2 h-[100%] w-[420px]'>
       <ProductName currentProduct={currentProduct} styleSelected={styleSelected}/>
       </div>
 
@@ -240,16 +262,17 @@ let Overview = () => {
 
       </div>
       </div>
-      <div className='flex justify-center pt-[150px]'>
+      <div className='flex justify-center pt-[200px]'>
       <ProductDescription className='flex-1' currentProduct={currentProduct}/>
       </div>
       </>
       }
-
-      <div className='flex justify-center mt-14'>
-        <Carosel className='flex-1' relative={relative} currentProduct={currentProduct} styleSelected={styleSelected} outfitCarousel={false} outfitsId={outfitsId} addOutfit={addOutfit} deleteOutfit={deleteOutfit}/>
+      <div className='flex justify-center' style={{marginTop:'60px', fontSize:'20px', marginBottom:'10px'}}><b>RELATED PRODUCTS</b></div>
+      <div className='flex justify-center mt-10'>
+        <Carosel className='flex-1 h-[200px]' relative={relative} currentProduct={currentProduct} styleSelected={styleSelected} outfitCarousel={false} outfitsId={outfitsId} addOutfit={addOutfit} deleteOutfit={deleteOutfit}/>
         </div>
-        <div className="flex justify-center mt-5">
+        <div className='flex justify-center' style={{marginTop:'60px', fontSize:'20px', marginBottom:'10px'}}><b>MY OUTFIT</b></div>
+        <div className="flex justify-center mt-10">
         <Carosel className='flex-1' relative={outfits} currentProduct={currentProduct} styleSelected={styleSelected} outfitCarousel={true} outfitsId={outfitsId} addOutfit={addOutfit} deleteOutfit={deleteOutfit}/>
         </div>
         </div>

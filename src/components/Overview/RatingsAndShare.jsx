@@ -5,17 +5,23 @@ import { useState, useEffect, useMemo } from 'react';
 import axios from 'axios';
 
 const RatingsAndShare = ({ currentProduct, photo }) => {
-  const [meta, setMeta] = useState(null);
+  let [meta, setMeta] = useState(null);
 
   useEffect(() => {
     const options = {
       url: `api/meta/${currentProduct.id}`,
     };
-    axios(options)
+    let cached = localStorage.getItem(`products${currentProduct.id}meta`);
+    if (cached) {
+      setMeta(JSON.parse(cached));
+    } else {
+      axios(options)
       .then((res) => {
+        localStorage.setItem(`products${currentProduct.id}meta`, JSON.stringify(res.data));
         setMeta(res.data);
       })
       .catch((err) => console.log(err));
+    }
   }, [currentProduct.id]);
 
   const avgReview = useMemo(() => {
