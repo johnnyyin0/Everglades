@@ -4,6 +4,7 @@ import StarsWidget from '../RatingsReviews/StarsWidget.jsx';
 
 const CaroselProduct = ({ product, setModal, selectClickedProduct, productClicked, outfitCarousel, addOutfitCard, addOutfit,deleteOutfit}) => {
 
+
   const [carouselProduct, setCarouselProduct] = useState({});
   const [avgReview, setAvgReview] = useState(3);
 

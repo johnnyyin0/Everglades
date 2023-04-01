@@ -128,7 +128,7 @@ let Overview = () => {
     }, [])
 
     useEffect(() => {
-      let cached = localStorage.getItem(`product${productId}styles`);
+      let cached = localStorage.getItem(`product${productId}_styles`);
 
       if (cached) {
         let parsed = JSON.parse(cached);
@@ -144,7 +144,7 @@ let Overview = () => {
             setSelectedStyle(res.data.results[0]);
             createSkusArray(res.data.results[0].skus);
             setPhoto(res.data.results[0].photos[0].url);
-            localStorage.setItem(`product${productId}styles`, JSON.stringify({
+            localStorage.setItem(`product${productId}_styles`, JSON.stringify({
               currentStyle: res.data.results,
               selectedStyle: res.data.results[0]
             }));
