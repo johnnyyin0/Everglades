@@ -3,7 +3,7 @@ import axios from 'axios';
 import StarsWidget from '../RatingsReviews/StarsWidget.jsx';
 
 const CaroselProduct = ({ product, setModal, selectClickedProduct, productClicked, outfitCarousel, addOutfitCard, addOutfit,deleteOutfit}) => {
-
+console.log(product);
   const [carouselProduct, setCarouselProduct] = useState({});
   const [avgReview, setAvgReview] = useState(3);
 
