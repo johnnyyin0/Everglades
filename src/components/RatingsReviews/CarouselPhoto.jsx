@@ -6,7 +6,9 @@ export default function CarouselPhoto({ src, setPhoto }) {
 
   return (
     <div className="carousel-item" onClick={handleClick}>
-      <img className="h-32" src={src} alt="Review Photo" />
+      <label htmlFor="fullsize-photo-modal">
+        <img className="h-32 review-photo" src={src} alt="Review Photo" />
+        </label>
     </div>
 
   )
