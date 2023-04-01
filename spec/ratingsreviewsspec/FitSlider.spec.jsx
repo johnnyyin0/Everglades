@@ -8,8 +8,8 @@ import FitSlider from '../../src/components/RatingsReviews/FitSlider.jsx'
 
 describe('FitSlider', () => {
   const props = {};
-  props.fitChar = "Size";
-  props.charId = "27739";
+  props.fitChar = 'Size';
+  props.charId = '27739';
   props.charVal = 3.9891234
 
   it('Should render to the DOM', () => {

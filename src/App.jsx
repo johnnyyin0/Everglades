@@ -35,9 +35,9 @@ function App() {
 
   return (
     <div className={theme}>
-      <div className="bg-white text-zinc-900 dark:text-slate-200 dark:bg-zinc-800">
+      <div className='bg-white text-zinc-900 dark:text-slate-200 dark:bg-zinc-800'>
         <Banner setTheme={setTheme} theme={theme} cartItems={cartItems}/>
-        <div className="mx-auto w-11/12 overflow-auto">
+        <div className='mx-auto w-11/12 overflow-auto'>
           <div onClick={handleOverviewClick}>
             <Overview setCartItems={setCartItems}/>
           </div>
