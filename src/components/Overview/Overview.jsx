@@ -83,7 +83,6 @@ let Overview = () => {
 
     //function to add to cart via POST
     let addCartFunc = (obj) => {
-      console.log(obj, 'Whats getting sent to the cart');
       Axios.post('api/cart', obj)
       .then(res => setRefresh(res))
       .catch(err => console.log(err));
@@ -101,32 +100,60 @@ let Overview = () => {
     };
   //useEffect
   useEffect(() => {
-    Axios.get('api/products')
-    .then(res => {
-      setProducts(res.data)})
-      .catch(err => console.log('Failed to load products'));
+    let cached = localStorage.getItem('products')
+    if (cached) {
+      setProducts(JSON.parse(cached));
+    } else {
+      Axios.get('api/products')
+      .then(res => {
+        localStorage.setItem('products', JSON.stringify(res.data));
+        setProducts(res.data)})
+        .catch(err => console.log('Failed to load products'));
+      }
     }, [])
 
 
     // When the currentId changes, change the current data
     useEffect(() => {
-      Axios.get(`api/product/${productId}`)
-      .then(res => setCurrentProduct(res.data))
-      .catch(err => console.log('Failed to load product'))
+      let cached = localStorage.getItem(`product${productId}`);
+      if (cached) {
+        setCurrentProduct(JSON.parse(cached));
+      } else {
+        Axios.get(`api/product/${productId}`)
+        .then(res => {
+          localStorage.setItem(`product${productId}`, JSON.stringify(res.data))
+          setCurrentProduct(res.data)})
+        .catch(err => console.log('Failed to load product'))
+      }
     }, [])
 
     useEffect(() => {
+      let cached = localStorage.getItem(`product${productId}styles`);
+
+      if (cached) {
+        let parsed = JSON.parse(cached);
+        setCurrentStyle(parsed.currentStyle);
+        setSelectedStyle(parsed.selectedStyle);
+        createSkusArray(parsed.selectedStyle.skus);
+        setPhoto(parsed.selectedStyle.photos[0].url);
+        notLoading(false);
+      } else {
         Axios.get(`api/product/${productId}/styles`)
-        .then(res => {
-          setCurrentStyle(res.data.results);
-          setSelectedStyle(res.data.results[0]);
-          createSkusArray(res.data.results[0].skus);
-          setPhoto(res.data.results[0].photos[0].url);
-          notLoading(false);
-        })
-        .catch(err => {
-          notLoading(false);
-        });
+          .then(res => {
+            setCurrentStyle(res.data.results);
+            setSelectedStyle(res.data.results[0]);
+            createSkusArray(res.data.results[0].skus);
+            setPhoto(res.data.results[0].photos[0].url);
+            localStorage.setItem(`product${productId}styles`, JSON.stringify({
+              currentStyle: res.data.results,
+              selectedStyle: res.data.results[0]
+            }));
+            notLoading(false);
+          })
+          .catch(err => {
+            notLoading(false);
+          });
+      }
     }, []);
 
     let relativeIdNumbers = [];
@@ -145,7 +172,6 @@ let Overview = () => {
           .then(idArray => {
             let relativeItems = [];
             idArray.forEach(id => {
-              // console.log(id);
               Axios.get(`api/product/${id}/styles`)
               .then(res => {
                 //adding product id to the style

@@ -7,29 +7,43 @@ const CaroselProduct = ({ product, setModal, selectClickedProduct, productClicke
   const [carouselProduct, setCarouselProduct] = useState({});
   const [avgReview, setAvgReview] = useState(3);
 
-  const memoizedFetchData = useMemo(() => {
-    const fetchData = async () => {
-      try {
-        const [carouselProductRes, metaRes] = await Promise.all([
-          axios.get(`api/product/${product.productId || 37311}`),
-          axios.get(`api/meta/${product.productId || 37311}`),
-        ]);
-        setCarouselProduct(carouselProductRes.data);
+  useEffect(() => {
+    let cachedProduct = localStorage.getItem(`product${product.productId}`);
+    let cachedMeta = localStorage.getItem(`products${product.productId}meta`);
 
-        const { ratings } = metaRes.data;
-        const totalRatings = Object.values(ratings).reduce((acc, cur) => acc + parseInt(cur), 0);
-        const avgDividend = Object.entries(ratings).reduce((acc, [key, val]) => acc + parseInt(key) * parseInt(val), 0);
-        setAvgReview((avgDividend / totalRatings).toFixed(1));
-      } catch (error) {
-        console.log(error);
-      }
-    };
-    return fetchData;
+    if (cachedProduct && cachedMeta) {
+
+      setCarouselProduct(JSON.parse(cachedProduct));
+
+      const { ratings } = JSON.parse(cachedMeta);
+      const totalRatings = Object.values(ratings).reduce((acc, cur) => acc + parseInt(cur), 0);
+      const avgDividend = Object.entries(ratings).reduce((acc, [key, val]) => acc + parseInt(key) * parseInt(val), 0);
+      setAvgReview((avgDividend / totalRatings).toFixed(1));
+
+    } else {
+
+      const fetchData = async () => {
+        try {
+          let [carouselProductRes, metaRes] = await Promise.all([
+            axios.get(`api/product/${product.productId || 37311}`),
+            axios.get(`api/meta/${product.productId || 37311}`),
+          ]);
+          localStorage.setItem(`product${product.productId}`, JSON.stringify(carouselProductRes.data))
+          localStorage.setItem(`products${product.productId}meta`, JSON.stringify(metaRes.data))
+          setCarouselProduct(carouselProductRes.data);
+
+          const { ratings } = metaRes.data;
+          const totalRatings = Object.values(ratings).reduce((acc, cur) => acc + parseInt(cur), 0);
+          const avgDividend = Object.entries(ratings).reduce((acc, [key, val]) => acc + parseInt(key) * parseInt(val), 0);
+          setAvgReview((avgDividend / totalRatings).toFixed(1));
+        } catch (error) {
+          console.log(error);
+        }
+      };
+    }
   }, [product.productId]);
 
-  useEffect(() => {
-    memoizedFetchData();
-  }, [memoizedFetchData]);
+
 
   const handleModal = () => {
     productClicked(carouselProduct);
@@ -81,7 +95,7 @@ const CaroselProduct = ({ product, setModal, selectClickedProduct, productClicke
           <p className="font-sans text-lg">{product.sale_price}</p>
           </>
           ) : (
-            <p className="font-sans text-lg">{product.original_price}</p>
+            <p className="font-sans text-lg">${product.original_price}</p>
             )}
             </div>
           </>
