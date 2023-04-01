@@ -2,7 +2,6 @@ import React, { useState, useEffect } from 'react'
 import CharacteristicReview from './CharacteristicReview.jsx'
 import StarsRater from './StarsRater.jsx'
 import PhotoUploader from './PhotoUploader.jsx'
-import ReviewPhoto from './ReviewPhoto.jsx'
 import { getMeta, getProduct, sendReview } from './reviewsapi'
 import axios from 'axios'
 
