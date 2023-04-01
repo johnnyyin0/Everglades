@@ -86,17 +86,14 @@ export default function NewReviewModal({ id, photo, setPhoto, form, setForm, set
 
   const handleRecommend = (evt) => {
     setForm({...form, recommended: evt.target.value === 'yes' ? true : false})
-    setRecommended(evt.target.value === 'yes' ? true : false);
   }
 
   const handleSummaryChange = (evt) => {
     setForm({...form, reviewSummary: evt.target.value})
-    setReviewSummary(evt.target.value);
   }
 
   const handleBodyChange = (evt) => {
     setForm({...form, reviewBody: evt.target.value})
-    setReviewBody(evt.target.value);
     if (evt.target.value.length < 50) {
       let reqString = `Minimum required characters left: ${50 - evt.target.value.length}`
       setReqRemaining(reqString);
@@ -107,12 +104,10 @@ export default function NewReviewModal({ id, photo, setPhoto, form, setForm, set
 
   const handleNickname = (evt) => {
     setForm({...form, nickname:evt.target.value})
-    setNickname(evt.target.value);
   }
 
   const handleEmail = (evt) => {
     setForm({...form, email:evt.target.value})
-    setEmail(evt.target.value);
   }
 
   const handleExit = (evt) => {
