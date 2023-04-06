@@ -1,14 +1,19 @@
 const controller = require('./Controllers/controllers.js');
 const router = require('express').Router();
+const client = require('./database.js')
 
-//questions
-router.get('/questions', controller.questions.getQuestions);
-router.get('/questions/answers', controller.questions.getAnswers);
-router.put('/questions/answer/helpful', controller.questions.updateHelpfulnessAnswer);
-router.put('/questions/question/helpful',controller.questions.updateHelpfulnessQuestion)
-router.post('/questions/questionId/answer', controller.questions.submitAnswer)
-router.post('/questions/ask', controller.questions.submitQuestion)
-router.put('/answer/report', controller.questions.reportAnswer)
+// questions
+// router.get('/questions', controller.questions.getQuestions);
+// router.get('/questions/answers', controller.questions.getAnswers);
+// router.put('/questions/answer/helpful', controller.questions.updateHelpfulnessAnswer);
+// router.put('/questions/question/helpful',controller.questions.updateHelpfulnessQuestion)
+// router.post('/questions/questionId/answer', controller.questions.submitAnswer)
+// router.post('/questions/ask', controller.questions.submitQuestion)
+// router.put('/answer/report', controller.questions.reportAnswer)
+
+router.get('/questions', (req, res) => {
+    console.log('this is questions from server side', req.query.productId)
+})
 
 //reviews
 router.get('/reviews/:id/:sort', controller.reviews.get);
