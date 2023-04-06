@@ -67,6 +67,63 @@ router.put('/questions/answer/helpful', (req, res) => {
     })
 })
 
+router.put('/questions/question/helpful', (req, res) =>{
+    // console.log('QUESTION HELPFUL SERVER SIDE: ', req.body.params.questionId)
+    let questionId = req.body.params.questionId
+    client.query(`
+        UPDATE questions SET question_helpfulness = question_helpfulness + 1 WHERE question_Id = $1
+    `,[questionId], (err, result) => {
+        if (err) {
+            console.error(err);
+            res.status(500).send('Error executing query');
+        } else {
+            // console.log('ANSWER HELPFUL SERVER SIDE:', result)
+            res.send(result);
+        }
+    })
+})
+
+router.post('/questions/questionId/answer', (req,res) => {
+    console.log('POSTING ANSWER SERVER SIDE: ', req.body.params)
+    let question_id = req.body.params.question_id
+    let answer_body = req.body.params.body
+    let answerer_name = req.body.params.name
+    let answerer_email = req.body.params.email
+    let photos = req.body.params.photos
+
+    client.query(`
+    INSERT INTO answers (question_id, answer_body, answerer_name, answerer_email, answer_date)
+    VALUES ($1, $2, $3, $4, $5)
+    RETURNING id;
+`,[question_id, answer_body, answerer_name, answerer_email, new Date()], (err, result) => {
+    if (err) {
+        console.error('Error inserting answer:', err);
+        res.sendStatus(500);
+        return;
+    }
+
+    let answer_id = result.rows[0].id
+
+    if (photos && photos.length > 0) {
+        let values = photos.map((url) => `(${answer_id}, '${url}')`).join(',');
+        client.query(`
+        INSERT INTO answers_photos (answer_id, url)
+        VALUES ${values};
+        `, (err) => {
+            if (err) {
+                console.error('Error inserting answer photos:', err);
+                res.sendStatus(500);
+                return;
+            }
+            
+            res.sendStatus(200);
+        });
+    } else {
+        res.sendStatus(200);
+    }
+});
+})
+
 //reviews
 router.get('/reviews/:id/:sort', controller.reviews.get);
 router.post('/review', controller.reviews.post);

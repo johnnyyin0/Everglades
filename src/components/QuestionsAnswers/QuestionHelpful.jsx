@@ -21,13 +21,13 @@ const QuestionHelpful = ({questions, questionId, setQuestions, questionHelpfulne
             .catch((err) => {
               console.log('Error on handleHelpfulClick: ', err);
             });
-        }
+        } 
       };
     
     return (
     <span>
         Helpful?
-      <span style={{ textDecoration: 'underline', cursor: 'pointer' }}
+      <span style={{ textDecoration: 'underline', cursor: 'pointer', pointerEvents: helpfulClicks.includes(questionId) ? 'none' : 'auto' }}
         onClick={() => {handleHelpfulClick(questionId)}}>
           Yes ({questionHelpfulness})
       </span> 

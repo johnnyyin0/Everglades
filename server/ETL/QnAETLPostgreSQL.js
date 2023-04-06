@@ -5,11 +5,11 @@ const client = require('../database')
 async function createTables() {
     try {
       // drop questions table if exists
-      await client.query(`DROP TABLE IF EXISTS questions`);
-  
+      await client.query(`DROP TABLE IF EXISTS questions, answers, answers_photos CASCADE`);
+      
       // create questions table
       await client.query(`CREATE TABLE IF NOT EXISTS questions (
-          question_id SERIAL PRIMARY KEY,
+          question_id SERIAL NOT NULL PRIMARY KEY,
           product_id INT NOT NULL,
           question_body TEXT NOT NULL,
           question_date VARCHAR(255) NOT NULL,
@@ -19,13 +19,10 @@ async function createTables() {
           question_helpfulness INT
         );
       `);
-  
-      // drop answers table if exists
-      await client.query(`DROP TABLE IF EXISTS answers`);
 
       // create answers table
       await client.query(`CREATE TABLE IF NOT EXISTS answers (
-          id SERIAL PRIMARY KEY,
+          id SERIAL NOT NULL PRIMARY KEY,
           question_id INT REFERENCES questions(question_id),
           answer_body TEXT NOT NULL,
           answer_date VARCHAR(255) NOT NULL,
@@ -36,12 +33,9 @@ async function createTables() {
         );
       `);
 
-      // drop answers_photos table if exists
-      await client.query(`DROP TABLE answers_photos CASCADE`);
-      
       // create answers_photos table
       await client.query(`CREATE TABLE IF NOT EXISTS answers_photos (
-          id SERIAL PRIMARY KEY,
+          id SERIAL NOT NULL PRIMARY KEY,
           answer_id INT REFERENCES answers(id),
           url VARCHAR(255) NOT NULL
         );
@@ -87,12 +81,18 @@ async function createTables() {
     await insertData();
   }
   
+  var start = new Date()
+
   client.connect()
     .then(() => {
       createQnAEtl()
         .then(() => {
           console.log('Q&A ETL process completed successfully.');
           client.end();
+          var end = new Date()
+          console.log('START: ', start)
+          console.log('END: ', end)
+          console.log('DIFFERENCE: ', end-start)
         })
         .catch((error) => {
           console.error('Q&A ETL process failed:', error);
