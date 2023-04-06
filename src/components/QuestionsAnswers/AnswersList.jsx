@@ -18,7 +18,9 @@ const AnswersList = ({questionId, questionBody, productName, questions, setQuest
   const getAnswers = (questionId) => {
     axios.get('/api/questions/answers', { params: { questionId } })
       .then((response) => {
-        setAnswers(response.data.results);
+        // setAnswers(response.data.results);
+        // console.log('ANSWERS FROM REACT', response.data)
+        setAnswers(response.data);
       })
       .catch((err) => {
         console.log('Error on getAnswers: ', err);
@@ -46,12 +48,12 @@ const AnswersList = ({questionId, questionBody, productName, questions, setQuest
         ) : (
           <div className='answer-list' style={{marginTop: '20px', marginBottom: '20px',}}>
             {answers.slice(0, showMore ? answers.length : 2).map((answer) => (
-              <div key={answer.answer_id} style={{ marginBottom: '30px'}}>
-                <b>A:</b> {answer.body}
+              <div key={answer.answer_body} style={{ marginBottom: '30px'}}>
+                <b>A:</b> {answer.answer_body}
                 <div style={{marginTop: '10px'}}>
-                  by {answer.answerer_name === 'Seller' ? <b>{answer.answerer_name}</b> : answer.answerer_name}, on {format(Date.parse(answer.date), "MMMM-dd-yyyy")} | Helpful?{' '}
+                  by {answer.answerer_name === 'Seller' ? <b>{answer.answerer_name}</b> : answer.answerer_name}, on {format(new Date(answer.answer_date * 1000), "MMMM-dd-yyyy")} | Helpful?{' '}
                   <AnswerHelpful answers={answers} setAnswers={setAnswers} answerId={answer.answer_id}/> | <ReportButton answerId={answer.answer_id} />
-                <AnswersPhotos photos={answer.photos}/>
+                {/* <AnswersPhotos photos={answer.photos}/> */}
                 </div>
               </div>
             ))}

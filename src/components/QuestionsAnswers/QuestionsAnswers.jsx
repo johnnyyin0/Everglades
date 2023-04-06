@@ -31,7 +31,7 @@ const QuestionsAnswers = () => {
         axios.get('/api/questions', { params: { productId } })
         .then(response => {
             // setQuestions(response.data.results)
-            console.log('DATA RECEIVED FROM GETQUESTIONS: ', response.data)
+            // console.log('DATA RECEIVED FROM GETQUESTIONS: ', response.data)
             setQuestions(response.data)
         })
         .catch(err => {

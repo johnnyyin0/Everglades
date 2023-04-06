@@ -13,7 +13,7 @@ const client = require('./database.js')
 
 router.get('/questions', (req, res) => {
     let productId = req.query.productId;
-    console.log('THIS IS PROD.ID', productId)
+    // console.log('THIS IS PROD.ID', productId)
     client.query(`
         SELECT question_id, question_body, question_date, asker_name, question_helpfulness 
         FROM questions
@@ -25,13 +25,31 @@ router.get('/questions', (req, res) => {
             console.error(err);
             res.status(500).send('Error executing query');
         } else {
-            console.log('Query:', result.rows);
+            // console.log('Query:', result.rows);
             res.send(result.rows);
         }
     });
 });
 
-
+router.get('/questions/answers', (req, res) =>{
+    console.log('get answer req from server side', req.query.questionId)
+    let questionId = req.query.questionId
+    client.query(`
+    SELECT id, answer_body, answer_date, answerer_name, answer_helpfulness
+    FROM answers
+    WHERE question_Id = $1 
+    ORDER BY answer_date DESC 
+    LIMIT 100;
+    `,[questionId], (err, result) => {
+        if (err) {
+            console.error(err);
+            res.status(500).send('Error executing query');
+        } else {
+            console.log('ANSWERS:', result.rows);
+            res.send(result.rows);
+        }
+    })
+})
 
 //reviews
 router.get('/reviews/:id/:sort', controller.reviews.get);

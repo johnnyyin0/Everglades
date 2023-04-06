@@ -30,7 +30,7 @@ const AnswerHelpful = ({answers, setAnswers, answerId,}) => {
         }}
         onClick={() => handleHelpfulClick(answerId)}
       >
-        Yes ({answers.find(answer => answer.answer_id === answerId).helpfulness})
+        Yes ({answers.find(answer => answer.answer_id === answerId).answer_helpfulness})
       </span>{' '}
      </span>
      )
