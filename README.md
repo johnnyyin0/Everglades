@@ -19,38 +19,41 @@ In this mockup project, we created a modern and user-friendly single-page shoppi
 ## Components
 
 ### Overview:
+- This component streamlines the shopping experience by providing a user-friendly tool for customers to browse and select products. It includes an image gallery, product information section, style selector, and "Add to Cart" option. Customers can easily explore, compare, and purchase products with ease.
 
 <img src="https://i.imgur.com/PdMy3C1.png" alt="image" style="width: 50%;">
 
 ### Related Items and Comparison:
+- The Related Items & Comparison module displays two sets of related products for the customer. The first set is a list of products that are internally determined to be related to the product currently being viewed. The second set is a custom-created list of products that the customer has grouped with the current product into an "outfit".
 
 <img src="https://i.imgur.com/nhvCtsk.png" alt="image" style="width: 50%;">
 
 ### Questions and Answers:
-This component lets users search up existing questions on the selected item, add a question they may have, answer any questions, report any answers, and let users know if the question or answer was helpful.
+- The Questions & Answers module enhances the customer experience by allowing them to view, search, ask, and answer questions related to the product they have selected.
 
 <img src="https://i.imgur.com/iCIvSTy.png" alt="image" style="width: 50%;">
 
 ### Ratings and Reviews:
+- The Ratings & Reviews module allows customers to view and submit reviews for the product they have selected. This component includes the ability to write new reviews, view reviews in a list, sort reviews, see rating and product breakdowns. All reviews are saved per product, and styles or variations of the product are not accounted for within the module.
 
 <img src="https://i.imgur.com/1HTRF5m.png" alt="image" style="width: 50%;">
 
 ## Installation & Use
-1. Clone repo
+1. Clone repo.
 ```
 git clone https://github.com/Team-Everglades/project-atelier.git
 ```
-2. install node
+2. Install node.
 ```
 npm install
 ```
-3. Run server and react server
+3. Run server and react server.
 ```
 npm run dev
 ```
-4. install all dependencies
+4. Install all dependencies.
 ```
-//To install dependencies run:
+npm i -g concurrently
 npm install react-share --save
 npm install cloudinary
 npm install react-inner-image-zoom --force
@@ -59,45 +62,12 @@ npm install cookie-parser --force
 npm install react-icons
 npm i vite-plugin-compression
 ```
-
-```
-//Install concurrently globally:
-// this enables simultaneous operation of vite and nodemon via a single command
-npm i -g concurrently
-```
-5. setup enviornmental variables files:
-
-* using the example.env and config.example.js, create a copy of these two files and remove 'example' from the file name
-
-* PORT - whichever port you want to run the backend server on, defaults to 3000 in 'server/index.js'
-
-* DB_USERNAME and DB_PASSWORD -- you will need to create a new user for a new or existing MongoDB Atlas Cluster. Log in to cloud.mongodb.com, go to 'Database Access" under "SECURITY" on the left sidebar, and click "ADD NEW DATABASE USER." Once you assign the new user at least one role or permission, you will be given the option to enter a password. Store the username and password under environmental variables DB_USERNAME and DB_PASSWORD, respectively.
+5. Setup enviornmental variables files.
 
 6. Enjoy browsing!
 
-## Testing:
+## Contributors
 
-To start the test monitoring:
-```
-npm test
-```
-To test coverage:
-```
-npm run coverage
-```
-To add tests:
-(ref: https://vitest.dev/api/)
-1. Create a new file in the 'spec' folder with the suffix 'spec.js'
-2. import { it, expect } from 'vitest'
-3. use the following format for all tests on the page:
-
-```
-it('Should perform expected action', () => {
-  expect(firstResultOfTestedThing).toBe(firstExpectedResult)
-  expect(resultOfTestedThing).to.equal(secondExpectedResult)
-})                              ^
-                                |
-                                vitest supports all Chai and Jest assertion formats. See the following for details:
-                                Chai: https://www.chaijs.com/api/bdd/
-                                Jest: https://jestjs.io/docs/expect
-```
+<a href="https://github.com/Team-Everglades/project-atelier/graphs/contributors">
+  <img src="https://contrib.rocks/image?repo=Team-Everglades/project-atelier" />
+</a>
