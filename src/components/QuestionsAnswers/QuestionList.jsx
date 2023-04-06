@@ -33,7 +33,7 @@ const QuestionList = ({questions, setQuestions, productId, productName, getQuest
     />
     {filteredQuestions.length === 0 && (
       <div style={{ marginBottom: '10px', padding: '10px' }}>
-        <b><i>Be the first to add questions!</i></b>
+        <b><i>Be the first to add a question!</i></b>
       </div>
     )}
     <div className='question-list'>

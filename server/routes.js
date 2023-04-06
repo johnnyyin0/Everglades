@@ -32,7 +32,7 @@ router.get('/questions', (req, res) => {
 });
 
 router.get('/questions/answers', (req, res) =>{
-    console.log('get answer req from server side', req.query.questionId)
+    // console.log('get answer req from server side', req.query.questionId)
     let questionId = req.query.questionId
     client.query(`
     SELECT id, answer_body, answer_date, answerer_name, answer_helpfulness
@@ -45,8 +45,24 @@ router.get('/questions/answers', (req, res) =>{
             console.error(err);
             res.status(500).send('Error executing query');
         } else {
-            console.log('ANSWERS:', result.rows);
+            // console.log('ANSWERS:', result.rows);
             res.send(result.rows);
+        }
+    })
+})
+
+router.put('/questions/answer/helpful', (req, res) => {
+    // console.log('answer helpful req on serverside', req.body.params.answerId)
+    let answerId = req.body.params.answerId
+    client.query(`
+        UPDATE answers SET answer_helpfulness = answer_helpfulness + 1 WHERE id = $1
+    `,[answerId], (err, result) => {
+        if (err) {
+            console.error(err);
+            res.status(500).send('Error executing query');
+        } else {
+            // console.log('ANSWER HELPFUL SERVER SIDE:', result)
+            res.send(result);
         }
     })
 })

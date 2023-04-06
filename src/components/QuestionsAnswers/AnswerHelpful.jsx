@@ -9,8 +9,8 @@ const AnswerHelpful = ({answers, setAnswers, answerId,}) => {
           axios.put(`/api/questions/answer/helpful`, { params: { answerId } })
             .then((response) => {
               const updatedAnswers = answers.map((answer) => {
-                if (answer.answer_id === answerId) {
-                  return { ...answer, helpfulness: answer.helpfulness + 1 };
+                if (answer.id === answerId) {
+                  return { ...answer, answer_helpfulness: answer.answer_helpfulness + 1 };
                 }
                 return answer;
               });
@@ -30,7 +30,7 @@ const AnswerHelpful = ({answers, setAnswers, answerId,}) => {
         }}
         onClick={() => handleHelpfulClick(answerId)}
       >
-        Yes ({answers.find(answer => answer.answer_id === answerId).answer_helpfulness})
+        Yes ({answers.find(answer => answer.id === answerId).answer_helpfulness})
       </span>{' '}
      </span>
      )
