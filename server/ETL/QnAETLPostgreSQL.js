@@ -9,14 +9,14 @@ async function createTables() {
   
       // create questions table
       await client.query(`CREATE TABLE IF NOT EXISTS questions (
-          id SERIAL PRIMARY KEY,
+          question_id SERIAL PRIMARY KEY,
           product_id INT NOT NULL,
-          body TEXT NOT NULL,
-          date_written VARCHAR(255) NOT NULL,
+          question_body TEXT NOT NULL,
+          question_date VARCHAR(255) NOT NULL,
           asker_name VARCHAR(255) NOT NULL,
           asker_email VARCHAR(255) NOT NULL,
           reported INT,
-          helpful INT
+          question_helpfulness INT
         );
       `);
   
@@ -26,18 +26,18 @@ async function createTables() {
       // create answers table
       await client.query(`CREATE TABLE IF NOT EXISTS answers (
           id SERIAL PRIMARY KEY,
-          question_id INT REFERENCES questions(id),
-          body TEXT NOT NULL,
-          date_written VARCHAR(255) NOT NULL,
+          question_id INT REFERENCES questions(question_id),
+          answer_body TEXT NOT NULL,
+          answer_date VARCHAR(255) NOT NULL,
           answerer_name VARCHAR(255) NOT NULL,
           answerer_email VARCHAR(255) NOT NULL,
           reported INT,
-          helpful INT
+          answer_helpfulness INT
         );
       `);
 
       // drop answers_photos table if exists
-      await client.query(`DROP TABLE IF EXISTS answers_photos`);
+      await client.query(`DROP TABLE answers_photos CASCADE`);
       
       // create answers_photos table
       await client.query(`CREATE TABLE IF NOT EXISTS answers_photos (
@@ -55,7 +55,7 @@ async function createTables() {
     try {
       // insert questions data
       await client.query(`
-        COPY questions (id, product_id, body, date_written, asker_name, asker_email, reported, helpful)
+        COPY questions (question_id, product_id, question_body, question_date, asker_name, asker_email, reported, question_helpfulness)
         FROM '${path.join(__dirname, '../../../sdc-data/questions.csv')}' 
         DELIMITER ',' 
         CSV HEADER;
@@ -63,7 +63,7 @@ async function createTables() {
   
       // insert answers data
       await client.query(`
-        COPY answers (id, question_id, body, date_written, answerer_name, answerer_email, reported, helpful)
+        COPY answers (id, question_id, answer_body, answer_date, answerer_name, answerer_email, reported, answer_helpfulness)
         FROM '${path.join(__dirname, '../../../sdc-data/answers.csv')}' 
         DELIMITER ',' 
         CSV HEADER;

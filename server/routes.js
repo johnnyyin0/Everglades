@@ -12,8 +12,26 @@ const client = require('./database.js')
 // router.put('/answer/report', controller.questions.reportAnswer)
 
 router.get('/questions', (req, res) => {
-    console.log('this is questions from server side', req.query.productId)
-})
+    let productId = req.query.productId;
+    console.log('THIS IS PROD.ID', productId)
+    client.query(`
+        SELECT question_id, question_body, question_date, asker_name, question_helpfulness 
+        FROM questions
+        WHERE product_id = $1 
+        ORDER BY question_date DESC 
+        LIMIT 100;
+    `, [productId], (err, result) => {
+        if (err) {
+            console.error(err);
+            res.status(500).send('Error executing query');
+        } else {
+            console.log('Query:', result.rows);
+            res.send(result.rows);
+        }
+    });
+});
+
+
 
 //reviews
 router.get('/reviews/:id/:sort', controller.reviews.get);
