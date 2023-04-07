@@ -1,10 +1,9 @@
 const path = require('path')
 const client = require('../database')
 
-//script to upload all the data from the csv files for postgresql
 async function createTables() {
     try {
-      // drop questions table if exists
+      // drop tables if exists
       await client.query(`DROP TABLE IF EXISTS questions, answers, answers_photos CASCADE`);
       
       // create questions table
@@ -81,7 +80,7 @@ async function createTables() {
     await insertData();
     await client.query(`SELECT setval('questions_question_id_seq', (SELECT MAX(question_id) FROM questions));`);
     await client.query(`SELECT setval('answers_id_seq', (SELECT MAX(id) FROM answers));`);
-    await client.query(`SELECT setval('answers_photos_id_seq', (SELECT MAX(id) FROM answers_photos));`);    
+    await client.query(`SELECT setval('answers_photos_id_seq', (SELECT MAX(id) FROM answers_photos));`);
   }
   
   var start = new Date()

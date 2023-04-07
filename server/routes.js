@@ -84,7 +84,6 @@ router.put('/questions/question/helpful', (req, res) =>{
 })
 
 router.post('/questions/questionId/answer', (req,res) => {
-    console.log('POSTING ANSWER SERVER SIDE: ', req.body.params)
     let question_id = req.body.params.question_id
     let answer_body = req.body.params.body
     let answerer_name = req.body.params.name
@@ -125,6 +124,30 @@ router.post('/questions/questionId/answer', (req,res) => {
         res.sendStatus(200);
     }
 });
+})
+
+router.post('/questions/ask', (req, res) => {
+    console.log('QUESTION SUBMIT SERVER: ', req.body.params)
+    let product_id = req.body.params.productId
+    let question_body = req.body.params.body
+    let asker_name = req.body.params.name
+    let asker_email =req.body.params.email
+    let question_date = new Date().getTime()
+    let reported = 0
+    let question_helpfulness = 0
+
+    client.query(`
+    INSERT INTO questions (product_id, question_body, asker_name, asker_email, question_date, reported, question_helpfulness)
+    VALUES($1, $2, $3, $4, $5, $6, $7)
+    `, [product_id, question_body, asker_name, asker_email, question_date, reported, question_helpfulness], (err, result) => {
+        if (err) {
+            console.error(err);
+            res.status(500).send('Error executing query');
+        } else {
+            console.log('QUESTION SUBMIT SERVER SIDE:', result)
+            res.send(result);
+        }
+    })
 })
 
 //reviews

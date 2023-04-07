@@ -16,16 +16,15 @@ const AnswersList = ({questionId, questionBody, productName, questions, setQuest
   }, [questionId]);
 
   const getAnswers = (questionId) => {
-    axios.get('/api/questions/answers', { params: { questionId } })
-      .then((response) => {
-        // setAnswers(response.data.results);
-        // console.log('ANSWERS FROM REACT', response.data)
-        setAnswers(response.data);
-      })
-      .catch((err) => {
-        console.log('Error on getAnswers: ', err);
-      });
-  };
+  axios.get('/api/questions/answers', { params: { questionId } })
+    .then((response) => {
+      const sortedAnswers = response.data.sort((a, b) => b.answer_helpfulness - a.answer_helpfulness);
+      setAnswers(sortedAnswers);
+    })
+    .catch((err) => {
+      console.log('Error on getAnswers: ', err);
+    });
+};
 
   return (
     <span style={{backgroundColor:'#FFFFFF'}}>
@@ -51,7 +50,7 @@ const AnswersList = ({questionId, questionBody, productName, questions, setQuest
               <div key={answer.id} style={{ marginBottom: '30px'}}>
                 <b>A:</b> {answer.answer_body}
                 <div style={{marginTop: '10px'}}>
-                  by {answer.answerer_name === 'Seller' ? <b>{answer.answerer_name}</b> : answer.answerer_name}, on {format(new Date(answer.answer_date * 1000), "MMMM-dd-yyyy")} | Helpful?{' '}
+                  by {answer.answerer_name === 'Seller' ? <b>{answer.answerer_name}</b> : answer.answerer_name}, on {format(new Date(answer.answer_date * 1000), "MMMM dd, yyyy")} | Helpful?{' '}
                   <AnswerHelpful answers={answers} setAnswers={setAnswers} answerId={answer.id}/> | <ReportButton answerId={answer.answer_id} />
                 {/* <AnswersPhotos photos={answer.photos}/> */}
                 </div>
