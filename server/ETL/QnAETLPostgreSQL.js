@@ -73,14 +73,12 @@ async function createTables() {
       // convert Unix time to date format
       await client.query(`
       UPDATE questions
-      SET question_date = to_timestamp(CAST(question_date AS BIGINT)/1000.0)
-      WHERE question_date IS NOT NULL;      
+      SET question_date = to_timestamp(CAST(question_date AS BIGINT)/1000.0)   
       `);
   
       await client.query(`
       UPDATE answers
       SET answer_date = to_timestamp(CAST(answer_date AS BIGINT)/1000.0)
-      WHERE answer_date IS NOT NULL;
       `);
   
     } catch (error) {
@@ -105,7 +103,7 @@ async function createTables() {
           console.log('Q&A ETL process completed successfully.');
           client.end();
           var end = new Date()
-          console.log('TIME TAKEN: ', end-start)
+          console.log('TIME TAKEN: ', end-start,'ms')
         })
         .catch((error) => {
           console.error('Q&A ETL process failed:', error);

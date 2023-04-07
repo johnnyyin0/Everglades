@@ -19,7 +19,6 @@ const AnswersList = ({questionId, questionBody, productName, questions, setQuest
   axios.get(`/api/qa/questions/${questionId}/answers`, { params: { questionId } })
     .then((response) => {
       const sortedAnswers = response.data.results.sort((a, b) => b.helpfulness - a.helpfulness);
-      console.log(sortedAnswers)
       setAnswers(sortedAnswers);
     })
     .catch((err) => {

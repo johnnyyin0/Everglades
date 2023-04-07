@@ -18,12 +18,7 @@ router.get('/qa/questions', (req, res) => {
     let count = req.query.count || 5;
   
     client.query(`
-      SELECT 
-        q.question_id, 
-        q.question_body, 
-        q.question_date, 
-        q.asker_name, 
-        q.question_helpfulness, 
+      SELECT q.question_id, q.question_body, q.question_date, q.asker_name, q.question_helpfulness, 
         CASE q.reported WHEN 1 THEN TRUE ELSE FALSE END AS reported,
         json_agg(
           json_build_object(
@@ -66,18 +61,20 @@ router.get('/qa/questions', (req, res) => {
                 asker_name: row.asker_name,
                 question_helpfulness: row.question_helpfulness,
                 reported: row.reported,
-                answers: (row.answers ?? []).length > 0 ? row.answers.reduce((obj, answer) => {
-                  obj[answer.id] = {
-                    id: answer.id,
-                    body: answer.body,
-                    date: answer.date,
-                    answerer_name: answer.answerer_name,
-                    helpfulness: answer.helpfulness,
-                    photos: answer.photos
-                  };
-                  return obj;
-                }, {}) : {}
-              })).filter((result) => Object.keys(result.answers).length > 0) // filter out results where there are no answers
+                answers: ((row.answers ?? []).length > 0
+                ? row.answers.reduce((obj, answer) => {
+                    if (answer.id === null) return obj;
+                    obj[answer.id] = {
+                      id: answer.id,
+                      body: answer.body,
+                      date: answer.date,
+                      answerer_name: answer.answerer_name,
+                      helpfulness: answer.helpfulness,
+                      photos: answer.photos
+                    };
+                    return obj;
+                  }, {}): {})
+              }))
             };
             res.send(finalData);
           }
@@ -91,12 +88,7 @@ router.get('/qa/questions/:question_id/answers', (req, res) =>{
     let count = req.query.count || 5
 
     client.query(`
-    SELECT 
-        answers.id AS answer_id, 
-        answers.answer_body AS body, 
-        answers.answer_date AS date, 
-        answers.answerer_name, 
-        answers.answer_helpfulness AS helpfulness,
+    SELECT answers.id AS answer_id, answers.answer_body AS body, answers.answer_date AS date, answers.answerer_name, answers.answer_helpfulness AS helpfulness,
         CASE 
             WHEN COUNT(answers_photos.id) = 0 THEN json_build_array()
             ELSE json_agg(json_build_object('id', answers_photos.id, 'url', answers_photos.url))
@@ -126,7 +118,6 @@ router.get('/qa/questions/:question_id/answers', (req, res) =>{
 })
 
 router.put('/qa/answers/:answer_id/helpful', (req, res) => {
-    console.log('answer helpful req on serverside', req.body.params.answerId)
     let answerId = req.body.params.answerId
     client.query(`
         UPDATE answers SET answer_helpfulness = answer_helpfulness + 1 WHERE id = $1
@@ -135,14 +126,12 @@ router.put('/qa/answers/:answer_id/helpful', (req, res) => {
             console.error(err);
             res.status(500).send('Error executing query');
         } else {
-            // console.log('ANSWER HELPFUL SERVER SIDE:', result)
             res.send(result);
         }
     })
 })
 
 router.put('/qa/questions/:questions_id/helpful', (req, res) =>{
-    // console.log('QUESTION HELPFUL SERVER SIDE: ', req.body.params.questionId)
     let questionId = req.body.params.questionId
     client.query(`
         UPDATE questions SET question_helpfulness = question_helpfulness + 1 WHERE question_Id = $1
@@ -151,7 +140,6 @@ router.put('/qa/questions/:questions_id/helpful', (req, res) =>{
             console.error(err);
             res.status(500).send('Error executing query');
         } else {
-            // console.log('ANSWER HELPFUL SERVER SIDE:', result)
             res.send(result);
         }
     })
@@ -201,7 +189,6 @@ router.post('/qa/questions/:question_id/answer', (req,res) => {
 })
 
 router.post('/qa/questions', (req, res) => {
-    // console.log('QUESTION SUBMIT SERVER: ', req.body.params)
     let product_id = req.body.params.productId
     let question_body = req.body.params.body
     let asker_name = req.body.params.name
@@ -218,14 +205,12 @@ router.post('/qa/questions', (req, res) => {
             console.error(err);
             res.status(500).send('Error executing query');
         } else {
-            // console.log('QUESTION SUBMIT SERVER SIDE:', result)
             res.send(result);
         }
     })
 })
 
 router.put('/qa/answer/:answer_id/report', (req, res) => {
-    // console.log('REPORT ANSWER', req.body.answerId)
     let id = req.body.answerId
 
     client.query(`
