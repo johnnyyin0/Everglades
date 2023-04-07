@@ -11,6 +11,7 @@ const client = require('./database.js')
 // router.post('/questions/ask', controller.questions.submitQuestion)
 // router.put('/answer/report', controller.questions.reportAnswer)
 
+// questions route for postgresql db
 router.get('/questions', (req, res) => {
     let productId = req.query.productId;
     // console.log('THIS IS PROD.ID', productId)
@@ -34,7 +35,7 @@ router.get('/questions', (req, res) => {
 router.get('/questions/answers', (req, res) =>{
     let questionId = req.query.questionId
     client.query(`
-    SELECT answers.id AS answer_id, answer_body, answer_date, answerer_name, answer_helpfulness, array_agg(answers_photos.url) AS photo_urls
+    SELECT answers.id AS id, answer_body, answer_date, answerer_name, answer_helpfulness, array_agg(answers_photos.url) AS photo_urls
     FROM answers
     LEFT JOIN answers_photos ON answers.id = answers_photos.answer_id
     WHERE question_id = $1
@@ -47,14 +48,14 @@ router.get('/questions/answers', (req, res) =>{
             console.error(err);
             res.status(500).send('Error executing query');
         } else {
-            console.log(result.rows)
+            // console.log(result.rows)
             res.send(result.rows);
         }
     })
 })
 
 router.put('/questions/answer/helpful', (req, res) => {
-    // console.log('answer helpful req on serverside', req.body.params.answerId)
+    console.log('answer helpful req on serverside', req.body.params.answerId)
     let answerId = req.body.params.answerId
     client.query(`
         UPDATE answers SET answer_helpfulness = answer_helpfulness + 1 WHERE id = $1
@@ -70,7 +71,7 @@ router.put('/questions/answer/helpful', (req, res) => {
 })
 
 router.put('/questions/question/helpful', (req, res) =>{
-    // console.log('QUESTION HELPFUL SERVER SIDE: ', req.body.params.questionId)
+    console.log('QUESTION HELPFUL SERVER SIDE: ', req.body.params.questionId)
     let questionId = req.body.params.questionId
     client.query(`
         UPDATE questions SET question_helpfulness = question_helpfulness + 1 WHERE question_Id = $1
@@ -129,7 +130,7 @@ router.post('/questions/questionId/answer', (req,res) => {
 })
 
 router.post('/questions/ask', (req, res) => {
-    console.log('QUESTION SUBMIT SERVER: ', req.body.params)
+    // console.log('QUESTION SUBMIT SERVER: ', req.body.params)
     let product_id = req.body.params.productId
     let question_body = req.body.params.body
     let asker_name = req.body.params.name
