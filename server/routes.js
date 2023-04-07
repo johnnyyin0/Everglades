@@ -152,7 +152,7 @@ router.post('/questions/ask', (req, res) => {
 })
 
 router.put('/answer/report', (req, res) => {
-    console.log('REPORT ANSWER', req.body.answerId)
+    // console.log('REPORT ANSWER', req.body.answerId)
     let id = req.body.answerId
 
     client.query(`
