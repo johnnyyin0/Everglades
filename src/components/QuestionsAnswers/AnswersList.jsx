@@ -19,7 +19,11 @@ const AnswersList = ({questionId, questionBody, productName, questions, setQuest
   axios.get('/api/questions/answers', { params: { questionId } })
     .then((response) => {
       const sortedAnswers = response.data.sort((a, b) => b.answer_helpfulness - a.answer_helpfulness);
-      setAnswers(sortedAnswers);
+      const cleanedAnswers = sortedAnswers.map(answer => ({
+        ...answer,
+        photo_urls: answer.photo_urls ? answer.photo_urls.filter(photo => photo !== null) : []
+      }));
+      setAnswers(cleanedAnswers);
     })
     .catch((err) => {
       console.log('Error on getAnswers: ', err);
@@ -49,10 +53,10 @@ const AnswersList = ({questionId, questionBody, productName, questions, setQuest
             {answers.slice(0, showMore ? answers.length : 2).map((answer) => (
               <div key={answer.id} style={{ marginBottom: '20px', fontSize: '16px'}}>
                 <b>A:</b> {answer.answer_body}
-                <div style={{marginTop: '10px', fontSize: '14px'}}>
+                <div style={{marginTop: '10px', fontSize: '12px'}}>
                   by {answer.answerer_name === 'Seller' ? <b>{answer.answerer_name}</b> : answer.answerer_name}, on {format(new Date(answer.answer_date * 1000), "MMMM dd, yyyy")} | Helpful?{' '}
                   <AnswerHelpful answers={answers} setAnswers={setAnswers} answerId={answer.id}/> | <ReportButton answerId={answer.id} />
-                {/* <AnswersPhotos photos={answer.photos}/> */}
+                <AnswersPhotos photos={answer.photo_urls}/>
                 </div>
               </div>
             ))}

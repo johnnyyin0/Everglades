@@ -32,21 +32,22 @@ router.get('/questions', (req, res) => {
 });
 
 router.get('/questions/answers', (req, res) =>{
-    // console.log('get answer req from server side', req.query.questionId)
     let questionId = req.query.questionId
     client.query(`
-    SELECT id, answer_body, answer_date, answerer_name, answer_helpfulness
+    SELECT answers.id AS answer_id, answer_body, answer_date, answerer_name, answer_helpfulness, array_agg(answers_photos.url) AS photo_urls
     FROM answers
-    WHERE question_Id = $1
+    LEFT JOIN answers_photos ON answers.id = answers_photos.answer_id
+    WHERE question_id = $1
     AND reported = 0 
+    GROUP BY answers.id
     ORDER BY answer_date DESC 
     LIMIT 100;
-    `,[questionId], (err, result) => {
+    `, [questionId], (err, result) => {
         if (err) {
             console.error(err);
             res.status(500).send('Error executing query');
         } else {
-            // console.log('ANSWERS:', result.rows);
+            console.log(result.rows)
             res.send(result.rows);
         }
     })
