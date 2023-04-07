@@ -28,7 +28,7 @@ const AddAnswerFormModal = ({getAnswers, questionId, questionBody, closeModal, p
   const handleSubmit = (e) => {
     e.preventDefault();
     // console.log('Form data:', {params: { questionId, name, email, body, photos: selectedPhotos}});
-    axios.post('/api/questions/questionId/answer', {params: { question_id: questionId, name, email, body, photos: selectedPhotos}})
+    axios.post('/api/qa/questions/questionId/answer', {params: { question_id: questionId, name, email, body, photos: selectedPhotos}})
     .then((response) => {
       getAnswers(questionId)
       closeModal();

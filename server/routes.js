@@ -12,32 +12,96 @@ const client = require('./database.js')
 // router.put('/answer/report', controller.questions.reportAnswer)
 
 // questions route for postgresql db
-router.get('/questions', (req, res) => {
+router.get('/qa/questions', (req, res) => {
     let productId = req.query.productId;
-    let page = req.query.page;
-    console.log('THIS IS PAGE', page)
-    // console.log('THIS IS PROD.ID', productId)
+    let page = req.query.page || 1;
+    let count = req.query.count || 5;
+  
     client.query(`
-        SELECT question_id, question_body, question_date, asker_name, question_helpfulness 
-        FROM questions
-        WHERE product_id = $1 
-        ORDER BY question_date DESC 
-        LIMIT 100;
-    `, [productId], (err, result) => {
+      SELECT 
+        q.question_id, 
+        q.question_body, 
+        q.question_date, 
+        q.asker_name, 
+        q.question_helpfulness, 
+        CASE q.reported WHEN 1 THEN TRUE ELSE FALSE END AS reported,
+        json_agg(
+          json_build_object(
+            'id', a.id, 
+            'body', a.answer_body, 
+            'date', a.answer_date, 
+            'answerer_name', a.answerer_name, 
+            'helpfulness', a.answer_helpfulness,
+            'photos', (
+              SELECT 
+                CASE 
+                  WHEN COUNT(ap.id) = 0 THEN json_build_array() 
+                  ELSE json_agg(json_build_object('id', ap.id, 'url', ap.url)) 
+                END
+              FROM answers_photos ap 
+              WHERE ap.answer_id = a.id
+            )
+          )
+          ORDER BY a.answer_date DESC
+        ) AS answers
+      FROM questions q 
+      LEFT JOIN answers a ON q.question_id = a.question_id AND a.reported = 0 
+      WHERE q.product_id = $1 
+      GROUP BY q.question_id, q.question_body, q.question_date, q.asker_name, q.question_helpfulness, q.reported 
+      ORDER BY q.question_date DESC 
+      LIMIT $2 
+      OFFSET $3;
+      `,
+      [productId, count, page], 
+      (err, result) => {
         if (err) {
-            console.error(err);
-            res.status(500).send('Error executing query');
+          console.error(err);
+          res.status(500).send('Error executing query');
         } else {
-            // console.log('Query:', result.rows);
-            res.send(result.rows);
+          const finalData = {
+            product_id: productId,
+            results: result.rows.map(row => ({
+              question_id: row.question_id,
+              question_body: row.question_body,
+              question_date: row.question_date,
+              asker_name: row.asker_name,
+              question_helpfulness: row.question_helpfulness,
+              reported: row.reported,
+              answers: row.answers.reduce((obj, answer) => {
+                obj[answer.id] = {
+                  id: answer.id,
+                  body: answer.body,
+                  date: answer.date,
+                  answerer_name: answer.answerer_name,
+                  helpfulness: answer.helpfulness,
+                  photos: answer.photos
+                };
+                return obj;
+              }, {})
+            }))
+          };
+          res.send(finalData);
         }
-    });
-});
+      }
+    );
+  });
+  
+router.get('/qa/questions/:question_id/answers', (req, res) =>{
+    let questionId = req.params.question_id
+    let page = req.query.page || 1
+    let count = req.query.count || 5
 
-router.get('/questions/answers', (req, res) =>{
-    let questionId = req.query.questionId
     client.query(`
-    SELECT answers.id AS id, answer_body, answer_date, answerer_name, answer_helpfulness, array_agg(answers_photos.url) AS photo_urls
+    SELECT 
+        answers.id AS answer_id, 
+        answers.answer_body AS body, 
+        answers.answer_date AS date, 
+        answers.answerer_name, 
+        answers.answer_helpfulness AS helpfulness,
+        CASE 
+            WHEN COUNT(answers_photos.id) = 0 THEN json_build_array()
+            ELSE json_agg(json_build_object('id', answers_photos.id, 'url', answers_photos.url))
+        END AS photos
     FROM answers
     LEFT JOIN answers_photos ON answers.id = answers_photos.answer_id
     WHERE question_id = $1
@@ -50,13 +114,18 @@ router.get('/questions/answers', (req, res) =>{
             console.error(err);
             res.status(500).send('Error executing query');
         } else {
-            // console.log(result.rows)
-            res.send(result.rows);
+            let finalData = {
+                question: questionId,
+                page,
+                count,
+                results: result.rows,
+            }
+            res.send(finalData);
         }
     })
 })
 
-router.put('/questions/answer/helpful', (req, res) => {
+router.put('/qa/answers/:answer_id/helpful', (req, res) => {
     console.log('answer helpful req on serverside', req.body.params.answerId)
     let answerId = req.body.params.answerId
     client.query(`
@@ -72,7 +141,7 @@ router.put('/questions/answer/helpful', (req, res) => {
     })
 })
 
-router.put('/questions/question/helpful', (req, res) =>{
+router.put('/qa/questions/:questions_id/helpful', (req, res) =>{
     console.log('QUESTION HELPFUL SERVER SIDE: ', req.body.params.questionId)
     let questionId = req.body.params.questionId
     client.query(`
@@ -88,7 +157,7 @@ router.put('/questions/question/helpful', (req, res) =>{
     })
 })
 
-router.post('/questions/questionId/answer', (req,res) => {
+router.post('/qa/questions/questionId/answer', (req,res) => {
     let question_id = req.body.params.question_id
     let answer_body = req.body.params.body
     let answerer_name = req.body.params.name
@@ -131,7 +200,7 @@ router.post('/questions/questionId/answer', (req,res) => {
 });
 })
 
-router.post('/questions/ask', (req, res) => {
+router.post('/qa/questions/ask', (req, res) => {
     // console.log('QUESTION SUBMIT SERVER: ', req.body.params)
     let product_id = req.body.params.productId
     let question_body = req.body.params.body
@@ -155,7 +224,7 @@ router.post('/questions/ask', (req, res) => {
     })
 })
 
-router.put('/answer/report', (req, res) => {
+router.put('/qa/answer/report', (req, res) => {
     // console.log('REPORT ANSWER', req.body.answerId)
     let id = req.body.answerId
 
