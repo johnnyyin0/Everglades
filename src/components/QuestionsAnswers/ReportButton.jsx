@@ -8,7 +8,7 @@ const ReportButton = ({ answerId }) => {
     if (isReported) {
       return;
     }
-    axios.put('/api/answer/report', { answerId })
+    axios.put(`/api/qa/answer/${answerId}/report`, { answerId })
       .then(() => {
         setIsReported(true);
       })

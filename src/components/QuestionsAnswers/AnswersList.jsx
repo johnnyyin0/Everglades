@@ -19,6 +19,7 @@ const AnswersList = ({questionId, questionBody, productName, questions, setQuest
   axios.get(`/api/qa/questions/${questionId}/answers`, { params: { questionId } })
     .then((response) => {
       const sortedAnswers = response.data.results.sort((a, b) => b.helpfulness - a.helpfulness);
+      console.log(sortedAnswers)
       setAnswers(sortedAnswers);
     })
     .catch((err) => {
@@ -50,9 +51,9 @@ const AnswersList = ({questionId, questionBody, productName, questions, setQuest
               <div key={answer.answer_id} style={{ marginBottom: '20px', fontSize: '16px'}}>
                 <b>A:</b> {answer.body}
                 <div style={{marginTop: '10px', fontSize: '12px'}}>
-                  by {answer.answerer_name === 'Seller' ? <b>{answer.answerer_name}</b> : answer.answerer_name}, on {answer.date} | Helpful?{' '}
+                  by {answer.answerer_name === 'Seller' ? <b>{answer.answerer_name}</b> : answer.answerer_name}, on {format(new Date(answer.date), 'MMMM d, yyyy')} | Helpful?{' '}
                   <AnswerHelpful answers={answers} setAnswers={setAnswers} answerId={answer.answer_id}/> | <ReportButton answerId={answer.answer_id} />
-                {/* <AnswersPhotos photos={answer.photo_urls}/> */}
+                <AnswersPhotos photos={answer.photos}/>
                 </div>
               </div>
             ))}

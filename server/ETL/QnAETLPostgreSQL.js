@@ -8,12 +8,12 @@ async function createTables() {
       
       // create questions table
       await client.query(`CREATE TABLE IF NOT EXISTS questions (
-          question_id SERIAL NOT NULL PRIMARY KEY,
-          product_id INT NOT NULL,
-          question_body TEXT NOT NULL,
-          question_date VARCHAR(255) NOT NULL,
-          asker_name VARCHAR(255) NOT NULL,
-          asker_email VARCHAR(255) NOT NULL,
+          question_id SERIAL PRIMARY KEY,
+          product_id INT,
+          question_body TEXT,
+          question_date VARCHAR(255),
+          asker_name VARCHAR(255),
+          asker_email VARCHAR(255),
           reported INT,
           question_helpfulness INT
         );
@@ -21,12 +21,12 @@ async function createTables() {
 
       // create answers table
       await client.query(`CREATE TABLE IF NOT EXISTS answers (
-          id SERIAL NOT NULL PRIMARY KEY,
+          id SERIAL PRIMARY KEY,
           question_id INT REFERENCES questions(question_id),
-          answer_body TEXT NOT NULL,
-          answer_date VARCHAR(255) NOT NULL,
-          answerer_name VARCHAR(255) NOT NULL,
-          answerer_email VARCHAR(255) NOT NULL,
+          answer_body TEXT,
+          answer_date VARCHAR(255) ,
+          answerer_name VARCHAR(255),
+          answerer_email VARCHAR(255),
           reported INT,
           answer_helpfulness INT
         );
@@ -34,9 +34,9 @@ async function createTables() {
 
       // create answers_photos table
       await client.query(`CREATE TABLE IF NOT EXISTS answers_photos (
-          id SERIAL NOT NULL PRIMARY KEY,
+          id SERIAL PRIMARY KEY,
           answer_id INT REFERENCES answers(id),
-          url VARCHAR(255) NOT NULL
+          url VARCHAR(255)
         );
       `);
     } catch (error) {
@@ -105,9 +105,7 @@ async function createTables() {
           console.log('Q&A ETL process completed successfully.');
           client.end();
           var end = new Date()
-          console.log('START: ', start)
-          console.log('END: ', end)
-          console.log('DIFFERENCE: ', end-start)
+          console.log('TIME TAKEN: ', end-start)
         })
         .catch((error) => {
           console.error('Q&A ETL process failed:', error);

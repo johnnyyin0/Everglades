@@ -14,7 +14,7 @@ const client = require('./database.js')
 // questions route for postgresql db
 router.get('/qa/questions', (req, res) => {
     let productId = req.query.productId;
-    let page = req.query.page || 1;
+    let page = req.query.page || 0;
     let count = req.query.count || 5;
   
     client.query(`
@@ -52,43 +52,42 @@ router.get('/qa/questions', (req, res) => {
       LIMIT $2 
       OFFSET $3;
       `,
-      [productId, count, page], 
-      (err, result) => {
+      [productId, count, page], (err, result) => {
         if (err) {
-          console.error(err);
-          res.status(500).send('Error executing query');
-        } else {
-          const finalData = {
-            product_id: productId,
-            results: result.rows.map(row => ({
-              question_id: row.question_id,
-              question_body: row.question_body,
-              question_date: row.question_date,
-              asker_name: row.asker_name,
-              question_helpfulness: row.question_helpfulness,
-              reported: row.reported,
-              answers: row.answers.reduce((obj, answer) => {
-                obj[answer.id] = {
-                  id: answer.id,
-                  body: answer.body,
-                  date: answer.date,
-                  answerer_name: answer.answerer_name,
-                  helpfulness: answer.helpfulness,
-                  photos: answer.photos
-                };
-                return obj;
-              }, {})
-            }))
-          };
-          res.send(finalData);
-        }
+            console.error(err);
+            res.status(500).send('Error executing query');
+          } else {
+            const finalData = {
+              product_id: productId,
+              results: result.rows.map(row => ({
+                question_id: row.question_id,
+                question_body: row.question_body,
+                question_date: row.question_date,
+                asker_name: row.asker_name,
+                question_helpfulness: row.question_helpfulness,
+                reported: row.reported,
+                answers: (row.answers ?? []).length > 0 ? row.answers.reduce((obj, answer) => {
+                  obj[answer.id] = {
+                    id: answer.id,
+                    body: answer.body,
+                    date: answer.date,
+                    answerer_name: answer.answerer_name,
+                    helpfulness: answer.helpfulness,
+                    photos: answer.photos
+                  };
+                  return obj;
+                }, {}) : {}
+              })).filter((result) => Object.keys(result.answers).length > 0) // filter out results where there are no answers
+            };
+            res.send(finalData);
+          }
       }
     );
   });
   
 router.get('/qa/questions/:question_id/answers', (req, res) =>{
     let questionId = req.params.question_id
-    let page = req.query.page || 1
+    let page = req.query.page || 0
     let count = req.query.count || 5
 
     client.query(`
@@ -108,8 +107,9 @@ router.get('/qa/questions/:question_id/answers', (req, res) =>{
     AND reported = 0 
     GROUP BY answers.id
     ORDER BY answer_date DESC 
-    LIMIT 100;
-    `, [questionId], (err, result) => {
+    LIMIT $2
+    OFFSET $3;
+    `, [questionId, count, page], (err, result) => {
         if (err) {
             console.error(err);
             res.status(500).send('Error executing query');
@@ -142,7 +142,7 @@ router.put('/qa/answers/:answer_id/helpful', (req, res) => {
 })
 
 router.put('/qa/questions/:questions_id/helpful', (req, res) =>{
-    console.log('QUESTION HELPFUL SERVER SIDE: ', req.body.params.questionId)
+    // console.log('QUESTION HELPFUL SERVER SIDE: ', req.body.params.questionId)
     let questionId = req.body.params.questionId
     client.query(`
         UPDATE questions SET question_helpfulness = question_helpfulness + 1 WHERE question_Id = $1
@@ -157,7 +157,7 @@ router.put('/qa/questions/:questions_id/helpful', (req, res) =>{
     })
 })
 
-router.post('/qa/questions/questionId/answer', (req,res) => {
+router.post('/qa/questions/:question_id/answer', (req,res) => {
     let question_id = req.body.params.question_id
     let answer_body = req.body.params.body
     let answerer_name = req.body.params.name
@@ -200,7 +200,7 @@ router.post('/qa/questions/questionId/answer', (req,res) => {
 });
 })
 
-router.post('/qa/questions/ask', (req, res) => {
+router.post('/qa/questions', (req, res) => {
     // console.log('QUESTION SUBMIT SERVER: ', req.body.params)
     let product_id = req.body.params.productId
     let question_body = req.body.params.body
@@ -218,13 +218,13 @@ router.post('/qa/questions/ask', (req, res) => {
             console.error(err);
             res.status(500).send('Error executing query');
         } else {
-            console.log('QUESTION SUBMIT SERVER SIDE:', result)
+            // console.log('QUESTION SUBMIT SERVER SIDE:', result)
             res.send(result);
         }
     })
 })
 
-router.put('/qa/answer/report', (req, res) => {
+router.put('/qa/answer/:answer_id/report', (req, res) => {
     // console.log('REPORT ANSWER', req.body.answerId)
     let id = req.body.answerId
 

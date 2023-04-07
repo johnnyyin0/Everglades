@@ -8,9 +8,8 @@ const AddQuestionFormModal = ({ closeModal, productName, productId, getQuestions
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    axios.post('/api/qa/questions/ask', {params: { productId, body: question, name, email}})
+    axios.post('/api/qa/questions', {params: { productId, body: question, name, email}})
     .then((response) => {
-        // console.log('Answer submitted successfully', response.data);
         getQuestions()
         closeModal();
       })
