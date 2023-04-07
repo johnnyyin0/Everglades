@@ -51,7 +51,7 @@ const AnswersList = ({questionId, questionBody, productName, questions, setQuest
                 <b>A:</b> {answer.answer_body}
                 <div style={{marginTop: '10px'}}>
                   by {answer.answerer_name === 'Seller' ? <b>{answer.answerer_name}</b> : answer.answerer_name}, on {format(new Date(answer.answer_date * 1000), "MMMM dd, yyyy")} | Helpful?{' '}
-                  <AnswerHelpful answers={answers} setAnswers={setAnswers} answerId={answer.id}/> | <ReportButton answerId={answer.answer_id} />
+                  <AnswerHelpful answers={answers} setAnswers={setAnswers} answerId={answer.id}/> | <ReportButton answerId={answer.id} />
                 {/* <AnswersPhotos photos={answer.photos}/> */}
                 </div>
               </div>

@@ -11,8 +11,8 @@ const ReportButton = ({ answerId }) => {
     }
     axios.put('/api/answer/report', {answerId})
     .then(()=>{
+      console.log('SUCCESSFULLY REPORTED: ', answerId)
       setIsReported(true)
-      // console.log('SUCCESSFULLY REPORTED: ', answerId)
     })
     .catch(err => {
       console.log('THIS IS ERROR FOR REPORT: ', err)

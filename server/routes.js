@@ -37,7 +37,8 @@ router.get('/questions/answers', (req, res) =>{
     client.query(`
     SELECT id, answer_body, answer_date, answerer_name, answer_helpfulness
     FROM answers
-    WHERE question_Id = $1 
+    WHERE question_Id = $1
+    AND reported = 0 
     ORDER BY answer_date DESC 
     LIMIT 100;
     `,[questionId], (err, result) => {
@@ -145,6 +146,22 @@ router.post('/questions/ask', (req, res) => {
             res.status(500).send('Error executing query');
         } else {
             console.log('QUESTION SUBMIT SERVER SIDE:', result)
+            res.send(result);
+        }
+    })
+})
+
+router.put('/answer/report', (req, res) => {
+    console.log('REPORT ANSWER', req.body.answerId)
+    let id = req.body.answerId
+
+    client.query(`
+        UPDATE answers SET reported = 1  WHERE id = $1
+    `,[id], (err, result) => {
+        if (err) {
+            console.error(err);
+            res.status(500).send('Error executing query');
+        } else {
             res.send(result);
         }
     })
