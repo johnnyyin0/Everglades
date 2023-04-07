@@ -2,47 +2,57 @@ const path = require('path')
 const client = require('../database')
 
 async function createTables() {
-    try {
+  try {
       // drop tables if exists
       await client.query(`DROP TABLE IF EXISTS questions, answers, answers_photos CASCADE`);
-      
-      // create questions table
-      await client.query(`CREATE TABLE IF NOT EXISTS questions (
-          question_id SERIAL PRIMARY KEY,
-          product_id INT,
-          question_body TEXT,
-          question_date VARCHAR(255),
-          asker_name VARCHAR(255),
-          asker_email VARCHAR(255),
-          reported INT,
-          question_helpfulness INT
-        );
+
+      // create questions table with indexes
+      await client.query(`
+          CREATE TABLE IF NOT EXISTS questions (
+              question_id SERIAL PRIMARY KEY,
+              product_id INT,
+              question_body TEXT,
+              question_date VARCHAR(255),
+              asker_name VARCHAR(255),
+              asker_email VARCHAR(255),
+              reported INT,
+              question_helpfulness INT
+          );
+          CREATE INDEX idx_questions_product_id ON questions (product_id);
+          CREATE INDEX idx_questions_reported ON questions (reported);
+          CREATE INDEX idx_questions_question_helpfulness ON questions (question_helpfulness);
       `);
 
-      // create answers table
-      await client.query(`CREATE TABLE IF NOT EXISTS answers (
-          id SERIAL PRIMARY KEY,
-          question_id INT REFERENCES questions(question_id),
-          answer_body TEXT,
-          answer_date VARCHAR(255) ,
-          answerer_name VARCHAR(255),
-          answerer_email VARCHAR(255),
-          reported INT,
-          answer_helpfulness INT
-        );
+      // create answers table with indexes
+      await client.query(`
+          CREATE TABLE IF NOT EXISTS answers (
+              id SERIAL PRIMARY KEY,
+              question_id INT REFERENCES questions(question_id),
+              answer_body TEXT,
+              answer_date VARCHAR(255) ,
+              answerer_name VARCHAR(255),
+              answerer_email VARCHAR(255),
+              reported INT,
+              answer_helpfulness INT
+          );
+          CREATE INDEX idx_answers_question_id ON answers (question_id);
+          CREATE INDEX idx_answers_reported ON answers (reported);
+          CREATE INDEX idx_answers_answer_helpfulness ON answers (answer_helpfulness);
       `);
 
-      // create answers_photos table
-      await client.query(`CREATE TABLE IF NOT EXISTS answers_photos (
-          id SERIAL PRIMARY KEY,
-          answer_id INT REFERENCES answers(id),
-          url VARCHAR(255)
-        );
+      // create answers_photos table with indexes
+      await client.query(`
+          CREATE TABLE IF NOT EXISTS answers_photos (
+              id SERIAL PRIMARY KEY,
+              answer_id INT REFERENCES answers(id),
+              url VARCHAR(255)
+          );
+          CREATE INDEX idx_answers_photos_answer_id ON answers_photos (answer_id);
       `);
-    } catch (error) {
+  } catch (error) {
       console.error('Error creating tables:', error);
-    }
   }
+}
   
   async function insertData() {
     try {
