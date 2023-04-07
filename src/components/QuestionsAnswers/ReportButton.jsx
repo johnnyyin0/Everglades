@@ -28,7 +28,7 @@ const ReportButton = ({ answerId }) => {
         }}
         onClick={handleReportClick}
       >
-        {isReported ? 'Reported' : 'Report'}
+        {isReported ? <u>Reported!</u> : 'Report'}
       </span>
     </>
   );

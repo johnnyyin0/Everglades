@@ -45,11 +45,11 @@ const AnswersList = ({questionId, questionBody, productName, questions, setQuest
             <i> No answer yet...</i>
           </div>
         ) : (
-          <div className='answer-list' style={{marginTop: '20px', marginBottom: '20px',}}>
+          <div className='answer-list' style={{marginTop: '20px', marginBottom: '10px',}}>
             {answers.slice(0, showMore ? answers.length : 2).map((answer) => (
-              <div key={answer.id} style={{ marginBottom: '30px'}}>
+              <div key={answer.id} style={{ marginBottom: '20px', fontSize: '16px'}}>
                 <b>A:</b> {answer.answer_body}
-                <div style={{marginTop: '10px'}}>
+                <div style={{marginTop: '10px', fontSize: '14px'}}>
                   by {answer.answerer_name === 'Seller' ? <b>{answer.answerer_name}</b> : answer.answerer_name}, on {format(new Date(answer.answer_date * 1000), "MMMM dd, yyyy")} | Helpful?{' '}
                   <AnswerHelpful answers={answers} setAnswers={setAnswers} answerId={answer.id}/> | <ReportButton answerId={answer.id} />
                 {/* <AnswersPhotos photos={answer.photos}/> */}
