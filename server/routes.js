@@ -14,6 +14,8 @@ const client = require('./database.js')
 // questions route for postgresql db
 router.get('/questions', (req, res) => {
     let productId = req.query.productId;
+    let page = req.query.page;
+    console.log('THIS IS PAGE', page)
     // console.log('THIS IS PROD.ID', productId)
     client.query(`
         SELECT question_id, question_body, question_date, asker_name, question_helpfulness 
@@ -92,7 +94,7 @@ router.post('/questions/questionId/answer', (req,res) => {
     let answerer_name = req.body.params.name
     let answerer_email = req.body.params.email
     let photos = req.body.params.photos
-    let answer_date = new Date().getTime()
+    let answer_date = new Date()
     let reported = 0
     let answer_helpfulness = 0
 
@@ -135,7 +137,7 @@ router.post('/questions/ask', (req, res) => {
     let question_body = req.body.params.body
     let asker_name = req.body.params.name
     let asker_email =req.body.params.email
-    let question_date = new Date().getTime()
+    let question_date = new Date()
     let reported = 0
     let question_helpfulness = 0
 

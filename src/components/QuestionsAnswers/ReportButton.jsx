@@ -5,18 +5,16 @@ const ReportButton = ({ answerId }) => {
   const [isReported, setIsReported] = useState(false);
 
   const handleReportClick = () => {
-    // console.log('REPORTING: ', answerId)
     if (isReported) {
       return;
     }
-    axios.put('/api/answer/report', {answerId})
-    .then(()=>{
-      // console.log('SUCCESSFULLY REPORTED: ', answerId)
-      setIsReported(true)
-    })
-    .catch(err => {
-      console.log('ERROR FOR REPORT: ', err)
-    })
+    axios.put('/api/answer/report', { answerId })
+      .then(() => {
+        setIsReported(true);
+      })
+      .catch(err => {
+        console.log('ERROR FOR REPORT: ', err);
+      });
   };
 
   return (
@@ -25,10 +23,11 @@ const ReportButton = ({ answerId }) => {
         style={{
           textDecoration: isReported ? 'none' : 'underline',
           cursor: 'pointer',
+          pointerEvents: isReported ? 'none' : 'auto',
         }}
         onClick={handleReportClick}
       >
-        {isReported ? <u>Reported!</u> : 'Report'}
+        {isReported ? 'Reported!' : 'Report'}
       </span>
     </>
   );

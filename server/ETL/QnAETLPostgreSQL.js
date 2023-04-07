@@ -69,7 +69,20 @@ async function createTables() {
         DELIMITER ',' 
         CSV HEADER;
       `);
-      
+  
+      // convert Unix time to date format
+      await client.query(`
+      UPDATE questions
+      SET question_date = to_timestamp(CAST(question_date AS BIGINT)/1000.0)
+      WHERE question_date IS NOT NULL;      
+      `);
+  
+      await client.query(`
+      UPDATE answers
+      SET answer_date = to_timestamp(CAST(answer_date AS BIGINT)/1000.0)
+      WHERE answer_date IS NOT NULL;
+      `);
+  
     } catch (error) {
       console.error('Error inserting data:', error);
     }
