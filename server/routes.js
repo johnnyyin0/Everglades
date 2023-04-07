@@ -90,12 +90,15 @@ router.post('/questions/questionId/answer', (req,res) => {
     let answerer_name = req.body.params.name
     let answerer_email = req.body.params.email
     let photos = req.body.params.photos
+    let answer_date = new Date().getTime()
+    let reported = 0
+    let answer_helpfulness = 0
 
     client.query(`
-    INSERT INTO answers (question_id, answer_body, answerer_name, answerer_email, answer_date)
-    VALUES ($1, $2, $3, $4, $5)
+    INSERT INTO answers (question_id, answer_body, answerer_name, answerer_email, answer_date, reported, answer_helpfulness)
+    VALUES ($1, $2, $3, $4, $5, $6, $7)
     RETURNING id;
-`,[question_id, answer_body, answerer_name, answerer_email, new Date()], (err, result) => {
+`,[question_id, answer_body, answerer_name, answerer_email, answer_date, reported, answer_helpfulness], (err, result) => {
     if (err) {
         console.error('Error inserting answer:', err);
         res.sendStatus(500);

@@ -48,7 +48,7 @@ const AnswersList = ({questionId, questionBody, productName, questions, setQuest
         ) : (
           <div className='answer-list' style={{marginTop: '20px', marginBottom: '20px',}}>
             {answers.slice(0, showMore ? answers.length : 2).map((answer) => (
-              <div key={answer.answer_body} style={{ marginBottom: '30px'}}>
+              <div key={answer.id} style={{ marginBottom: '30px'}}>
                 <b>A:</b> {answer.answer_body}
                 <div style={{marginTop: '10px'}}>
                   by {answer.answerer_name === 'Seller' ? <b>{answer.answerer_name}</b> : answer.answerer_name}, on {format(new Date(answer.answer_date * 1000), "MMMM-dd-yyyy")} | Helpful?{' '}

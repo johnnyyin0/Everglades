@@ -79,6 +79,9 @@ async function createTables() {
   async function createQnAEtl() {
     await createTables();
     await insertData();
+    await client.query(`SELECT setval('questions_question_id_seq', (SELECT MAX(question_id) FROM questions));`);
+    await client.query(`SELECT setval('answers_id_seq', (SELECT MAX(id) FROM answers));`);
+    await client.query(`SELECT setval('answers_photos_id_seq', (SELECT MAX(id) FROM answers_photos));`);    
   }
   
   var start = new Date()
