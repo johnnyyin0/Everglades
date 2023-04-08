@@ -76,7 +76,7 @@ router.get('/qa/questions', (req, res) => {
                   }, {}): {})
               }))
             };
-            res.send(finalData);
+            res.status(200).send(finalData);
           }
       }
     );
@@ -112,7 +112,7 @@ router.get('/qa/questions/:question_id/answers', (req, res) =>{
                 count,
                 results: result.rows,
             }
-            res.send(finalData);
+            res.status(200).send(finalData);
         }
     })
 })
