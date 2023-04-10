@@ -64,7 +64,7 @@ npm i vite-plugin-compression
 ```
 5. Setup enviornmental variables files.
 
-6. Enjoy browsing!
+6. And lastly, enjoy browsing!
 
 ## Contributors
 
