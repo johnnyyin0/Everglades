@@ -53,7 +53,7 @@ npm run dev
 ```
 4. Setup .env and config files.
 
-5. And lastly, enjoy browsing!
+5. Lastly, enjoy browsing!
 
 ## Contributors
 
