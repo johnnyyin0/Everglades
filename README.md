@@ -43,7 +43,7 @@ In this mockup project, we created a modern and user-friendly single-page shoppi
 ```
 git clone https://github.com/Team-Everglades/project-atelier.git
 ```
-2. Install node.
+2. Install node and dependancies.
 ```
 npm install
 ```
@@ -51,20 +51,9 @@ npm install
 ```
 npm run dev
 ```
-4. Install all dependencies.
-```
-npm i -g concurrently
-npm install react-share --save
-npm install cloudinary
-npm install react-inner-image-zoom --force
-npm install -S react-image-size --force
-npm install cookie-parser --force
-npm install react-icons
-npm i vite-plugin-compression
-```
-5. Setup enviornmental variables files.
+4. Setup .env and config files.
 
-6. And lastly, enjoy browsing!
+5. And lastly, enjoy browsing!
 
 ## Contributors
 
