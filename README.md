@@ -1,4 +1,4 @@
-# Team Everglades: FEC-project-atelier
+# Everglades
 
 In this mockup project, we created a modern and user-friendly single-page shopping website. We focused on designing a clean and intuitive interface that will allow customers to easily browse through and should enhance the overall customer experience.
 
